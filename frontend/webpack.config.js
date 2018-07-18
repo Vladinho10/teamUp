@@ -67,10 +67,10 @@ module.exports = () => {
 
     devServer: {
       contentBase: path.join(__dirname, 'dist'),
-      historyApiFallback: true
-      // proxy: {
-      //     '/api': 'http://localhost:3000'
-      //   }
+      historyApiFallback: true,
+      proxy: {
+        '/auth': 'http://localhost:3000'
+      }
     }
   };
 };

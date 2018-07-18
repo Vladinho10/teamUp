@@ -26778,15 +26778,19 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps)(EventDashboardPage);
 
 /***/ }),
 
-/***/ "./src/components/EventLoginPage.js":
-/*!******************************************!*\
-  !*** ./src/components/EventLoginPage.js ***!
-  \******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
-"use strict";
+var _react2 = _interopRequireDefault(_react);
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function () {
+  return _react2.default.createElement(
+    'h1',
+    null,
+    'EventDashboardPage'
+  );
+};
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -26808,10 +26812,10 @@ exports.default = function () {
 
 /***/ }),
 
-/***/ "./src/components/Header.js":
-/*!**********************************!*\
-  !*** ./src/components/Header.js ***!
-  \**********************************/
+/***/ "./src/components/EventLoginPage.js":
+/*!******************************************!*\
+  !*** ./src/components/EventLoginPage.js ***!
+  \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -26821,6 +26825,8 @@ exports.default = function () {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
@@ -26896,7 +26902,102 @@ var Header = function Header() {
   );
 };
 
-exports.default = Header;
+var EventLoginPage = function (_Component) {
+  _inherits(EventLoginPage, _Component);
+
+  function EventLoginPage() {
+    _classCallCheck(this, EventLoginPage);
+
+    return _possibleConstructorReturn(this, (EventLoginPage.__proto__ || Object.getPrototypeOf(EventLoginPage)).apply(this, arguments));
+  }
+
+  _createClass(EventLoginPage, [{
+    key: 'render',
+
+    // constructor(props) {
+    //   super(props)
+    // }
+    value: function render() {
+      return _react2.default.createElement(
+        _react2.default.Fragment,
+        null,
+        _react2.default.createElement(
+          'header',
+          { file: this.props, className: 'main-header' },
+          _react2.default.createElement(
+            'div',
+            { className: 'main-header__logo' },
+            'Logo'
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'main-header__welcome' },
+            _react2.default.createElement(
+              'h1',
+              null,
+              'Welcome to teamUp !'
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'main',
+          null,
+          _react2.default.createElement(
+            'section',
+            { className: 'description' },
+            'description section (this message must ne deleted)',
+            _react2.default.createElement(
+              'h3',
+              null,
+              'Join to us'
+            ),
+            _react2.default.createElement(
+              'p',
+              null,
+              'Create your team or join existing ones, make your life more interesting'
+            )
+          ),
+          _react2.default.createElement(
+            'section',
+            null,
+            'Sign in section (this message must ne deleted)',
+            _react2.default.createElement(
+              'h3',
+              null,
+              'Sign in with facebook'
+            ),
+            _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement(
+                _reactRouterDom.NavLink,
+                { role: 'link', to: '/auth/facebook', activeClassName: 'is-active' },
+                'Sign in with facebook'
+              )
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'footer',
+          null,
+          _react2.default.createElement(
+            'div',
+            { className: 'copyright-div' },
+            _react2.default.createElement(
+              'p',
+              null,
+              ' \xA9 teamUp 2018'
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return EventLoginPage;
+}(_react.Component);
+
+exports.default = EventLoginPage;
 
 /***/ }),
 
