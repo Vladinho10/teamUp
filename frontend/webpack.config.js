@@ -10,22 +10,49 @@ module.exports = () => {
     },
 
     module: {
-      rules: [{
-        loader: 'babel-loader',
-        test: /\.js$/,
-        exclude: /node_modules/
-      }, {
-        test: /\.s?css$/, // ? - make 's' optional
-        use: [{
-          loader: ExtractCssChunks.loader // creates style nodes from JS strings
+      rules: [
+        {
+          test: /\.svg$/i,
+          use: [
+            {
+              loader: 'emit-file-loader',
+              options: {
+                name: 'dist/[path][name].[ext]',
+              },
+            },
+            {
+              loader: 'svg-url-loader',
+              options: {
+                outputPath: 'static/',
+                publicPath: '/_next/',
+                limit: 1000,
+              },
+            },
+          ]
         }, {
-          loader: 'css-loader', // translates CSS into CommonJS
-          options: { sourceMap: true }
+          loader: 'babel-loader',
+          test: /\.js$/,
+          exclude: /node_modules/
         }, {
-          loader: 'sass-loader', // compiles Less to CSS
-          options: { sourceMap: true }
+          test: /\.s?css$/, // ? - make 's' optional
+          use: [{
+            loader: ExtractCssChunks.loader // creates style nodes from JS strings
+          }, {
+            loader: 'css-loader', // translates CSS into CommonJS
+            options: { sourceMap: true }
+          }, {
+            loader: 'sass-loader', // compiles Less to CSS
+            options: { sourceMap: true }
+          }]
+        }, {
+          test: /\.(png|jp(e*)g|svg)$/,
+          use: [{
+            loader: 'url-loader',
+            options: {
+              name: 'images/[hash]-[name].[ext]'
+            }
+          }]
         }]
-      }]
     },
 
     plugins: [

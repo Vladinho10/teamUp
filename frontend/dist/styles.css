@@ -297,8 +297,157 @@ template {
 [hidden] {
   display: none; }
 
+/*
+0 - 600px:      Phone
+600 - 900px:    Tablet portrait
+900 - 1200px:   Tablet landscape
+[1200 - 1800] is where our normal styles apply
+1800px + :      Big desktop
+$breakpoint arguement choices:
+- phone
+- tab-port
+- tab-land
+- big-desktop
+
+1em = 16px
+*/
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+html {
+  font-size: 62.5%; }
+  @media only screen and (max-width: 75em) {
+    html {
+      font-size: 56.25%; } }
+  @media only screen and (max-width: 56.25em) {
+    html {
+      font-size: 50%; } }
+  @media only screen and (min-width: 112.5em) {
+    html {
+      font-size: 75%; } }
+
 body {
-  background-color: green; }
+  box-sizing: border-box;
+  font-size: 1.6rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  line-height: 2.25;
+  color: #a8a8a8; }
+
+a {
+  text-decoration: none; }
+
+small {
+  font-size: 80%; }
+
+img,
+object,
+embed {
+  width: 100%; }
+
+img {
+  border-style: none;
+  height: auto; }
+
+li {
+  list-style: none; }
+
+ul {
+  padding: 0; }
+
+::selection {
+  background-color: lightgoldenrodyellow;
+  color: white; }
+
+/*
+0 - 600px:      Phone
+600 - 900px:    Tablet portrait
+900 - 1200px:   Tablet landscape
+[1200 - 1800] is where our normal styles apply
+1800px + :      Big desktop
+$breakpoint arguement choices:
+- phone
+- tab-port
+- tab-land
+- big-desktop
+
+1em = 16px
+*/
+.row {
+  max-width: 114rem;
+  margin: 0 auto; }
+  @media only screen and (max-width: 75em) {
+    .row {
+      max-width: 96rem; } }
+  @media only screen and (max-width: 56.25em) {
+    .row {
+      max-width: 78rem; } }
+
+.header {
+  background-color: #f0f1f2; }
+  .header .navbar {
+    display: flex;
+    align-items: center; }
+    .header .navbar__logo-box a {
+      display: block; }
+      .header .navbar__logo-box a img {
+        width: 60%;
+        vertical-align: middle; }
+    .header .navbar__search-box {
+      flex-grow: 1; }
+      .header .navbar__search-box .search-form {
+        display: flex; }
+        .header .navbar__search-box .search-form .icon-wrapper {
+          position: relative;
+          width: 60%;
+          margin: 0 auto;
+          transition: width .3s linear; }
+          .header .navbar__search-box .search-form .icon-wrapper:hover {
+            width: 80%; }
+        .header .navbar__search-box .search-form__input {
+          display: inline-block;
+          width: 100%;
+          margin: 0 auto;
+          padding: 1rem 1.5rem;
+          margin: 0 auto;
+          border: none;
+          border-radius: 1.5rem;
+          outline: 0; }
+        .header .navbar__search-box .search-form__icon {
+          fill: darkgrey;
+          position: absolute;
+          right: 0;
+          top: 1rem; }
+    .header .navbar__list {
+      flex-basis: 25%;
+      display: flex;
+      justify-content: space-around;
+      margin-left: 2rem;
+      color: #8f9e9c82;
+      text-transform: uppercase;
+      font-family: inherit; }
+      .header .navbar__list a:link,
+      .header .navbar__list a:visited {
+        color: #a8a8a8; }
+
+/*
+0 - 600px:      Phone
+600 - 900px:    Tablet portrait
+900 - 1200px:   Tablet landscape
+[1200 - 1800] is where our normal styles apply
+1800px + :      Big desktop
+$breakpoint arguement choices:
+- phone
+- tab-port
+- tab-land
+- big-desktop
+
+1em = 16px
+*/
 
 
 /*# sourceMappingURL=styles.css.map*/

@@ -1,32 +1,35 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import SearchIcon from './svgIcons';
+
+const logo = require('../../dist/images/logo.png');
 
 const Header = () => (
   <header className="header">
-    <p className="header__logo-box">
-      <NavLink to="/" role="logo"><img/>Logo</NavLink>
-    </p>
-    <div className="header__serach-box">
-      <form className="header__form search-form" action="/:id" method="get">
-        <input type="search" name="eventSearch" placeholder="Search" className="search-form__input" aria-label='Enter search text'/>
-      </form>
+    <div className='row'>
+      <div className="navbar">
+        <p className="navbar__logo-box">
+          <NavLink to="/" role="link"><img src={logo} alt="logo" width="190" height="80" className="navbar__logo" role="logo" /></NavLink>
+        </p>
+        <div className="navbar__search-box">
+          <form className="navbar__form search-form" action="/:id" method="get">
+            <div className="icon-wrapper">
+              <input type="text" name="eventSearch" placeholder="Search" className="search-form__input" aria-label='Enter search text'/>
+              <SearchIcon className="search__icon" role="icon" />
+            </div>
+          </form>
+        </div>
+        <ul className="navbar__list">
+          <li className="navbar__item">
+            <NavLink role="link" to="/notifications" activeClassName="navbar__link navbar__link--is-active" exact={true}>Notifications</NavLink>
+          </li>
+          <li className="navbar__item">
+            <NavLink role="link" to="/" activeClassName="navbar__link navbar__link--is-active">Logout</NavLink>
+          </li>
+        </ul>
+      </div>
     </div>
-    <ul>
-      <li>
-        <NavLink role="link" to="/notifications" activeClassName="is-active" exact={true}>Notifications</NavLink>
-      </li>
-      <li>
-        <NavLink role="link" to="/" activeClassName="is-active">Logout</NavLink>
-      </li>
-    </ul>
-
   </header>
 );
 
 export default Header;
-
-//
-// <svg type="jsx" className="search__icon">
-// <use href=".images/icons/search.svg"></use>
-// </svg>
-//

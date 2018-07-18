@@ -86,6 +86,17 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./dist/images/logo.png":
+/*!******************************!*\
+  !*** ./dist/images/logo.png ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,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"
+
+/***/ }),
+
 /***/ "./node_modules/fbjs/lib/ExecutionEnvironment.js":
 /*!*******************************************************!*\
   !*** ./node_modules/fbjs/lib/ExecutionEnvironment.js ***!
@@ -26705,6 +26716,66 @@ module.exports = function(originalModule) {
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+var _Header = __webpack_require__(/*! ./Header */ "./src/components/Header.js");
+
+var _Header2 = _interopRequireDefault(_Header);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var EventDashboardPage = function (_Component) {
+  _inherits(EventDashboardPage, _Component);
+
+  function EventDashboardPage() {
+    _classCallCheck(this, EventDashboardPage);
+
+    return _possibleConstructorReturn(this, (EventDashboardPage.__proto__ || Object.getPrototypeOf(EventDashboardPage)).apply(this, arguments));
+  }
+
+  _createClass(EventDashboardPage, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        _react2.default.Fragment,
+        null,
+        _react2.default.createElement(_Header2.default, { can: this.props.events }),
+        _react2.default.createElement(
+          'main',
+          { className: 'main' },
+          _react2.default.createElement('div', null)
+        )
+      );
+    }
+  }]);
+
+  return EventDashboardPage;
+}(_react.Component);
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    events: state.events
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps)(EventDashboardPage);
+
 /***/ }),
 
 /***/ "./src/components/EventLoginPage.js":
@@ -26716,6 +26787,24 @@ module.exports = function(originalModule) {
 
 "use strict";
 
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function () {
+  return _react2.default.createElement(
+    'h1',
+    null,
+    'EventLoginPage'
+  );
+};
 
 /***/ }),
 
@@ -26739,34 +26828,69 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 
+var _svgIcons = __webpack_require__(/*! ./svgIcons */ "./src/components/svgIcons.js");
+
+var _svgIcons2 = _interopRequireDefault(_svgIcons);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var logo = __webpack_require__(/*! ../../dist/images/logo.png */ "./dist/images/logo.png");
 
 var Header = function Header() {
   return _react2.default.createElement(
     'header',
-    null,
+    { className: 'header' },
     _react2.default.createElement(
-      'h1',
-      { className: 'visibility-hidden' },
-      'Teamup'
-    ),
-    _react2.default.createElement(
-      'ul',
-      null,
+      'div',
+      { className: 'row' },
       _react2.default.createElement(
-        _reactRouterDom.NavLink,
-        { to: '/', activeClassName: 'is-active', exact: true },
-        'Dashboard'
-      ),
-      _react2.default.createElement(
-        _reactRouterDom.NavLink,
-        { to: '/create', activeClassName: 'is-active' },
-        'Create Expense'
-      ),
-      _react2.default.createElement(
-        _reactRouterDom.NavLink,
-        { to: '/help', activeClassName: 'is-active' },
-        'Help'
+        'div',
+        { className: 'navbar' },
+        _react2.default.createElement(
+          'p',
+          { className: 'navbar__logo-box' },
+          _react2.default.createElement(
+            _reactRouterDom.NavLink,
+            { to: '/', role: 'link' },
+            _react2.default.createElement('img', { src: logo, alt: 'logo', width: '190', height: '80', className: 'navbar__logo', role: 'logo' })
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'navbar__search-box' },
+          _react2.default.createElement(
+            'form',
+            { className: 'navbar__form search-form', action: '/:id', method: 'get' },
+            _react2.default.createElement(
+              'div',
+              { className: 'icon-wrapper' },
+              _react2.default.createElement('input', { type: 'text', name: 'eventSearch', placeholder: 'Search', className: 'search-form__input', 'aria-label': 'Enter search text' }),
+              _react2.default.createElement(_svgIcons2.default, { className: 'search__icon', role: 'icon' })
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'ul',
+          { className: 'navbar__list' },
+          _react2.default.createElement(
+            'li',
+            { className: 'navbar__item' },
+            _react2.default.createElement(
+              _reactRouterDom.NavLink,
+              { role: 'link', to: '/notifications', activeClassName: 'navbar__link navbar__link--is-active', exact: true },
+              'Notifications'
+            )
+          ),
+          _react2.default.createElement(
+            'li',
+            { className: 'navbar__item' },
+            _react2.default.createElement(
+              _reactRouterDom.NavLink,
+              { role: 'link', to: '/', activeClassName: 'navbar__link navbar__link--is-active' },
+              'Logout'
+            )
+          )
+        )
       )
     )
   );
@@ -26785,6 +26909,61 @@ exports.default = Header;
 
 "use strict";
 
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function () {
+  return _react2.default.createElement(
+    'h1',
+    null,
+    'NotFoundPage'
+  );
+};
+
+/***/ }),
+
+/***/ "./src/components/svgIcons.js":
+/*!************************************!*\
+  !*** ./src/components/svgIcons.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var SearchIcon = function SearchIcon() {
+  return _react2.default.createElement(
+    "svg",
+    { className: "search-form__icon", xmlns: "http://www.w3.org/2000/svg", width: "33", height: "33", viewBox: "0 0 32 32", "aria-labelledby": "title" },
+    _react2.default.createElement(
+      "title",
+      { id: "title" },
+      "Search"
+    ),
+    _react2.default.createElement("path", { xmlns: "http://www.w3.org/2000/svg", d: "M7.012 3c2.193 0 3.977 1.794 3.977 4 0 0.831-0.255 1.63-0.737 2.312l-0.392 0.553-0.55 0.393c-0.678 0.485-1.473 0.742-2.298 0.742-2.193 0-3.977-1.794-3.977-4s1.784-4 3.977-4zM7.012 1c-3.295 0-5.966 2.686-5.966 6s2.671 6 5.966 6c1.288 0 2.477-0.414 3.451-1.112l4.791 4.819c0.195 0.196 0.45 0.293 0.705 0.293s0.51-0.098 0.704-0.293c0.389-0.391 0.389-1.025 0-1.416l-4.791-4.819c0.694-0.98 1.105-2.177 1.105-3.471 0-3.314-2.671-6-5.965-6v0z" })
+  );
+};
+
+exports.default = SearchIcon;
 
 /***/ }),
 
@@ -26822,9 +27001,6 @@ __webpack_require__(/*! ./styles/main.scss */ "./src/styles/main.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// import { addExpense } from './actions/expenses';
-// import { setTextFilter } from './actions/filters';
-// import getVisibleExpenses from './selectors/expenses';
 var store = (0, _configureStore2.default)();
 
 var App = _react2.default.createElement(
@@ -26834,6 +27010,41 @@ var App = _react2.default.createElement(
 );
 
 _reactDom2.default.render(App, document.getElementById('root'));
+
+/***/ }),
+
+/***/ "./src/reducers/EventReducer.js":
+/*!**************************************!*\
+  !*** ./src/reducers/EventReducer.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments[1];
+
+  switch (action.type) {
+    case 'ADD_EVENT':
+      return state;
+
+    case 'REMOVE_EVENT':
+      return state;
+
+    case 'EDIT_EVENT':
+      return state;
+
+    default:
+      return state;
+  }
+};
 
 /***/ }),
 
@@ -26869,10 +27080,6 @@ var _NotFoundPage = __webpack_require__(/*! ../components/NotFoundPage */ "./src
 
 var _NotFoundPage2 = _interopRequireDefault(_NotFoundPage);
 
-var _Header = __webpack_require__(/*! ../components/Header */ "./src/components/Header.js");
-
-var _Header2 = _interopRequireDefault(_Header);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var AppRouter = function AppRouter() {
@@ -26882,7 +27089,6 @@ var AppRouter = function AppRouter() {
     _react2.default.createElement(
       _react2.default.Fragment,
       null,
-      _react2.default.createElement(_Header2.default, null),
       _react2.default.createElement(
         _reactRouterDom.Switch,
         null,
@@ -26909,7 +27115,7 @@ exports.default = AppRouter;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _redux = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
@@ -26920,11 +27126,17 @@ var _reduxThunk = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-t
 
 var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
+var _EventReducer = __webpack_require__(/*! ../reducers/EventReducer */ "./src/reducers/EventReducer.js");
+
+var _EventReducer2 = _interopRequireDefault(_EventReducer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = function () {
-    var store = (0, _redux.createStore)(OptionReducer, (0, _reduxDevtoolsExtension.composeWithDevTools)((0, _redux.applyMiddleware)(_reduxThunk2.default)));
-    return store;
+  var store = (0, _redux.createStore)((0, _redux.combineReducers)({
+    EventReducer: _EventReducer2.default
+  }), (0, _reduxDevtoolsExtension.composeWithDevTools)((0, _redux.applyMiddleware)(_reduxThunk2.default)));
+  return store;
 };
 
 /***/ }),
