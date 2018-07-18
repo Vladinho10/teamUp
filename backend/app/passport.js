@@ -7,9 +7,17 @@ passport.use(new FacebookStrategy({
     callbackURL: config.facebook_config.callback_url
   },
   function(accessToken, refreshToken, profile, done) {
-    User.findOrCreate(..., function(err, user) {
-      if (err) { return done(err); }
-      done(null, user);
-    });
+    //User
+    console.log(profile);
+    done(null,{name:profile.name});
   }
 ));
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
+
+module.exports = passport;
