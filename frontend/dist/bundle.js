@@ -26706,7 +26706,7 @@ module.exports = function(originalModule) {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
@@ -26716,11 +26716,11 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = function () {
-    return _react2.default.createElement(
-        'h1',
-        null,
-        'EventDashboardPage'
-    );
+  return _react2.default.createElement(
+    'h1',
+    null,
+    'EventDashboardPage'
+  );
 };
 
 /***/ }),
@@ -26736,38 +26736,10 @@ exports.default = function () {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function () {
-    return _react2.default.createElement(
-        'h1',
-        null,
-        'EventLoginPage'
-    );
-};
-
-/***/ }),
-
-/***/ "./src/components/Header.js":
-/*!**********************************!*\
-  !*** ./src/components/Header.js ***!
-  \**********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
@@ -26777,55 +26749,108 @@ var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_module
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Header = function Header() {
-    return _react2.default.createElement(
-        'header',
-        { className: 'header' },
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Home = function (_Component) {
+  _inherits(Home, _Component);
+
+  function Home() {
+    _classCallCheck(this, Home);
+
+    return _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).apply(this, arguments));
+  }
+
+  _createClass(Home, [{
+    key: 'render',
+
+    // constructor(props) {
+    //   super(props)
+    // }
+    value: function render() {
+      return _react2.default.createElement(
+        _react2.default.Fragment,
+        null,
         _react2.default.createElement(
-            'p',
-            { className: 'header__logo-box' },
-            _react2.default.createElement(
-                _reactRouterDom.NavLink,
-                { to: '/', role: 'logo' },
-                _react2.default.createElement('img', null),
-                'Logo'
-            )
-        ),
-        _react2.default.createElement(
+          'header',
+          { file: this.props, className: 'main-header' },
+          _react2.default.createElement(
             'div',
-            { className: 'header__serach-box' },
+            { className: 'main-header__logo' },
+            'Logo'
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'main-header__welcome' },
             _react2.default.createElement(
-                'form',
-                { className: 'header__form search-form', action: '/:id', method: 'get' },
-                _react2.default.createElement('input', { type: 'search', name: 'eventSearch', placeholder: 'Search', className: 'search-form__input', 'aria-label': 'Enter search text' })
+              'h1',
+              null,
+              'Welcome to teamUp !'
             )
+          )
         ),
         _react2.default.createElement(
-            'ul',
-            null,
+          'main',
+          null,
+          _react2.default.createElement(
+            'section',
+            { className: 'description' },
+            'description section (this message must ne deleted)',
             _react2.default.createElement(
-                'li',
-                null,
-                _react2.default.createElement(
-                    _reactRouterDom.NavLink,
-                    { role: 'link', to: '/notifications', activeClassName: 'is-active', exact: true },
-                    'Notifications'
-                )
+              'h3',
+              null,
+              'Join to us'
             ),
             _react2.default.createElement(
-                'li',
-                null,
-                _react2.default.createElement(
-                    _reactRouterDom.NavLink,
-                    { role: 'link', to: '/', activeClassName: 'is-active' },
-                    'Logout'
-                )
+              'p',
+              null,
+              'Create your team or join existing ones, make your life more interesting'
             )
+          ),
+          _react2.default.createElement(
+            'section',
+            null,
+            'Sign in section (this message must ne deleted)',
+            _react2.default.createElement(
+              'h3',
+              null,
+              'Sign in with facebook'
+            ),
+            _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement(
+                _reactRouterDom.NavLink,
+                { role: 'link', to: '/', activeClassName: 'is-active' },
+                'Sign in with facebook'
+              )
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'footer',
+          null,
+          _react2.default.createElement(
+            'div',
+            { className: 'copyright-div' },
+            _react2.default.createElement(
+              'p',
+              null,
+              ' \xA9 teamUp 2018'
+            )
+          )
         )
-    );
-};
+      );
+    }
+  }]);
 
-exports.default = Header;
+  return Home;
+}(_react.Component);
+
+exports.default = Home;
 
 /***/ }),
 
@@ -26840,7 +26865,7 @@ exports.default = Header;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
@@ -26850,11 +26875,11 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = function () {
-    return _react2.default.createElement(
-        'h1',
-        null,
-        'NotFoundPage'
-    );
+  return _react2.default.createElement(
+    'h1',
+    null,
+    'NotFoundPage'
+  );
 };
 
 /***/ }),
@@ -26924,11 +26949,14 @@ exports.default = function () {
   var action = arguments[1];
 
   switch (action.type) {
-    case 'ADD_EXPENSE':
+    case 'ADD_EVENT':
+      return state;
 
-    case 'REMOVE_EXPENSE':
+    case 'REMOVE_EVENT':
+      return state;
 
-    case 'EDIT_EXPENSE':
+    case 'EDIT_EVENT':
+      return state;
 
     default:
       return state;
@@ -26969,10 +26997,6 @@ var _NotFoundPage = __webpack_require__(/*! ../components/NotFoundPage */ "./src
 
 var _NotFoundPage2 = _interopRequireDefault(_NotFoundPage);
 
-var _Header = __webpack_require__(/*! ../components/Header */ "./src/components/Header.js");
-
-var _Header2 = _interopRequireDefault(_Header);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var AppRouter = function AppRouter() {
@@ -26982,7 +27006,6 @@ var AppRouter = function AppRouter() {
     _react2.default.createElement(
       _react2.default.Fragment,
       null,
-      _react2.default.createElement(_Header2.default, null),
       _react2.default.createElement(
         _reactRouterDom.Switch,
         null,
@@ -27009,28 +27032,28 @@ exports.default = AppRouter;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _redux = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 
 var _reduxDevtoolsExtension = __webpack_require__(/*! redux-devtools-extension */ "./node_modules/redux-devtools-extension/index.js");
 
-var _EventReducer = __webpack_require__(/*! ../reducers/EventReducer */ "./src/reducers/EventReducer.js");
-
-var _EventReducer2 = _interopRequireDefault(_EventReducer);
-
 var _reduxThunk = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
 
 var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
+var _EventReducer = __webpack_require__(/*! ../reducers/EventReducer */ "./src/reducers/EventReducer.js");
+
+var _EventReducer2 = _interopRequireDefault(_EventReducer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = function () {
-    var store = (0, _redux.createStore)((0, _redux.combineReducers)({
-        EventReducer: _EventReducer2.default
-    }), (0, _reduxDevtoolsExtension.composeWithDevTools)((0, _redux.applyMiddleware)(_reduxThunk2.default)));
-    return store;
+  var store = (0, _redux.createStore)((0, _redux.combineReducers)({
+    EventReducer: _EventReducer2.default
+  }), (0, _reduxDevtoolsExtension.composeWithDevTools)((0, _redux.applyMiddleware)(_reduxThunk2.default)));
+  return store;
 };
 
 /***/ }),
