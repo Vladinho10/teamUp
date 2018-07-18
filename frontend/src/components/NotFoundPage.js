@@ -1,5 +1,5 @@
 import React from 'react';
 
 export default () => (
-    <h1>NotFoundPage</h1>
+  <h1>NotFoundPage</h1>
 );

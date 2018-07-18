@@ -35,7 +35,7 @@ build/Release
 # Dependency directories
 node_modules/
 frontend/node_modules/
-forntend/server/
+server/
 backend/node_modules/
 jspm_packages/
 
