@@ -2,10 +2,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 //const db = mongoose.connection;
-db.once("open", function () {
-    console.log('Connection is OK')
-});
-
 const EventSchema = new Schema({
     title: String,
     type: String,
@@ -18,5 +14,4 @@ const EventSchema = new Schema({
     completed: Boolean,
 })
 
-const Event = mongoose.connect('Event', EventSchema)
-module.exports = Event;
+module.exports = EventSchema;

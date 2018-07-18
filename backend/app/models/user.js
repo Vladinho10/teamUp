@@ -2,11 +2,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 //const db = mongoose.connection;
-db.once("open", function () {
-    console.log('Connection is OK')
-});
-
-
 const UserSchema = new Schema({
     fb_id: String,
     name: String,
@@ -19,5 +14,4 @@ const UserSchema = new Schema({
     finished_events: [String]
 })
 
-const User = mongoose.connect('User', UserSchema)
-module.exports = User;
+module.exports = UserSchema;
