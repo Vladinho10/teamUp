@@ -27,7 +27,7 @@ class EventLoginPage extends Component {
             Sign in section (this message must ne deleted)
             <h3>Sign in with facebook</h3>
             <div>
-              <NavLink role='link' to='/' activeClassName='is-active'>Sign in with facebook</NavLink>
+              <NavLink role='link' to='/auth/facebook' activeClassName='is-active'>Sign in with facebook</NavLink>
             </div>
           </section>
         </main>

@@ -26755,16 +26755,16 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Home = function (_Component) {
-  _inherits(Home, _Component);
+var EventLoginPage = function (_Component) {
+  _inherits(EventLoginPage, _Component);
 
-  function Home() {
-    _classCallCheck(this, Home);
+  function EventLoginPage() {
+    _classCallCheck(this, EventLoginPage);
 
-    return _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (EventLoginPage.__proto__ || Object.getPrototypeOf(EventLoginPage)).apply(this, arguments));
   }
 
-  _createClass(Home, [{
+  _createClass(EventLoginPage, [{
     key: 'render',
 
     // constructor(props) {
@@ -26824,7 +26824,7 @@ var Home = function (_Component) {
               null,
               _react2.default.createElement(
                 _reactRouterDom.NavLink,
-                { role: 'link', to: '/', activeClassName: 'is-active' },
+                { role: 'link', to: '/auth/facebook', activeClassName: 'is-active' },
                 'Sign in with facebook'
               )
             )
@@ -26847,10 +26847,10 @@ var Home = function (_Component) {
     }
   }]);
 
-  return Home;
+  return EventLoginPage;
 }(_react.Component);
 
-exports.default = Home;
+exports.default = EventLoginPage;
 
 /***/ }),
 
