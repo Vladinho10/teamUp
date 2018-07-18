@@ -297,7 +297,6 @@ template {
 [hidden] {
   display: none; }
 
-<<<<<<< HEAD
 /*
 0 - 600px:      Phone
 600 - 900px:    Tablet portrait
@@ -449,8 +448,6 @@ $breakpoint arguement choices:
 
 1em = 16px
 */
-=======
->>>>>>> c554eaedb64a40eb390a207302344c5e30809cdd
 
 
 /*# sourceMappingURL=styles.css.map*/

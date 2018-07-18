@@ -86,16 +86,3 @@ module.exports = () => {
 the index.html page will likely have to be served in place of any 404 responses.
 Enable this by passing: */
 // for handling errors in console by more good way . it shows the exact place of error
-
-
-// use: CSSExtract.extract({
-//     use: [
-//         {
-//             loader: 'css-loader',
-//             options: {sourceMap: true}
-//         }, {
-//             loader:'sass-loader',
-//             options: {sourceMap: true}
-//         }
-//     ]
-// })

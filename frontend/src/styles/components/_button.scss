@@ -1,0 +1,64 @@
+@import 'utils/variables';
+
+.btn {
+	position: relative;
+	z-index: 1;
+	
+	&,
+	&:link,
+	&:visited {
+		display: inline-block;
+		padding: .7rem 4rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		color: $color-white;
+		border-radius: .3rem;
+		transition: all .3s;
+	}
+	
+	&_green {
+		background-image: linear-gradient(to right, $color-grey-lighter, $button-color-1, $button-color-2, $button-color-3, $button-color-4, $color-grey-light);
+    }
+    
+    &_black {
+        background-image: linear-gradient(to right, $color-black, $color-grey-light);
+        color: $color-white;
+        align-self: center;
+    }
+	
+	&_active {
+		
+		&:active,
+		&:focus {
+			outline: 0;
+			transform: translateY(-3px);
+			box-shadow: $button-shadow;
+		}
+	}
+	
+	&_animated {
+		
+		&::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: -1;
+			width: 0;
+			height: 100%;
+			border-radius: .3rem;
+			background-color: $color-white;
+			transform: scaleY(0);
+			transition: transform .3s .3s, width .6s cubic-bezier(.67,.54,.49,.54);
+		}
+		
+		&:hover::before {
+			width: 100%;
+			transform: scaleY(1);
+		}
+		
+		&:hover {
+			color: $color-green;
+		}
+	}
+}

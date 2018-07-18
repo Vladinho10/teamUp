@@ -26778,40 +26778,6 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps)(EventDashboardPage);
 
 /***/ }),
 
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function () {
-  return _react2.default.createElement(
-    'h1',
-    null,
-    'EventDashboardPage'
-  );
-};
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function () {
-  return _react2.default.createElement(
-    'h1',
-    null,
-    'EventLoginPage'
-  );
-};
-
-/***/ }),
-
 /***/ "./src/components/EventLoginPage.js":
 /*!******************************************!*\
   !*** ./src/components/EventLoginPage.js ***!
@@ -26834,73 +26800,13 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 
-var _svgIcons = __webpack_require__(/*! ./svgIcons */ "./src/components/svgIcons.js");
-
-var _svgIcons2 = _interopRequireDefault(_svgIcons);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var logo = __webpack_require__(/*! ../../dist/images/logo.png */ "./dist/images/logo.png");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Header = function Header() {
-  return _react2.default.createElement(
-    'header',
-    { className: 'header' },
-    _react2.default.createElement(
-      'div',
-      { className: 'row' },
-      _react2.default.createElement(
-        'div',
-        { className: 'navbar' },
-        _react2.default.createElement(
-          'p',
-          { className: 'navbar__logo-box' },
-          _react2.default.createElement(
-            _reactRouterDom.NavLink,
-            { to: '/', role: 'link' },
-            _react2.default.createElement('img', { src: logo, alt: 'logo', width: '190', height: '80', className: 'navbar__logo', role: 'logo' })
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'navbar__search-box' },
-          _react2.default.createElement(
-            'form',
-            { className: 'navbar__form search-form', action: '/:id', method: 'get' },
-            _react2.default.createElement(
-              'div',
-              { className: 'icon-wrapper' },
-              _react2.default.createElement('input', { type: 'text', name: 'eventSearch', placeholder: 'Search', className: 'search-form__input', 'aria-label': 'Enter search text' }),
-              _react2.default.createElement(_svgIcons2.default, { className: 'search__icon', role: 'icon' })
-            )
-          )
-        ),
-        _react2.default.createElement(
-          'ul',
-          { className: 'navbar__list' },
-          _react2.default.createElement(
-            'li',
-            { className: 'navbar__item' },
-            _react2.default.createElement(
-              _reactRouterDom.NavLink,
-              { role: 'link', to: '/notifications', activeClassName: 'navbar__link navbar__link--is-active', exact: true },
-              'Notifications'
-            )
-          ),
-          _react2.default.createElement(
-            'li',
-            { className: 'navbar__item' },
-            _react2.default.createElement(
-              _reactRouterDom.NavLink,
-              { role: 'link', to: '/', activeClassName: 'navbar__link navbar__link--is-active' },
-              'Logout'
-            )
-          )
-        )
-      )
-    )
-  );
-};
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var EventLoginPage = function (_Component) {
   _inherits(EventLoginPage, _Component);
@@ -26998,6 +26904,98 @@ var EventLoginPage = function (_Component) {
 }(_react.Component);
 
 exports.default = EventLoginPage;
+
+/***/ }),
+
+/***/ "./src/components/Header.js":
+/*!**********************************!*\
+  !*** ./src/components/Header.js ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
+var _svgIcons = __webpack_require__(/*! ./svgIcons */ "./src/components/svgIcons.js");
+
+var _svgIcons2 = _interopRequireDefault(_svgIcons);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var logo = __webpack_require__(/*! ../../dist/images/logo.png */ "./dist/images/logo.png");
+
+var Header = function Header() {
+  return _react2.default.createElement(
+    'header',
+    { className: 'header' },
+    _react2.default.createElement(
+      'div',
+      { className: 'row' },
+      _react2.default.createElement(
+        'div',
+        { className: 'navbar' },
+        _react2.default.createElement(
+          'p',
+          { className: 'navbar__logo-box' },
+          _react2.default.createElement(
+            _reactRouterDom.NavLink,
+            { to: '/', role: 'link' },
+            _react2.default.createElement('img', { src: logo, alt: 'logo', width: '190', height: '80', className: 'navbar__logo', role: 'logo' })
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'navbar__search-box' },
+          _react2.default.createElement(
+            'form',
+            { className: 'navbar__form search-form', action: '/:id', method: 'get' },
+            _react2.default.createElement(
+              'div',
+              { className: 'icon-wrapper' },
+              _react2.default.createElement('input', { type: 'text', name: 'eventSearch', placeholder: 'Search', className: 'search-form__input', 'aria-label': 'Enter search text' }),
+              _react2.default.createElement(_svgIcons2.default, { className: 'search__icon', role: 'icon' })
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'ul',
+          { className: 'navbar__list' },
+          _react2.default.createElement(
+            'li',
+            { className: 'navbar__item' },
+            _react2.default.createElement(
+              _reactRouterDom.NavLink,
+              { role: 'link', to: '/notifications', activeClassName: 'navbar__link navbar__link--is-active', exact: true },
+              'Notifications'
+            )
+          ),
+          _react2.default.createElement(
+            'li',
+            { className: 'navbar__item' },
+            _react2.default.createElement(
+              _reactRouterDom.NavLink,
+              { role: 'link', to: '/', activeClassName: 'navbar__link navbar__link--is-active' },
+              'Logout'
+            )
+          )
+        )
+      )
+    )
+  );
+};
+
+exports.default = Header;
 
 /***/ }),
 
