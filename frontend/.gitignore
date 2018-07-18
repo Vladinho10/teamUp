@@ -36,6 +36,7 @@ build/Release
 node_modules/
 frontend/node_modules/
 server/
+dist/
 backend/node_modules/
 jspm_packages/
 
