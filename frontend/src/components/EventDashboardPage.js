@@ -1,5 +1,5 @@
 import React from 'react';
 
 export default () => (
-    <h1>EventDashboardPage</h1>
+  <h1>EventDashboardPage</h1>
 );

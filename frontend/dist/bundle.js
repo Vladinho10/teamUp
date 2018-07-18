@@ -26705,6 +26705,24 @@ module.exports = function(originalModule) {
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function () {
+    return _react2.default.createElement(
+        'h1',
+        null,
+        'EventDashboardPage'
+    );
+};
+
 /***/ }),
 
 /***/ "./src/components/EventLoginPage.js":
@@ -26716,6 +26734,24 @@ module.exports = function(originalModule) {
 
 "use strict";
 
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function () {
+    return _react2.default.createElement(
+        'h1',
+        null,
+        'EventLoginPage'
+    );
+};
 
 /***/ }),
 
@@ -26730,7 +26766,7 @@ module.exports = function(originalModule) {
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
@@ -26742,34 +26778,51 @@ var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_module
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Header = function Header() {
-  return _react2.default.createElement(
-    'header',
-    null,
-    _react2.default.createElement(
-      'h1',
-      { className: 'visibility-hidden' },
-      'Teamup'
-    ),
-    _react2.default.createElement(
-      'ul',
-      null,
-      _react2.default.createElement(
-        _reactRouterDom.NavLink,
-        { to: '/', activeClassName: 'is-active', exact: true },
-        'Dashboard'
-      ),
-      _react2.default.createElement(
-        _reactRouterDom.NavLink,
-        { to: '/create', activeClassName: 'is-active' },
-        'Create Expense'
-      ),
-      _react2.default.createElement(
-        _reactRouterDom.NavLink,
-        { to: '/help', activeClassName: 'is-active' },
-        'Help'
-      )
-    )
-  );
+    return _react2.default.createElement(
+        'header',
+        { className: 'header' },
+        _react2.default.createElement(
+            'p',
+            { className: 'header__logo-box' },
+            _react2.default.createElement(
+                _reactRouterDom.NavLink,
+                { to: '/', role: 'logo' },
+                _react2.default.createElement('img', null),
+                'Logo'
+            )
+        ),
+        _react2.default.createElement(
+            'div',
+            { className: 'header__serach-box' },
+            _react2.default.createElement(
+                'form',
+                { className: 'header__form search-form', action: '/:id', method: 'get' },
+                _react2.default.createElement('input', { type: 'search', name: 'eventSearch', placeholder: 'Search', className: 'search-form__input', 'aria-label': 'Enter search text' })
+            )
+        ),
+        _react2.default.createElement(
+            'ul',
+            null,
+            _react2.default.createElement(
+                'li',
+                null,
+                _react2.default.createElement(
+                    _reactRouterDom.NavLink,
+                    { role: 'link', to: '/notifications', activeClassName: 'is-active', exact: true },
+                    'Notifications'
+                )
+            ),
+            _react2.default.createElement(
+                'li',
+                null,
+                _react2.default.createElement(
+                    _reactRouterDom.NavLink,
+                    { role: 'link', to: '/', activeClassName: 'is-active' },
+                    'Logout'
+                )
+            )
+        )
+    );
 };
 
 exports.default = Header;
@@ -26785,6 +26838,24 @@ exports.default = Header;
 
 "use strict";
 
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function () {
+    return _react2.default.createElement(
+        'h1',
+        null,
+        'NotFoundPage'
+    );
+};
 
 /***/ }),
 
@@ -26822,9 +26893,6 @@ __webpack_require__(/*! ./styles/main.scss */ "./src/styles/main.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// import { addExpense } from './actions/expenses';
-// import { setTextFilter } from './actions/filters';
-// import getVisibleExpenses from './selectors/expenses';
 var store = (0, _configureStore2.default)();
 
 var App = _react2.default.createElement(
@@ -26834,6 +26902,38 @@ var App = _react2.default.createElement(
 );
 
 _reactDom2.default.render(App, document.getElementById('root'));
+
+/***/ }),
+
+/***/ "./src/reducers/EventReducer.js":
+/*!**************************************!*\
+  !*** ./src/reducers/EventReducer.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments[1];
+
+  switch (action.type) {
+    case 'ADD_EXPENSE':
+
+    case 'REMOVE_EXPENSE':
+
+    case 'EDIT_EXPENSE':
+
+    default:
+      return state;
+  }
+};
 
 /***/ }),
 
@@ -26916,6 +27016,10 @@ var _redux = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js"
 
 var _reduxDevtoolsExtension = __webpack_require__(/*! redux-devtools-extension */ "./node_modules/redux-devtools-extension/index.js");
 
+var _EventReducer = __webpack_require__(/*! ../reducers/EventReducer */ "./src/reducers/EventReducer.js");
+
+var _EventReducer2 = _interopRequireDefault(_EventReducer);
+
 var _reduxThunk = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
 
 var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
@@ -26923,7 +27027,9 @@ var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = function () {
-    var store = (0, _redux.createStore)(OptionReducer, (0, _reduxDevtoolsExtension.composeWithDevTools)((0, _redux.applyMiddleware)(_reduxThunk2.default)));
+    var store = (0, _redux.createStore)((0, _redux.combineReducers)({
+        EventReducer: _EventReducer2.default
+    }), (0, _reduxDevtoolsExtension.composeWithDevTools)((0, _redux.applyMiddleware)(_reduxThunk2.default)));
     return store;
 };
 
