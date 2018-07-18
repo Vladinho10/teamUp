@@ -4,12 +4,14 @@ const express = require('express');
 //const db = require('./db');
 //const TODO = require('./crud');
 const app = express();
+const db = require('./db');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const fs = require('fs');
 const session = require('express-session');
 const cors = require('cors');
 const passport = require('./passport');
+const User = require('./model_crud');
 // app.use(express.static('public'));
 app.use(bodyParser.urlencoded({
     extended: true
@@ -34,7 +36,11 @@ app.get('/login',(req,res)=>{
     
 });
 app.get('/',(req,res)=>{
-    res.json('Success');
+    
+    let current_user = User.findOne({fb_id:req.user.fb_id},(err,user)=>{
+        res.json(user);
+    });
+   // console.log(current_user);
     console.log('in / user is:',req.user);
 });
 module.exports = app;

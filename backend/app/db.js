@@ -1,3 +1,4 @@
+'use strict';
 const mongoose = require('mongoose');
 
 const config_db = require('../config/config').database;
