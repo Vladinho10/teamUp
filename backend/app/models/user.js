@@ -1,28 +1,22 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const db = mongoose.connection;
+//const db = mongoose.connection;
 db.once("open", function () {
     console.log('Connection is OK')
 });
 
+
 const UserSchema = new Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    phone: {
-        type: Number,
-        required: true
-    },
-    password: {
-        type: String,
-        required: true
-    },
-    avatar: {
-        type: String,
-        required: true
-    }
+    fb_id: String,
+    name: String,
+    phone: Number,
+    photo: String,
+    access_token: String,
+    refresh_token: String,
+    own_events: [String],
+    attending_events: [String],
+    finished_events: [String]
 })
 
 const User = mongoose.connect('User', UserSchema)
