@@ -25,4 +25,8 @@ const Header = () => (
 
 export default Header;
 
-// <svg type="jsx" className="search__icon"><use href=".images/icons/search.svg"></use></svg>
+//
+// <svg type="jsx" className="search__icon">
+// <use href=".images/icons/search.svg"></use>
+// </svg>
+//

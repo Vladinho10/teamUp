@@ -35,7 +35,7 @@ module.exports = () => {
       })
     ],
 
-    devtool: 'source-map', // for handling errors in console by more good way . it shows the exact place of error
+    devtool: 'source-map',
     mode: 'development',
 
     devServer: {
@@ -48,17 +48,17 @@ module.exports = () => {
   };
 };
 
-/**
- babel-loader  is a webpack plugin to teach webpack how to work with certain type of files
- babel-core is much like babel-cli(command line interface),
- which allows us to use babel with webpack . babel-cli allows us to use babel in the command line.
- use allows us to provide array of loaders
- zode-sass  allows us to compile scss to css
-style-loader  is used for inlining css styles
-sass-loader  -  Loads a Sass/SCSS file and compiles it to CSS.
-devServer.historyApiFallback - When using the HTML5 History API, the index.html page
- will likely have to be served in place of any 404 responses. Enable this by passing:
- */
+// babel-loader  is a webpack plugin to teach webpack how to work with certain type of files
+// babel-core is much like babel-cli(command line interface),
+// which allows us to use babel with webpack . babel-cli allows us to use babel in the command line.
+// use allows us to provide array of loaders
+// node-sass  allows us to compile scss to css
+// style-loader  is used for inlining css styles
+// sass-loader  -  Loads a Sass/SCSS file and compiles it to CSS.
+/* devServer.historyApiFallback -  When using the HTML5 History API,
+the index.html page will likely have to be served in place of any 404 responses.
+Enable this by passing: */
+// for handling errors in console by more good way . it shows the exact place of error
 
 
 // use: CSSExtract.extract({
