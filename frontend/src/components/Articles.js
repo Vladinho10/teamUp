@@ -3,28 +3,22 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class WrappedArticles extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-
   render() {
-    const { allArticles } = this.props;
-    const articleItems = allArticles.map((el, i, arr) => {
-      return (
-        <article key={el._id}>
-             some message
-        </article>
-      );
-    });
     return (
-      { articleItems }
+      this.props.events.map((el, i, arr) => {
+        return (
+          <article key={el._id}>
+              some message
+          </article>
+        );
+      })
     );
   }
 }
 
 const mapStateToProps = (state) => { // this.props.toDosArr
   return {
-    allArticles: state.EventReducer
+    events: state.events
   };
 };
 const Articles = connect(mapStateToProps)(WrappedArticles);

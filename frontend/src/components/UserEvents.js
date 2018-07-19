@@ -3,9 +3,6 @@ import React, { Component } from 'react';
 import Articles from './Articles';
 
 class EventsSection extends Component {
-  // constructor(props) {
-  //   super(props)
-  // }
   render() {
     return (
       <section sec={this.props} className='section'>

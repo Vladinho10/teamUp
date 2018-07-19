@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { PhotoIcon } from './svgIcons';
+import { PhotoIcon } from './SvgIcons';
 
 const defaultPhoto = require('../../dist/images/no-avatar.png');
 

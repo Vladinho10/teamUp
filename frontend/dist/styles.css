@@ -344,11 +344,6 @@ a {
 small {
   font-size: 80%; }
 
-img,
-object,
-embed {
-  width: 100%; }
-
 img {
   border-style: none;
   height: auto; }
@@ -360,7 +355,7 @@ ul {
   padding: 0; }
 
 ::selection {
-  background-color: lightgoldenrodyellow;
+  background-color: black;
   color: white; }
 
 .btn {

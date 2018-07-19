@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import SearchIcon from './SvgIcons';
+import { SearchIcon } from './SvgIcons';
 
 const logo = require('../../dist/images/logo.png');
 

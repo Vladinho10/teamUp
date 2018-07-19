@@ -97,6 +97,17 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAL4AAAByCAYAAADt
 
 /***/ }),
 
+/***/ "./dist/images/no-avatar.png":
+/*!***********************************!*\
+  !*** ./dist/images/no-avatar.png ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,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"
+
+/***/ }),
+
 /***/ "./node_modules/fbjs/lib/ExecutionEnvironment.js":
 /*!*******************************************************!*\
   !*** ./node_modules/fbjs/lib/ExecutionEnvironment.js ***!
@@ -26706,6 +26717,74 @@ module.exports = function(originalModule) {
 
 /***/ }),
 
+/***/ "./src/components/Articles.js":
+/*!************************************!*\
+  !*** ./src/components/Articles.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+// import { NavLink } from 'react-router-dom';
+
+
+var WrappedArticles = function (_Component) {
+  _inherits(WrappedArticles, _Component);
+
+  function WrappedArticles() {
+    _classCallCheck(this, WrappedArticles);
+
+    return _possibleConstructorReturn(this, (WrappedArticles.__proto__ || Object.getPrototypeOf(WrappedArticles)).apply(this, arguments));
+  }
+
+  _createClass(WrappedArticles, [{
+    key: 'render',
+    value: function render() {
+      return this.props.events.map(function (el, i, arr) {
+        return _react2.default.createElement(
+          'article',
+          { key: el._id },
+          'some message'
+        );
+      });
+    }
+  }]);
+
+  return WrappedArticles;
+}(_react.Component);
+
+var mapStateToProps = function mapStateToProps(state) {
+  // this.props.toDosArr
+  return {
+    events: state.events
+  };
+};
+var Articles = (0, _reactRedux.connect)(mapStateToProps)(WrappedArticles);
+exports.default = Articles;
+
+/***/ }),
+
 /***/ "./src/components/EventDashboardPage.js":
 /*!**********************************************!*\
   !*** ./src/components/EventDashboardPage.js ***!
@@ -26731,6 +26810,14 @@ var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-r
 var _Header = __webpack_require__(/*! ./Header */ "./src/components/Header.js");
 
 var _Header2 = _interopRequireDefault(_Header);
+
+var _UserAvatar = __webpack_require__(/*! ./UserAvatar */ "./src/components/UserAvatar.js");
+
+var _UserAvatar2 = _interopRequireDefault(_UserAvatar);
+
+var _UserEvents = __webpack_require__(/*! ./UserEvents */ "./src/components/UserEvents.js");
+
+var _UserEvents2 = _interopRequireDefault(_UserEvents);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26759,7 +26846,16 @@ var EventDashboardPage = function (_Component) {
         _react2.default.createElement(
           'main',
           { className: 'main' },
-          _react2.default.createElement('div', null)
+          _react2.default.createElement(
+            'div',
+            { className: 'row' },
+            _react2.default.createElement(
+              'div',
+              { className: 'container' },
+              _react2.default.createElement(_UserAvatar2.default, null),
+              _react2.default.createElement(_UserEvents2.default, null)
+            )
+          )
         )
       );
     }
@@ -26950,8 +27046,6 @@ var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_module
 
 var _SvgIcons = __webpack_require__(/*! ./SvgIcons */ "./src/components/SvgIcons.js");
 
-var _SvgIcons2 = _interopRequireDefault(_SvgIcons);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var logo = __webpack_require__(/*! ../../dist/images/logo.png */ "./dist/images/logo.png");
@@ -26985,7 +27079,7 @@ var Header = function Header() {
               'div',
               { className: 'icon-wrapper' },
               _react2.default.createElement('input', { type: 'text', name: 'eventSearch', placeholder: 'Search', className: 'search-form__input', 'aria-label': 'Enter search text' }),
-              _react2.default.createElement(_SvgIcons2.default, { className: 'search__icon', role: 'icon' })
+              _react2.default.createElement(_SvgIcons.SearchIcon, { className: 'search__icon', role: 'icon' })
             )
           )
         ),
@@ -27079,6 +27173,7 @@ exports.default = function () {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.PhotoIcon = exports.SearchIcon = undefined;
 
 var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
@@ -27086,20 +27181,252 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var SearchIcon = function SearchIcon() {
+var SearchIcon = exports.SearchIcon = function SearchIcon() {
   return _react2.default.createElement(
     "svg",
-    { className: "search-form__icon", xmlns: "http://www.w3.org/2000/svg", width: "33", height: "33", viewBox: "0 0 32 32", "aria-labelledby": "title" },
+    { className: "search-form__icon", xmlns: "http://www.w3.org/2000/svg", width: "33", height: "33", viewBox: "0 0 32 32" },
     _react2.default.createElement(
       "title",
-      { id: "title" },
+      null,
       "Search"
     ),
     _react2.default.createElement("path", { xmlns: "http://www.w3.org/2000/svg", d: "M7.012 3c2.193 0 3.977 1.794 3.977 4 0 0.831-0.255 1.63-0.737 2.312l-0.392 0.553-0.55 0.393c-0.678 0.485-1.473 0.742-2.298 0.742-2.193 0-3.977-1.794-3.977-4s1.784-4 3.977-4zM7.012 1c-3.295 0-5.966 2.686-5.966 6s2.671 6 5.966 6c1.288 0 2.477-0.414 3.451-1.112l4.791 4.819c0.195 0.196 0.45 0.293 0.705 0.293s0.51-0.098 0.704-0.293c0.389-0.391 0.389-1.025 0-1.416l-4.791-4.819c0.694-0.98 1.105-2.177 1.105-3.471 0-3.314-2.671-6-5.965-6v0z" })
   );
 };
 
-exports.default = SearchIcon;
+var PhotoIcon = exports.PhotoIcon = function PhotoIcon() {
+  return _react2.default.createElement(
+    "svg",
+    { className: "search-form__icon", xmlns: "http://www.w3.org/2000/svg", width: "33", height: "33", viewBox: "0 0 32 32" },
+    _react2.default.createElement(
+      "title",
+      null,
+      "camera"
+    ),
+    _react2.default.createElement("path", { xmlns: "http://www.w3.org/2000/svg", d: "M21 5h-3.5l-1.7-2.6c-0.2-0.2-0.5-0.4-0.8-0.4h-6c-0.3 0-0.6 0.2-0.8 0.4l-1.7 2.6h-3.5c-1.7 0-3 1.3-3 3v11c0 1.7 1.3 3 3 3h18c1.7 0 3-1.3 3-3v-11c0-1.7-1.3-3-3-3zM22 19c0 0.6-0.4 1-1 1h-18c-0.6 0-1-0.4-1-1v-11c0-0.6 0.4-1 1-1h4c0.3 0 0.6-0.2 0.8-0.4l1.7-2.6h4.9l1.7 2.6c0.3 0.2 0.6 0.4 0.9 0.4h4c0.6 0 1 0.4 1 1v11z" }),
+    _react2.default.createElement("path", { xmlns: "http://www.w3.org/2000/svg", d: "M12 8c-2.8 0-5 2.2-5 5s2.2 5 5 5 5-2.2 5-5-2.2-5-5-5zM12 16c-1.7 0-3-1.3-3-3s1.3-3 3-3 3 1.3 3 3-1.3 3-3 3z" })
+  );
+};
+
+/***/ }),
+
+/***/ "./src/components/UserAvatar.js":
+/*!**************************************!*\
+  !*** ./src/components/UserAvatar.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
+var _SvgIcons = __webpack_require__(/*! ./SvgIcons */ "./src/components/SvgIcons.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var defaultPhoto = __webpack_require__(/*! ../../dist/images/no-avatar.png */ "./dist/images/no-avatar.png");
+
+var UserAvatar = function (_Component) {
+  _inherits(UserAvatar, _Component);
+
+  function UserAvatar() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, UserAvatar);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = UserAvatar.__proto__ || Object.getPrototypeOf(UserAvatar)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      change: false
+    }, _this.handleNameChange = function () {
+      _this.setState(function (prevState) {
+        return { change: !prevState.change };
+      });
+    }, _this.handleAddPhoneNumber = function () {}, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(UserAvatar, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        _react2.default.Fragment,
+        null,
+        _react2.default.createElement(
+          'div',
+          { className: 'user-avatar' },
+          _react2.default.createElement(
+            'div',
+            { className: 'user-avatar__logo-box' },
+            this.props.users.photo ? _react2.default.createElement(
+              _reactRouterDom.NavLink,
+              { to: '/' },
+              _react2.default.createElement('img', { className: 'user-avatar__logo', src: this.props.users.photo, alt: 'User Photo', width: '200', height: '300' })
+            ) : _react2.default.createElement(
+              _reactRouterDom.NavLink,
+              { to: '/' },
+              _react2.default.createElement('img', { className: 'user-avatar__logo', src: defaultPhoto, alt: 'User Photo', width: '200', height: '300' })
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'user-avatar__add-photo' },
+              _react2.default.createElement(_SvgIcons.PhotoIcon, { className: 'photo__icon', role: 'icon' }),
+              _react2.default.createElement(
+                'span',
+                null,
+                'Upload or change photo'
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'user-avatar__info' },
+            _react2.default.createElement(
+              'div',
+              { className: 'user-avatar__name-box' },
+              this.state.change ? _react2.default.createElement(
+                'form',
+                null,
+                _react2.default.createElement('input', { type: 'text', name: 'username', defaultValue: this.props.users.name }),
+                _react2.default.createElement('input', { type: 'submit', value: 'SAVE' })
+              ) : _react2.default.createElement(
+                'h2',
+                null,
+                this.props.users.name
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'user-avatar__phone-box' },
+              this.props.users.phone ? _react2.default.createElement(
+                'p',
+                null,
+                this.props.users.phone
+              ) : _react2.default.createElement(
+                'button',
+                { onClick: this.handleAddPhoneNumber },
+                'ADD PHONE NUMBER'
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return UserAvatar;
+}(_react.Component);
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    users: state.users
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps)(UserAvatar);
+
+/***/ }),
+
+/***/ "./src/components/UserEvents.js":
+/*!**************************************!*\
+  !*** ./src/components/UserEvents.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Articles = __webpack_require__(/*! ./Articles */ "./src/components/Articles.js");
+
+var _Articles2 = _interopRequireDefault(_Articles);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+// import { NavLink } from 'react-router-dom';
+
+
+var EventsSection = function (_Component) {
+  _inherits(EventsSection, _Component);
+
+  function EventsSection() {
+    _classCallCheck(this, EventsSection);
+
+    return _possibleConstructorReturn(this, (EventsSection.__proto__ || Object.getPrototypeOf(EventsSection)).apply(this, arguments));
+  }
+
+  _createClass(EventsSection, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'section',
+        { sec: this.props, className: 'section' },
+        _react2.default.createElement(
+          'button',
+          { className: 'btn' },
+          'All events'
+        ),
+        _react2.default.createElement(
+          'button',
+          { className: 'btn' },
+          'My events'
+        ),
+        _react2.default.createElement(
+          'button',
+          { className: 'btn' },
+          'Going'
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(_Articles2.default, null)
+        )
+      );
+    }
+  }]);
+
+  return EventsSection;
+}(_react.Component);
+
+exports.default = EventsSection;
 
 /***/ }),
 
@@ -27175,6 +27502,41 @@ exports.default = function () {
       return state;
 
     case 'EDIT_EVENT':
+      return state;
+
+    default:
+      return state;
+  }
+};
+
+/***/ }),
+
+/***/ "./src/reducers/UserReducer.js":
+/*!*************************************!*\
+  !*** ./src/reducers/UserReducer.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments[1];
+
+  switch (action.type) {
+    case 'ADD_USER':
+      return state;
+
+    case 'REMOVE_USER':
+      return state;
+
+    case 'EDIT_USER':
       return state;
 
     default:
@@ -27266,11 +27628,16 @@ var _EventReducer = __webpack_require__(/*! ../reducers/EventReducer */ "./src/r
 
 var _EventReducer2 = _interopRequireDefault(_EventReducer);
 
+var _UserReducer = __webpack_require__(/*! ../reducers/UserReducer */ "./src/reducers/UserReducer.js");
+
+var _UserReducer2 = _interopRequireDefault(_UserReducer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = function () {
   var store = (0, _redux.createStore)((0, _redux.combineReducers)({
-    EventReducer: _EventReducer2.default
+    events: _EventReducer2.default,
+    users: _UserReducer2.default
   }), (0, _reduxDevtoolsExtension.composeWithDevTools)((0, _redux.applyMiddleware)(_reduxThunk2.default)));
   return store;
 };
