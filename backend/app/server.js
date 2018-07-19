@@ -27,7 +27,7 @@ app.use(cors());
 
 app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { successRedirect: '/',
+  passport.authenticate('facebook', { successRedirect: '/account',
                                       failureRedirect: '/login' }));
 app.get('/login',(req,res)=>{
     console.log('in / path');
@@ -42,6 +42,20 @@ app.get('/',(req,res)=>{
     });
    // console.log(current_user);
     console.log('in / user is:',req.user);
+});
+app.get('/account', (req,res) => {
+    let profile = req.user;
+    User.addUser({
+        fb_id:profile.fb_id,
+        name:profile.name,
+        phone:0,
+        access_token:profile.access_token,
+        refresh_token:profile.refresh_token,
+        own_events:[],
+        attending_events:[],
+        finished_events:[],
+        photo:profile.photo
+    },res);
 });
 module.exports = app;
 

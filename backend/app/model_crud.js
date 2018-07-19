@@ -6,8 +6,9 @@ userScheme.statics.findUser = function(id){
 	let user = this.findOne({_id:id}).then((data) => res.json({user: data}));
 }
 
-userScheme.statics.addUser = function(user,done,obj){
+userScheme.statics.addUser = function(user,res){
     let existing_check = User.findOne({fb_id:user.fb_id},(err, check_user) =>{
+        console.log('----->',check_user);
 
         if(!check_user){
             let new_user = new User({
@@ -20,9 +21,11 @@ userScheme.statics.addUser = function(user,done,obj){
                 attending_events:[],
                 finished_events:[],
                 photo:user.photo
-            }).save().then((data)=>{console.log(data)});
+            }).save().then((data)=>{res.json(data)});
         }
-        done(null,obj);
+        else{
+            res.json(check_user);
+        }
         
     });
     
