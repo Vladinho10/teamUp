@@ -9,9 +9,9 @@ class EventDashboardPage extends Component {
       <React.Fragment>
         <Header can={this.props.events}/>
         <main className='main'>
-          <div className="row">
-            <div className="container">
-              <UserAvatar />
+          <div className='row'>
+            <div className='container'>
+
             </div>
           </div>
         </main>
