@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from './Header';
+import UserAvatar from './UserAvatar';
 
 class EventDashboardPage extends Component {
   render() {
@@ -8,7 +9,11 @@ class EventDashboardPage extends Component {
       <React.Fragment>
         <Header can={this.props.events}/>
         <main className='main'>
-          <div></div>
+          <div className="row">
+            <div className="container">
+              <UserAvatar />
+            </div>
+          </div>
         </main>
       </React.Fragment>
     );

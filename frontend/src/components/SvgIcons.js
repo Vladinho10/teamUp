@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SearchIcon = () => {
+export const SearchIcon = () => {
   return (
     <svg className="search-form__icon" xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 32 32" aria-labelledby="title">
       <title id="title">Search</title>
@@ -9,4 +9,12 @@ const SearchIcon = () => {
   );
 };
 
-export default SearchIcon;
+export const PhotoIcon = () => {
+  return (
+    <svg className="search-form__icon" xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 32 32" aria-labelledby="title">
+      <title id="title">camera</title>
+      <path xmlns="http://www.w3.org/2000/svg" d="M21 5h-3.5l-1.7-2.6c-0.2-0.2-0.5-0.4-0.8-0.4h-6c-0.3 0-0.6 0.2-0.8 0.4l-1.7 2.6h-3.5c-1.7 0-3 1.3-3 3v11c0 1.7 1.3 3 3 3h18c1.7 0 3-1.3 3-3v-11c0-1.7-1.3-3-3-3zM22 19c0 0.6-0.4 1-1 1h-18c-0.6 0-1-0.4-1-1v-11c0-0.6 0.4-1 1-1h4c0.3 0 0.6-0.2 0.8-0.4l1.7-2.6h4.9l1.7 2.6c0.3 0.2 0.6 0.4 0.9 0.4h4c0.6 0 1 0.4 1 1v11z"/>
+      <path xmlns="http://www.w3.org/2000/svg" d="M12 8c-2.8 0-5 2.2-5 5s2.2 5 5 5 5-2.2 5-5-2.2-5-5-5zM12 16c-1.7 0-3-1.3-3-3s1.3-3 3-3 3 1.3 3 3-1.3 3-3 3z"/>
+    </svg>
+  );
+};

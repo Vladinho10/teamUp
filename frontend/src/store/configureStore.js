@@ -5,7 +5,7 @@ import EventReducer from '../reducers/EventReducer';
 
 export default () => {
   const store = createStore(combineReducers({
-    EventReducer
+    events: EventReducer
   }), composeWithDevTools(applyMiddleware(thunk)));
   return store;
 };

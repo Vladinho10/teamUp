@@ -69,7 +69,7 @@ module.exports = () => {
       contentBase: path.join(__dirname, 'dist'),
       historyApiFallback: true,
       proxy: {
-        '/auth': 'http://localhost:3000'
+        '/auth/facebook': 'http://192.168.3.184:3000/login'
       }
     }
   };
