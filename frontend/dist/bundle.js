@@ -26985,8 +26985,8 @@ var EventLoginPage = function (_Component) {
                     'div',
                     null,
                     _react2.default.createElement(
-                      _reactRouterDom.NavLink,
-                      { role: 'link', to: '/auth/facebook', activeClassName: 'is-active', className: 'btn btn_green btn_animated btn_active' },
+                      'a',
+                      { role: 'link', href: '/auth/facebook', className: 'btn btn_green btn_animated btn_active' },
                       'Sign in with facebook'
                     )
                   )
