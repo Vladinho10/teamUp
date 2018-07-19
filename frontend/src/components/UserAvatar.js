@@ -25,8 +25,8 @@ class UserAvatar extends Component {
           <div className="user-avatar__logo-box">
             {
               this.props.users.photo
-                ? <NavLink><img className="user-avatar__logo" src={this.props.users.photo} alt="User Photo" width="200" height="300" /></NavLink>
-                : <NavLink><img className="user-avatar__logo" src={defaultPhoto} alt="User Photo" width="200" height="300" /></NavLink>
+                ? <NavLink to="/"><img className="user-avatar__logo" src={this.props.users.photo} alt="User Photo" width="200" height="300" /></NavLink>
+                : <NavLink to="/"><img className="user-avatar__logo" src={defaultPhoto} alt="User Photo" width="200" height="300" /></NavLink>
             }
             <div className="user-avatar__add-photo">
               <PhotoIcon className="photo__icon" role="icon" />
@@ -38,16 +38,17 @@ class UserAvatar extends Component {
               {
                 this.state.change
                   ? <form>
-                    <input type="text" name="username" defaultValue={this.props.user.name} />
+                    <input type="text" name="username" defaultValue={this.props.users.name} />
                     <input type="submit" value="SAVE" />
                   </form>
-                  : <h2>{this.props.user.name}</h2>
+                  : <h2>{this.props.users.name}</h2>
               }
             </div>
             <div className="user-avatar__phone-box">
               {
-                this.props.user.phone
-                  ? <p>{this.props.user.phone}</p> : <button value="ADD PHONE NUMBER" onClick={this.handleAddPhoneNumber}></button>
+                this.props.users.phone
+                  ? <p>{this.props.users.phone}</p>
+                  : <button onClick={this.handleAddPhoneNumber}>ADD PHONE NUMBER</button>
               }
             </div>
           </div>
@@ -59,7 +60,7 @@ class UserAvatar extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.users
+    users: state.users
   };
 };
 

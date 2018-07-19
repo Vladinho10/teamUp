@@ -6,8 +6,8 @@ import UserReducer from '../reducers/UserReducer';
 
 export default () => {
   const store = createStore(combineReducers({
-    EventReducer,
-    UserReducer
+    events: EventReducer,
+    users: UserReducer
   }), composeWithDevTools(applyMiddleware(thunk)));
   return store;
 };
