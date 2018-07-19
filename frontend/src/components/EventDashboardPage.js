@@ -8,7 +8,11 @@ class EventDashboardPage extends Component {
       <React.Fragment>
         <Header can={this.props.events}/>
         <main className='main'>
-          <div></div>
+          <div className='row'>
+            <div className='container'>
+
+            </div>
+          </div>
         </main>
       </React.Fragment>
     );

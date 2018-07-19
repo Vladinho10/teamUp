@@ -26808,6 +26808,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var logo = __webpack_require__(/*! ../../dist/images/logo.png */ "./dist/images/logo.png");
+
 var EventLoginPage = function (_Component) {
   _inherits(EventLoginPage, _Component);
 
@@ -26819,10 +26821,6 @@ var EventLoginPage = function (_Component) {
 
   _createClass(EventLoginPage, [{
     key: 'render',
-
-    // constructor(props) {
-    //   super(props)
-    // }
     value: function render() {
       return _react2.default.createElement(
         _react2.default.Fragment,
@@ -26832,16 +26830,24 @@ var EventLoginPage = function (_Component) {
           { file: this.props, className: 'main-header' },
           _react2.default.createElement(
             'div',
-            { className: 'main-header__logo' },
-            'Logo'
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'main-header__welcome' },
+            { className: 'row' },
             _react2.default.createElement(
-              'h1',
-              null,
-              'Welcome to teamUp !'
+              'div',
+              { className: 'main-header__wrapper' },
+              _react2.default.createElement(
+                'div',
+                { className: 'main-header__logo-box' },
+                _react2.default.createElement(
+                  _reactRouterDom.NavLink,
+                  { to: '/', role: 'link' },
+                  _react2.default.createElement('img', { src: logo, alt: 'logo', width: '190', height: '80', className: 'navbar__logo', role: 'logo' })
+                )
+              ),
+              _react2.default.createElement(
+                'h1',
+                { className: 'main-header__heading' },
+                'Welcome to teamUp !'
+              )
             )
           )
         ),
@@ -26850,49 +26856,64 @@ var EventLoginPage = function (_Component) {
           null,
           _react2.default.createElement(
             'section',
-            { className: 'description' },
-            'description section (this message must ne deleted)',
-            _react2.default.createElement(
-              'h3',
-              null,
-              'Join to us'
-            ),
-            _react2.default.createElement(
-              'p',
-              null,
-              'Create your team or join existing ones, make your life more interesting'
-            )
-          ),
-          _react2.default.createElement(
-            'section',
-            null,
-            'Sign in section (this message must ne deleted)',
-            _react2.default.createElement(
-              'h3',
-              null,
-              'Sign in with facebook'
-            ),
+            { className: 'register' },
             _react2.default.createElement(
               'div',
-              null,
+              { className: 'row' },
               _react2.default.createElement(
-                _reactRouterDom.NavLink,
-                { role: 'link', to: '/auth/facebook', activeClassName: 'is-active' },
-                'Sign in with facebook'
+                'div',
+                { className: 'register-wrapper' },
+                _react2.default.createElement(
+                  'section',
+                  { className: 'register__description' },
+                  _react2.default.createElement(
+                    'h2',
+                    null,
+                    'Say hello to TeamUp - The best place to plan and implement your events'
+                  ),
+                  _react2.default.createElement(
+                    'p',
+                    null,
+                    'Create your team or join existing ones, make your life more interesting. Create different kind of events , invite your frineds and have a fun.'
+                  )
+                ),
+                _react2.default.createElement(
+                  'section',
+                  { className: 'register__sign-in' },
+                  _react2.default.createElement(
+                    'h2',
+                    null,
+                    'Sign in with facebook'
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                      _reactRouterDom.NavLink,
+                      { role: 'link', to: '/auth/facebook', activeClassName: 'is-active', className: 'btn btn_green btn_animated btn_active' },
+                      'Sign in with facebook'
+                    )
+                  )
+                )
               )
             )
           )
         ),
         _react2.default.createElement(
           'footer',
-          null,
+          { className: 'main-footer' },
           _react2.default.createElement(
             'div',
-            { className: 'copyright-div' },
+            { className: 'row' },
             _react2.default.createElement(
               'p',
-              null,
-              ' \xA9 teamUp 2018'
+              { className: 'copyright' },
+              ' \xA9 teamUp 2018: ',
+              _react2.default.createElement(
+                'small',
+                null,
+                'All rights reserved'
+              )
             )
           )
         )
@@ -26927,9 +26948,9 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 
-var _svgIcons = __webpack_require__(/*! ./svgIcons */ "./src/components/svgIcons.js");
+var _SvgIcons = __webpack_require__(/*! ./SvgIcons */ "./src/components/SvgIcons.js");
 
-var _svgIcons2 = _interopRequireDefault(_svgIcons);
+var _SvgIcons2 = _interopRequireDefault(_SvgIcons);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26964,7 +26985,7 @@ var Header = function Header() {
               'div',
               { className: 'icon-wrapper' },
               _react2.default.createElement('input', { type: 'text', name: 'eventSearch', placeholder: 'Search', className: 'search-form__input', 'aria-label': 'Enter search text' }),
-              _react2.default.createElement(_svgIcons2.default, { className: 'search__icon', role: 'icon' })
+              _react2.default.createElement(_SvgIcons2.default, { className: 'search__icon', role: 'icon' })
             )
           )
         ),
@@ -27017,21 +27038,37 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = function () {
   return _react2.default.createElement(
-    'h1',
-    null,
-    'NotFoundPage'
+    'div',
+    { className: 'not-found' },
+    _react2.default.createElement(
+      'h1',
+      { className: 'not-found__heading' },
+      'OOPS! - Could not find it'
+    ),
+    _react2.default.createElement(
+      'span',
+      { className: 'not-found__404' },
+      '404'
+    ),
+    _react2.default.createElement(
+      _reactRouterDom.NavLink,
+      { to: '/', role: 'link', className: 'btn btn_black' },
+      'Back'
+    )
   );
 };
 
 /***/ }),
 
-/***/ "./src/components/svgIcons.js":
+/***/ "./src/components/SvgIcons.js":
 /*!************************************!*\
-  !*** ./src/components/svgIcons.js ***!
+  !*** ./src/components/SvgIcons.js ***!
   \************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
