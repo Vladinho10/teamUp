@@ -7,6 +7,7 @@ import EventsSection from './UserEvents';
 class EventDashboardPage extends Component {
   componentDidMount = () => {
     fetch('/api/dashboard', {
+      credentials: 'include',
       method: 'POST',
       body: JSON.stringify({ name: 'noro' }),
       headers: {

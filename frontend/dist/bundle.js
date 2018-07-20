@@ -28319,9 +28319,34 @@ var EventDashboardPage = function (_Component) {
   _inherits(EventDashboardPage, _Component);
 
   function EventDashboardPage() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
     _classCallCheck(this, EventDashboardPage);
 
-    return _possibleConstructorReturn(this, (EventDashboardPage.__proto__ || Object.getPrototypeOf(EventDashboardPage)).apply(this, arguments));
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = EventDashboardPage.__proto__ || Object.getPrototypeOf(EventDashboardPage)).call.apply(_ref, [this].concat(args))), _this), _this.componentDidMount = function () {
+      fetch('/api/dashboard', {
+        credentials: 'include',
+        method: 'POST',
+        body: JSON.stringify({ name: 'noro' }),
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        }
+      }).then(function (res) {
+        return res.json();
+      }).catch(function (error) {
+        return console.error('Error:', error);
+      }).then(function (res) {
+        console.log(res);
+        _this.setState({ imageSrc: res.url });
+      });
+    }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(EventDashboardPage, [{
@@ -28538,6 +28563,10 @@ var _Header2 = _interopRequireDefault(_Header);
 
 var _SvgIcons = __webpack_require__(/*! ./SvgIcons */ "./src/components/SvgIcons.js");
 
+var _UploadModal = __webpack_require__(/*! ./UploadModal */ "./src/components/UploadModal.js");
+
+var _UploadModal2 = _interopRequireDefault(_UploadModal);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -28555,14 +28584,55 @@ var date = 'July 31';
 var dateAndTime = 'July 31 at 18:00 to 19:00';
 var location = 'Baghramyan 59, Yerevan, Armenia';
 var adminNames = 'Admin';
+var description = 'lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem \nipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum \nlorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum';
 
 var EventPage = function (_Component) {
   _inherits(EventPage, _Component);
 
   function EventPage() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
     _classCallCheck(this, EventPage);
 
-    return _possibleConstructorReturn(this, (EventPage.__proto__ || Object.getPrototypeOf(EventPage)).apply(this, arguments));
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = EventPage.__proto__ || Object.getPrototypeOf(EventPage)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      change: false,
+      selectedFile: null,
+      imageSrc: '',
+      show: undefined
+    }, _this.handleClick = function () {
+      console.log('clicked', _this.state.showUploadModal);
+      _this.setState({ showUploadModal: !_this.state.showUploadModal });
+    }, _this.handleToggleModal = function () {
+      _this.setState(function (prevState) {
+        return { show: !prevState.show };
+      });
+    }, _this.handleFileChange = function (event) {
+      var imageSrc = URL.createObjectURL(event.target.files[0]);
+      _this.setState({
+        selectedFile: event.target.files[0],
+        imageSrc: imageSrc
+      });
+    }, _this.handleFileUpload = function () {
+      fetch('url', {
+        method: 'POST',
+        body: JSON.stringify(_this.state.selectedFile),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(function (res) {
+        return res.json();
+      }).catch(function (error) {
+        return console.error('Error:', error);
+      }).then(function (res) {
+        _this.setState({ imageSrc: res.url });
+      });
+    }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(EventPage, [{
@@ -28582,10 +28652,21 @@ var EventPage = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'event-avatar' },
-              ' ',
-              _react2.default.createElement('img', { src: eventCover, alt: 'event-cover', height: '250', width: '300' }),
-              ' '
+              _react2.default.createElement('img', { src: eventCover, alt: 'event-cover', height: '250', width: '300' })
             ),
+            _react2.default.createElement(
+              'div',
+              { className: 'edit-photo-icon', onClick: this.handleToggleModal },
+              _react2.default.createElement(_SvgIcons.PhotoIcon, null)
+            ),
+            _react2.default.createElement(_UploadModal2.default, {
+              handleFileChange: this.handleFileChange,
+              handleFileUpload: this.handleFileUpload,
+              handleToggleModal: this.handleToggleModal,
+              show: this.state.show,
+              imageSrc: this.state.imageSrc
+            }),
+            _react2.default.createElement('hr', null),
             _react2.default.createElement(
               'div',
               { className: 'event-short-desc' },
@@ -28623,6 +28704,8 @@ var EventPage = function (_Component) {
                   location
                 )
               ),
+              _react2.default.createElement('br', null),
+              _react2.default.createElement('hr', null),
               _react2.default.createElement(
                 'div',
                 { className: 'long-desc-text' },
@@ -28634,7 +28717,7 @@ var EventPage = function (_Component) {
                 _react2.default.createElement(
                   'div',
                   { className: 'text' },
-                  'lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum'
+                  description
                 ),
                 _react2.default.createElement(
                   'p',
@@ -28642,7 +28725,7 @@ var EventPage = function (_Component) {
                   'Admin'
                 ),
                 _react2.default.createElement(
-                  'spam',
+                  'span',
                   null,
                   adminNames
                 )
