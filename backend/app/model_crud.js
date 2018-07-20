@@ -1,5 +1,6 @@
 'use strict';
 const userScheme = require('./models/user');
+const eventScheme = require('./models/event');
 const mongoose = require('mongoose');
 
 userScheme.statics.findUser = function(id,res){
@@ -34,5 +35,6 @@ userScheme.statics.addUser = function(user,done,obj){
 
 
 const User = mongoose.model('User',userScheme);
+const Event = mongoose.model('Event',eventScheme);
 
 module.exports = User;

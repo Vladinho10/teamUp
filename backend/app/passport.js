@@ -1,6 +1,6 @@
 var passport = require('passport')
   , FacebookStrategy = require('passport-facebook').Strategy;
-const User = require('./model_crud');
+const {User} = require('./model_crud');
 
 const config = require('../config/config').facebook_config;
 
