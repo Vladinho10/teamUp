@@ -1,5 +1,6 @@
 .main-eventpage {
     display: flex;
+    position: relative;
 }
 
 .user-side {
@@ -64,4 +65,15 @@
 
 .red-text {
     color: rgb(240, 42, 42);
+}
+
+.edit-photo-icon {
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.edit-photo-icon:hover {
+    background-color: rgba(10, 40, 54, 0.281);
+    transition: 0.5s
 }
