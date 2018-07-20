@@ -5,6 +5,22 @@ import UserAvatar from './UserAvatar';
 import EventsSection from './UserEvents';
 
 class EventDashboardPage extends Component {
+  componentDidMount = () => {
+    fetch('/api/dashboard', {
+      method: 'POST',
+      body: JSON.stringify({ name: 'noro' }),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }).then(res => res.json())
+      .catch(error => console.error('Error:', error))
+      .then((res) => {
+        console.log(res);
+        this.setState({ imageSrc: res.url });
+      });
+  }
+
   render() {
     return (
       <React.Fragment>
