@@ -1,8 +1,7 @@
 'use strict';
 const path = require('path');
 const express = require('express');
-//const db = require('./db');
-//const TODO = require('./crud');
+
 const app = express();
 const db = require('./db');
 const bodyParser = require('body-parser');
@@ -11,8 +10,11 @@ const fs = require('fs');
 const session = require('express-session');
 const cors = require('cors');
 const passport = require('./passport');
+
 const User = require('./model_crud');
-// app.use(express.static('public'));
+const Event = require('/model_crud');
+
+
 app.use(express.static(path.join(__dirname,'../../frontend/dist')));
 
 app.use(bodyParser.urlencoded({
@@ -29,40 +31,35 @@ app.use(cors());
 
 app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { successRedirect: '/dashbord',
+  passport.authenticate('facebook', { successRedirect: '/dashboard',
                                       failureRedirect: '/' }));
 app.get('/',(req,res)=>{
     console.log('in / path');
         if(!req.user){
             res.sendFile(path.join(__dirname,'../../frontend/dist/index.html'));
-        }else{
-            res.redirect('/dashboard');
+            return;
         }
+        res.redirect('/dashboard');
         
     
 });
-/*
-app.get('/',(req,res)=>{
-    
-    let current_user = User.findOne({fb_id:req.user.fb_id},(err,user)=>{
-        res.json(user);
-    });
-   // console.log(current_user);
-    console.log('in / user is:',req.user);
-});
-*/
- app.get('/dashboard', (req,res) => {
-     if(req.user){
-         let profile = req.user;
-         res.end();
-         //User.findUser(req.user.fb_id,res);
-     }else{
-         res.redirect('/');
-     }
-    
- });
+
  app.get('/*', (req,res) => {
     res.sendFile(path.join(__dirname,'../../frontend/dist/index.html'));
  });
+ 
+app.post('/api/dashboard',(req,res)=>{
+    if(req.user){
+        let data = {};
+        Event.find().then((events)=>{
+            data.events = events;
+            User.findOne({fb_id:req.user.id}).then((user)=>{
+                data.user = user;
+                res.json(data);
+            });
+        });
+    }
+ });
+
 module.exports = app;
 
