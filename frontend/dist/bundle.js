@@ -97,17 +97,6 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAL4AAAByCAYAAADt
 
 /***/ }),
 
-/***/ "./dist/images/no-avatar.png":
-/*!***********************************!*\
-  !*** ./dist/images/no-avatar.png ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "data:image/png;base64,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"
-
-/***/ }),
-
 /***/ "./node_modules/fbjs/lib/ExecutionEnvironment.js":
 /*!*******************************************************!*\
   !*** ./node_modules/fbjs/lib/ExecutionEnvironment.js ***!
@@ -2567,457 +2556,6 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 	}
 
 	return to;
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/path-to-regexp/index.js":
-/*!**********************************************!*\
-  !*** ./node_modules/path-to-regexp/index.js ***!
-  \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var isarray = __webpack_require__(/*! isarray */ "./node_modules/path-to-regexp/node_modules/isarray/index.js")
-
-/**
- * Expose `pathToRegexp`.
- */
-module.exports = pathToRegexp
-module.exports.parse = parse
-module.exports.compile = compile
-module.exports.tokensToFunction = tokensToFunction
-module.exports.tokensToRegExp = tokensToRegExp
-
-/**
- * The main path matching regexp utility.
- *
- * @type {RegExp}
- */
-var PATH_REGEXP = new RegExp([
-  // Match escaped characters that would otherwise appear in future matches.
-  // This allows the user to escape special characters that won't transform.
-  '(\\\\.)',
-  // Match Express-style parameters and un-named parameters with a prefix
-  // and optional suffixes. Matches appear as:
-  //
-  // "/:test(\\d+)?" => ["/", "test", "\d+", undefined, "?", undefined]
-  // "/route(\\d+)"  => [undefined, undefined, undefined, "\d+", undefined, undefined]
-  // "/*"            => ["/", undefined, undefined, undefined, undefined, "*"]
-  '([\\/.])?(?:(?:\\:(\\w+)(?:\\(((?:\\\\.|[^\\\\()])+)\\))?|\\(((?:\\\\.|[^\\\\()])+)\\))([+*?])?|(\\*))'
-].join('|'), 'g')
-
-/**
- * Parse a string for the raw tokens.
- *
- * @param  {string}  str
- * @param  {Object=} options
- * @return {!Array}
- */
-function parse (str, options) {
-  var tokens = []
-  var key = 0
-  var index = 0
-  var path = ''
-  var defaultDelimiter = options && options.delimiter || '/'
-  var res
-
-  while ((res = PATH_REGEXP.exec(str)) != null) {
-    var m = res[0]
-    var escaped = res[1]
-    var offset = res.index
-    path += str.slice(index, offset)
-    index = offset + m.length
-
-    // Ignore already escaped sequences.
-    if (escaped) {
-      path += escaped[1]
-      continue
-    }
-
-    var next = str[index]
-    var prefix = res[2]
-    var name = res[3]
-    var capture = res[4]
-    var group = res[5]
-    var modifier = res[6]
-    var asterisk = res[7]
-
-    // Push the current path onto the tokens.
-    if (path) {
-      tokens.push(path)
-      path = ''
-    }
-
-    var partial = prefix != null && next != null && next !== prefix
-    var repeat = modifier === '+' || modifier === '*'
-    var optional = modifier === '?' || modifier === '*'
-    var delimiter = res[2] || defaultDelimiter
-    var pattern = capture || group
-
-    tokens.push({
-      name: name || key++,
-      prefix: prefix || '',
-      delimiter: delimiter,
-      optional: optional,
-      repeat: repeat,
-      partial: partial,
-      asterisk: !!asterisk,
-      pattern: pattern ? escapeGroup(pattern) : (asterisk ? '.*' : '[^' + escapeString(delimiter) + ']+?')
-    })
-  }
-
-  // Match any characters still remaining.
-  if (index < str.length) {
-    path += str.substr(index)
-  }
-
-  // If the path exists, push it onto the end.
-  if (path) {
-    tokens.push(path)
-  }
-
-  return tokens
-}
-
-/**
- * Compile a string to a template function for the path.
- *
- * @param  {string}             str
- * @param  {Object=}            options
- * @return {!function(Object=, Object=)}
- */
-function compile (str, options) {
-  return tokensToFunction(parse(str, options))
-}
-
-/**
- * Prettier encoding of URI path segments.
- *
- * @param  {string}
- * @return {string}
- */
-function encodeURIComponentPretty (str) {
-  return encodeURI(str).replace(/[\/?#]/g, function (c) {
-    return '%' + c.charCodeAt(0).toString(16).toUpperCase()
-  })
-}
-
-/**
- * Encode the asterisk parameter. Similar to `pretty`, but allows slashes.
- *
- * @param  {string}
- * @return {string}
- */
-function encodeAsterisk (str) {
-  return encodeURI(str).replace(/[?#]/g, function (c) {
-    return '%' + c.charCodeAt(0).toString(16).toUpperCase()
-  })
-}
-
-/**
- * Expose a method for transforming tokens into the path function.
- */
-function tokensToFunction (tokens) {
-  // Compile all the tokens into regexps.
-  var matches = new Array(tokens.length)
-
-  // Compile all the patterns before compilation.
-  for (var i = 0; i < tokens.length; i++) {
-    if (typeof tokens[i] === 'object') {
-      matches[i] = new RegExp('^(?:' + tokens[i].pattern + ')$')
-    }
-  }
-
-  return function (obj, opts) {
-    var path = ''
-    var data = obj || {}
-    var options = opts || {}
-    var encode = options.pretty ? encodeURIComponentPretty : encodeURIComponent
-
-    for (var i = 0; i < tokens.length; i++) {
-      var token = tokens[i]
-
-      if (typeof token === 'string') {
-        path += token
-
-        continue
-      }
-
-      var value = data[token.name]
-      var segment
-
-      if (value == null) {
-        if (token.optional) {
-          // Prepend partial segment prefixes.
-          if (token.partial) {
-            path += token.prefix
-          }
-
-          continue
-        } else {
-          throw new TypeError('Expected "' + token.name + '" to be defined')
-        }
-      }
-
-      if (isarray(value)) {
-        if (!token.repeat) {
-          throw new TypeError('Expected "' + token.name + '" to not repeat, but received `' + JSON.stringify(value) + '`')
-        }
-
-        if (value.length === 0) {
-          if (token.optional) {
-            continue
-          } else {
-            throw new TypeError('Expected "' + token.name + '" to not be empty')
-          }
-        }
-
-        for (var j = 0; j < value.length; j++) {
-          segment = encode(value[j])
-
-          if (!matches[i].test(segment)) {
-            throw new TypeError('Expected all "' + token.name + '" to match "' + token.pattern + '", but received `' + JSON.stringify(segment) + '`')
-          }
-
-          path += (j === 0 ? token.prefix : token.delimiter) + segment
-        }
-
-        continue
-      }
-
-      segment = token.asterisk ? encodeAsterisk(value) : encode(value)
-
-      if (!matches[i].test(segment)) {
-        throw new TypeError('Expected "' + token.name + '" to match "' + token.pattern + '", but received "' + segment + '"')
-      }
-
-      path += token.prefix + segment
-    }
-
-    return path
-  }
-}
-
-/**
- * Escape a regular expression string.
- *
- * @param  {string} str
- * @return {string}
- */
-function escapeString (str) {
-  return str.replace(/([.+*?=^!:${}()[\]|\/\\])/g, '\\$1')
-}
-
-/**
- * Escape the capturing group by escaping special characters and meaning.
- *
- * @param  {string} group
- * @return {string}
- */
-function escapeGroup (group) {
-  return group.replace(/([=!:$\/()])/g, '\\$1')
-}
-
-/**
- * Attach the keys as a property of the regexp.
- *
- * @param  {!RegExp} re
- * @param  {Array}   keys
- * @return {!RegExp}
- */
-function attachKeys (re, keys) {
-  re.keys = keys
-  return re
-}
-
-/**
- * Get the flags for a regexp from the options.
- *
- * @param  {Object} options
- * @return {string}
- */
-function flags (options) {
-  return options.sensitive ? '' : 'i'
-}
-
-/**
- * Pull out keys from a regexp.
- *
- * @param  {!RegExp} path
- * @param  {!Array}  keys
- * @return {!RegExp}
- */
-function regexpToRegexp (path, keys) {
-  // Use a negative lookahead to match only capturing groups.
-  var groups = path.source.match(/\((?!\?)/g)
-
-  if (groups) {
-    for (var i = 0; i < groups.length; i++) {
-      keys.push({
-        name: i,
-        prefix: null,
-        delimiter: null,
-        optional: false,
-        repeat: false,
-        partial: false,
-        asterisk: false,
-        pattern: null
-      })
-    }
-  }
-
-  return attachKeys(path, keys)
-}
-
-/**
- * Transform an array into a regexp.
- *
- * @param  {!Array}  path
- * @param  {Array}   keys
- * @param  {!Object} options
- * @return {!RegExp}
- */
-function arrayToRegexp (path, keys, options) {
-  var parts = []
-
-  for (var i = 0; i < path.length; i++) {
-    parts.push(pathToRegexp(path[i], keys, options).source)
-  }
-
-  var regexp = new RegExp('(?:' + parts.join('|') + ')', flags(options))
-
-  return attachKeys(regexp, keys)
-}
-
-/**
- * Create a path regexp from string input.
- *
- * @param  {string}  path
- * @param  {!Array}  keys
- * @param  {!Object} options
- * @return {!RegExp}
- */
-function stringToRegexp (path, keys, options) {
-  return tokensToRegExp(parse(path, options), keys, options)
-}
-
-/**
- * Expose a function for taking tokens and returning a RegExp.
- *
- * @param  {!Array}          tokens
- * @param  {(Array|Object)=} keys
- * @param  {Object=}         options
- * @return {!RegExp}
- */
-function tokensToRegExp (tokens, keys, options) {
-  if (!isarray(keys)) {
-    options = /** @type {!Object} */ (keys || options)
-    keys = []
-  }
-
-  options = options || {}
-
-  var strict = options.strict
-  var end = options.end !== false
-  var route = ''
-
-  // Iterate over the tokens and create our regexp string.
-  for (var i = 0; i < tokens.length; i++) {
-    var token = tokens[i]
-
-    if (typeof token === 'string') {
-      route += escapeString(token)
-    } else {
-      var prefix = escapeString(token.prefix)
-      var capture = '(?:' + token.pattern + ')'
-
-      keys.push(token)
-
-      if (token.repeat) {
-        capture += '(?:' + prefix + capture + ')*'
-      }
-
-      if (token.optional) {
-        if (!token.partial) {
-          capture = '(?:' + prefix + '(' + capture + '))?'
-        } else {
-          capture = prefix + '(' + capture + ')?'
-        }
-      } else {
-        capture = prefix + '(' + capture + ')'
-      }
-
-      route += capture
-    }
-  }
-
-  var delimiter = escapeString(options.delimiter || '/')
-  var endsWithDelimiter = route.slice(-delimiter.length) === delimiter
-
-  // In non-strict mode we allow a slash at the end of match. If the path to
-  // match already ends with a slash, we remove it for consistency. The slash
-  // is valid at the end of a path match, not in the middle. This is important
-  // in non-ending mode, where "/test/" shouldn't match "/test//route".
-  if (!strict) {
-    route = (endsWithDelimiter ? route.slice(0, -delimiter.length) : route) + '(?:' + delimiter + '(?=$))?'
-  }
-
-  if (end) {
-    route += '$'
-  } else {
-    // In non-ending mode, we need the capturing groups to match as much as
-    // possible by using a positive lookahead to the end or next path segment.
-    route += strict && endsWithDelimiter ? '' : '(?=' + delimiter + '|$)'
-  }
-
-  return attachKeys(new RegExp('^' + route, flags(options)), keys)
-}
-
-/**
- * Normalize the given path string, returning a regular expression.
- *
- * An empty array can be passed in for the keys, which will hold the
- * placeholder key descriptions. For example, using `/user/:id`, `keys` will
- * contain `[{ name: 'id', delimiter: '/', optional: false, repeat: false }]`.
- *
- * @param  {(string|RegExp|Array)} path
- * @param  {(Array|Object)=}       keys
- * @param  {Object=}               options
- * @return {!RegExp}
- */
-function pathToRegexp (path, keys, options) {
-  if (!isarray(keys)) {
-    options = /** @type {!Object} */ (keys || options)
-    keys = []
-  }
-
-  options = options || {}
-
-  if (path instanceof RegExp) {
-    return regexpToRegexp(path, /** @type {!Array} */ (keys))
-  }
-
-  if (isarray(path)) {
-    return arrayToRegexp(/** @type {!Array} */ (path), /** @type {!Array} */ (keys), options)
-  }
-
-  return stringToRegexp(/** @type {string} */ (path), /** @type {!Array} */ (keys), options)
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/path-to-regexp/node_modules/isarray/index.js":
-/*!*******************************************************************!*\
-  !*** ./node_modules/path-to-regexp/node_modules/isarray/index.js ***!
-  \*******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = Array.isArray || function (arr) {
-  return Object.prototype.toString.call(arr) == '[object Array]';
 };
 
 
@@ -23938,7 +23476,7 @@ Switch.propTypes = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var path_to_regexp__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! path-to-regexp */ "./node_modules/path-to-regexp/index.js");
+/* harmony import */ var path_to_regexp__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! path-to-regexp */ "./node_modules/react-router/node_modules/path-to-regexp/index.js");
 /* harmony import */ var path_to_regexp__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(path_to_regexp__WEBPACK_IMPORTED_MODULE_0__);
 
 
@@ -23989,7 +23527,7 @@ var generatePath = function generatePath() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var path_to_regexp__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! path-to-regexp */ "./node_modules/path-to-regexp/index.js");
+/* harmony import */ var path_to_regexp__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! path-to-regexp */ "./node_modules/react-router/node_modules/path-to-regexp/index.js");
 /* harmony import */ var path_to_regexp__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(path_to_regexp__WEBPACK_IMPORTED_MODULE_0__);
 
 
@@ -24118,6 +23656,457 @@ var withRouter = function withRouter(Component) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (withRouter);
+
+/***/ }),
+
+/***/ "./node_modules/react-router/node_modules/isarray/index.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/react-router/node_modules/isarray/index.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = Array.isArray || function (arr) {
+  return Object.prototype.toString.call(arr) == '[object Array]';
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/react-router/node_modules/path-to-regexp/index.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/react-router/node_modules/path-to-regexp/index.js ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var isarray = __webpack_require__(/*! isarray */ "./node_modules/react-router/node_modules/isarray/index.js")
+
+/**
+ * Expose `pathToRegexp`.
+ */
+module.exports = pathToRegexp
+module.exports.parse = parse
+module.exports.compile = compile
+module.exports.tokensToFunction = tokensToFunction
+module.exports.tokensToRegExp = tokensToRegExp
+
+/**
+ * The main path matching regexp utility.
+ *
+ * @type {RegExp}
+ */
+var PATH_REGEXP = new RegExp([
+  // Match escaped characters that would otherwise appear in future matches.
+  // This allows the user to escape special characters that won't transform.
+  '(\\\\.)',
+  // Match Express-style parameters and un-named parameters with a prefix
+  // and optional suffixes. Matches appear as:
+  //
+  // "/:test(\\d+)?" => ["/", "test", "\d+", undefined, "?", undefined]
+  // "/route(\\d+)"  => [undefined, undefined, undefined, "\d+", undefined, undefined]
+  // "/*"            => ["/", undefined, undefined, undefined, undefined, "*"]
+  '([\\/.])?(?:(?:\\:(\\w+)(?:\\(((?:\\\\.|[^\\\\()])+)\\))?|\\(((?:\\\\.|[^\\\\()])+)\\))([+*?])?|(\\*))'
+].join('|'), 'g')
+
+/**
+ * Parse a string for the raw tokens.
+ *
+ * @param  {string}  str
+ * @param  {Object=} options
+ * @return {!Array}
+ */
+function parse (str, options) {
+  var tokens = []
+  var key = 0
+  var index = 0
+  var path = ''
+  var defaultDelimiter = options && options.delimiter || '/'
+  var res
+
+  while ((res = PATH_REGEXP.exec(str)) != null) {
+    var m = res[0]
+    var escaped = res[1]
+    var offset = res.index
+    path += str.slice(index, offset)
+    index = offset + m.length
+
+    // Ignore already escaped sequences.
+    if (escaped) {
+      path += escaped[1]
+      continue
+    }
+
+    var next = str[index]
+    var prefix = res[2]
+    var name = res[3]
+    var capture = res[4]
+    var group = res[5]
+    var modifier = res[6]
+    var asterisk = res[7]
+
+    // Push the current path onto the tokens.
+    if (path) {
+      tokens.push(path)
+      path = ''
+    }
+
+    var partial = prefix != null && next != null && next !== prefix
+    var repeat = modifier === '+' || modifier === '*'
+    var optional = modifier === '?' || modifier === '*'
+    var delimiter = res[2] || defaultDelimiter
+    var pattern = capture || group
+
+    tokens.push({
+      name: name || key++,
+      prefix: prefix || '',
+      delimiter: delimiter,
+      optional: optional,
+      repeat: repeat,
+      partial: partial,
+      asterisk: !!asterisk,
+      pattern: pattern ? escapeGroup(pattern) : (asterisk ? '.*' : '[^' + escapeString(delimiter) + ']+?')
+    })
+  }
+
+  // Match any characters still remaining.
+  if (index < str.length) {
+    path += str.substr(index)
+  }
+
+  // If the path exists, push it onto the end.
+  if (path) {
+    tokens.push(path)
+  }
+
+  return tokens
+}
+
+/**
+ * Compile a string to a template function for the path.
+ *
+ * @param  {string}             str
+ * @param  {Object=}            options
+ * @return {!function(Object=, Object=)}
+ */
+function compile (str, options) {
+  return tokensToFunction(parse(str, options))
+}
+
+/**
+ * Prettier encoding of URI path segments.
+ *
+ * @param  {string}
+ * @return {string}
+ */
+function encodeURIComponentPretty (str) {
+  return encodeURI(str).replace(/[\/?#]/g, function (c) {
+    return '%' + c.charCodeAt(0).toString(16).toUpperCase()
+  })
+}
+
+/**
+ * Encode the asterisk parameter. Similar to `pretty`, but allows slashes.
+ *
+ * @param  {string}
+ * @return {string}
+ */
+function encodeAsterisk (str) {
+  return encodeURI(str).replace(/[?#]/g, function (c) {
+    return '%' + c.charCodeAt(0).toString(16).toUpperCase()
+  })
+}
+
+/**
+ * Expose a method for transforming tokens into the path function.
+ */
+function tokensToFunction (tokens) {
+  // Compile all the tokens into regexps.
+  var matches = new Array(tokens.length)
+
+  // Compile all the patterns before compilation.
+  for (var i = 0; i < tokens.length; i++) {
+    if (typeof tokens[i] === 'object') {
+      matches[i] = new RegExp('^(?:' + tokens[i].pattern + ')$')
+    }
+  }
+
+  return function (obj, opts) {
+    var path = ''
+    var data = obj || {}
+    var options = opts || {}
+    var encode = options.pretty ? encodeURIComponentPretty : encodeURIComponent
+
+    for (var i = 0; i < tokens.length; i++) {
+      var token = tokens[i]
+
+      if (typeof token === 'string') {
+        path += token
+
+        continue
+      }
+
+      var value = data[token.name]
+      var segment
+
+      if (value == null) {
+        if (token.optional) {
+          // Prepend partial segment prefixes.
+          if (token.partial) {
+            path += token.prefix
+          }
+
+          continue
+        } else {
+          throw new TypeError('Expected "' + token.name + '" to be defined')
+        }
+      }
+
+      if (isarray(value)) {
+        if (!token.repeat) {
+          throw new TypeError('Expected "' + token.name + '" to not repeat, but received `' + JSON.stringify(value) + '`')
+        }
+
+        if (value.length === 0) {
+          if (token.optional) {
+            continue
+          } else {
+            throw new TypeError('Expected "' + token.name + '" to not be empty')
+          }
+        }
+
+        for (var j = 0; j < value.length; j++) {
+          segment = encode(value[j])
+
+          if (!matches[i].test(segment)) {
+            throw new TypeError('Expected all "' + token.name + '" to match "' + token.pattern + '", but received `' + JSON.stringify(segment) + '`')
+          }
+
+          path += (j === 0 ? token.prefix : token.delimiter) + segment
+        }
+
+        continue
+      }
+
+      segment = token.asterisk ? encodeAsterisk(value) : encode(value)
+
+      if (!matches[i].test(segment)) {
+        throw new TypeError('Expected "' + token.name + '" to match "' + token.pattern + '", but received "' + segment + '"')
+      }
+
+      path += token.prefix + segment
+    }
+
+    return path
+  }
+}
+
+/**
+ * Escape a regular expression string.
+ *
+ * @param  {string} str
+ * @return {string}
+ */
+function escapeString (str) {
+  return str.replace(/([.+*?=^!:${}()[\]|\/\\])/g, '\\$1')
+}
+
+/**
+ * Escape the capturing group by escaping special characters and meaning.
+ *
+ * @param  {string} group
+ * @return {string}
+ */
+function escapeGroup (group) {
+  return group.replace(/([=!:$\/()])/g, '\\$1')
+}
+
+/**
+ * Attach the keys as a property of the regexp.
+ *
+ * @param  {!RegExp} re
+ * @param  {Array}   keys
+ * @return {!RegExp}
+ */
+function attachKeys (re, keys) {
+  re.keys = keys
+  return re
+}
+
+/**
+ * Get the flags for a regexp from the options.
+ *
+ * @param  {Object} options
+ * @return {string}
+ */
+function flags (options) {
+  return options.sensitive ? '' : 'i'
+}
+
+/**
+ * Pull out keys from a regexp.
+ *
+ * @param  {!RegExp} path
+ * @param  {!Array}  keys
+ * @return {!RegExp}
+ */
+function regexpToRegexp (path, keys) {
+  // Use a negative lookahead to match only capturing groups.
+  var groups = path.source.match(/\((?!\?)/g)
+
+  if (groups) {
+    for (var i = 0; i < groups.length; i++) {
+      keys.push({
+        name: i,
+        prefix: null,
+        delimiter: null,
+        optional: false,
+        repeat: false,
+        partial: false,
+        asterisk: false,
+        pattern: null
+      })
+    }
+  }
+
+  return attachKeys(path, keys)
+}
+
+/**
+ * Transform an array into a regexp.
+ *
+ * @param  {!Array}  path
+ * @param  {Array}   keys
+ * @param  {!Object} options
+ * @return {!RegExp}
+ */
+function arrayToRegexp (path, keys, options) {
+  var parts = []
+
+  for (var i = 0; i < path.length; i++) {
+    parts.push(pathToRegexp(path[i], keys, options).source)
+  }
+
+  var regexp = new RegExp('(?:' + parts.join('|') + ')', flags(options))
+
+  return attachKeys(regexp, keys)
+}
+
+/**
+ * Create a path regexp from string input.
+ *
+ * @param  {string}  path
+ * @param  {!Array}  keys
+ * @param  {!Object} options
+ * @return {!RegExp}
+ */
+function stringToRegexp (path, keys, options) {
+  return tokensToRegExp(parse(path, options), keys, options)
+}
+
+/**
+ * Expose a function for taking tokens and returning a RegExp.
+ *
+ * @param  {!Array}          tokens
+ * @param  {(Array|Object)=} keys
+ * @param  {Object=}         options
+ * @return {!RegExp}
+ */
+function tokensToRegExp (tokens, keys, options) {
+  if (!isarray(keys)) {
+    options = /** @type {!Object} */ (keys || options)
+    keys = []
+  }
+
+  options = options || {}
+
+  var strict = options.strict
+  var end = options.end !== false
+  var route = ''
+
+  // Iterate over the tokens and create our regexp string.
+  for (var i = 0; i < tokens.length; i++) {
+    var token = tokens[i]
+
+    if (typeof token === 'string') {
+      route += escapeString(token)
+    } else {
+      var prefix = escapeString(token.prefix)
+      var capture = '(?:' + token.pattern + ')'
+
+      keys.push(token)
+
+      if (token.repeat) {
+        capture += '(?:' + prefix + capture + ')*'
+      }
+
+      if (token.optional) {
+        if (!token.partial) {
+          capture = '(?:' + prefix + '(' + capture + '))?'
+        } else {
+          capture = prefix + '(' + capture + ')?'
+        }
+      } else {
+        capture = prefix + '(' + capture + ')'
+      }
+
+      route += capture
+    }
+  }
+
+  var delimiter = escapeString(options.delimiter || '/')
+  var endsWithDelimiter = route.slice(-delimiter.length) === delimiter
+
+  // In non-strict mode we allow a slash at the end of match. If the path to
+  // match already ends with a slash, we remove it for consistency. The slash
+  // is valid at the end of a path match, not in the middle. This is important
+  // in non-ending mode, where "/test/" shouldn't match "/test//route".
+  if (!strict) {
+    route = (endsWithDelimiter ? route.slice(0, -delimiter.length) : route) + '(?:' + delimiter + '(?=$))?'
+  }
+
+  if (end) {
+    route += '$'
+  } else {
+    // In non-ending mode, we need the capturing groups to match as much as
+    // possible by using a positive lookahead to the end or next path segment.
+    route += strict && endsWithDelimiter ? '' : '(?=' + delimiter + '|$)'
+  }
+
+  return attachKeys(new RegExp('^' + route, flags(options)), keys)
+}
+
+/**
+ * Normalize the given path string, returning a regular expression.
+ *
+ * An empty array can be passed in for the keys, which will hold the
+ * placeholder key descriptions. For example, using `/user/:id`, `keys` will
+ * contain `[{ name: 'id', delimiter: '/', optional: false, repeat: false }]`.
+ *
+ * @param  {(string|RegExp|Array)} path
+ * @param  {(Array|Object)=}       keys
+ * @param  {Object=}               options
+ * @return {!RegExp}
+ */
+function pathToRegexp (path, keys, options) {
+  if (!isarray(keys)) {
+    options = /** @type {!Object} */ (keys || options)
+    keys = []
+  }
+
+  options = options || {}
+
+  if (path instanceof RegExp) {
+    return regexpToRegexp(path, /** @type {!Array} */ (keys))
+  }
+
+  if (isarray(path)) {
+    return arrayToRegexp(/** @type {!Array} */ (path), /** @type {!Array} */ (keys), options)
+  }
+
+  return stringToRegexp(/** @type {string} */ (path), /** @type {!Array} */ (keys), options)
+}
+
 
 /***/ }),
 
@@ -27024,6 +27013,64 @@ exports.default = EventLoginPage;
 
 /***/ }),
 
+/***/ "./src/components/EventPage.js":
+/*!*************************************!*\
+  !*** ./src/components/EventPage.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// import { connect } from 'react-redux';
+// import Header from './Header';
+
+var EventPage = function (_Component) {
+  _inherits(EventPage, _Component);
+
+  function EventPage() {
+    _classCallCheck(this, EventPage);
+
+    return _possibleConstructorReturn(this, (EventPage.__proto__ || Object.getPrototypeOf(EventPage)).apply(this, arguments));
+  }
+
+  _createClass(EventPage, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'h1',
+        { temp: this.props },
+        ' Hello from EventPage '
+      );
+    }
+  }]);
+
+  return EventPage;
+}(_react.Component);
+
+exports.default = EventPage;
+
+/***/ }),
+
 /***/ "./src/components/Header.js":
 /*!**********************************!*\
   !*** ./src/components/Header.js ***!
@@ -27218,135 +27265,74 @@ var PhotoIcon = exports.PhotoIcon = function PhotoIcon() {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+// import React, { Component } from 'react';
+// import { connect } from 'react-redux';
+// import { NavLink } from 'react-router-dom';
+// import { PhotoIcon } from './SvgIcons';
 
+// const defaultPhoto = require('../../dist/images/no-avatar.png');
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+// class UserAvatar extends Component {
+//   state = {
+//     change: false
+//   }
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+//   handleNameChange = () => {
+//     this.setState(prevState => ({ change: !prevState.change }));
+//   }
 
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+//   handleAddPhoneNumber = () => {
 
-var _react2 = _interopRequireDefault(_react);
+//   }
 
-var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+//   render() {
+//     return (
+//       <React.Fragment>
+//         <div className="user-avatar">
+//           <div className="user-avatar__logo-box">
+//             {
+//               this.props.users.photo
+//                 ? <NavLink to="/"><img className="user-avatar__logo" src={this.props.users.photo} alt="User Photo" width="200" height="300" /></NavLink>
+//                 : <NavLink to="/"><img className="user-avatar__logo" src={defaultPhoto} alt="User Photo" width="200" height="300" /></NavLink>
+//             }
+//             <div className="user-avatar__add-photo">
+//               <PhotoIcon className="photo__icon" role="icon" />
+//               <span>Upload or change photo</span>
+//             </div>
+//           </div>
+//           <div className="user-avatar__info">
+//             <div className="user-avatar__name-box">
+//               {
+//                 this.state.change
+//                   ? <form>
+//                     <input type="text" name="username" defaultValue={this.props.users.name} />
+//                     <input type="submit" value="SAVE" />
+//                   </form>
+//                   : <h2>{this.props.users.name}</h2>
+//               }
+//             </div>
+//             <div className="user-avatar__phone-box">
+//               {
+//                 this.props.users.phone
+//                   ? <p>{this.props.users.phone}</p>
+//                   : <button onClick={this.handleAddPhoneNumber}>ADD PHONE NUMBER</button>
+//               }
+//             </div>
+//           </div>
+//         </div>
+//       </React.Fragment>
+//     );
+//   }
+// }
 
-var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+// const mapStateToProps = (state) => {
+//   return {
+//     users: state.users
+//   };
+// };
 
-var _SvgIcons = __webpack_require__(/*! ./SvgIcons */ "./src/components/SvgIcons.js");
+// export default connect(mapStateToProps)(UserAvatar);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var defaultPhoto = __webpack_require__(/*! ../../dist/images/no-avatar.png */ "./dist/images/no-avatar.png");
-
-var UserAvatar = function (_Component) {
-  _inherits(UserAvatar, _Component);
-
-  function UserAvatar() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, UserAvatar);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = UserAvatar.__proto__ || Object.getPrototypeOf(UserAvatar)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      change: false
-    }, _this.handleNameChange = function () {
-      _this.setState(function (prevState) {
-        return { change: !prevState.change };
-      });
-    }, _this.handleAddPhoneNumber = function () {}, _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  _createClass(UserAvatar, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        _react2.default.Fragment,
-        null,
-        _react2.default.createElement(
-          'div',
-          { className: 'user-avatar' },
-          _react2.default.createElement(
-            'div',
-            { className: 'user-avatar__logo-box' },
-            this.props.users.photo ? _react2.default.createElement(
-              _reactRouterDom.NavLink,
-              { to: '/' },
-              _react2.default.createElement('img', { className: 'user-avatar__logo', src: this.props.users.photo, alt: 'User Photo', width: '200', height: '300' })
-            ) : _react2.default.createElement(
-              _reactRouterDom.NavLink,
-              { to: '/' },
-              _react2.default.createElement('img', { className: 'user-avatar__logo', src: defaultPhoto, alt: 'User Photo', width: '200', height: '300' })
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'user-avatar__add-photo' },
-              _react2.default.createElement(_SvgIcons.PhotoIcon, { className: 'photo__icon', role: 'icon' }),
-              _react2.default.createElement(
-                'span',
-                null,
-                'Upload or change photo'
-              )
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'user-avatar__info' },
-            _react2.default.createElement(
-              'div',
-              { className: 'user-avatar__name-box' },
-              this.state.change ? _react2.default.createElement(
-                'form',
-                null,
-                _react2.default.createElement('input', { type: 'text', name: 'username', defaultValue: this.props.users.name }),
-                _react2.default.createElement('input', { type: 'submit', value: 'SAVE' })
-              ) : _react2.default.createElement(
-                'h2',
-                null,
-                this.props.users.name
-              )
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'user-avatar__phone-box' },
-              this.props.users.phone ? _react2.default.createElement(
-                'p',
-                null,
-                this.props.users.phone
-              ) : _react2.default.createElement(
-                'button',
-                { onClick: this.handleAddPhoneNumber },
-                'ADD PHONE NUMBER'
-              )
-            )
-          )
-        )
-      );
-    }
-  }]);
-
-  return UserAvatar;
-}(_react.Component);
-
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    users: state.users
-  };
-};
-
-exports.default = (0, _reactRedux.connect)(mapStateToProps)(UserAvatar);
 
 /***/ }),
 
@@ -27578,6 +27564,10 @@ var _NotFoundPage = __webpack_require__(/*! ../components/NotFoundPage */ "./src
 
 var _NotFoundPage2 = _interopRequireDefault(_NotFoundPage);
 
+var _EventPage = __webpack_require__(/*! ../components/EventPage */ "./src/components/EventPage.js");
+
+var _EventPage2 = _interopRequireDefault(_EventPage);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var AppRouter = function AppRouter() {
@@ -27592,6 +27582,7 @@ var AppRouter = function AppRouter() {
         null,
         _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _EventLoginPage2.default, exact: true }),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/dashboard', component: _EventDashboardPage2.default }),
+        _react2.default.createElement(_reactRouterDom.Route, { path: '/eventpage', component: _EventPage2.default, exact: true }),
         _react2.default.createElement(_reactRouterDom.Route, { component: _NotFoundPage2.default })
       )
     )
