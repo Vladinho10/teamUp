@@ -25,7 +25,7 @@ passport.use(new FacebookStrategy({
       photo:profile.photos[0].value
   },done,{
     name:profile.displayName,
-    fb_id:profile.id
+    id:profile.id
   });  
     
     //console.log("https://graph.facebook.com/" + profile.username + "/picture" + "?width=200&height=200" + "&access_token=" + accessToken)
