@@ -1,6 +1,6 @@
 var passport = require('passport')
   , FacebookStrategy = require('passport-facebook').Strategy;
-const User = require('./model_crud');
+const { User } = require('./model_crud');
 
 const config = require('../config/config').facebook_config;
 
@@ -11,8 +11,7 @@ passport.use(new FacebookStrategy({
     profileFields:['displayName','picture.type(large)']
   },
   function(accessToken, refreshToken, profile, done) {
-    //User
-    console.log('-----------',profile);
+    console.log(User.addUser);
     User.addUser({
       fb_id:profile.id,
       name:profile.displayName,

@@ -34,7 +34,6 @@ app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { successRedirect: '/dashboard',
                                       failureRedirect: '/' }));
 app.get('/',(req,res)=>{
-    console.log('in / path');
         if(!req.user){
             res.sendFile(path.join(__dirname,'../../frontend/dist/index.html'));
             return;
@@ -50,7 +49,7 @@ app.get('/',(req,res)=>{
  
 app.post('/api/dashboard', (req,res)=>{
     console.log(req.body, 'reeeeeeeqqqqqqqqqqqqqqqqqqqqqqq');
-    if(req.user){
+    if(true){
         let data = {};
         Event.find().then((events)=>{
             data.events = events;
