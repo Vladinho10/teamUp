@@ -13,7 +13,7 @@ const cors = require('cors');
 const passport = require('./passport');
 const User = require('./model_crud');
 // app.use(express.static('public'));
-app.use(express.static(path.join(__dirname,'../frontend/dist')));
+app.use(express.static(path.join(__dirname,'../../frontend/dist')));
 
 app.use(bodyParser.urlencoded({
     extended: true
