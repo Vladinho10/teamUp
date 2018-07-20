@@ -1,0 +1,14 @@
+@import "utils/mixins";
+
+.row {
+	max-width: $grid-width;
+	margin: 0 auto;
+	
+	@include respond(tab-land) { // width < 1200?
+		max-width: 96rem;
+	}
+	
+	@include respond(tab-port) { // width < 900?
+		max-width: 78rem;
+	}
+}
