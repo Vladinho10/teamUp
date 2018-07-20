@@ -13,6 +13,8 @@ const cors = require('cors');
 const passport = require('./passport');
 const User = require('./model_crud');
 // app.use(express.static('public'));
+app.use(express.static(path.join(__dirname,'../frontend/dist')));
+
 app.use(bodyParser.urlencoded({
     extended: true
 }));
@@ -28,13 +30,18 @@ app.use(cors());
 app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { successRedirect: '/account',
-                                      failureRedirect: '/login' }));
-app.get('/login',(req,res)=>{
+                                      failureRedirect: '/' }));
+app.get('/',(req,res)=>{
     console.log('in / path');
-    
-        res.sendFile(path.join(__dirname,'../public/index.html'));
+        if(!req.user){
+            res.sendFile(path.join(__dirname,'../../frontend/dist/index.html'));
+        }else{
+            res.redirect('/account');
+        }
+        
     
 });
+/*
 app.get('/',(req,res)=>{
     
     let current_user = User.findOne({fb_id:req.user.fb_id},(err,user)=>{
@@ -43,19 +50,15 @@ app.get('/',(req,res)=>{
    // console.log(current_user);
     console.log('in / user is:',req.user);
 });
-app.get('/account', (req,res) => {
-    let profile = req.user;
-    User.addUser({
-        fb_id:profile.fb_id,
-        name:profile.name,
-        phone:0,
-        access_token:profile.access_token,
-        refresh_token:profile.refresh_token,
-        own_events:[],
-        attending_events:[],
-        finished_events:[],
-        photo:profile.photo
-    },res);
-});
+*/
+ app.get('/account', (req,res) => {
+     if(req.user){
+         let profile = req.user;
+         User.findUser(req.user.fb_id,res);
+     }else{
+         res.redirect('/');
+     }
+    
+ });
 module.exports = app;
 
