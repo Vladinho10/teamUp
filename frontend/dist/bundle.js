@@ -28319,9 +28319,34 @@ var EventDashboardPage = function (_Component) {
   _inherits(EventDashboardPage, _Component);
 
   function EventDashboardPage() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
     _classCallCheck(this, EventDashboardPage);
 
-    return _possibleConstructorReturn(this, (EventDashboardPage.__proto__ || Object.getPrototypeOf(EventDashboardPage)).apply(this, arguments));
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = EventDashboardPage.__proto__ || Object.getPrototypeOf(EventDashboardPage)).call.apply(_ref, [this].concat(args))), _this), _this.componentDidMount = function () {
+      debugger;
+      fetch('/api/dashboard', {
+        method: 'POST',
+        body: JSON.stringify({ name: 'noro' }),
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        }
+      }).then(function (res) {
+        return res.json();
+      }).catch(function (error) {
+        return console.error('Error:', error);
+      }).then(function (res) {
+        console.log(res);
+        _this.setState({ imageSrc: res.url });
+      });
+    }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(EventDashboardPage, [{
@@ -29074,7 +29099,7 @@ var UserAvatar = function (_Component) {
         imageSrc: imageSrc
       });
     }, _this.handleFileUpload = function () {
-      fetch('/api/todos', {
+      fetch('/api/dashboard', {
         method: 'POST',
         body: JSON.stringify(_this.state.selectedFile),
         headers: {

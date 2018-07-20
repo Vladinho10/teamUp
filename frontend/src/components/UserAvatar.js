@@ -35,7 +35,7 @@ class UserAvatar extends Component {
   }
 
   handleFileUpload = () => {
-    fetch('/api/user', {
+    fetch('/api/dashboard', {
       method: 'POST',
       body: JSON.stringify(this.state.selectedFile),
       headers: {

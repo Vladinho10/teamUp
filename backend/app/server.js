@@ -12,7 +12,7 @@ const cors = require('cors');
 const passport = require('./passport');
 
 const User = require('./model_crud');
-const Event = require('/model_crud');
+const Event = require('./model_crud');
 
 
 app.use(express.static(path.join(__dirname,'../../frontend/dist')));
@@ -48,7 +48,8 @@ app.get('/',(req,res)=>{
     res.sendFile(path.join(__dirname,'../../frontend/dist/index.html'));
  });
  
-app.post('/api/dashboard',(req,res)=>{
+app.post('/api/dashboard', (req,res)=>{
+    console.log(req.body, 'reeeeeeeqqqqqqqqqqqqqqqqqqqqqqq');
     if(req.user){
         let data = {};
         Event.find().then((events)=>{
