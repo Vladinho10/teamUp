@@ -31,7 +31,7 @@ class EventLoginPage extends Component {
                 <section className="register__sign-in">
                   <h2>Sign in with facebook</h2>
                   <div>
-                    <NavLink role='link' to='/auth/facebook' activeClassName='is-active' className="btn btn_green btn_animated btn_active">Sign in with facebook</NavLink>
+                    <a role='link' href='/auth/facebook' className="btn btn_green btn_animated btn_active">Sign in with facebook</a>
                   </div>
                 </section>
               </div>

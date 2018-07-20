@@ -1,9 +1,8 @@
-.main {
+.main-eventpage {
     display: flex;
 }
 
 .user-side {
-    // background-color: rgb(236, 248, 252);
     width: 35vw;
 }
 
@@ -51,12 +50,18 @@
     }
 }
 
-.icon {
+.icon__location {
     opacity: 0.5;
 }
+
+.icon__clock {
+    opacity: 0.5;
+}
+
 .text {
     color: rgb(94, 93, 93)
 }
+
 .red-text {
     color: rgb(240, 42, 42);
 }

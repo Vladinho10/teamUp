@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 import Header from './Header';
-import { ClockIcon, LocationIcon } from './SvgIcons';
+import { EventClockIcon, EventLocationIcon } from './SvgIcons';
 
 const eventCover = require('../../dist/images/eventCover.jpg');
 
@@ -16,7 +16,7 @@ class EventPage extends Component {
     return (
       <React.Fragment>
         <Header/>
-        <div className='main'>
+        <div className='main-eventpage'>
           <div temp={this.props} className='user-side'>
           </div>
           <div className='event'>
@@ -27,13 +27,11 @@ class EventPage extends Component {
             </div>
             <div className="long-desc">
               <div className="long-desc-date">
-                {/* <img className ="icon" src={eventDate}/> */}
-                <ClockIcon className ="icon"/>
+                <EventClockIcon className ="icon"/>
                 <span>{dateAndTime}</span>
               </div>
               <div className="long-desc-location">
-                {/* <img className ="icon" src={eventLocacton}/> */}
-                <LocationIcon className ="icon"/>
+                <EventLocationIcon className ="icon"/>
                 <span>{location}</span>
               </div>
               <div className="long-desc-text">
