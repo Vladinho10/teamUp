@@ -1,5 +1,6 @@
 'use strict';
 const userScheme = require('./models/user');
+const eventScheme = require('./models/event');
 const mongoose = require('mongoose');
 
 userScheme.statics.findUser = function(id,res){
@@ -8,7 +9,7 @@ userScheme.statics.findUser = function(id,res){
 
 userScheme.statics.addUser = function(user,done,obj){
     let existing_check = User.findOne({fb_id:user.fb_id},(err, check_user) =>{
-        console.log('----->',check_user);
+        //console.log('----->',check_user);
 
         if(!check_user){
             let new_user = new User({
@@ -34,5 +35,5 @@ userScheme.statics.addUser = function(user,done,obj){
 
 
 const User = mongoose.model('User',userScheme);
-
-module.exports = User;
+const Event = mongoose.model('Event',eventScheme);
+module.exports = {User,Event};

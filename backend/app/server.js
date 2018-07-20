@@ -11,8 +11,8 @@ const session = require('express-session');
 const cors = require('cors');
 const passport = require('./passport');
 
-const User = require('./model_crud');
-const Event = require('/model_crud');
+const {User,Event} = require('./model_crud');
+
 
 
 app.use(express.static(path.join(__dirname,'../../frontend/dist')));
@@ -49,10 +49,13 @@ app.get('/',(req,res)=>{
  });
  
 app.post('/api/dashboard',(req,res)=>{
+    console.log('under api/dashboard');
     if(req.user){
+        console.log('under req.user');
         let data = {};
         Event.find().then((events)=>{
             data.events = events;
+            console.log('under event callback');
             User.findOne({fb_id:req.user.id}).then((user)=>{
                 data.user = user;
                 res.json(data);
