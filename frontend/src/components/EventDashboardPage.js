@@ -24,7 +24,8 @@ class EventDashboardPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    events: state.events
+    events: state.events,
+    user: state.user
   };
 };
 
