@@ -29,14 +29,14 @@ app.use(cors());
 
 app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { successRedirect: '/account',
+  passport.authenticate('facebook', { successRedirect: '/dashbord',
                                       failureRedirect: '/' }));
 app.get('/',(req,res)=>{
     console.log('in / path');
         if(!req.user){
             res.sendFile(path.join(__dirname,'../../frontend/dist/index.html'));
         }else{
-            res.redirect('/account');
+            res.redirect('/dashboard');
         }
         
     
@@ -51,14 +51,18 @@ app.get('/',(req,res)=>{
     console.log('in / user is:',req.user);
 });
 */
- app.get('/account', (req,res) => {
+ app.get('/dashboard', (req,res) => {
      if(req.user){
          let profile = req.user;
-         User.findUser(req.user.fb_id,res);
+         res.end();
+         //User.findUser(req.user.fb_id,res);
      }else{
          res.redirect('/');
      }
     
+ });
+ app.get('/*', (req,res) => {
+    res.sendFile(path.join(__dirname,'../../frontend/dist/index.html'));
  });
 module.exports = app;
 
