@@ -11,10 +11,20 @@ export const SearchIcon = () => {
 
 export const PhotoIcon = () => {
   return (
-    <svg className="search-form__icon" xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 32 32">
+    <svg className="upload-icon" xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 32 32">
       <title>camera</title>
       <path xmlns="http://www.w3.org/2000/svg" d="M21 5h-3.5l-1.7-2.6c-0.2-0.2-0.5-0.4-0.8-0.4h-6c-0.3 0-0.6 0.2-0.8 0.4l-1.7 2.6h-3.5c-1.7 0-3 1.3-3 3v11c0 1.7 1.3 3 3 3h18c1.7 0 3-1.3 3-3v-11c0-1.7-1.3-3-3-3zM22 19c0 0.6-0.4 1-1 1h-18c-0.6 0-1-0.4-1-1v-11c0-0.6 0.4-1 1-1h4c0.3 0 0.6-0.2 0.8-0.4l1.7-2.6h4.9l1.7 2.6c0.3 0.2 0.6 0.4 0.9 0.4h4c0.6 0 1 0.4 1 1v11z"/>
       <path xmlns="http://www.w3.org/2000/svg" d="M12 8c-2.8 0-5 2.2-5 5s2.2 5 5 5 5-2.2 5-5-2.2-5-5-5zM12 16c-1.7 0-3-1.3-3-3s1.3-3 3-3 3 1.3 3 3-1.3 3-3 3z"/>
+    </svg>
+  );
+};
+
+export const PlusIcon = () => {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="24" height="24" viewBox="0 0 24 24">
+      <title>plus-square</title>
+      <path d="M19 2h-14c-1.7 0-3 1.3-3 3v14c0 1.7 1.3 3 3 3h14c1.7 0 3-1.3 3-3v-14c0-1.7-1.3-3-3-3zM20 19c0 0.6-0.4 1-1 1h-14c-0.6 0-1-0.4-1-1v-14c0-0.6 0.4-1 1-1h14c0.6 0 1 0.4 1 1v14z"/>
+      <path d="M16 11h-3v-3c0-0.6-0.4-1-1-1s-1 0.4-1 1v3h-3c-0.6 0-1 0.4-1 1s0.4 1 1 1h3v3c0 0.6 0.4 1 1 1s1-0.4 1-1v-3h3c0.6 0 1-0.4 1-1s-0.4-1-1-1z"/>
     </svg>
   );
 };

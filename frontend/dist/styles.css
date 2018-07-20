@@ -360,7 +360,8 @@ ul {
 
 .btn {
   position: relative;
-  z-index: 1; }
+  z-index: 1;
+  cursor: pointer; }
   .btn, .btn:link, .btn:visited {
     display: inline-block;
     padding: .7rem 4rem;
@@ -396,6 +397,100 @@ ul {
     transform: scaleY(1); }
   .btn_animated:hover {
     color: #4adc62; }
+
+.user-avatar__logo-box {
+  position: relative;
+  background-color: azure; }
+
+.user-avatar__link, .user-avatar__link:link, .user-avatar__link:visited {
+  display: block; }
+
+.user-avatar__logo {
+  display: inline-block;
+  vertical-align: bottom;
+  width: 100%; }
+
+.user-avatar__add-photo {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 6rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transition: all .3s;
+  cursor: pointer; }
+  .user-avatar__add-photo .upload-photo {
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    width: 100%; }
+
+.user-avatar__logo-box:hover .user-avatar__add-photo {
+  opacity: 1; }
+
+.user-avatar__logo-box:active .user-avatar__add-photo {
+  opacity: 1; }
+
+.ReactModalPortal > div {
+  opacity: 0; }
+
+.ReactModalPortal .ReactModal__Overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 200ms ease-in-out;
+  position: relative; }
+
+.ReactModalPortal .ReactModal__Overlay--after-open {
+  opacity: 1; }
+
+.ReactModalPortal .ReactModal__Overlay--before-close {
+  opacity: 0; }
+
+.ReactModal__Content {
+  position: initial !important;
+  overflow: initial !important; }
+
+.upload-modal {
+  position: relative;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 5rem;
+  margin-bottom: 2rem;
+  background: #777777;
+  color: #fff;
+  outline: none;
+  font-size: 1.4rem;
+  line-height: 1.8rem;
+  text-align: center;
+  word-wrap: break-word;
+  background-color: #777777; }
+  .upload-modal__text {
+    margin-left: 1rem; }
+  .upload-modal__upload-box {
+    margin: 0 0 1rem 0;
+    font-size: 2rem;
+    font-weight: 300;
+    word-break: break-all; }
+  .upload-modal__button {
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center; }
+  .upload-modal__input-upload {
+    bottom: 0;
+    cursor: inherit;
+    font-size: 1000px !important;
+    height: 300px;
+    margin: 0;
+    opacity: 0;
+    padding: 0;
+    position: absolute;
+    right: 0; }
 
 /*
 0 - 600px:      Phone
@@ -467,6 +562,13 @@ $breakpoint arguement choices:
       .header .navbar__list a:link,
       .header .navbar__list a:visited {
         color: #a8a8a8; }
+
+.main {
+  background-color: #E6ECF0; }
+
+.container {
+  display: flex;
+  padding: 1.5rem 1rem 0 1rem; }
 
 .main-header {
   background-color: #fff;
