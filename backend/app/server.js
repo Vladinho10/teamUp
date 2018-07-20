@@ -11,8 +11,13 @@ const session = require('express-session');
 const cors = require('cors');
 const passport = require('./passport');
 
+<<<<<<< HEAD
 const User = require('./model_crud');
 const Event = require('./model_crud');
+=======
+const {User,Event} = require('./model_crud');
+
+>>>>>>> 1669dad939a9572643956aad0edb6c9f1503dc0c
 
 
 app.use(express.static(path.join(__dirname,'../../frontend/dist')));
@@ -47,14 +52,24 @@ app.get('/',(req,res)=>{
     res.sendFile(path.join(__dirname,'../../frontend/dist/index.html'));
  });
  
+<<<<<<< HEAD
 app.post('/api/dashboard', (req,res)=>{
     console.log(req.body, 'reeeeeeeqqqqqqqqqqqqqqqqqqqqqqq');
     if(true){
+=======
+app.post('/api/dashboard',(req,res)=>{
+    console.log(req.body);
+    console.log('under api/dashboard');
+    if(req.user){
+        console.log('under req.user');
+>>>>>>> 1669dad939a9572643956aad0edb6c9f1503dc0c
         let data = {};
-        Event.find().then((events)=>{
+        Event.find({}).then((events)=>{
             data.events = events;
+            console.log('under event callback');
             User.findOne({fb_id:req.user.id}).then((user)=>{
                 data.user = user;
+                console.log(data);
                 res.json(data);
             });
         });
