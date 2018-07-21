@@ -1,12 +1,21 @@
 export default (state = [], action) => {
   switch (action.type) {
-    case 'ADD_EVENT':
+    case 'ALL_EVENT':
       return state;
 
-    case 'REMOVE_EVENT':
+    case 'MY_EVENT':
       return state;
+
+    case 'GO_EVENT':
+      return state;
+
+    case 'ADD_EVENT':
+      return [...state, action.event];
 
     case 'EDIT_EVENT':
+      return state;
+
+    case 'DELETE_EVENT':
       return state;
 
     default:

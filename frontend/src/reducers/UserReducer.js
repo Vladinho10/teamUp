@@ -1,12 +1,12 @@
-export default (state = [], action) => {
+export default (state = {}, action) => {
   switch (action.type) {
     case 'ADD_USER':
+      return action;
+
+    case 'ADD_NUMBER':
       return state;
 
-    case 'REMOVE_USER':
-      return state;
-
-    case 'EDIT_USER':
+    case 'EDIT_NUMBER':
       return state;
 
     default:
