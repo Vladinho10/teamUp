@@ -28145,6 +28145,80 @@ module.exports = function(originalModule) {
 
 /***/ }),
 
+/***/ "./src/actions/userActions.js":
+/*!************************************!*\
+  !*** ./src/actions/userActions.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var addUser = exports.addUser = function addUser(data) {
+  return {
+    type: 'ADD_USER',
+    userData: data
+  };
+};
+
+var editUserSuccess = function editUserSuccess(data) {
+  return {
+    type: 'ADD_USER',
+    userObj: data
+  };
+};
+
+var editUser = exports.editUser = function editUser(payload) {
+  return function (dispatch) {
+    var data = { user: payload };
+    var options = {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: { 'Content-Type': 'application/json ' }
+    };
+    var f = fetch('/api/users', options);
+    f.then(function (res) {
+      return res.json();
+    }).then(function (DataObj) {
+      return dispatch(editUserSuccess(DataObj));
+    }).catch(function (err) {
+      return console.log(err);
+    });
+  };
+};
+
+var saveUserPhone = function saveUserPhone(data) {
+  return {
+    type: 'ADD_USER',
+    userObj: data
+  };
+};
+
+var savePhoneNumber = exports.savePhoneNumber = function savePhoneNumber(payload) {
+  return function (dispatch) {
+    var data = { user: payload };
+    var options = {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: { 'Content-Type': 'application/json ' }
+    };
+    var f = fetch('/api/users', options);
+    f.then(function (res) {
+      return res.json();
+    }).then(function (DataObj) {
+      return dispatch(saveUserPhone(data));
+    }).catch(function (err) {
+      return console.log(err);
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./src/components/Articles.js":
 /*!************************************!*\
   !*** ./src/components/Articles.js ***!
@@ -28307,6 +28381,8 @@ var _UserEvents = __webpack_require__(/*! ./UserEvents */ "./src/components/User
 
 var _UserEvents2 = _interopRequireDefault(_UserEvents);
 
+var _userActions = __webpack_require__(/*! ../actions/userActions */ "./src/actions/userActions.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -28329,23 +28405,31 @@ var EventDashboardPage = function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = EventDashboardPage.__proto__ || Object.getPrototypeOf(EventDashboardPage)).call.apply(_ref, [this].concat(args))), _this), _this.componentDidMount = function () {
-      fetch('/api/dashboard', {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = EventDashboardPage.__proto__ || Object.getPrototypeOf(EventDashboardPage)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      userName: undefined,
+      imageSrc: '',
+      phoneNumber: undefined
+    }, _this.componentDidMount = function () {
+      var options = {
         credentials: 'include',
         method: 'POST',
-        body: JSON.stringify({ name: 'noro' }),
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json'
-        }
-      }).then(function (res) {
+        headers: { 'Content-Type': 'application/json ' }
+      };
+      var f = fetch('/api/dashboard', options);
+      f.then(function (res) {
         return res.json();
-      }).catch(function (error) {
-        return console.error('Error:', error);
-      }).then(function (res) {
-        console.log(res);
-        _this.setState({ imageSrc: res.url });
+      }).then(function (DataObj) {
+        console.log(DataObj, 'Dataobj');
+        _this.props.dispatch((0, _userActions.addUser)(DataObj));
+        _this.setState({
+          userName: DataObj.user.name,
+          imageSrc: DataObj.user.photo,
+          phoneNumber: DataObj.user.phone
+        });
+      }).catch(function (err) {
+        return console.log(err);
       });
+      // this.setState({ imageSrc: res.url });
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -28355,7 +28439,7 @@ var EventDashboardPage = function (_Component) {
       return _react2.default.createElement(
         _react2.default.Fragment,
         null,
-        _react2.default.createElement(_Header2.default, { can: this.props.events }),
+        _react2.default.createElement(_Header2.default, null),
         _react2.default.createElement(
           'main',
           { className: 'main' },
@@ -28365,7 +28449,7 @@ var EventDashboardPage = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'container' },
-              _react2.default.createElement(_UserAvatar2.default, null),
+              _react2.default.createElement(_UserAvatar2.default, { userInfoState: this.state }),
               _react2.default.createElement(_UserEvents2.default, null)
             )
           )
@@ -28379,7 +28463,8 @@ var EventDashboardPage = function (_Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    events: state.events
+    events: state.events,
+    userData: state.userData
   };
 };
 
@@ -28908,7 +28993,7 @@ exports.default = function () {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.LocationIcon = exports.EventClockIcon = exports.PlusIcon = exports.EventLocationIcon = exports.PhotoIcon = exports.SearchIcon = undefined;
+exports.EditIcon = exports.LocationIcon = exports.EventClockIcon = exports.PlusIcon = exports.EventLocationIcon = exports.PhotoIcon = exports.SearchIcon = undefined;
 
 var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
@@ -28997,6 +29082,19 @@ var LocationIcon = exports.LocationIcon = function LocationIcon() {
   );
 };
 
+var EditIcon = exports.EditIcon = function EditIcon() {
+  return _react2.default.createElement(
+    "svg",
+    { className: "edit-icon", xmlns: "http://www.w3.org/2000/svg", version: "1.1", width: "20", height: "20", viewBox: "0 0 20 20" },
+    _react2.default.createElement(
+      "title",
+      null,
+      "edit"
+    ),
+    _react2.default.createElement("path", { d: "M17.561 2.439c-1.442-1.443-2.525-1.227-2.525-1.227l-12.826 12.825-1.010 4.762 4.763-1.010 12.826-12.823c-0.001 0 0.216-1.083-1.228-2.527zM5.68 17.217l-1.624 0.35c-0.156-0.293-0.345-0.586-0.69-0.932s-0.639-0.533-0.932-0.691l0.35-1.623 0.47-0.469c0 0 0.883 0.018 1.881 1.016 0.997 0.996 1.016 1.881 1.016 1.881l-0.471 0.468z" })
+  );
+};
+
 /***/ }),
 
 /***/ "./src/components/UploadModal.js":
@@ -29026,6 +29124,7 @@ var _SvgIcons = __webpack_require__(/*! ./SvgIcons */ "./src/components/SvgIcons
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var UploadModal = function UploadModal(props) {
+  console.log(props, 'modal');
   return _react2.default.createElement(
     _reactModal2.default,
     {
@@ -29113,6 +29212,8 @@ var _UploadModal2 = _interopRequireDefault(_UploadModal);
 
 var _SvgIcons = __webpack_require__(/*! ./SvgIcons */ "./src/components/SvgIcons.js");
 
+var _userActions = __webpack_require__(/*! ../actions/userActions */ "./src/actions/userActions.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -29138,15 +29239,30 @@ var UserAvatar = function (_Component) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = UserAvatar.__proto__ || Object.getPrototypeOf(UserAvatar)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      change: false,
+      nameChange: false,
+      phoneChange: false,
       selectedFile: null,
-      imageSrc: '',
+      imageSrc: null,
+      savedImageSrc: null,
       show: undefined
-    }, _this.handleNameChange = function () {
+    }, _this.handleNameChange = function (event) {
+      event.preventDefault();
       _this.setState(function (prevState) {
-        return { change: !prevState.change };
+        return { nameChange: !prevState.nameChange };
       });
-    }, _this.handleAddPhoneNumber = function () {}, _this.handleToggleModal = function () {
+    }, _this.handlePhoneChange = function (event) {
+      _this.setState(function (prevState) {
+        return { phoneChange: !prevState.phoneChange };
+      });
+    }, _this.handleAddPhoneNumber = function () {
+      _this.setState(function (prevState) {
+        return { phoneChange: !prevState.phoneChange };
+      });
+    }, _this.handleSaveNewNumber = function (event) {
+      event.preventDefault();
+      console.log(event.target[0].value, 'savePhone');
+      (0, _userActions.savePhoneNumber)(event.target[0].value);
+    }, _this.handleToggleModal = function () {
       _this.setState(function (prevState) {
         return { show: !prevState.show };
       });
@@ -29157,6 +29273,10 @@ var UserAvatar = function (_Component) {
         imageSrc: imageSrc
       });
     }, _this.handleFileUpload = function () {
+      _this.handleToggleModal();
+      _this.setState(function (prevState) {
+        return { savedImageSrc: prevState.imageSrc };
+      });
       fetch('/api/todos', {
         method: 'POST',
         body: JSON.stringify(_this.state.selectedFile),
@@ -29176,6 +29296,31 @@ var UserAvatar = function (_Component) {
   _createClass(UserAvatar, [{
     key: 'render',
     value: function render() {
+      console.log(this.props, 'userAvatar props');
+      console.log(this.props.userInfoState.phoneNumber, 'userAvatar phone NUmber');
+      var handlePhoneNumber = void 0;
+      var src = void 0;
+
+      if (this.state.phoneChange) {
+        handlePhoneNumber = _react2.default.createElement(
+          'form',
+          { onSubmit: this.handleSaveNewNumber },
+          _react2.default.createElement('input', { type: 'text', name: 'phone', defaultValue: this.props.userInfoState.phoneNumber }),
+          _react2.default.createElement('input', { type: 'submit', value: 'SAVE' })
+        );
+      } else {
+        handlePhoneNumber = _react2.default.createElement(
+          'button',
+          { className: 'btn', onClick: this.handleAddPhoneNumber },
+          'ADD PHONE NUMBER'
+        );
+      }
+
+      if (this.state.savedImageSrc !== null) {
+        src = this.state.savedImageSrc;
+      } else {
+        src = this.props.userInfoState.imageSrc;
+      }
       return _react2.default.createElement(
         _react2.default.Fragment,
         null,
@@ -29185,10 +29330,10 @@ var UserAvatar = function (_Component) {
           _react2.default.createElement(
             'div',
             { className: 'user-avatar__logo-box' },
-            this.state.url ? _react2.default.createElement(
+            this.props.userInfoState.imageSrc ? _react2.default.createElement(
               _reactRouterDom.NavLink,
               { className: 'user-avatar__link', to: '/' },
-              _react2.default.createElement('img', { className: 'user-avatar__logo', src: this.state.url, alt: 'User Photo', width: '200', height: '300' })
+              _react2.default.createElement('img', { className: 'user-avatar__logo', src: src, alt: 'User Photo', width: '200', height: '300' })
             ) : _react2.default.createElement(
               _reactRouterDom.NavLink,
               { className: 'user-avatar__link', to: '/' },
@@ -29218,29 +29363,43 @@ var UserAvatar = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'user-avatar__name-box' },
-              this.state.change ? _react2.default.createElement(
+              this.state.nameChange ? _react2.default.createElement(
                 'form',
                 null,
-                _react2.default.createElement('input', { type: 'text', name: 'username', defaultValue: this.props.users.name }),
+                _react2.default.createElement('input', { type: 'text', name: 'username', defaultValue: this.props.userInfoState.userName }),
                 _react2.default.createElement('input', { type: 'submit', value: 'SAVE' })
               ) : _react2.default.createElement(
-                'h2',
+                _react2.default.Fragment,
                 null,
-                this.props.users.name
+                _react2.default.createElement(
+                  'h2',
+                  null,
+                  this.props.userInfoState.userName
+                ),
+                _react2.default.createElement(
+                  'button',
+                  { className: 'button-wrapper', onClick: this.handleNameChange },
+                  _react2.default.createElement(_SvgIcons.EditIcon, null)
+                )
               )
             ),
             _react2.default.createElement(
               'div',
               { className: 'user-avatar__phone-box' },
-              this.props.users.phone ? _react2.default.createElement(
-                'p',
+              this.props.userInfoState.phoneNumber !== 0 ? _react2.default.createElement(
+                _react2.default.Fragment,
                 null,
-                this.props.users.phone
-              ) : _react2.default.createElement(
-                'button',
-                { className: 'btn', onClick: this.handleAddPhoneNumber },
-                'ADD PHONE NUMBER'
-              )
+                _react2.default.createElement(
+                  'p',
+                  null,
+                  this.props.userInfoState.phoneNumber
+                ),
+                _react2.default.createElement(
+                  'button',
+                  { className: 'button-wrapper', onClick: this.handlePhoneChange },
+                  _react2.default.createElement(_SvgIcons.EditIcon, null)
+                )
+              ) : handlePhoneNumber
             )
           )
         )
@@ -29253,7 +29412,7 @@ var UserAvatar = function (_Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    users: state.users
+    user: state.user
   };
 };
 
@@ -29421,18 +29580,29 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 exports.default = function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   var action = arguments[1];
 
   switch (action.type) {
-    case 'ADD_EVENT':
+    case 'ALL_EVENT':
       return state;
 
-    case 'REMOVE_EVENT':
+    case 'MY_EVENT':
       return state;
+
+    case 'GO_EVENT':
+      return state;
+
+    case 'ADD_EVENT':
+      return [].concat(_toConsumableArray(state), [action.event]);
 
     case 'EDIT_EVENT':
+      return state;
+
+    case 'DELETE_EVENT':
       return state;
 
     default:
@@ -29456,18 +29626,20 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 exports.default = function () {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments[1];
 
   switch (action.type) {
     case 'ADD_USER':
+      return _extends({}, action.userData);
+
+    case 'ADD_NUMBER':
       return state;
 
-    case 'REMOVE_USER':
-      return state;
-
-    case 'EDIT_USER':
+    case 'EDIT_NUMBER':
       return state;
 
     default:
@@ -29573,7 +29745,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = function () {
   var store = (0, _redux.createStore)((0, _redux.combineReducers)({
     events: _EventReducer2.default,
-    users: _UserReducer2.default
+    userData: _UserReducer2.default
   }), (0, _reduxDevtoolsExtension.composeWithDevTools)((0, _redux.applyMiddleware)(_reduxThunk2.default)));
   return store;
 };

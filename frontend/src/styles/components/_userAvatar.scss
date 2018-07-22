@@ -1,4 +1,6 @@
 .user-avatar {
+    margin-right: 5rem;
+    flex-basis: 25%;
 
     &__logo-box {
         position: relative;
@@ -44,5 +46,16 @@
 
     &__logo-box:active &__add-photo {
         opacity: 1;
+    }
+
+    &__name-box,
+    &__phone-box {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .edit-icon {
+            cursor: pointer;
+        }
     }
 }
