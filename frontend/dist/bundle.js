@@ -29312,14 +29312,11 @@ var UserAvatar = function (_Component) {
         return { savedImageSrc: prevState.imageSrc };
       });
       var fd = new FormData();
-      fd.append('image', _this.state.selectedFile, _this.state.selectedFile.name);
+      fd.append('avatar', _this.state.selectedFile);
       fetch('/api/upload_user_image', {
         credentials: 'include',
         method: 'POST',
-        body: JSON.stringify(fd),
-        headers: {
-          'Content-Type': 'application/json'
-        }
+        body: fd
       }).then(function (res) {
         return res.json();
       }).catch(function (error) {
