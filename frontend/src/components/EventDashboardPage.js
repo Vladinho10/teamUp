@@ -3,33 +3,44 @@ import { connect } from 'react-redux';
 import Header from './Header';
 import UserAvatar from './UserAvatar';
 import EventsSection from './UserEvents';
+import { addUser } from '../actions/userActions';
 
 class EventDashboardPage extends Component {
+  state = {
+    userName: undefined,
+    imageSrc: '',
+    phoneNumber: undefined
+  }
+
   componentDidMount = () => {
-    fetch('/api/dashboard', {
+    const options = {
       credentials: 'include',
       method: 'POST',
-      body: JSON.stringify({ name: 'noro' }),
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      }
-    }).then(res => res.json())
-      .catch(error => console.error('Error:', error))
-      .then((res) => {
-        console.log(res);
-        this.setState({ imageSrc: res.url });
+      headers: { 'Content-Type': 'application/json ' }
+    };
+    const f = fetch('/api/dashboard', options);
+    f.then((res) => {
+      return res.json();
+    }).then((DataObj) => {
+      console.log(DataObj, 'Dataobj');
+      this.props.dispatch(addUser(DataObj));
+      this.setState({
+        userName: DataObj.user.name,
+        imageSrc: DataObj.user.photo,
+        phoneNumber: DataObj.user.phone
       });
+    }).catch(err => console.log(err));
+    // this.setState({ imageSrc: res.url });
   }
 
   render() {
     return (
       <React.Fragment>
-        <Header can={this.props.events} />
+        <Header/>
         <main className='main'>
           <div className='row'>
             <div className='container'>
-              <UserAvatar />
+              <UserAvatar userInfoState={this.state} />
               <EventsSection />
             </div>
           </div>
@@ -41,7 +52,8 @@ class EventDashboardPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    events: state.events
+    events: state.events,
+    userData: state.userData
   };
 };
 
