@@ -45,7 +45,12 @@ app.get('/',(req,res)=>{
 });
 
  app.get('/*', (req,res) => {
-    res.sendFile(path.join(__dirname,'../../frontend/dist/index.html'));
+     if(req.user){
+        res.sendFile(path.join(__dirname,'../../frontend/dist/index.html'));
+     }else{
+         res.redirect('/');
+     }
+    
  });
  
 app.post('/api/dashboard',(req,res)=>{
