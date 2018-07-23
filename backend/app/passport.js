@@ -1,6 +1,10 @@
 var passport = require('passport')
   , FacebookStrategy = require('passport-facebook').Strategy;
+<<<<<<< HEAD
+const { User } = require('./model_crud');
+=======
 const {User} = require('./model_crud');
+>>>>>>> 1669dad939a9572643956aad0edb6c9f1503dc0c
 
 const config = require('../config/config').facebook_config;
 
@@ -11,8 +15,12 @@ passport.use(new FacebookStrategy({
     profileFields:['displayName','picture.type(large)']
   },
   function(accessToken, refreshToken, profile, done) {
+<<<<<<< HEAD
+    console.log(User.addUser);
+=======
     //User
     //console.log('-----------',profile);
+>>>>>>> 1669dad939a9572643956aad0edb6c9f1503dc0c
     User.addUser({
       fb_id:profile.id,
       name:profile.displayName,
