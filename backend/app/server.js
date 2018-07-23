@@ -69,5 +69,12 @@ app.post('/api/dashboard',(req,res)=>{
     }
  });
 
+ app.get('/api/upload_user_image',(req,res) => {
+     if(req.user){
+        console.log(req.body);
+     }
+   
+ });
+
 module.exports = app;
 
