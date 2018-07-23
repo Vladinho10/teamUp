@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
-import { PlusIcon } from './SvgIcons';
+import { PlusIcon } from '../SvgIcons';
 
 const UploadModal = (props) => {
   console.log(props, 'modal');

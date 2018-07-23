@@ -65,6 +65,7 @@ export const addEvent = (payload) => {
   return (dispatch) => {
     const data = { event: payload };
     const options = {
+      credentials: 'include',
       method: 'POST',
       body: JSON.stringify(data),
       headers: { 'Content-Type': 'application/json ' }

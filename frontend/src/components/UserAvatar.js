@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import UploadModal from './UploadModal';
+import UploadModal from './modals/UploadPhoto';
 import { PhotoIcon, EditIcon } from './SvgIcons';
 import { savePhoneNumber } from '../actions/userActions';
 
