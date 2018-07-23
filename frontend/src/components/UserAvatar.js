@@ -51,9 +51,12 @@ class UserAvatar extends Component {
   handleFileUpload = () => {
     this.handleToggleModal();
     this.setState(prevState => ({ savedImageSrc: prevState.imageSrc }));
-    fetch('/api/todos', {
+    const fd = new FormData();
+    fd.append('image', this.state.selectedFile, this.state.selectedFile.name);
+    fetch('/api/upload_user_image', {
+      credentials: 'include',
       method: 'POST',
-      body: JSON.stringify({ name: 'noro' }),
+      body: JSON.stringify(fd),
       headers: {
         'Content-Type': 'application/json'
       }
