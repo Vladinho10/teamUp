@@ -28239,6 +28239,8 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
 var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 
 var _SvgIcons = __webpack_require__(/*! ./SvgIcons */ "./src/components/SvgIcons.js");
@@ -28251,15 +28253,39 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 // import { NavLink } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 
 
 var WrappedArticles = function (_Component) {
   _inherits(WrappedArticles, _Component);
 
   function WrappedArticles() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
     _classCallCheck(this, WrappedArticles);
 
-    return _possibleConstructorReturn(this, (WrappedArticles.__proto__ || Object.getPrototypeOf(WrappedArticles)).apply(this, arguments));
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = WrappedArticles.__proto__ || Object.getPrototypeOf(WrappedArticles)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      buttonJoin: false
+    }, _this.changeBtnName = function () {
+      _this.setState(function (prevState) {
+        return {
+          buttonJoin: !prevState.buttonJoin
+        };
+      });
+    }, _this.goToEventPage = function (e) {
+      console.log(1666);
+      if (!e.target.matches('.event-container__joinButton')) {
+        _this.props.history.push({
+          pathname: '/events'
+        });
+      }
+    }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(WrappedArticles, [{
@@ -28272,11 +28298,11 @@ var WrappedArticles = function (_Component) {
       return tempArray.map(function (el, i, arr) {
         return _react2.default.createElement(
           'article',
-          { key: el._id, a: _this2.props },
+          { key: el._id || i, a: _this2.props, onClick: _this2.goToEventPage, className: 'eventArticle' },
           _react2.default.createElement(
             'div',
             { className: 'event-photo' },
-            'event photo'
+            _react2.default.createElement('img', { className: 'event-photo__img', src: './images/domnjquery.jpg', alt: 'Event Photo' })
           ),
           _react2.default.createElement(
             'div',
@@ -28285,24 +28311,40 @@ var WrappedArticles = function (_Component) {
               'div',
               { className: 'event-container__header' },
               _react2.default.createElement(
-                'div',
-                { className: 'event-container__header-type' },
-                'Football'
-              ),
-              _react2.default.createElement(
-                'div',
-                { className: 'event-container__header-title' },
-                _react2.default.createElement(
-                  'h4',
-                  null,
-                  'Title'
-                )
+                'h3',
+                null,
+                'Let\'s play contact'
               )
             ),
             _react2.default.createElement(
               'div',
-              { className: 'event-container__about' },
-              'about'
+              { className: 'event-container__desc' },
+              _react2.default.createElement(
+                'p',
+                null,
+                'Here must be a description. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'event-container__eventInfo' },
+              _react2.default.createElement(
+                'p',
+                null,
+                'going ',
+                _this2.props.g
+              ),
+              _react2.default.createElement(
+                'p',
+                null,
+                'missing ',
+                _this2.props.m
+              ),
+              _react2.default.createElement(
+                'button',
+                { onClick: _this2.changeBtnName, className: 'btn event-container__joinButton' },
+                _this2.state.buttonJoin ? 'UnJoin' : 'Join'
+              )
             ),
             _react2.default.createElement(
               'div',
@@ -28310,21 +28352,13 @@ var WrappedArticles = function (_Component) {
               _react2.default.createElement(
                 'div',
                 { className: 'event-container__footer-date' },
-                'date'
+                '07.07.2007'
               ),
               _react2.default.createElement(
                 'div',
                 { className: 'event-container__footer-place' },
-                _react2.default.createElement(
-                  'span',
-                  null,
-                  _react2.default.createElement(_SvgIcons.LocationIcon, { role: 'icon' })
-                ),
-                _react2.default.createElement(
-                  'span',
-                  null,
-                  'Al. Spandaryan 12'
-                )
+                _react2.default.createElement(_SvgIcons.LocationIcon, { role: 'icon' }),
+                ' Al. Spandaryan 12'
               )
             )
           )
@@ -28343,7 +28377,7 @@ var mapStateToProps = function mapStateToProps(state) {
   };
 };
 var Articles = (0, _reactRedux.connect)(mapStateToProps)(WrappedArticles);
-exports.default = Articles;
+exports.default = (0, _reactRouterDom.withRouter)(Articles);
 
 /***/ }),
 
@@ -29072,7 +29106,7 @@ var EventClockIcon = exports.EventClockIcon = function EventClockIcon() {
 var LocationIcon = exports.LocationIcon = function LocationIcon() {
   return _react2.default.createElement(
     "svg",
-    { className: "search-form__icon", xmlns: "http://www.w3.org/2000/svg", width: "33", height: "33", viewBox: "0 0 32 32" },
+    { className: "search-form__icon", xmlns: "http://www.w3.org/2000/svg", width: "20", height: "20", viewBox: "0 0 32 32" },
     _react2.default.createElement(
       "title",
       null,
@@ -29277,9 +29311,12 @@ var UserAvatar = function (_Component) {
       _this.setState(function (prevState) {
         return { savedImageSrc: prevState.imageSrc };
       });
-      fetch('/api/todos', {
+      var fd = new FormData();
+      fd.append('image', _this.state.selectedFile, _this.state.selectedFile.name);
+      fetch('/api/upload_user_image', {
+        credentials: 'include',
         method: 'POST',
-        body: JSON.stringify({ name: 'noro' }),
+        body: JSON.stringify(fd),
         headers: {
           'Content-Type': 'application/json'
         }
@@ -29587,24 +29624,24 @@ exports.default = function () {
   var action = arguments[1];
 
   switch (action.type) {
-    case 'ALL_EVENT':
-      return state;
-
-    case 'MY_EVENT':
-      return state;
-
-    case 'GO_EVENT':
-      return state;
-
+    case 'ALL_EVENTS':
+      return action.allEventsArr;
+    case 'MY_EVENTS':
+      return action.myEventsArr;
+    case 'GO_EVENTS':
+      return action.goEventsArr;
     case 'ADD_EVENT':
-      return [].concat(_toConsumableArray(state), [action.event]);
-
+      return [].concat(_toConsumableArray(state), [action.addingEventObj]);
     case 'EDIT_EVENT':
-      return state;
-
+      return state.map(function (el) {
+        return el._id !== action.editingEventObj._id ? el : action.editingEventObj;
+      });
+    // return editedDataArr;
     case 'DELETE_EVENT':
-      return state;
-
+      return state.filter(function (el) {
+        return el._id !== action.deletingEventObj_id;
+      });
+    // return deletedDataArr;
     default:
       return state;
   }
