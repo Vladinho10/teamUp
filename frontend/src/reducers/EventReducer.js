@@ -1,23 +1,23 @@
 export default (state = [], action) => {
   switch (action.type) {
-    case 'ALL_EVENT':
-      return state;
-
-    case 'MY_EVENT':
-      return state;
-
-    case 'GO_EVENT':
-      return state;
-
+    case 'ALL_EVENTS':
+      return action.allEventsArr;
+    case 'MY_EVENTS':
+      return action.myEventsArr;
+    case 'GO_EVENTS':
+      return action.goEventsArr;
     case 'ADD_EVENT':
-      return [...state, action.event];
-
+      return [...state, action.addingEventObj];
     case 'EDIT_EVENT':
-      return state;
-
+      return state.map((el) => {
+        return el._id !== action.editingEventObj._id ? el : action.editingEventObj;
+      });
+      // return editedDataArr;
     case 'DELETE_EVENT':
-      return state;
-
+      return state.filter((el) => {
+        return el._id !== action.deletingEventObj_id;
+      });
+      // return deletedDataArr;
     default:
       return state;
   }

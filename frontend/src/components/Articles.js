@@ -1,34 +1,60 @@
 import React, { Component } from 'react';
 // import { NavLink } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { LocationIcon } from './SvgIcons';
 
 class WrappedArticles extends Component {
+  state = {
+    buttonJoin: false
+  };
+
+  changeBtnName = () => {
+    this.setState(prevState => ({
+      buttonJoin: !prevState.buttonJoin
+    }));
+  };
+
+  goToEventPage = (e) => {
+    console.log(1666);
+    if (!e.target.matches('.event-container__joinButton')) {
+      this.props.history.push({
+        pathname: '/events'
+      });
+    }
+  };
+
   render() {
     const tempArray = [1];
     // const { events } = this.props;
     return (
       tempArray.map((el, i, arr) => {
         return (
-          <article key={el._id} a={this.props}>
-            <div className='event-photo'>event photo</div>
+          <article key={el._id || i} a={this.props} onClick={this.goToEventPage} className='eventArticle'>
+            <div className='event-photo'>
+              <img className='event-photo__img' src='./images/domnjquery.jpg' alt='Event Photo' />
+            </div>
             <div className='event-container'>
               <div className='event-container__header'>
-                <div className='event-container__header-type'>Football</div>
-                <div className='event-container__header-title'>
-                  <h4>Title</h4>
-                </div>
+                <h3>Let's play contact</h3>
               </div>
-              <div className='event-container__about'>about</div>
+              <div className='event-container__desc'>
+                <p>Here must be a description.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+              </div>
+              <div className='event-container__eventInfo'>
+                <p>going {this.props.g}</p>
+                <p>missing {this.props.m}</p>
+                <button onClick={this.changeBtnName} className='btn event-container__joinButton'>{this.state.buttonJoin ? 'UnJoin' : 'Join'}</button>
+              </div>
               <div className='event-container__footer'>
-                <div className='event-container__footer-date'>date</div>
+                <div className='event-container__footer-date'>
+                  07.07.2007
+                </div>
                 <div className='event-container__footer-place'>
-                  <span>
-                    <LocationIcon role='icon' />
-                  </span>
-                  <span>
-                    Al. Spandaryan 12
-                  </span>
+                  <LocationIcon role='icon' /> Al. Spandaryan 12
                 </div>
               </div>
             </div>
@@ -45,4 +71,4 @@ const mapStateToProps = (state) => { // this.props.toDosArr
   };
 };
 const Articles = connect(mapStateToProps)(WrappedArticles);
-export default Articles;
+export default withRouter(Articles);
