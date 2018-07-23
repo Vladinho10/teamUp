@@ -9,15 +9,13 @@ export const getAllEvents = () => {
       headers: { 'Content-Type': 'application/json' }
     };
     const f = fetch('/api/events', options);
-    f.then((res) => {
-      return res.json();
-    }).then((DataArr) => {
-      return dispatch(getAllEventsSuccess(DataArr));
-    }).catch(err => console.log(err));
+    f.then(res => res.json())
+      .then(DataArr => dispatch(getAllEventsSuccess(DataArr)))
+      .catch(err => console.log(err));
   };
 };
 
-const getMyEventsSuccess = (data, _id) => ({
+const getMyEventsSuccess = data => ({
   type: 'MY_EVENTS',
   myEventsArr: data
 });
@@ -28,11 +26,9 @@ export const getMyEvents = (_id) => {
       headers: { 'Content-Type': 'application/json ' }
     };
     const f = fetch(`/api/events/${_id}`, options);
-    f.then((res) => {
-      return res.json();
-    }).then((DataArr) => {
-      return dispatch(getMyEventsSuccess(DataArr));
-    }).catch(err => console.log(err));
+    f.then(res => res.json())
+      .then(DataArr => dispatch(getMyEventsSuccess(DataArr)))
+      .catch(err => console.log(err));
   };
 };
 
@@ -58,44 +54,66 @@ export const getGoEvents = (payload, _id) => {
 
 const addEventSuccess = data => ({
   type: 'ADD_EVENT',
-  eventObj: data
+  addingEventObj: data
 });
 
-export const addEvent = (payload) => {
+export const addEvent = (addingData) => {
   return (dispatch) => {
-    const data = { event: payload };
+    // const data = { event: addingData };
     const options = {
       method: 'POST',
-      body: JSON.stringify(data),
+      body: JSON.stringify(addingData),
       headers: { 'Content-Type': 'application/json ' }
     };
     const f = fetch('/api/events', options);
     f.then((res) => {
       return res.json();
-    }).then((DataArr) => {
-      return dispatch(addEventSuccess(DataArr));
+    }).then((addedDataObj) => {
+      return dispatch(addEventSuccess(addedDataObj));
     }).catch(err => console.log(err));
   };
 };
 
 const editEventSuccess = data => ({
   type: 'EDIT_EVENT',
-  eventObj: data
+  editingEventObj: data
 });
 
-export const editEvent = (payload, _id) => {
+export const editEvent = (editingData, _id) => {
   return (dispatch) => {
-    const data = { event: payload, _id };
+    const data = { ...editingData, _id };
     const options = {
       method: 'PUT',
       body: JSON.stringify(data),
       headers: { 'Content-Type': 'application/json ' }
     };
-    const f = fetch(`/api/events${_id}`, options);
+    const f = fetch(`/api/events/${_id}`, options);
     f.then((res) => {
       return res.json();
-    }).then((DataArr) => {
-      return dispatch(editEventSuccess(DataArr));
+    }).then((editedDataObj) => {
+      return dispatch(editEventSuccess(editedDataObj));
+    }).catch(err => console.log(err));
+  };
+};
+
+const deleteEventSuccess = _id => ({
+  type: 'DELETE_EVENT',
+  deletingEventObj_id: _id
+});
+
+export const deleteEvent = (_id) => {
+  return (dispatch) => {
+    const data = { _id };
+    const options = {
+      method: 'DELETE',
+      body: JSON.stringify(data),
+      headers: { 'Content-Type': 'application/json ' }
+    };
+    const f = fetch(`/api/events/${_id}`, options);
+    f.then((res) => {
+      return res.json();
+    }).then((deletedDataObj_id) => {
+      return dispatch(deleteEventSuccess(deletedDataObj_id));
     }).catch(err => console.log(err));
   };
 };
