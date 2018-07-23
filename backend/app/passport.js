@@ -1,10 +1,14 @@
 var passport = require('passport')
   , FacebookStrategy = require('passport-facebook').Strategy;
 <<<<<<< HEAD
+<<<<<<< HEAD
 const { User } = require('./model_crud');
 =======
 const {User} = require('./model_crud');
 >>>>>>> 1669dad939a9572643956aad0edb6c9f1503dc0c
+=======
+const {User} = require('./model_crud');
+>>>>>>> backend_signin
 
 const config = require('../config/config').facebook_config;
 
