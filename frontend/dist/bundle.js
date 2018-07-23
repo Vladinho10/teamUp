@@ -29279,7 +29279,7 @@ var UserAvatar = function (_Component) {
       });
       fetch('/api/todos', {
         method: 'POST',
-        body: JSON.stringify(_this.state.selectedFile),
+        body: JSON.stringify({ name: 'noro' }),
         headers: {
           'Content-Type': 'application/json'
         }
