@@ -34,8 +34,16 @@ build/Release
 
 # Dependency directories
 node_modules/
-frontend/node_modules
-backend/node_modules
+frontend/node_modules/
+frontend/dist/bundle.js
+frontend/dist/bundle.js.map
+frontend/dist/styles.css
+frontend/dist/styles.css.map
+frontend/package-lock.json
+frontend/.vscode/
+backend/node_modules/
+backend/package-lock.json
+
 jspm_packages/
 
 # TypeScript v1 declaration files
