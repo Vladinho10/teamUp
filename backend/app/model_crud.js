@@ -26,18 +26,14 @@ userScheme.statics.addUser = function(user,done,obj){
        else{
            done(null,obj);
        }
-       
+
    });
-   
-   
+
+
 }
 
 
 const User = mongoose.model('User',userScheme);
 const Event = mongoose.model('Event',eventScheme);
-<<<<<<< HEAD
-module.exports = {User,Event};
-=======
 
-module.exports = User;
->>>>>>> backend_signin
+module.exports = {User,Event};
