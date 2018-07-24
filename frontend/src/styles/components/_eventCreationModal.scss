@@ -4,12 +4,12 @@
         display: flex;
         flex-direction: column;
         background-color: #DADADA;
-        padding: 1rem;
+        padding: 2.5rem;
+        font-size: 1.4rem;
 
         & > div {
             display: flex;
             justify-content: space-between;
-            align-items: center;
             margin-bottom: 2rem;
         }
     }
@@ -67,12 +67,65 @@
         justify-content: space-between;
     }
 
+    &__image-box {
+        flex-direction: column;
+    }
+
+    &__upload-box {
+        position: relative;
+        overflow: hidden;
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 5rem;
+        margin-bottom: 2rem;
+        background: $color-grey-light;
+        color: $color-white;
+        outline: none;
+        font-size: 1.4rem;
+        line-height: 1.8rem;
+        text-align: center;
+        word-wrap: break-word;
+        flex-basis: 50%;
+
+
+    }
+
+    &__image-preview-box {
+        position: relative;
+        flex-basis: 50%;
+        button {
+            position: absolute;
+            right: 0;
+            top: 0;
+            cursor: pointer;
+        }
+    }
+
+    &__image-preview {
+        display: block;
+    }
+
+    &__input-upload-box {
+        margin: 0 0 1rem 0;
+        font-size: 2rem;
+        font-weight: 300;
+        word-break: break-all;
+    }
+
+    &__upload-text {
+        margin-left: 2rem;
+    }
+
     &__submit-form {
         display: flex;
-        justify-content: flex-end !important;
 
         & button {
             margin-left: 2rem;
+            flex-grow: 1;
+            padding: 1.5rem 1rem;
+            font-size: 2.2rem;
         }
     }
 }

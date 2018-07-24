@@ -78,7 +78,8 @@
     &__image-box {
         width: 27rem;
         min-height: 13rem;
-        border: 1px dotted grey;
+        border: 5px solid white;
+        box-shadow: 0.5rem 0.8rem 0.5rem grey;
         margin-bottom: 2rem;
 
         & img {
