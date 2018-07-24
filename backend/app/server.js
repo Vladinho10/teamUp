@@ -19,11 +19,24 @@ const Storage = multer.diskStorage({
         cb(null,'../frontend/dist/images/users_images');
     },
     filename:function(req,file,cb){
-        cb(null,req.user.id + '-' + 'avatar' +'.jpg'); 
+        cb(null,req.user.id + '-' + 'avatar' +'.jpg');
+    }
+});
+
+const Storage_Event = multer.diskStorage({
+    destination:function(req,file,cb){
+        console.log(file);
+        req.directory = '../frontend/dist/images/events_images';
+        cb(null,req.directory);
+    },
+    filename:function(req,file,cb){
+        req.event_filename = 'event' + Date.now() + '.jpg'; 
+        cb(null,req.event_filename);
     }
 });
 
 const upload = multer({storage:Storage});
+const upload2 = multer({storage:Storage_Event});
 
 app.use(express.static(path.join(__dirname,'../../frontend/dist')));
 
@@ -50,8 +63,8 @@ app.get('/',(req,res)=>{
             return;
         }
         res.redirect('/dashboard');
-        
-    
+
+
 });
 
 app.get('/*', (req,res) => {
@@ -61,7 +74,7 @@ app.get('/*', (req,res) => {
         res.redirect('/');
 }
 });
- 
+
 app.post('/api/dashboard',(req,res)=>{
     console.log(req.body);
     console.log('under api/dashboard');
@@ -81,13 +94,36 @@ app.post('/api/dashboard',(req,res)=>{
  });
 
 
- app.post('/api/upload_user_image',upload.single('avatar'),(req,res)=>{
+ app.post('/api/edit_profile',upload.single('avatar'),(req,res)=>{
     if(req.user){
         console.log(req.user.id);
-        
+        console.log(req.body);
         User.updateOne({fb_id:req.user.id},{$set:{photo:'/images/users_images/'  + req.user.id + '-avatar.jpg' }}).then((err,data)=>{
             console.log('saved');
+            res.json({photo_url:'/images/users_images/'  + req.user.id + '-avatar.jpg'});
         });
     }
+ });
+
+ app.post('/api/create_event',upload2.single('photo'),(req,res) => {
+    if(req.user){
+      let ev = new Event({
+        title: req.body.event_title,
+        description: req.body.event_description,
+        date: req.body.datepicker,
+        location: req.body.event_address,
+        quantity: req.body.event_members_count,
+        admins: [req.user.id],
+        players: [],
+        completed: false,
+        photo:req.directory + req.event_filename
+      }).save().then((data)=>{
+          console.log(data);
+          res.json({event:data});
+      }); 
+    }
+    console.log(req.body);
+    console.log(req.file);
+    // res.json({done: "truee"})
  });
 module.exports = app;

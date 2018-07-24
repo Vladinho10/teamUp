@@ -34,7 +34,6 @@ build/Release
 
 # Dependency directories
 node_modules/
-<<<<<<< HEAD
 frontend/node_modules/
 frontend/dist/bundle.js
 frontend/dist/bundle.js.map
@@ -42,9 +41,7 @@ frontend/dist/styles.css
 frontend/dist/styles.css.map
 frontend/.vscode/
 backend/node_modules/
-=======
 
->>>>>>> backend_signin
 jspm_packages/
 
 # TypeScript v1 declaration files

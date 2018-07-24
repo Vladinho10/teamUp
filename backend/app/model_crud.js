@@ -26,10 +26,10 @@ userScheme.statics.addUser = function(user,done,obj){
        else{
            done(null,obj);
        }
-       
+
    });
-   
-   
+
+
 }
 
 

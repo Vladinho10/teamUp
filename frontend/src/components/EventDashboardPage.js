@@ -12,9 +12,10 @@ class EventDashboardPage extends Component {
   state = {
     userName: null,
     imageSrc: '',
+    imagePreviewSrc: '',
     phoneNumber: null,
     selectedFile: null,
-    show: true
+    show: null
   }
 
   componentDidMount = () => {
@@ -27,7 +28,6 @@ class EventDashboardPage extends Component {
     f.then((res) => {
       return res.json();
     }).then((DataObj) => {
-      console.log(DataObj, 'Dataobj');
       this.props.dispatch(addUser(DataObj));
       this.setState({
         userName: DataObj.user.name,
@@ -35,18 +35,22 @@ class EventDashboardPage extends Component {
         phoneNumber: DataObj.user.phone
       });
     }).catch(err => console.log(err));
-    // this.setState({ imageSrc: res.url });
   }
 
   handleToggleModal = () => {
     this.setState(prevState => ({ show: !prevState.show }));
   }
 
-  // handleFileChange = (event) => {
-  //   this.setState({
-  //     selectedFile: event.target.files[0],
-  //   });
-  // }
+  handleFileChange = (event) => {
+    const imagePreviewSrc = URL.createObjectURL(event.target.files[0]);
+    this.setState({
+      imagePreviewSrc
+    });
+  }
+
+  handleDeleteImage = () => {
+    this.setState(() => ({ imagePreviewSrc: null }));
+  }
 
   // handleFileUpload = () => {
   //   this.handleToggleModal();
@@ -57,6 +61,11 @@ class EventDashboardPage extends Component {
 
   handleEventFormSubmit = (event) => {
     event.preventDefault();
+
+    if (this.state.show) {
+      this.handleToggleModal();
+    }
+
     const data = new FormData(event.target);
     this.props.dispatch(addEvent(data));
   }
@@ -64,9 +73,9 @@ class EventDashboardPage extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="create-event">
-          <button className="btn create-event__button">
-            <PlusIcon />
+        <div className="add-event">
+          <button className="btn btn_create-event" onClick={this.handleToggleModal}>
+            <PlusIcon title='Create Event' />
           </button>
         </div>
         <Header/>
@@ -77,8 +86,11 @@ class EventDashboardPage extends Component {
               <EventsSection />
               <CreateEventModal
                 show={this.state.show}
+                handleFileChange={this.handleFileChange}
+                handleDeleteImage={this.handleDeleteImage}
                 handleToggleModal={this.handleToggleModal}
                 handleEventFormSubmit={this.handleEventFormSubmit}
+                imagePreviewSrc={this.state.imagePreviewSrc}
               />
             </div>
           </div>

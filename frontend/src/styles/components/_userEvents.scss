@@ -1,17 +1,28 @@
 .events-section {
-  width: 50%;
+  width: 55%;
   line-height: normal;
 }
 
 .eventArticle {
   display: flex;
   border: 1px solid;
-  height: 25%;
+  height: 230px;
+  width: 100%;
+  margin-bottom: 10px;
 }
 
+.event-photo, .event-container {
+  width: 50%;
+  height: 100%;
+  margin-left:8px
+}
+
+
 .event-photo__img {
-  width: 100%;
+  max-width: 100%;
+  height: 100%;
   display: block;
+  margin: auto
 }
 
 .navbar__list {
@@ -29,7 +40,7 @@
 }
 
 .event-container, .event-container__desc, .event-container__eventInfo, .event-container__footer {
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .event-container__header {
@@ -40,7 +51,11 @@
 .event-container__desc {
 
   overflow: hidden;
-  height: 70px;
+  height: 120px;
+}
+
+.event-container__desc-seeMore {
+  color: blue;
 }
 
 .event-container__eventInfo  {
@@ -50,8 +65,14 @@
 }
 
 .event-container__eventInfo p {
-  margin-left: 10px;
-  margin-right:  10px;
+  margin-left: 15px;
+  margin-right:  15px;
+}
+
+.event-container__joinButton {
+  display: block;
+  width: 60px;
+  margin-right:  15px;
 }
 
 .event-container__footer {

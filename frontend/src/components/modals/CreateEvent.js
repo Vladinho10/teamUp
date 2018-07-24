@@ -4,7 +4,7 @@ import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 import TimePicker from 'rc-time-picker';
 // import TimePicker from 'react-times';
-import { PlusIcon } from '../SvgIcons';
+import { PlusIcon, DeleteIcon } from '../SvgIcons';
 
 
 class CreateEventModal extends Component {
@@ -27,6 +27,7 @@ class CreateEventModal extends Component {
     // }
 
     onTimeChange = (currentTime) => {
+      console.log('test');
       this.setState({ currentTime });
     }
 
@@ -52,12 +53,12 @@ class CreateEventModal extends Component {
 
               <div className="create-event__description">
                 <label htmlFor="description">Description</label>
-                <textarea rows="4" cols="50" id="description" name="event_description" placeholder="Write a description here"></textarea>
+                <textarea rows="3" cols="50" id="description" name="event_description" placeholder="Write a description here"></textarea>
               </div>
 
               <div className="create-event__members">
                 <label htmlFor="count">max. members</label>
-                <input type="number" id="count" name="event_members-count" />
+                <input type="number" id="count" name="event_members-count" min="0" defaultValue="0" />
               </div>
 
               <div className="create-event__datepicker">
@@ -92,25 +93,23 @@ class CreateEventModal extends Component {
                   onTimeChange={this.onTimeChange}
                 />
               </div>
-              <div className="create-event__image-preview">
-                <div className="event-image-preview__upload-box" >
+              <div className="create-event__image-box">
+                <div className="create-event__upload-box" >
                   <PlusIcon />
-                  <span >Upload Photo</span>
-                  <div >
-                    <a className="" aria-label="Upload Photo" role="button">
-                      <input className="" type="file" title="Choose a file to upload" accept="image/*" name="photo" />
+                  <span className="create-event__upload-text">Upload Photo</span>
+                  <div className="create-event__input-upload-box">
+                    <a className="create-event__upload-link upload-modal__button" aria-label="Upload Photo" role="button">
+                      <input className="upload-modal__input-upload" type="file" title="Choose a file to upload" accept="image/*" name="photo" onChange={this.props.handleFileChange} />
                     </a>
                   </div>
                 </div>
-                <div className="event-image-preview__image-box">
-                  {/* {props.imageSrc ? <div>
-                    <img className="event-image-preview__image" alt="preview" />
-                    <span>+</span>
-                  </div> : null} */}
-                </div>
+                {this.props.imagePreviewSrc ? <div className="image-preview__image-box create-event__image-preview-box">
+                  <img className="create-event__image-preview" src={this.props.imagePreviewSrc} alt="preview" />
+                  <button onClick={this.props.handleDeleteImage}><DeleteIcon /></button>
+                </div> : null}
               </div>
               <div className="create-event__submit-form">
-                <button className="btn btn--cancel">Cancel</button>
+                <button className="btn btn--cancel" onClick={this.props.handleToggleModal}>Cancel</button>
                 <button className="btn btn--create">Create Event</button>
               </div>
             </form>
