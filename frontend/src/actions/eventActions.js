@@ -52,9 +52,9 @@ export const getGoEvents = (payload, _id) => {
   };
 };
 
-const addEventSuccess = data => ({
+const addEventSuccess = event => ({
   type: 'ADD_EVENT',
-  addingEventObj: data
+  event
 });
 
 export const addEvent = (payload) => {
@@ -77,9 +77,9 @@ export const addEvent = (payload) => {
     const f = fetch('/api/create_event', options);
     f.then((res) => {
       return res.json();
-    }).then((event) => {
-      console.log(event, 'event from serverik');
-      return dispatch(addEventSuccess(event));
+    }).then((data) => {
+      console.log(data, 'event from serverik');
+      return dispatch(addEventSuccess(data.event));
     }).catch(err => console.log(err));
   };
 };

@@ -12,12 +12,18 @@
     min-width: 30vw;
 
 }
+.btn-section {
+    display: flex;
+    justify-content: space-between;
+
+}
 
 .participants-open-btn {
     background-color:  rgb(103, 162, 185); 
     border: none;
     color: white;
-    padding: 7px 20px;
+    width: 20vw;
+    height: 5vh;
     text-align: center;
     font-size: 16px;
 }
@@ -26,16 +32,29 @@
     background-color:  rgb(103, 162, 185); 
     border: none;
     color: white;
-    padding: 7px 20px;
+    padding: 10px 25px;
     text-align: center;
     display: flex;
     margin: 0 auto;
-    font-size: 16px;
+    font-size: 20px;
     cursor: pointer;
 }
 
+.join-btn {
+    background-color:  rgb(207, 78, 106); 
+    border: none;
+    color: white;
+    width: 20vw;
+    height: 5vh;
+    text-align: center;
+    font-size: 16px;
+}
+.join-btn:hover {
+    background-color:  rgb(231, 27, 88) 
+}
+
 .participants-open-btn:hover, .participants-close-btn:hover, ::-webkit-scrollbar-thumb:hover{
-    background-color:  rgb(21, 141, 189); 
+    background-color:  rgb(12, 151, 206); 
 }
 
 ::-webkit-scrollbar {

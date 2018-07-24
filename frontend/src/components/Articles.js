@@ -20,11 +20,11 @@ class WrappedArticles extends Component {
   //   // this.value === 'Join' ? this.value = 'Unjoin' : this.value = 'Join';
   // }
 
-  goToEventPage = (e) => {
-    // console.log(1666);
+  goToEventPage = (e, id) => {
+    console.log(id);
     if (!e.target.matches('.event-container__joinButton')) {
       this.props.history.push({
-        pathname: '/events'
+        pathname: `/eventpage/${id}`
       });
     }
   };
@@ -58,7 +58,7 @@ class WrappedArticles extends Component {
     return (
       tempArray.map((el, i, arr) => {
         return (
-          <article key={el._id || i} a={this.props} onClick={this.goToEventPage} className='eventArticle'>
+          <article key={el._id || i} a={this.props} onClick={e => this.goToEventPage(e, el._id)} className='eventArticle'>
             <div className='event-photo'>
               <img className='event-photo__img' src={el.picSrc || './images/domnjquery.jpg'} alt='Event Photo' />
             </div>

@@ -27,7 +27,10 @@ class ModalComponent extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.openModal} class="participants-open-btn"> {participents} people are going </button>
+        <section className='btn-section'>
+          <button onClick={this.openModal} className="participants-open-btn"> {participents} people are going </button>
+          <button className="join-btn"> JOIN </button>
+        </section>
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
@@ -35,7 +38,7 @@ class ModalComponent extends React.Component {
           contentLabel="Modal of Participants"
         >
           {<UserArticle />}
-          <input type="button" class="participants-close-btn" onClick={this.closeModal} value="close"/>
+          <input type="button" className="participants-close-btn" onClick={this.closeModal} value="close"/>
         </Modal>
       </div>
     );
