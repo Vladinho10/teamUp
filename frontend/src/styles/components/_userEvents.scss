@@ -1,24 +1,28 @@
 .events-section {
   width: 55%;
-  // height: 10%;
   line-height: normal;
 }
 
 .eventArticle {
   display: flex;
   border: 1px solid;
-  height: 20%;
-  width: 100%
+  height: 230px;
+  width: 100%;
+  margin-bottom: 10px;
 }
 
 .event-photo, .event-container {
   width: 50%;
+  height: 100%;
   margin-left:8px
 }
 
+
 .event-photo__img {
-  width: 100%;
+  max-width: 100%;
+  height: 100%;
   display: block;
+  margin: auto
 }
 
 .navbar__list {
@@ -47,7 +51,7 @@
 .event-container__desc {
 
   overflow: hidden;
-  height: 100px;
+  height: 120px;
 }
 
 .event-container__desc-seeMore {
