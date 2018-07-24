@@ -12,6 +12,7 @@ const EventSchema = new Schema({
     admins: [String],
     players: [String],
     completed: Boolean,
+    photo:String
 })
 
 module.exports = EventSchema;
