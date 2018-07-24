@@ -78,6 +78,7 @@ export const addEvent = (payload) => {
     f.then((res) => {
       return res.json();
     }).then((event) => {
+      console.log(event, 'event from serverik');
       return dispatch(addEventSuccess(event));
     }).catch(err => console.log(err));
   };
