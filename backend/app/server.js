@@ -29,7 +29,7 @@ const Storage_Event = multer.diskStorage({
         cb(null,'../frontend/dist/images/events_images');
     },
     filename:function(req,file,cb){
-        cb(null,req.user.id + '-' + 'event' + Date.now() + '.jpg');
+        cb(null,'event' + Date.now() + '.jpg');
     }
 });
 
@@ -103,9 +103,10 @@ app.post('/api/dashboard',(req,res)=>{
     }
  });
 
- app.post('/api/events',upload2.single('photo'),(req,res) => {
+ app.post('/api/create_event',upload2.single('photo'),(req,res) => {
 
     console.log(req.body);
     console.log(req.file);
+    // res.json({done: "truee"})
  });
 module.exports = app;
