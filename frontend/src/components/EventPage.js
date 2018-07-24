@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from './Header';
 import { EventClockIcon, EventLocationIcon, PhotoIcon } from './SvgIcons';
-import UploadModal from './UploadModal';
 import ModalComponent from './ModalComponent';
+import UploadModal from './Modal';
+
 
 const eventCover = require('../../dist/images/eventCover.jpg'); // this.props.event.eventCover
 

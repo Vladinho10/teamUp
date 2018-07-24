@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import UploadModal from './UploadModal';
+import UploadModal from './modals/UploadPhoto';
 import { PhotoIcon, EditIcon } from './SvgIcons';
 import { savePhoneNumber } from '../actions/userActions';
 
@@ -51,12 +51,12 @@ class UserAvatar extends Component {
   handleFileUpload = () => {
     this.handleToggleModal();
     this.setState(prevState => ({ savedImageSrc: prevState.imageSrc }));
-    fetch('/api/todos', {
+    const fd = new FormData();
+    fd.append('avatar', this.state.selectedFile);
+    fetch('/api/upload_user_image', {
+      credentials: 'include',
       method: 'POST',
-      body: JSON.stringify(this.state.selectedFile),
-      headers: {
-        'Content-Type': 'application/json'
-      }
+      body: fd
     }).then(res => res.json())
       .catch(error => console.error('Error:', error))
       .then((res) => {

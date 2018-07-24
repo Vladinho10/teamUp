@@ -1,7 +1,7 @@
 'use strict';
 const path = require('path');
 const express = require('express');
-
+const multer = require('multer');
 const app = express();
 const db = require('./db');
 const bodyParser = require('body-parser');
@@ -13,7 +13,17 @@ const passport = require('./passport');
 
 const {User,Event} = require('./model_crud');
 
+const Storage = multer.diskStorage({
+    destination:function(req,file,cb){
+        console.log(file);
+        cb(null,'../frontend/dist/images/users_images');
+    },
+    filename:function(req,file,cb){
+        cb(null,req.user.id + '-' + 'avatar' +'.jpg'); 
+    }
+});
 
+const upload = multer({storage:Storage});
 
 app.use(express.static(path.join(__dirname,'../../frontend/dist')));
 
@@ -44,9 +54,13 @@ app.get('/',(req,res)=>{
     
 });
 
- app.get('/*', (req,res) => {
-    res.sendFile(path.join(__dirname,'../../frontend/dist/index.html'));
- });
+app.get('/*', (req,res) => {
+    if(req.user){
+        res.sendFile(path.join(__dirname,'../../frontend/dist/index.html'));
+    }else{
+        res.redirect('/');
+}
+});
  
 app.post('/api/dashboard',(req,res)=>{
     console.log(req.body);
@@ -66,5 +80,14 @@ app.post('/api/dashboard',(req,res)=>{
     }
  });
 
-module.exports = app;
 
+ app.post('/api/upload_user_image',upload.single('avatar'),(req,res)=>{
+    if(req.user){
+        console.log(req.user.id);
+        
+        User.updateOne({fb_id:req.user.id},{$set:{photo:'/images/users_images/'  + req.user.id + '-avatar.jpg' }}).then((err,data)=>{
+            console.log('saved');
+        });
+    }
+ });
+module.exports = app;
