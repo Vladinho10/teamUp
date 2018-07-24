@@ -16,6 +16,13 @@ class WrappedArticles extends Component {
     }));
   };
 
+  seeMore = (text) => {
+    let temp;
+    if (text.length > 143) {
+      temp = `${text.slice(140)}...see more`;
+    }
+  }
+
   goToEventPage = (e) => {
     console.log(1666);
     if (!e.target.matches('.event-container__joinButton')) {
@@ -26,7 +33,12 @@ class WrappedArticles extends Component {
   };
 
   render() {
-    const tempArray = [1];
+    const tempArray = [{
+      title: 22,
+      desc: `Here must be a description.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua`
+    }];
     // const { events } = this.props;
     return (
       tempArray.map((el, i, arr) => {
@@ -36,27 +48,27 @@ class WrappedArticles extends Component {
               <img className='event-photo__img' src='./images/domnjquery.jpg' alt='Event Photo' />
             </div>
             <div className='event-container'>
-              <div className='event-container__header'>
-                <h3>Let's play contact</h3>
-              </div>
+              <header className='event-container__header'>
+                <h3>{el.title || 'Let\'s play contact'}</h3>
+              </header>
               <div className='event-container__desc'>
-                <p>Here must be a description.
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                <p>{el.desc.length > 90 ? `${el.desc.slice(0, 90)}. . .` : el.desc}</p>
+                <p className='event-container__desc-seeMore'>see more</p>
               </div>
               <div className='event-container__eventInfo'>
                 <p>going {this.props.g}</p>
                 <p>missing {this.props.m}</p>
-                <button onClick={this.changeBtnName} className='btn event-container__joinButton'>{this.state.buttonJoin ? 'UnJoin' : 'Join'}</button>
+                <div className='event-container__eventInfo-btn'>
+                  <button onClick={this.changeBtnName} className='event-container__joinButton'>{this.state.buttonJoin ? 'Unjoin' : 'Join'}</button>                </div>
               </div>
-              <div className='event-container__footer'>
+              <footer className='event-container__footer'>
                 <div className='event-container__footer-date'>
                   07.07.2007
                 </div>
                 <div className='event-container__footer-place'>
                   <LocationIcon role='icon' /> Al. Spandaryan 12
                 </div>
-              </div>
+              </footer>
             </div>
           </article>
         );

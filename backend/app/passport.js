@@ -1,6 +1,7 @@
 var passport = require('passport')
   , FacebookStrategy = require('passport-facebook').Strategy;
 
+
 const {User} = require('./model_crud');
 
 
@@ -13,7 +14,6 @@ passport.use(new FacebookStrategy({
     profileFields:['displayName','picture.type(large)']
   },
   function(accessToken, refreshToken, profile, done) {
-
     User.addUser({
       fb_id:profile.id,
       name:profile.displayName,
@@ -27,10 +27,10 @@ passport.use(new FacebookStrategy({
   },done,{
     name:profile.displayName,
     id:profile.id
-  });  
-    
+  });
+
     //console.log("https://graph.facebook.com/" + profile.username + "/picture" + "?width=200&height=200" + "&access_token=" + accessToken)
-    
+
   }
 ));
 passport.serializeUser(function(user, done) {
