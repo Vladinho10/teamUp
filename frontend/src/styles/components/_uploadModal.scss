@@ -25,6 +25,7 @@
 
 .upload-modal {
     position: relative;
+    overflow: hidden;
     align-items: center;
     display: flex;
     flex-wrap: wrap;
@@ -61,7 +62,7 @@
         bottom: 0;
         cursor: inherit;
         height: 100%;
-        width: 100%;
+        width: 150%;
         margin: 0;
         opacity: 0;
         padding: 0;
@@ -77,7 +78,8 @@
     &__image-box {
         width: 27rem;
         min-height: 13rem;
-        border: 1px dotted grey;
+        border: 5px solid white;
+        box-shadow: 0.5rem 0.8rem 0.5rem grey;
         margin-bottom: 2rem;
 
         & img {

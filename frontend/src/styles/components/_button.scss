@@ -2,7 +2,6 @@
 
 .btn {
 	position: relative;
-	z-index: 1;
 	cursor: pointer;
 	
 	&,
@@ -62,6 +61,28 @@
 			color: $color-green;
 		}
 	}
+
+	&_create-event {
+		background-color: black;
+		border: 0;
+		border-radius: 50%;
+		padding: 2rem;
+		box-shadow: 0 0 .7rem rgb(26, 6, 6);
+
+		& .plus-icon {
+			fill: $color-white;
+			width: 3rem;
+			height: 3rem;
+		}
+	}
+}
+
+// create-event circle button wrapper
+.add-event {
+	position: fixed;
+	z-index: 100000 !important;
+	right: 3rem;
+	bottom: 3rem;
 }
 
 .button-wrapper {

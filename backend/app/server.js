@@ -1,7 +1,7 @@
 'use strict';
 const path = require('path');
 const express = require('express');
-
+const multer = require('multer');
 const app = express();
 const db = require('./db');
 const bodyParser = require('body-parser');
@@ -13,7 +13,28 @@ const passport = require('./passport');
 
 const {User,Event} = require('./model_crud');
 
+const Storage = multer.diskStorage({
+    destination:function(req,file,cb){
+        console.log(file);
+        cb(null,'../frontend/dist/images/users_images');
+    },
+    filename:function(req,file,cb){
+        cb(null,req.user.id + '-' + 'avatar' +'.jpg');
+    }
+});
 
+const Storage_Event = multer.diskStorage({
+    destination:function(req,file,cb){
+        console.log(file);
+        cb(null,'../frontend/dist/images/events_images');
+    },
+    filename:function(req,file,cb){
+        cb(null,req.user.id + '-' + 'event' + Date.now() + '.jpg');
+    }
+});
+
+const upload = multer({storage:Storage});
+const upload2 = multer({storage:Storage_Event});
 
 app.use(express.static(path.join(__dirname,'../../frontend/dist')));
 
@@ -34,6 +55,7 @@ app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { successRedirect: '/dashboard',
                                       failureRedirect: '/' }));
 app.get('/',(req,res)=>{
+    console.log('in / path');
         if(!req.user){
             res.sendFile(path.join(__dirname,'../../frontend/dist/index.html'));
             return;
@@ -43,7 +65,6 @@ app.get('/',(req,res)=>{
 
 });
 
-
 app.get('/*', (req,res) => {
     if(req.user){
         res.sendFile(path.join(__dirname,'../../frontend/dist/index.html'));
@@ -51,8 +72,6 @@ app.get('/*', (req,res) => {
         res.redirect('/');
 }
 });
-
-
 
 app.post('/api/dashboard',(req,res)=>{
     console.log(req.body);
@@ -72,11 +91,20 @@ app.post('/api/dashboard',(req,res)=>{
     }
  });
 
- app.get('/api/upload_user_image',(req,res) => {
-     if(req.user){
-        console.log(req.body);
-     }
 
+ app.post('/api/upload_user_image',upload.single('avatar'),(req,res)=>{
+    if(req.user){
+        console.log(req.user.id);
+
+        User.updateOne({fb_id:req.user.id},{$set:{photo:'/images/users_images/'  + req.user.id + '-avatar.jpg' }}).then((err,data)=>{
+            console.log('saved');
+        });
+    }
  });
 
+ app.post('/api/events',upload2.single('photo'),(req,res) => {
+
+    console.log(req.body);
+    console.log(req.file);
+ });
 module.exports = app;

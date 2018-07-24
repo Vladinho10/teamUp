@@ -59,17 +59,17 @@ const addEventSuccess = data => ({
 
 export const addEvent = (addingData) => {
   return (dispatch) => {
-    // const data = { event: addingData };
+    const data = { event: addingData };
     const options = {
+      credentials: 'include',
       method: 'POST',
-      body: JSON.stringify(addingData),
-      headers: { 'Content-Type': 'application/json ' }
+      body: data
     };
-    const f = fetch('/api/events', options);
+    const f = fetch('/api/create_event', options);
     f.then((res) => {
       return res.json();
-    }).then((addedDataObj) => {
-      return dispatch(addEventSuccess(addedDataObj));
+    }).then((event) => {
+      return dispatch(addEventSuccess(event));
     }).catch(err => console.log(err));
   };
 };
