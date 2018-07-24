@@ -61,6 +61,7 @@ export const addEvent = (addingData) => {
   return (dispatch) => {
     // const data = { event: addingData };
     const options = {
+      credentials: 'include',
       method: 'POST',
       body: JSON.stringify(addingData),
       headers: { 'Content-Type': 'application/json ' }

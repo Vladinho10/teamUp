@@ -1,0 +1,78 @@
+.create-event {
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        background-color: #DADADA;
+        padding: 1rem;
+
+        & > div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+    }
+
+    &__title,
+    &__address {
+        & > label {
+            text-transform: uppercase;
+        }
+
+        & > input {
+            @extend %event-creating-input;
+        }
+    }
+
+    &__description {
+        & > label {
+            text-transform: uppercase;
+        }
+
+        & > textarea {
+            @extend %event-creating-input;
+        }
+    }
+
+    &__members {
+        & > label {
+            text-transform: uppercase;
+        }
+
+        & > input {
+            @extend %event-creating-input;
+            font-size: 2.5rem !important;
+            flex-basis: 20% !important;
+        }
+
+    }
+
+    &__datepicker {
+        & .SingleDatePicker {
+            flex-grow: 1;
+            margin: 0;
+            border-radius: 5px;
+        }
+
+        & .rc-time-picker {
+            flex-grow: 1;
+            height: 100%;
+            display: block;
+        }
+    }
+
+    &__image-preview {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__submit-form {
+        display: flex;
+        justify-content: flex-end !important;
+
+        & button {
+            margin-left: 2rem;
+        }
+    }
+}

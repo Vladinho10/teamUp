@@ -19,7 +19,7 @@ const Storage = multer.diskStorage({
         cb(null,'../frontend/dist/images/users_images');
     },
     filename:function(req,file,cb){
-        cb(null,file.fieldname + '-' + Date.now() +'.jpg'); 
+        cb(null,req.user.id + '-' + 'avatar' +'.jpg'); 
     }
 });
 
@@ -85,7 +85,7 @@ app.post('/api/dashboard',(req,res)=>{
     if(req.user){
         console.log(req.user.id);
         
-        User.updateOne({fb_id:req.user.id},{$set:{photo:'dist/images/users_images/avatar-'  + req.user.id}}).then((err,data)=>{
+        User.updateOne({fb_id:req.user.id},{$set:{photo:'/images/users_images/'  + req.user.id + '-avatar.jpg' }}).then((err,data)=>{
             console.log('saved');
         });
     }
