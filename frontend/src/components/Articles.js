@@ -10,18 +10,18 @@ class WrappedArticles extends Component {
   //   buttonJoin: false
   // };
 
-  changeBtnName() {
-    // this.setState(prevState => ({
-    //   buttonJoin: !prevState.buttonJoin
-    // }));
-    console.log(this.state);
-    // if (this.value === 'Join') this.value = 'Unjoin';
-    // else this.value = 'Join';
-    // this.value === 'Join' ? this.value = 'Unjoin' : this.value = 'Join';
-  }
+  // changeBtnName() {
+  //   // this.setState(prevState => ({
+  //   //   buttonJoin: !prevState.buttonJoin
+  //   // }));
+  //   // console.log(this.state);
+  //   // if (this.value === 'Join') this.value = 'Unjoin';
+  //   // else this.value = 'Join';
+  //   // this.value === 'Join' ? this.value = 'Unjoin' : this.value = 'Join';
+  // }
 
   goToEventPage = (e) => {
-    console.log(1666);
+    // console.log(1666);
     if (!e.target.matches('.event-container__joinButton')) {
       this.props.history.push({
         pathname: '/events'
