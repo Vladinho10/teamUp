@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import Header from './Header';
 import { EventClockIcon, EventLocationIcon, PhotoIcon } from './SvgIcons';
+import ModalComponent from './ModalComponent';
 import UploadModal from './Modal';
 
-const eventCover = require('../../dist/images/eventCover.jpg');
 
-const title = 'Playing football';
-const date = 'July 31';
-const dateAndTime = 'July 31 at 18:00 to 19:00';
-const location = 'Baghramyan 59, Yerevan, Armenia';
-const adminNames = 'Admin';
-const description = `lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem 
-ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum 
-lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum`;
+const eventCover = require('../../dist/images/eventCover.jpg'); // this.props.event.eventCover
+
+const title = 'Playing football'; // this.props.event.title
+const date = 'July 31'; // this.props.event.date;
+const dateAndTime = 'July 31 at 17:00 to 19:00'; // this.props.event.time;
+const location = 'Yerevan, Armenia'; // this.props.event.location;
+const adminNames = 'Admin'; // this.props.event.admins[0];
+const description = `lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum 
+lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem 
+ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum`; // this.props.event.description;
 
 class EventPage extends Component {
   state = {
@@ -90,15 +92,13 @@ class EventPage extends Component {
                 <span>{location}</span>
               </div>
               <br/>
-              <hr/>
+              { <ModalComponent/> }
+              <br/>
               <div className="long-desc-text">
-                <p className="red-text">Description</p>
-                <div className="text">{description}</div>
-                <p className="red-text">Admin</p><span>{adminNames}</span>
+                <p className="red-subtitles">Description</p>
+                <div className="description-text">{description}</div>
+                <p className="red-subtitles">Admins</p><span>{adminNames}</span>
               </div>
-              <p className="red-text">Participants</p>
-              <div>Partisipant1</div>
-              <div>Partisipant2</div>
             </div>
           </div>
         </div>
@@ -107,4 +107,10 @@ class EventPage extends Component {
   }
 }
 
-export default EventPage;
+const mapStateToProps = (state) => {
+  return {
+    event: state.event
+  };
+};
+
+export default connect(mapStateToProps)(EventPage);

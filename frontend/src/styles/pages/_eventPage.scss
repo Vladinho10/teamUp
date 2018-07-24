@@ -1,10 +1,6 @@
 .main-eventpage {
     display: flex;
-    position: relative;
-}
-
-.user-side {
-    width: 35vw;
+    justify-content: center;
 }
 
 .event {
@@ -51,19 +47,18 @@
     }
 }
 
-.icon__location {
+.icon__location, .icon__clock {
     opacity: 0.5;
+    height: 3vh;
+    align-self: center;
 }
 
-.icon__clock {
-    opacity: 0.5;
+
+.description-text {
+    color: rgb(94, 93, 93);
 }
 
-.text {
-    color: rgb(94, 93, 93)
-}
-
-.red-text {
+.red-subtitles {
     color: rgb(240, 42, 42);
 }
 
@@ -77,3 +72,4 @@
     background-color: rgba(10, 40, 54, 0.281);
     transition: 0.5s
 }
+

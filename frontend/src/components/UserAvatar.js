@@ -52,14 +52,11 @@ class UserAvatar extends Component {
     this.handleToggleModal();
     this.setState(prevState => ({ savedImageSrc: prevState.imageSrc }));
     const fd = new FormData();
-    fd.append('image', this.state.selectedFile, this.state.selectedFile.name);
+    fd.append('avatar', this.state.selectedFile);
     fetch('/api/upload_user_image', {
       credentials: 'include',
       method: 'POST',
-      body: JSON.stringify(fd),
-      headers: {
-        'Content-Type': 'application/json'
-      }
+      body: fd
     }).then(res => res.json())
       .catch(error => console.error('Error:', error))
       .then((res) => {
