@@ -27,6 +27,7 @@ class CreateEventModal extends Component {
     // }
 
     onTimeChange = (currentTime) => {
+      console.log('test');
       this.setState({ currentTime });
     }
 

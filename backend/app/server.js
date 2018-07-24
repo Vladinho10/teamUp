@@ -23,7 +23,18 @@ const Storage = multer.diskStorage({
     }
 });
 
+const Storage_Event = multer.diskStorage({
+    destination:function(req,file,cb){
+        console.log(file);
+        cb(null,'../frontend/dist/images/events_images');
+    },
+    filename:function(req,file,cb){
+        cb(null,req.user.id + '-' + 'event' + Date.now() + '.jpg'); 
+    }
+});
+
 const upload = multer({storage:Storage});
+const upload2 = multer({storage:Storage_Event});
 
 app.use(express.static(path.join(__dirname,'../../frontend/dist')));
 
@@ -89,5 +100,11 @@ app.post('/api/dashboard',(req,res)=>{
             console.log('saved');
         });
     }
+ });
+
+ app.post('/api/events',upload2.single('photo'),(req,res) => {
+    
+    console.log(req.body);
+    console.log(req.file);
  });
 module.exports = app;
