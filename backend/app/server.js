@@ -19,7 +19,7 @@ const Storage = multer.diskStorage({
         cb(null,'../frontend/dist/images/users_images');
     },
     filename:function(req,file,cb){
-        cb(null,req.user.id + '-' + 'avatar' +'.jpg'); 
+        cb(null,req.user.id + '-' + 'avatar' +'.jpg');
     }
 });
 
@@ -29,7 +29,7 @@ const Storage_Event = multer.diskStorage({
         cb(null,'../frontend/dist/images/events_images');
     },
     filename:function(req,file,cb){
-        cb(null,req.user.id + '-' + 'event' + Date.now() + '.jpg'); 
+        cb(null,req.user.id + '-' + 'event' + Date.now() + '.jpg');
     }
 });
 
@@ -61,8 +61,8 @@ app.get('/',(req,res)=>{
             return;
         }
         res.redirect('/dashboard');
-        
-    
+
+
 });
 
 app.get('/*', (req,res) => {
@@ -72,7 +72,7 @@ app.get('/*', (req,res) => {
         res.redirect('/');
 }
 });
- 
+
 app.post('/api/dashboard',(req,res)=>{
     console.log(req.body);
     console.log('under api/dashboard');
@@ -95,7 +95,7 @@ app.post('/api/dashboard',(req,res)=>{
  app.post('/api/upload_user_image',upload.single('avatar'),(req,res)=>{
     if(req.user){
         console.log(req.user.id);
-        
+
         User.updateOne({fb_id:req.user.id},{$set:{photo:'/images/users_images/'  + req.user.id + '-avatar.jpg' }}).then((err,data)=>{
             console.log('saved');
             res.json({photo_url:'/images/users_images/'  + req.user.id + '-avatar.jpg'});
@@ -104,7 +104,7 @@ app.post('/api/dashboard',(req,res)=>{
  });
 
  app.post('/api/events',upload2.single('photo'),(req,res) => {
-    
+
     console.log(req.body);
     console.log(req.file);
  });
