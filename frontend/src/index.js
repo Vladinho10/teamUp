@@ -11,6 +11,7 @@ import 'react-times/css/classic/default.css';
 import './styles/main.scss';
 
 const store = configureStore();
+console.log(store.getState(), 'store subscribe');
 
 const App = (
   <Provider store={store}>

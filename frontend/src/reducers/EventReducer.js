@@ -7,7 +7,7 @@ export default (state = [], action) => {
     case 'GO_EVENTS':
       return action.goEventsArr;
     case 'ADD_EVENT':
-      return [...state, action.addingEventObj];
+      return [...state, action.event];
     case 'EDIT_EVENT':
       return state.map((el) => {
         return el._id !== action.editingEventObj._id ? el : action.editingEventObj;
