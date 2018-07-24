@@ -103,8 +103,8 @@ class CreateEventModal extends Component {
                     </a>
                   </div>
                 </div>
-                {this.props.imageSrc ? <div className="image-preview__image-box create-event__image-preview-box">
-                  <img className="create-event__image-preview" src={this.props.imageSrc} alt="preview" />
+                {this.props.imagePreviewSrc ? <div className="image-preview__image-box create-event__image-preview-box">
+                  <img className="create-event__image-preview" src={this.props.imagePreviewSrc} alt="preview" />
                   <button onClick={this.props.handleDeleteImage}><DeleteIcon /></button>
                 </div> : null}
               </div>

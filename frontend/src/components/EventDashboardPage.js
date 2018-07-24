@@ -12,6 +12,7 @@ class EventDashboardPage extends Component {
   state = {
     userName: null,
     imageSrc: '',
+    imagePreviewSrc: '',
     phoneNumber: null,
     selectedFile: null,
     show: null
@@ -41,15 +42,15 @@ class EventDashboardPage extends Component {
   }
 
   handleFileChange = (event) => {
-    const imageSrc = URL.createObjectURL(event.target.files[0]);
+    const imagePreviewSrc = URL.createObjectURL(event.target.files[0]);
     this.setState({
-      imageSrc
+      imagePreviewSrc
     });
   }
 
   handleDeleteImage = () => {
     console.log('deletying');
-    this.setState(() => ({ imageSrc: null }));
+    this.setState(() => ({ imagePreviewSrc: null }));
   }
 
   // handleFileUpload = () => {
@@ -90,7 +91,7 @@ class EventDashboardPage extends Component {
                 handleDeleteImage={this.handleDeleteImage}
                 handleToggleModal={this.handleToggleModal}
                 handleEventFormSubmit={this.handleEventFormSubmit}
-                imageSrc={this.state.imageSrc}
+                imagePreviewSrc={this.state.imagePreviewSrc}
               />
             </div>
           </div>

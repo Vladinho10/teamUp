@@ -58,10 +58,12 @@ class UserAvatar extends Component {
       method: 'POST',
       body: fd
     }).then(res => res.json())
-      .catch(error => console.error('Error:', error))
       .then((res) => {
+        const obj = res;
+        console.log(obj, 'upload image response');
         this.setState({ imageSrc: res.url });
-      });
+      })
+      .catch(error => console.error('Error:', error));
   }
 
   render() {
