@@ -53,7 +53,7 @@ class CreateEventModal extends Component {
 
               <div className="create-event__description">
                 <label htmlFor="description">Description</label>
-                <textarea rows="4" cols="50" id="description" name="event_description" placeholder="Write a description here"></textarea>
+                <textarea rows="3" cols="50" id="description" name="event_description" placeholder="Write a description here"></textarea>
               </div>
 
               <div className="create-event__members">

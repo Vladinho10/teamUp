@@ -4,8 +4,7 @@
 
     &__logo-box {
         position: relative;
-        background-color: azure;
-        height: 28rem;
+        background-color: #ffffff;
     }
 
     &__link,
@@ -18,6 +17,7 @@
         display: inline-block;
         vertical-align: bottom;
         width: 100%;
+        height: 25rem;
     }
 
     &__add-photo {
