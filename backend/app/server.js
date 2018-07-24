@@ -26,10 +26,12 @@ const Storage = multer.diskStorage({
 const Storage_Event = multer.diskStorage({
     destination:function(req,file,cb){
         console.log(file);
-        cb(null,'../frontend/dist/images/events_images');
+        req.directory = '../frontend/dist/images/events_images';
+        cb(null,req.directory);
     },
     filename:function(req,file,cb){
-        cb(null,req.user.id + '-' + 'event' + Date.now() + '.jpg');
+        req.event_filename = 'event' + Date.now() + '.jpg'; 
+        cb(null,req.event_filename);
     }
 });
 
@@ -92,19 +94,36 @@ app.post('/api/dashboard',(req,res)=>{
  });
 
 
- app.post('/api/upload_user_image',upload.single('avatar'),(req,res)=>{
+ app.post('/api/edit_profile',upload.single('avatar'),(req,res)=>{
     if(req.user){
         console.log(req.user.id);
-
+        console.log(req.body);
         User.updateOne({fb_id:req.user.id},{$set:{photo:'/images/users_images/'  + req.user.id + '-avatar.jpg' }}).then((err,data)=>{
             console.log('saved');
+            res.json({photo_url:'/images/users_images/'  + req.user.id + '-avatar.jpg'});
         });
     }
  });
 
- app.post('/api/events',upload2.single('photo'),(req,res) => {
-
+ app.post('/api/create_event',upload2.single('photo'),(req,res) => {
+    if(req.user){
+      let ev = new Event({
+        title: req.body.event_title,
+        description: req.body.event_description,
+        date: req.body.datepicker,
+        location: req.body.event_address,
+        quantity: req.body.event_members_count,
+        admins: [req.user.id],
+        players: [],
+        completed: false,
+        photo:req.directory + req.event_filename
+      }).save().then((data)=>{
+          console.log(data);
+          res.json({event:data});
+      }); 
+    }
     console.log(req.body);
     console.log(req.file);
+    // res.json({done: "truee"})
  });
 module.exports = app;

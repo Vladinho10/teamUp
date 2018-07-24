@@ -4,13 +4,13 @@
         display: flex;
         flex-direction: column;
         background-color: #DADADA;
-        padding: 2.5rem;
+        padding: 1.5rem;
         font-size: 1.4rem;
 
-        & > div {
+        & > div:not(:last-child) {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
     }
 
@@ -42,7 +42,7 @@
 
         & > input {
             @extend %event-creating-input;
-            font-size: 2.5rem !important;
+            font-size: 1.5rem !important;
             flex-basis: 20% !important;
         }
 
@@ -78,7 +78,7 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        padding: 5rem;
+        padding: 2.5rem;
         margin-bottom: 2rem;
         background: $color-grey-light;
         color: $color-white;
@@ -122,10 +122,13 @@
         display: flex;
 
         & button {
-            margin-left: 2rem;
             flex-grow: 1;
-            padding: 1.5rem 1rem;
+            padding: 1rem 1rem;
             font-size: 2.2rem;
+        }
+
+        & button:last-child {
+            margin-left: 2rem;
         }
     }
 }

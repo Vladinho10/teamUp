@@ -53,7 +53,7 @@ class CreateEventModal extends Component {
 
               <div className="create-event__description">
                 <label htmlFor="description">Description</label>
-                <textarea rows="4" cols="50" id="description" name="event_description" placeholder="Write a description here"></textarea>
+                <textarea rows="3" cols="50" id="description" name="event_description" placeholder="Write a description here"></textarea>
               </div>
 
               <div className="create-event__members">
@@ -103,8 +103,8 @@ class CreateEventModal extends Component {
                     </a>
                   </div>
                 </div>
-                {this.props.imageSrc ? <div className="image-preview__image-box create-event__image-preview-box">
-                  <img className="create-event__image-preview" src={this.props.imageSrc} alt="preview" />
+                {this.props.imagePreviewSrc ? <div className="image-preview__image-box create-event__image-preview-box">
+                  <img className="create-event__image-preview" src={this.props.imagePreviewSrc} alt="preview" />
                   <button onClick={this.props.handleDeleteImage}><DeleteIcon /></button>
                 </div> : null}
               </div>

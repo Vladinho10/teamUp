@@ -57,18 +57,28 @@ const addEventSuccess = data => ({
   addingEventObj: data
 });
 
-export const addEvent = (addingData) => {
+export const addEvent = (payload) => {
   return (dispatch) => {
-    const data = { event: addingData };
-    const options = {
-      credentials: 'include',
-      method: 'POST',
-      body: data
-    };
+    let options;
+    if (payload instanceof FormData) {
+      options = {
+        credentials: 'include',
+        method: 'POST',
+        body: payload,
+      };
+    } else {
+      options = {
+        credentials: 'include',
+        method: 'POST',
+        body: JSON.stringify({ data: payload }),
+        headers: { 'Content-Type': 'application/json ' }
+      };
+    }
     const f = fetch('/api/create_event', options);
     f.then((res) => {
       return res.json();
     }).then((event) => {
+      console.log(event, 'event from serverik');
       return dispatch(addEventSuccess(event));
     }).catch(err => console.log(err));
   };

@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 import { PlusIcon } from '../SvgIcons';
 
 const UploadModal = (props) => {
-  console.log(props, 'modal');
+  // console.log(props, 'modal');
   return (
     <Modal
       isOpen={!!props.show}

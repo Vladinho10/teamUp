@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import UploadModal from './modals/UploadPhoto';
 import { PhotoIcon, EditIcon } from './SvgIcons';
-import { savePhoneNumber } from '../actions/userActions';
+import { savePhoneNumber, editUser } from '../actions/userActions';
 
 const defaultPhoto = require('../../dist/images/no-avatar.png');
 
@@ -53,15 +53,7 @@ class UserAvatar extends Component {
     this.setState(prevState => ({ savedImageSrc: prevState.imageSrc }));
     const fd = new FormData();
     fd.append('avatar', this.state.selectedFile);
-    fetch('/api/upload_user_image', {
-      credentials: 'include',
-      method: 'POST',
-      body: fd
-    }).then(res => res.json())
-      .catch(error => console.error('Error:', error))
-      .then((res) => {
-        this.setState({ imageSrc: res.url });
-      });
+    this.props.dispatch(editUser(fd));
   }
 
   render() {
