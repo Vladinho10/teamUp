@@ -97,7 +97,7 @@ app.post('/api/dashboard',(req,res)=>{
  app.post('/api/edit_profile',upload.single('avatar'),(req,res)=>{
     if(req.user){
         console.log(req.user.id);
-
+        console.log(req.body);
         User.updateOne({fb_id:req.user.id},{$set:{photo:'/images/users_images/'  + req.user.id + '-avatar.jpg' }}).then((err,data)=>{
             console.log('saved');
             res.json({photo_url:'/images/users_images/'  + req.user.id + '-avatar.jpg'});
@@ -119,7 +119,7 @@ app.post('/api/dashboard',(req,res)=>{
         photo:req.directory + req.event_filename
       }).save().then((data)=>{
           console.log(data);
-          res.json(data);
+          res.json({event:data});
       }); 
     }
     console.log(req.body);
