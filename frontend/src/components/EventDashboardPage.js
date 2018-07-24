@@ -49,7 +49,6 @@ class EventDashboardPage extends Component {
   }
 
   handleDeleteImage = () => {
-    console.log('deletying');
     this.setState(() => ({ imagePreviewSrc: null }));
   }
 
