@@ -96,6 +96,16 @@ app.post('/api/dashboard',(req,res)=>{
         
     }
  });
+
+ app.get('/api/own_events',(req,res)=>{
+    if(req.user){
+        let data = {};
+        Event.find({admins:{"$in":[req.user.id]}}).then((own_events)=>{
+            data.own_events = own_events;
+            res.json(data);    
+        });
+    }
+ });
 /*
 data.user = Object.assign({},user._doc);
                 Event.find({admins:{"$in":[req.user.id]}}).then((own_events)=>{
