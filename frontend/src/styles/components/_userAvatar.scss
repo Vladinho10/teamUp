@@ -49,6 +49,10 @@
         opacity: 1;
     }
 
+    &__info {
+        margin-top: 1rem;
+    }
+
     &__name-box,
     &__phone-box {
         display: flex;
@@ -57,6 +61,17 @@
 
         .edit-icon {
             cursor: pointer;
+        }
+    }
+
+    &__name-box {
+        & h2 {
+            line-height: 1.8rem;
+            font-size: 2rem;
+        }
+
+        & input[type=text] {
+            padding: .8rem .5rem;
         }
     }
 }

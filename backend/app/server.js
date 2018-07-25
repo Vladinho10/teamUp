@@ -98,6 +98,7 @@ app.post('/api/dashboard',(req,res)=>{
     if(req.user){
         console.log(req.user.id);
         console.log(req.body);
+        console.log(req.file, 'fileeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee');
         User.updateOne({fb_id:req.user.id},{$set:{photo:'/images/users_images/'  + req.user.id + '-avatar.jpg' }}).then((err,data)=>{
             console.log('saved');
             res.json({photo_url:'/images/users_images/'  + req.user.id + '-avatar.jpg'});

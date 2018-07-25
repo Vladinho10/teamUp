@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import UploadModal from './modals/UploadPhoto';
 import { PhotoIcon, EditIcon } from './SvgIcons';
-import { savePhoneNumber, editUser } from '../actions/userActions';
+import { editUser } from '../actions/userActions';
 
 const defaultPhoto = require('../../dist/images/no-avatar.png');
 
@@ -17,10 +17,20 @@ class UserAvatar extends Component {
     show: undefined
   }
 
+  handleSaveName = (event) => {
+    event.preventDefault();
+    this.props.dispatch(editUser(event.target.children[0].value, 'name'));
+  };
+
   handleNameChange = (event) => {
     event.preventDefault();
     this.setState(prevState => ({ nameChange: !prevState.nameChange }));
   }
+
+  handleSavePhone = (event) => {
+    event.preventDefault();
+    this.props.dispatch(editUser(event.target.children[0].value, 'phone'));
+  };
 
   handlePhoneChange = (event) => {
     this.setState(prevState => ({ phoneChange: !prevState.phoneChange }));
@@ -30,11 +40,11 @@ class UserAvatar extends Component {
     this.setState(prevState => ({ phoneChange: !prevState.phoneChange }));
   }
 
-  handleSaveNewNumber = (event) => {
-    event.preventDefault();
-    console.log(event.target[0].value, 'savePhone');
-    savePhoneNumber(event.target[0].value);
-  }
+  // handleSaveNewNumber = (event) => {
+  //   event.preventDefault();
+  //   console.log(event.target[0].value, 'savePhone');
+  //   savePhoneNumber(event.target[0].value);
+  // }
 
   handleToggleModal = () => {
     this.setState(prevState => ({ show: !prevState.show }));
@@ -57,15 +67,15 @@ class UserAvatar extends Component {
   }
 
   render() {
-    console.log(this.props, 'userAvatar props');
-    console.log(this.props.userInfoState.phoneNumber, 'userAvatar phone NUmber');
+    // console.log(this.props, 'userAvatar props');
+    // console.log(this.props.userInfoState.phoneNumber, 'userAvatar phone NUmber');
     let handlePhoneNumber;
     let src;
 
     if (this.state.phoneChange) {
-      handlePhoneNumber = <form onSubmit={this.handleSaveNewNumber}>
+      handlePhoneNumber = <form onSubmit={this.handleSavePhone} method="POST">
         <input type="text" name="phone" defaultValue={this.props.userInfoState.phoneNumber} />
-        <input type="submit" value="SAVE" />
+        <input type="submit" value="SAVE" className="btn" />
       </form>;
     } else {
       handlePhoneNumber = <button className="btn" onClick={this.handleAddPhoneNumber}>ADD PHONE NUMBER</button>;
@@ -101,7 +111,7 @@ class UserAvatar extends Component {
             <div className="user-avatar__name-box">
               {
                 this.state.nameChange
-                  ? <form>
+                  ? <form method="POST" onSubmit={this.handleSaveName}>
                     <input type="text" name="username" defaultValue={this.props.userInfoState.userName} />
                     <input type="submit" value="SAVE" />
                   </form>
