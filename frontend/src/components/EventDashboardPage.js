@@ -28,12 +28,15 @@ class EventDashboardPage extends Component {
     f.then((res) => {
       return res.json();
     }).then((DataObj) => {
+      console.log('DataObj', DataObj);
+      // console.log('UserEvents props Mount', this.props);
       this.props.dispatch(addUser(DataObj));
       this.setState({
         userName: DataObj.user.name,
         imageSrc: DataObj.user.photo,
         phoneNumber: DataObj.user.phone
       });
+
     }).catch(err => console.log(err));
   }
 
@@ -71,6 +74,7 @@ class EventDashboardPage extends Component {
   }
 
   render() {
+    // console.log('EventDashboardPage props', this.props);
     return (
       <React.Fragment>
         <div className="add-event">

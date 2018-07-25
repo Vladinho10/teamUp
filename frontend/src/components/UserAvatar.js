@@ -57,8 +57,8 @@ class UserAvatar extends Component {
   }
 
   render() {
-    console.log(this.props, 'userAvatar props');
-    console.log(this.props.userInfoState.phoneNumber, 'userAvatar phone NUmber');
+    // console.log(this.props, 'userAvatar props');
+    // console.log(this.props.userInfoState.phoneNumber, 'userAvatar phone NUmber');
     let handlePhoneNumber;
     let src;
 
