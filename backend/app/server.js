@@ -112,21 +112,13 @@ app.post('/api/dashboard',(req,res)=>{
         });
     }
     if(req.body.phone){
-        User.updateOne({_id:req.user.id},{$set:{phone:req.body.phone}}).then((err,data)=>{
-            if(err){
-                console.log(err);
-            }else{
+        User.updateOne({_id:req.user.id},{$set:{phone:req.body.phone}}).then((status,data)=>{
                 res.json({phone:req.body.phone});
-            }
         });
     }
     if(req.body.name){
-        User.updateOne({_id:req.user.id},{$set:{name:req.body.name}}).then((err,data)=>{
-            if(err){
-                console.log(err);
-            }else{
+        User.updateOne({_id:req.user.id},{$set:{name:req.body.name}}).then((status,data)=>{
                 res.json({name:req.body.name});
-            }
         });
     }
  });
