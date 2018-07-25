@@ -10,15 +10,15 @@ class WrappedArticles extends Component {
   //   buttonJoin: false
   // };
 
-  // changeBtnName() {
-  //   // this.setState(prevState => ({
-  //   //   buttonJoin: !prevState.buttonJoin
-  //   // }));
-  //   // console.log(this.state);
-  //   // if (this.value === 'Join') this.value = 'Unjoin';
-  //   // else this.value = 'Join';
-  //   // this.value === 'Join' ? this.value = 'Unjoin' : this.value = 'Join';
-  // }
+  changeBtnName() {
+    // this.setState(prevState => ({
+    //   buttonJoin: !prevState.buttonJoin
+    // }));
+    console.log(this.state);
+    // if (this.value === 'Join') this.value = 'Unjoin';
+    // else this.value = 'Join';
+    // this.value === 'Join' ? this.value = 'Unjoin' : this.value = 'Join';
+  }
 
   goToEventPage = (e, id) => {
     console.log(id);
@@ -30,6 +30,7 @@ class WrappedArticles extends Component {
   };
 
   render() {
+    console.log(this.props, 'this.props in Article');
     const tempArray = [
       {
         title: 22,
@@ -58,7 +59,7 @@ class WrappedArticles extends Component {
     return (
       tempArray.map((el, i, arr) => {
         return (
-          <article key={el._id || i} a={this.props} onClick={e => this.goToEventPage(e, el._id)} className='eventArticle'>
+          <article key={el._id || i} a={this.props} onClick={e => this.goToEventPage(e, '5b5854d5f9438a320809bb88')} className='eventArticle'>
             <div className='event-photo'>
               <img className='event-photo__img' src={el.picSrc || './images/domnjquery.jpg'} alt='Event Photo' />
             </div>
@@ -93,9 +94,10 @@ class WrappedArticles extends Component {
   }
 }
 
-const mapStateToProps = (state) => { // this.props.toDosArr
+const mapStateToProps = (state) => {
   return {
-    events: state.events
+    events: state.userData.events,
+    currentUser: state.userData.user,
   };
 };
 const Articles = connect(mapStateToProps)(WrappedArticles);
