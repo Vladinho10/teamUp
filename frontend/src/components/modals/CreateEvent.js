@@ -58,7 +58,7 @@ class CreateEventModal extends Component {
 
               <div className="create-event__members">
                 <label htmlFor="count">max. members</label>
-                <input type="number" id="count" name="event_members-count" min="0" defaultValue="0" />
+                <input type="number" id="count" name="event_members_count" min="0" defaultValue="0" />
               </div>
 
               <div className="create-event__datepicker">

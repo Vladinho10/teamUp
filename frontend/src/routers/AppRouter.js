@@ -11,7 +11,7 @@ const AppRouter = () => (
       <Switch>
         <Route path="/" component={EventLoginPage} exact />
         <Route path="/dashboard" component={EventDashboardPage} />
-        <Route path="/eventpage" component={EventPage} exact/>
+        <Route path='/eventpage/:id' component={EventPage} exact/>
         <Route component={NotFoundPage} />
       </Switch>
     </React.Fragment>

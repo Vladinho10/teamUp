@@ -24,10 +24,8 @@ passport.use(new FacebookStrategy({
       attending_events:[],
       finished_events:[],
       photo:profile.photos[0].value
-  },done,{
-    name:profile.displayName,
-    id:profile.id
-  });
+  },done,profile.displayName
+  );
 
     //console.log("https://graph.facebook.com/" + profile.username + "/picture" + "?width=200&height=200" + "&access_token=" + accessToken)
 

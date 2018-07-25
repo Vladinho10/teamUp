@@ -49,14 +49,46 @@
         opacity: 1;
     }
 
+    &__info {
+        margin-top: 1rem;
+    }
+
     &__name-box,
     &__phone-box {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin-bottom: 1.5rem;
 
         .edit-icon {
             cursor: pointer;
         }
     }
+
+    &__name-box {
+        & h2 {
+            line-height: 1.8rem;
+            font-size: 2rem;
+        }
+
+        .name-form {
+            & input[type=text] {
+                @extend %info-input;
+            }
+            & input[type=submit] {
+                padding: .5rem;
+            }
+        }
+    }
+
+    &__phone-box {
+        .phone-form {
+            & input[type=text] {
+                @extend %info-input;
+            }
+            & input[type=submit] {
+                padding: .5rem;
+            }
+        }
+    } 
 }

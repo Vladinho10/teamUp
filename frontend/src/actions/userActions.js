@@ -8,9 +8,12 @@ const editUserSuccess = data => ({
   userObj: data
 });
 
-export const editUser = (payload) => {
+export const editUser = (payload, keyword) => {
   return (dispatch) => {
     let options;
+    const bodyObj = {};
+    bodyObj[keyword] = payload;
+
     if (payload instanceof FormData) {
       options = {
         credentials: 'include',
@@ -21,7 +24,7 @@ export const editUser = (payload) => {
       options = {
         credentials: 'include',
         method: 'POST',
-        body: JSON.stringify({ data: payload }),
+        body: JSON.stringify(bodyObj),
         headers: { 'Content-Type': 'application/json ' }
       };
     }
@@ -35,24 +38,24 @@ export const editUser = (payload) => {
   };
 };
 
-const saveUserPhone = data => ({
-  type: 'ADD_USER',
-  userObj: data
-});
+// const saveUserPhone = data => ({
+//   type: 'ADD_USER',
+//   userObj: data
+// });
 
-export const savePhoneNumber = (payload) => {
-  return (dispatch) => {
-    const data = { user: payload };
-    const options = {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: { 'Content-Type': 'application/json ' }
-    };
-    const f = fetch('/api/users', options);
-    f.then((res) => {
-      return res.json();
-    }).then((DataObj) => {
-      return dispatch(saveUserPhone(data));
-    }).catch(err => console.log(err));
-  };
-};
+// export const savePhoneNumber = (payload) => {
+//   return (dispatch) => {
+//     const data = { user: payload };
+//     const options = {
+//       method: 'POST',
+//       body: JSON.stringify(data),
+//       headers: { 'Content-Type': 'application/json ' }
+//     };
+//     const f = fetch('/api/users', options);
+//     f.then((res) => {
+//       return res.json();
+//     }).then((DataObj) => {
+//       return dispatch(saveUserPhone(data));
+//     }).catch(err => console.log(err));
+//   };
+// };
