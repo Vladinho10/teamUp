@@ -10,7 +10,7 @@ const fs = require('fs');
 const session = require('express-session');
 const cors = require('cors');
 const passport = require('./passport');
-
+const {check,validationResult} = require('express-validator/check');
 const {User,Event} = require('./model_crud');
 
 const Storage = multer.diskStorage({
@@ -58,6 +58,7 @@ app.get('/auth/facebook/callback',
                                       failureRedirect: '/' }));
 app.get('/',(req,res)=>{
     console.log('in / path');
+    console.log(req.user.id);
         if(!req.user){
             res.sendFile(path.join(__dirname,'../../frontend/dist/index.html'));
             return;
@@ -68,6 +69,7 @@ app.get('/',(req,res)=>{
 });
 
 app.get('/*', (req,res) => {
+    //console.log(req.user.id);
     if(req.user){
         res.sendFile(path.join(__dirname,'../../frontend/dist/index.html'));
     }else{
@@ -84,7 +86,7 @@ app.post('/api/dashboard',(req,res)=>{
         Event.find({}).then((events)=>{
             data.events = events;
             console.log('under event callback');
-            User.findOne({fb_id:req.user.id}).then((user)=>{
+            User.findOne({_id:req.user.id}).then((user)=>{
                 data.user = user;
                 console.log(data);
                 res.json(data);
@@ -95,33 +97,44 @@ app.post('/api/dashboard',(req,res)=>{
 
 
  app.post('/api/edit_profile',upload.single('avatar'),(req,res)=>{
-    if(req.user){
-        console.log(req.user.id);
+     console.log('---------><---------');
+    //if(req.user){
+       // console.log(req.user.id);
         console.log(req.body);
-        User.updateOne({fb_id:req.user.id},{$set:{photo:'/images/users_images/'  + req.user.id + '-avatar.jpg' }}).then((err,data)=>{
+        console.log(req.file);
+        //User.updateOne({_id:req.user.id},{$set:{photo:'/images/users_images/'  + req.user.id + '-avatar.jpg' }}).then((err,data)=>{
             console.log('saved');
-            res.json({photo_url:'/images/users_images/'  + req.user.id + '-avatar.jpg'});
-        });
-    }
+           // res.json({photo_url:'/images/users_images/'  + req.user.id + '-avatar.jpg'});
+        //});
+    //}
  });
 
  app.post('/api/create_event',upload2.single('photo'),(req,res) => {
     if(req.user){
-      let ev = new Event({
-        title: req.body.event_title,
-        description: req.body.event_description,
-        date: req.body.datepicker,
-        location: req.body.event_address,
-        quantity: req.body.event_members_count,
-        admins: [req.user.id],
-        players: [],
-        completed: false,
-        photo:req.directory + req.event_filename
-      }).save().then((data)=>{
-          console.log(data);
-          res.json({event:data});
-      }); 
-    }
+        console.log(req.body);
+            let ev = new Event({
+                title: req.body.event_title,
+                description: req.body.event_description,
+                date: req.body.datepicker,
+                location: req.body.event_address,
+                quantity: req.body.event_members_count,
+                admins: [req.user.id],
+                players: [],
+                completed: false,
+                photo:req.directory + '/' + req.event_filename
+              }).save().then((data)=>{
+                  console.log(data);
+                  User.updateOne({_id:req.user.id},{$push:{own_events:data._id}}).then((err,status)=>{
+                    if(err)
+                        console.log(err);
+                    else
+                        console.log('success');
+                  });
+                  res.json({event:data});
+              });
+              
+              
+        }
     console.log(req.body);
     console.log(req.file);
     // res.json({done: "truee"})
