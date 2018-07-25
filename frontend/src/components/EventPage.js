@@ -5,7 +5,6 @@ import { EventClockIcon, EventLocationIcon, PhotoIcon } from './SvgIcons';
 import ModalComponent from './ModalComponent';
 import UploadModal from './modals/UploadPhoto';
 
-
 const eventCover = require('../../dist/images/eventCover.jpg'); // this.props.event.eventCover
 
 const title = 'Playing football'; // this.props.event.title
