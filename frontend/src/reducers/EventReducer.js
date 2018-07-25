@@ -2,7 +2,7 @@ export default (state = [], action) => {
   switch (action.type) {
     case 'ALL_EVENTS':
       return action.allEventsArr;
-    case 'OWN_EVENTS':
+    case 'MY_EVENTS':
       return action.myEventsArr;
     case 'GO_EVENTS':
       return action.goEventsArr;

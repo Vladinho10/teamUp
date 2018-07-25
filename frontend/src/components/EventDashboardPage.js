@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Loader from 'react-loader-spinner';
 import { connect } from 'react-redux';
 import Header from './Header';
 import UserAvatar from './UserAvatar';
@@ -10,12 +11,13 @@ import { addEvent } from '../actions/eventActions';
 
 class EventDashboardPage extends Component {
   state = {
-    userName: null,
-    imageSrc: '',
+    // userName: null,
+    // imageSrc: '',
+    // phoneNumber: null,
     imagePreviewSrc: '',
-    phoneNumber: null,
     selectedFile: null,
-    show: null
+    show: null,
+    loaded: false
   }
 
   componentDidMount = () => {
@@ -28,14 +30,13 @@ class EventDashboardPage extends Component {
     f.then((res) => {
       return res.json();
     }).then((DataObj) => {
-      console.log('DataObj', DataObj);
-      // console.log('UserEvents props Mount', this.props);
       this.props.dispatch(addUser(DataObj));
-      this.setState({
-        userName: DataObj.user.name,
-        imageSrc: DataObj.user.photo,
-        phoneNumber: DataObj.user.phone
-      });
+      this.setState(prevState => ({ loaded: !prevState.loaded }));
+      // this.setState({
+      //   userName: DataObj.user.name,
+      //   imageSrc: DataObj.user.photo,
+      //   phoneNumber: DataObj.user.phone
+      // });
     }).catch(err => console.log(err));
   }
 
@@ -73,9 +74,18 @@ class EventDashboardPage extends Component {
   }
 
   render() {
-    // console.log('EventDashboardPage props', this.props);
+    console.log(this.props, 'proooooooooopssss dashboard');
     return (
-      <React.Fragment>
+      !this.state.loaded ? <div className="loader">
+        <Loader
+          className="loader"
+          type="Bars"
+          color="#00BFFF"
+          height="500"
+          width="500"
+        >
+        </Loader>
+      </div> : <React.Fragment>
         <div className="add-event">
           <button className="btn btn_create-event" onClick={this.handleToggleModal}>
             <PlusIcon title='Create Event' />
@@ -85,7 +95,7 @@ class EventDashboardPage extends Component {
         <main className='main'>
           <div className='row'>
             <div className='container'>
-              <UserAvatar userInfoState={this.state} />
+              <UserAvatar />
               <UserEvents />
               <CreateEventModal
                 show={this.state.show}

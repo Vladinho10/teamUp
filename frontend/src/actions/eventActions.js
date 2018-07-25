@@ -15,28 +15,19 @@ export const getAllEvents = () => {
   };
 };
 
-const getOwnEventsSuccess = data => ({
+const getMyEventsSuccess = data => ({
   type: 'MY_EVENTS',
   myEventsArr: data
 });
 
-export const getOwnEvents = () => {
+export const getMyEvents = (_id) => {
   return (dispatch) => {
     const options = {
-      credentials: 'include',
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json ',
-        Accept: 'application/json'
-     }
+      headers: { 'Content-Type': 'application/json ' }
     };
-    const f = fetch('/api/own_events', options);
-    f.then((res) => {
-      console.log('resssssssssssssssssssssss', res);
-      console.log('resssssssssssssssssssssss', res.json());
-      return res.json();
-    })
-      .then(DataArr => dispatch(getOwnEventsSuccess(DataArr)))
+    const f = fetch(`/api/events/${_id}`, options);
+    f.then(res => res.json())
+      .then(DataArr => dispatch(getMyEventsSuccess(DataArr)))
       .catch(err => console.log(err));
   };
 };
