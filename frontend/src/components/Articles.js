@@ -58,12 +58,13 @@ class WrappedArticles extends Component {
     let { events } = this.props;
     console.log(events);
     events = events || [];
+    console.log('events[events.length - 1]');
     return (
       events.map((el, i, arr) => {
         return (
-          <article key={el._id || i} a={this.props} onClick={e => this.goToEventPage(e, '5b5854d5f9438a320809bb88')} className='eventArticle'>
+          <article key={el._id || i} a={this.props} onClick={e => this.goToEventPage(e, el._id)} className='eventArticle'>
             <div className='event-photo'>
-              <img className='event-photo__img' src={el.photo || './images/domnjquery.jpg'} alt='Event Photo' />
+              <img className='event-photo__img' src={el.photo || 'default.jpg'} alt='Event Photo' />
             </div>
             <div className='event-container'>
               <header className='event-container__header'>
