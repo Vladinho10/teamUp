@@ -10,15 +10,15 @@ class WrappedArticles extends Component {
   //   buttonJoin: false
   // };
 
-  // changeBtnName() {
-  //   // this.setState(prevState => ({
-  //   //   buttonJoin: !prevState.buttonJoin
-  //   // }));
-  //   // console.log(this.state);
-  //   // if (this.value === 'Join') this.value = 'Unjoin';
-  //   // else this.value = 'Join';
-  //   // this.value === 'Join' ? this.value = 'Unjoin' : this.value = 'Join';
-  // }
+  changeBtnName() {
+    // this.setState(prevState => ({
+    //   buttonJoin: !prevState.buttonJoin
+    // }));
+    console.log(this.state);
+    // if (this.value === 'Join') this.value = 'Unjoin';
+    // else this.value = 'Join';
+    // this.value === 'Join' ? this.value = 'Unjoin' : this.value = 'Join';
+  }
 
   goToEventPage = (e, id) => {
     console.log(id);
@@ -30,6 +30,7 @@ class WrappedArticles extends Component {
   };
 
   render() {
+    console.log(this.props, 'this.props in Article');
     const tempArray = [
       {
         title: 22,
@@ -54,31 +55,34 @@ class WrappedArticles extends Component {
         localtion: 'Vardan Mamikonyan'
       }
     ];
-    // const { events } = this.props;
+    let { events } = this.props;
+    console.log(events);
+    events = events || [];
     return (
-      tempArray.map((el, i, arr) => {
+      events.map((el, i, arr) => {
         return (
-          <article key={el._id || i} a={this.props} onClick={e => this.goToEventPage(e, el._id)} className='eventArticle'>
+          <article key={el._id || i} a={this.props} onClick={e => this.goToEventPage(e, '5b5854d5f9438a320809bb88')} className='eventArticle'>
             <div className='event-photo'>
-              <img className='event-photo__img' src={el.picSrc || './images/domnjquery.jpg'} alt='Event Photo' />
+              <img className='event-photo__img' src={el.photo || './images/domnjquery.jpg'} alt='Event Photo' />
             </div>
             <div className='event-container'>
               <header className='event-container__header'>
                 <h3>{el.title || 'Let\'s play contact'}</h3>
               </header>
               <div className='event-container__desc'>
-                <p>{el.desc.length > 150 ? `${el.desc.slice(0, 150)}. . .` : el.desc}</p>
+                <p>{el.description.length > 140 ? `${el.description.slice(0, 140)}. . .` : el.description}</p>
                 <a className='event-container__desc-seeMore'>see more</a>
               </div>
               <div className='event-container__eventInfo'>
-                <p>going {el.going}</p>
-                <p>missing {el.missing}</p>
+                <p>going </p>
+                <p>missing </p>
                 <div className='event-container__eventInfo-btn'>
-                  <button onClick={ this.changeBtnName } className='event-container__joinButton'>Join</button>                </div>
+                  <button onClick={ this.changeBtnName } className='event-container__joinButton'>Join</button>
+                </div>
               </div>
               <footer className='event-container__footer'>
                 <div className='event-container__footer-date'>
-                  {el.dateTime || '07.07.2007'}
+                  {el.date || '07.07.2007'}
                 </div>
                 <div className='event-container__footer-place'>
                   <LocationIcon role='icon' />
@@ -93,9 +97,9 @@ class WrappedArticles extends Component {
   }
 }
 
-const mapStateToProps = (state) => { // this.props.toDosArr
+const mapStateToProps = (state) => {
   return {
-    events: state.events
+    events: state.userData.events
   };
 };
 const Articles = connect(mapStateToProps)(WrappedArticles);
