@@ -87,13 +87,11 @@ app.post('/api/dashboard',(req,res)=>{
             console.log('under event callback');
             User.findOne({_id:req.user.id}).then((user)=>{
                 data.user = Object.assign({},user._doc);
-                Event.find({admins:{"$ne":[req.user.id]}}).then((own_events)=>{
-                    data.user.own_events = own_events;
-                    Event.find({players:{"$ne":[req.user.id]}}).then((going_events)=>{
-                        data.user.attending_events = going_events;
+                    Event.find({players:{"$nin":[req.user.id]}}).then((going_events)=>{
+                        data.suggested =going_events;
+                        console.log(data);
                         res.json(data);
                     });
-                });
             });
         
     }
@@ -132,8 +130,9 @@ data.user = Object.assign({},user._doc);
  app.post('/api/create_event',upload2.single('photo'),(req,res) => {
     if(req.user){
         console.log(req.body);
+        let img_src;
         if(req.file){
-            let img_src = '/images/events_images/' + req.event_filename;
+            img_src = '/images/events_images/' + req.event_filename;
         }else{
             img_src = undefined;
         }
