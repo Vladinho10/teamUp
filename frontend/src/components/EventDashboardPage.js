@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from './Header';
 import UserAvatar from './UserAvatar';
-import EventsSection from './UserEvents';
+import UserEvents from './UserEvents';
 import { addUser } from '../actions/userActions';
 import CreateEventModal from './modals/CreateEvent';
 import { PlusIcon } from './SvgIcons';
@@ -83,7 +83,7 @@ class EventDashboardPage extends Component {
           <div className='row'>
             <div className='container'>
               <UserAvatar userInfoState={this.state} />
-              <EventsSection />
+              <UserEvents />
               <CreateEventModal
                 show={this.state.show}
                 handleFileChange={this.handleFileChange}
