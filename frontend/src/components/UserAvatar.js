@@ -9,35 +9,35 @@ const defaultPhoto = require('../../dist/images/no-avatar.png');
 
 class UserAvatar extends Component {
   state = {
-    phoneNumber: null,
-    nameChange: false,
+    nameChange: null,
     phoneChange: false,
-    addPhone: false,
+    addPhone: null,
     selectedFile: null,
     imageSrc: null,
     savedImageSrc: null,
     show: undefined
   }
 
-  componentDidMount = () => {
-    const options = {
-      credentials: 'include',
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json ' }
-    };
-    const f = fetch('/api/dashboard', options);
-    f.then((res) => {
-      return res.json();
-    }).then((DataObj) => {
-      this.setState({
-        phoneNumber: DataObj.user.phone
-      });
-    }).catch(err => console.log(err));
-  }
+  // componentDidMount = () => {
+  //   const options = {
+  //     credentials: 'include',
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json ' }
+  //   };
+  //   const f = fetch('/api/dashboard', options);
+  //   f.then((res) => {
+  //     return res.json();
+  //   }).then((DataObj) => {
+  //     this.setState({
+  //       phoneNumber: DataObj.user.phone
+  //     });
+  //   }).catch(err => console.log(err));
+  // }
 
   handleSaveName = (event) => {
     event.preventDefault();
     this.props.dispatch(editUser(event.target.children[0].value, 'name'));
+    this.setState(prevState => ({ nameChange: !prevState.nameChange }));
   };
 
   handleNameChange = (event) => {
@@ -48,6 +48,7 @@ class UserAvatar extends Component {
   handleSavePhone = (event) => {
     event.preventDefault();
     this.props.dispatch(editUser(event.target.children[0].value, 'phone'));
+    this.setState(prevState => ({ phoneChange: !prevState.phoneChange }));
   };
 
   handlePhoneChange = (event) => {
@@ -58,6 +59,7 @@ class UserAvatar extends Component {
   handleAddPhone = (event) => {
     event.preventDefault();
     this.setState(prevState => ({ addPhone: !prevState.addPhone }));
+    this.setState(prevState => ({ phoneChange: !prevState.phoneChange }));
   }
 
   // handleAddPhone = () => {
@@ -91,17 +93,16 @@ class UserAvatar extends Component {
   }
 
   render() {
-    // console.log(this.props.userInfoState, 'phone number');
-
     // console.log(this.props, 'userAvatar props');
     // console.log(this.props.userInfoState.phoneNumber, 'userAvatar phone NUmber');
     let handlePhoneNumber;
     let handleEditPhoneNumber;
     let src;
     // console.log(this.state, 'state');
+    console.log(this.props, 'proooooooooopssss userAvatar');
     if (this.state.addPhone) {
       handlePhoneNumber = <form className="phone-form" onSubmit={this.handleSavePhone} method="POST">
-        <input type="text" name="phone" defaultValue={this.props.userInfoState.phoneNumber} />
+        <input type="text" name="phone" defaultValue={this.props.user.phone} />
         <input type="submit" value="SAVE" className="btn" />
       </form>;
     } else {
@@ -110,12 +111,12 @@ class UserAvatar extends Component {
 
     if (this.state.phoneChange) {
       handleEditPhoneNumber = <form className="phone-form" onSubmit={this.handleSavePhone} method="POST">
-        <input type="text" name="phone" defaultValue={this.props.userInfoState.phoneNumber} />
+        <input type="text" name="phone" defaultValue={this.props.user.phone} />
         <input type="submit" value="SAVE" className="btn" />
       </form>;
     } else {
       handleEditPhoneNumber = <React.Fragment>
-        <p>{this.props.userInfoState.phoneNumber}</p>
+        <p>{this.props.user.phone}</p>
         <button className='button-wrapper' onClick={this.handlePhoneChange}><EditIcon /></button>
       </React.Fragment>;
     }
@@ -123,14 +124,14 @@ class UserAvatar extends Component {
     if (this.state.savedImageSrc !== null) {
       src = this.state.savedImageSrc;
     } else {
-      src = this.props.userInfoState.imageSrc;
+      src = this.props.user.photo;
     }
     return (
       <React.Fragment>
         <div className="user-avatar">
           <div className="user-avatar__logo-box">
             {
-              this.props.userInfoState.imageSrc
+              this.props.user.photo
                 ? <NavLink className="user-avatar__link" to="/"><img className="user-avatar__logo" src={src} alt="User Photo" width="200" height="300" /></NavLink>
                 : <NavLink className="user-avatar__link" to="/"><img className="user-avatar__logo" src={defaultPhoto} alt="User Photo" width="200" height="300" /></NavLink>
             }
@@ -151,18 +152,18 @@ class UserAvatar extends Component {
               {
                 this.state.nameChange
                   ? <form className="name-form" method="POST" onSubmit={this.handleSaveName}>
-                    <input type="text" name="username" defaultValue={this.props.userInfoState.userName} />
+                    <input type="text" name="username" defaultValue={this.props.user.name} />
                     <input type="submit" value="SAVE" className="btn" />
                   </form>
                   : <React.Fragment>
-                    <h2>{this.props.userInfoState.userName}</h2>
+                    <h2>{this.props.user.name}</h2>
                     <button className='button-wrapper' onClick={this.handleNameChange}><EditIcon /></button>
                   </React.Fragment>
               }
             </div>
             <div className="user-avatar__phone-box">
               {
-                Number.isFinite(this.state.phoneNumber)
+                !Number.isFinite(this.props.user.phone)
                   ? handleEditPhoneNumber
                   : handlePhoneNumber
               }
@@ -176,7 +177,7 @@ class UserAvatar extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.userData.user
   };
 };
 

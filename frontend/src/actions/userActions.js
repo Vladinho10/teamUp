@@ -4,7 +4,7 @@ export const addUser = data => ({
 });
 
 const editUserSuccess = data => ({
-  type: 'ADD_USER',
+  type: 'EDIT_USER',
   userObj: data
 });
 
@@ -33,6 +33,7 @@ export const editUser = (payload, keyword) => {
     f.then((res) => {
       return res.json();
     }).then((data) => {
+      console.log(data, 'edit user');
       return dispatch(editUserSuccess(data));
     }).catch(err => console.log(err));
   };
