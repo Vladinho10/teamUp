@@ -78,7 +78,7 @@ app.get('/*', (req,res) => {
 });
 
 app.post('/api/dashboard',(req,res)=>{
-    console.log(req.body);
+   // console.log(req.body);
     console.log('under api/dashboard');
     if(req.user){
         console.log('under req.user');
@@ -87,9 +87,16 @@ app.post('/api/dashboard',(req,res)=>{
             data.events = events;
             console.log('under event callback');
             User.findOne({_id:req.user.id}).then((user)=>{
-                data.user = user;
-                console.log(data);
-                res.json(data);
+                data.user = Object.assign({},user._doc);
+                Event.find({admins:{"$in":[req.user.id]}}).then((own_events)=>{
+                    data.user.own_events = own_events;
+                    Event.find({players:{"$in":[req.user.id]}}).then((going_events)=>{
+                        data.user.attending_events = going_events;
+                        res.json(data);
+                    });
+                    
+                });
+                
             });
         });
     }
@@ -98,15 +105,30 @@ app.post('/api/dashboard',(req,res)=>{
 
  app.post('/api/edit_profile',upload.single('avatar'),(req,res)=>{
      console.log('---------><---------');
-    //if(req.user){
-       // console.log(req.user.id);
-        console.log(req.body);
-        console.log(req.file);
-        //User.updateOne({_id:req.user.id},{$set:{photo:'/images/users_images/'  + req.user.id + '-avatar.jpg' }}).then((err,data)=>{
+     if(req.user && req.file){
+        User.updateOne({_id:req.user.id},{$set:{photo:'/images/users_images/'  + req.user.id + '-avatar.jpg' }}).then((err,data)=>{
             console.log('saved');
-           // res.json({photo_url:'/images/users_images/'  + req.user.id + '-avatar.jpg'});
-        //});
-    //}
+            res.json({photo_url:'/images/users_images/'  + req.user.id + '-avatar.jpg'});
+        });
+    }
+    if(req.body.phone){
+        User.updateOne({_id:req.user.id},{$set:{phone:req.body.phone}}).then((err,data)=>{
+            if(err){
+                console.log(err);
+            }else{
+                res.json({phone:req.body.phone});
+            }
+        });
+    }
+    if(req.body.name){
+        User.updateOne({_id:req.user.id},{$set:{name:req.body.name}}).then((err,data)=>{
+            if(err){
+                console.log(err);
+            }else{
+                res.json({name:req.body.name});
+            }
+        });
+    }
  });
 
  app.post('/api/create_event',upload2.single('photo'),(req,res) => {
@@ -119,7 +141,7 @@ app.post('/api/dashboard',(req,res)=>{
                 location: req.body.event_address,
                 quantity: req.body.event_members_count,
                 admins: [req.user.id],
-                players: [],
+                players: [req.user.id],
                 completed: false,
                 photo:req.directory + '/' + req.event_filename
               }).save().then((data)=>{
