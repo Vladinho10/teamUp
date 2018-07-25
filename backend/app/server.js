@@ -69,6 +69,16 @@ app.get('/',(req,res)=>{
 
 });
 
+app.get('/api/own_events',(req,res)=>{
+    if(req.user){
+        let data = {};
+        Event.find({admins:{"$in":[req.user.id]}}).then((own_events)=>{
+            data.own_events = own_events;
+            res.json(data);    
+        });
+    }
+ });
+
 app.get('/*', (req,res) => {
     //console.log(req.user.id);
     if(req.user){
@@ -88,7 +98,7 @@ app.post('/api/dashboard',(req,res)=>{
             User.findOne({_id:req.user.id}).then((user)=>{
                 data.user = Object.assign({},user._doc);
                     Event.find({players:{"$nin":[req.user.id]}}).then((going_events)=>{
-                        data.suggested =going_events;
+                        data.suggested = going_events;
                         console.log(data);
                         res.json(data);
                     });
@@ -97,15 +107,7 @@ app.post('/api/dashboard',(req,res)=>{
     }
  });
 
- app.get('/api/own_events',(req,res)=>{
-    if(req.user){
-        let data = {};
-        Event.find({admins:{"$in":[req.user.id]}}).then((own_events)=>{
-            data.own_events = own_events;
-            res.json(data);    
-        });
-    }
- });
+ 
 /*
 data.user = Object.assign({},user._doc);
                 Event.find({admins:{"$in":[req.user.id]}}).then((own_events)=>{
