@@ -19,8 +19,8 @@ const Storage = multer.diskStorage({
         cb(null,'../frontend/dist/images/users_images');
     },
     filename:function(req,file,cb){
-        req.event_filename = req.user.id + '-'+ Date.now() + '-avatar' +'.jpg' 
-        cb(null,req.event_filename);
+        req.user_filename = req.user.id + '-'+ Date.now() + '-avatar.jpg'; 
+        cb(null,req.user_filename);
     }
 });
 
@@ -74,6 +74,7 @@ app.get('/api/own_events',(req,res)=>{
         let data = {};
         Event.find({admins:{"$in":[req.user.id]}}).then((own_events)=>{
             data.own_events = own_events;
+            console.log('vvvvvvvvllllllllaaaaaadddddd',data);
             res.json(data);    
         });
     }
@@ -122,9 +123,9 @@ data.user = Object.assign({},user._doc);
  app.post('/api/edit_profile',upload.single('avatar'),(req,res)=>{
      console.log('---------><---------');
      if(req.user && req.file){
-        User.updateOne({_id:req.user.id},{$set:{photo:'/images/users_images/'  + req.user.id + '-avatar.jpg' }}).then((err,data)=>{
+        User.updateOne({_id:req.user.id},{$set:{photo:'/images/users_images/'+req.user_filename }}).then((err,data)=>{
             console.log('saved');
-            res.json({photo:'/images/users_images/'  + req.user.id + '-avatar.jpg'});
+            res.json({photo:'/images/users_images/'  + req.user_filename});
         });
     }
     if(req.body.phone){
