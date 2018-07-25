@@ -19,7 +19,8 @@ const Storage = multer.diskStorage({
         cb(null,'../frontend/dist/images/users_images');
     },
     filename:function(req,file,cb){
-        cb(null,req.user.id + '-' + 'avatar' +'.jpg');
+        req.event_filename = req.user.id + '-'+ Date.now() + '-avatar' +'.jpg' 
+        cb(null,req.event_filename);
     }
 });
 
@@ -108,7 +109,7 @@ app.post('/api/dashboard',(req,res)=>{
      if(req.user && req.file){
         User.updateOne({_id:req.user.id},{$set:{photo:'/images/users_images/'  + req.user.id + '-avatar.jpg' }}).then((err,data)=>{
             console.log('saved');
-            res.json({photo_url:'/images/users_images/'  + req.user.id + '-avatar.jpg'});
+            res.json({photo:'/images/users_images/'  + req.user.id + '-avatar.jpg'});
         });
     }
     if(req.body.phone){
@@ -135,7 +136,7 @@ app.post('/api/dashboard',(req,res)=>{
                 admins: [req.user.id],
                 players: [req.user.id],
                 completed: false,
-                photo:req.directory + '/' + req.event_filename
+                photo:'/images/events_images/' + req.event_filename
               }).save().then((data)=>{
                   console.log(data);
                   User.updateOne({_id:req.user.id},{$push:{own_events:data._id}}).then((err,status)=>{
