@@ -36,7 +36,6 @@ class EventDashboardPage extends Component {
         imageSrc: DataObj.user.photo,
         phoneNumber: DataObj.user.phone
       });
-
     }).catch(err => console.log(err));
   }
 
