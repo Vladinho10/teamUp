@@ -58,6 +58,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin-bottom: 1.5rem;
 
         .edit-icon {
             cursor: pointer;
@@ -70,8 +71,24 @@
             font-size: 2rem;
         }
 
-        & input[type=text] {
-            padding: .8rem .5rem;
+        .name-form {
+            & input[type=text] {
+                @extend %info-input;
+            }
+            & input[type=submit] {
+                padding: .5rem;
+            }
         }
     }
+
+    &__phone-box {
+        .phone-form {
+            & input[type=text] {
+                @extend %info-input;
+            }
+            & input[type=submit] {
+                padding: .5rem;
+            }
+        }
+    } 
 }
