@@ -121,18 +121,18 @@ class UserAvatar extends Component {
       </React.Fragment>;
     }
 
-    if (this.state.savedImageSrc !== null) {
-      src = this.state.savedImageSrc;
-    } else {
-      src = this.props.user.photo;
-    }
+    // if (this.state.savedImageSrc !== null) {
+    //   src = this.state.savedImageSrc;
+    // } else {
+    //   src = this.props.user.photo;
+    // }
     return (
       <React.Fragment>
         <div className="user-avatar">
           <div className="user-avatar__logo-box">
             {
               this.props.user.photo
-                ? <NavLink className="user-avatar__link" to="/"><img className="user-avatar__logo" src={src} alt="User Photo" width="200" height="300" /></NavLink>
+                ? <NavLink className="user-avatar__link" to="/"><img className="user-avatar__logo" src={this.props.user.photo} alt="User Photo" width="200" height="300" /></NavLink>
                 : <NavLink className="user-avatar__link" to="/"><img className="user-avatar__logo" src={defaultPhoto} alt="User Photo" width="200" height="300" /></NavLink>
             }
             <div className="user-avatar__add-photo" onClick={this.handleToggleModal}>
