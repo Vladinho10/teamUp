@@ -30,6 +30,8 @@ class EventDashboardPage extends Component {
     f.then((res) => {
       return res.json();
     }).then((DataObj) => {
+      // console.log('DataObj', DataObj);
+      // console.log('UserEvents props Mount', this.props);
       this.props.dispatch(addUser(DataObj));
       this.setState(prevState => ({ loaded: !prevState.loaded }));
       // this.setState({
