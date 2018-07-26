@@ -85,9 +85,9 @@ app.get('/api/events/:type',(req,res)=>{
                 res.json(data);
             });        
         }
-        else if(req.param.type == 'going'){
-            Event.find({players:{"$in":[req.user.id]}}).then((going_events)=>{
-                data.events = going_events;
+        else if(req.param.type == 'attending'){
+            Event.find({players:{"$in":[req.user.id]}}).then((attending_events)=>{
+                data.events = attending_events;
                 res.json(data);
             });
         }
