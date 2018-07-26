@@ -6,7 +6,14 @@ import { connect } from 'react-redux';
 import { LocationIcon } from './SvgIcons';
 
 class WrappedArticles extends Component {
+  // state = {
+  //   buttonJoin: false
+  // };
+
   changeBtnName() {
+    // this.setState(prevState => ({
+    //   buttonJoin: !prevState.buttonJoin
+    // }));
     console.log(this.state);
     // if (this.value === 'Join') this.value = 'Unjoin';
     // else this.value = 'Join';
@@ -72,8 +79,9 @@ const mapStateToProps = (state) => {
   return {
     // own_events: state.own_events.events,
     states: state.a
-    // events: state.userData.suggested
+    // events: state.userData.suggested  };
   };
 };
+
 const Articles = connect(mapStateToProps)(WrappedArticles);
 export default withRouter(Articles);

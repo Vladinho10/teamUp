@@ -1,8 +1,16 @@
-export default (state = {}, action) => {
+export default (state = { user: {} }, action) => {
   switch (action.type) {
     case 'ADD_USER':
       return {
         ...action.userData
+      };
+    case 'EDIT_USER':
+      return {
+        events: state.events,
+        user: {
+          ...state.user,
+          ...action.userObj
+        }
       };
 
     case 'ADD_NUMBER':

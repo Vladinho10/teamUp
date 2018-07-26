@@ -19,8 +19,8 @@ class WrappedUserEvents extends Component {
         <div className="navbar">
           <ul className="navbar__list">
             <li className="navbar__item"><button onClick={this.handleGetOwnEvents} className="btn">Suggested</button></li>
-            <li className="navbar__item"><button onClick={() => this.handleGetOwnEvents()} className="btn">Own</button></li>
-            <li className="navbar__item"><button onClick={this.handleGetOwnEvents} className="btn">Attending</button></li>
+            <li className="navbar__item"><button onClick={() => this.handleGetOwnEvents} className="btn">Own</button></li>
+            <li className="navbar__item"><button onClick={() => this.handleGetOwnEvents} className="btn">Attending</button></li>
           </ul>
         </div>
         <div>

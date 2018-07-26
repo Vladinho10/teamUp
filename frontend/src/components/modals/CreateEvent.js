@@ -77,6 +77,7 @@ class CreateEventModal extends Component {
                   // colorPalette="light"
                   time={this.state.currentTime}
                   defaultValue={this.state.currentTime}
+                  inputName="timepicker"
                   // theme="classic"
                   // showSecond={true}
                   // timeFormat='HH:MM'

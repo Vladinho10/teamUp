@@ -20,7 +20,7 @@ const getOwnEventsSuccess = data => ({ // obj,vori key-i poxum e store-y
   ownEventsObj: data
 });
 
-export const getOwnEvents = () => {
+export const getOwnEvents = (_id) => {
   return (dispatch) => {
     const options = {
       credentials: 'include',
