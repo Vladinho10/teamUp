@@ -69,14 +69,29 @@ app.get('/',(req,res)=>{
 
 });
 
-app.get('/api/own_events',(req,res)=>{
+app.get('/api/events/:type',(req,res)=>{
     if(req.user){
         let data = {};
-        Event.find({admins:{"$in":[req.user.id]}}).then((own_events)=>{
-            data.own_events = own_events;
-            console.log('vvvvvvvvllllllllaaaaaadddddd',data);
-            res.json(data);    
-        });
+        if(req.params.type == 'own_events'){
+            Event.find({admins:{"$in":[req.user.id]}}).then((own_events)=>{
+                data.own_events = own_events;
+                console.log('vvvvvvvvllllllllaaaaaadddddd',data);
+                res.json(data);    
+            });
+        }
+        else if(req.params.type == 'suggested'){
+            Event.find({players:{"$nin":[req.user.id]}}).then((suggested_events)=>{
+                data.suggested_events = suggested_events;
+                res.json(data);
+            });        
+        }
+        else if(req.param.type == 'going'){
+            Event.find({players:{"$in":[req.user.id]}}).then((going_events)=>{
+                data.suggested_events = going_events;
+                res.json(data);
+            });
+        }
+        
     }
  });
 
@@ -193,5 +208,19 @@ data.user = Object.assign({},user._doc);
     console.log(req.body);
     console.log(req.file);
     // res.json({done: "truee"})
+ });
+
+ app.post('/api/add_or_delete_participant/:ev_id/:action',(req,res)=>{
+    if(req.user){
+        if(req.params.action == 'add')
+        {
+            Event.updateOne({_id:req.params.ev_id},{$push:{players:req.user.id}}).then((err,status)=>{
+                User.updateOne({_id:req.user.id},{$push:{attending_events:req.params.ev_id}}).then((err1,status1)=>{
+                    res.json({st1:status,st2:status1});
+                })
+                
+            })
+        }
+    }
  });
 module.exports = app;
