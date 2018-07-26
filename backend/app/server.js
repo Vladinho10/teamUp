@@ -98,6 +98,14 @@ app.get('/api/events/:type',(req,res)=>{
         
     }
  });
+app.get('/logout',(req,res)=>{
+    if(req.user){
+        console.log(req.user,'before destroy');
+        req.logout();
+        console.log(req.user,'after destroy');
+    }
+    res.redirect('/');
+});
 
 app.get('/*', (req,res) => {
     //console.log(req.user.id);
@@ -217,10 +225,10 @@ data.user = Object.assign({},user._doc);
 
  app.post('/api/add_or_delete_participant/:ev_id/:action',(req,res)=>{
     if(req.user){
-        if(req.params.action == 'add')
+        if(req.body.action == 'add')
         {
-            Event.updateOne({_id:req.params.ev_id},{$push:{players:req.user.id}}).then((err,status)=>{
-                User.updateOne({_id:req.user.id},{$push:{attending_events:req.params.ev_id}}).then((err1,status1)=>{
+            Event.updateOne({_id:req.body.ev_id},{$push:{players:req.user.id}}).then((err,status)=>{
+                User.updateOne({_id:req.user.id},{$push:{attending_events:req.body.ev_id}}).then((err1,status1)=>{
                     res.json({st1:status,st2:status1});
                 })
                 
