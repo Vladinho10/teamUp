@@ -23,6 +23,7 @@
     border: none;
     color: white;
     width: 20vw;
+    height: 5vh;
     text-align: center;
     font-size: 16px;
 }
@@ -39,16 +40,26 @@
     cursor: pointer;
 }
 
-.join-btn {
-    background-color:  rgb(207, 78, 106); 
+.join-btn, .unjoin-btn {
+    background-color:  rgb(42, 167, 109);
     border: none;
     color: white;
     width: 20vw;
+    height: 5vh;
     text-align: center;
     font-size: 16px;
 }
+
 .join-btn:hover {
-    background-color:  rgb(231, 27, 88) 
+    background-color:  rgb(7, 192, 69);
+}
+
+.unjoin-btn {
+    background-color:  rgb(214, 73, 73);
+}
+
+.unjoin-btn:hover {
+    background-color:  rgb(207, 17, 58);
 }
 
 .participants-open-btn:hover, .participants-close-btn:hover, ::-webkit-scrollbar-thumb:hover{

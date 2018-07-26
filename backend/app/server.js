@@ -69,14 +69,29 @@ app.get('/',(req,res)=>{
 
 });
 
-app.get('/api/own_events',(req,res)=>{
+app.get('/api/events/:type',(req,res)=>{
     if(req.user){
         let data = {};
-        Event.find({admins:{"$in":[req.user.id]}}).then((own_events)=>{
-            data.own_events = own_events;
-            console.log('vvvvvvvvllllllllaaaaaadddddd',data);
-            res.json(data);    
-        });
+        if(req.params.type == 'own_events'){
+            Event.find({admins:{"$in":[req.user.id]}}).then((own_events)=>{
+                data.events = own_events;
+                console.log('vvvvvvvvllllllllaaaaaadddddd',data);
+                res.json(data);    
+            });
+        }
+        else if(req.params.type == 'suggested'){
+            Event.find({players:{"$nin":[req.user.id]}}).then((suggested_events)=>{
+                data.events = suggested_events;
+                res.json(data);
+            });        
+        }
+        else if(req.param.type == 'attending'){
+            Event.find({players:{"$in":[req.user.id]}}).then((attending_events)=>{
+                data.events = attending_events;
+                res.json(data);
+            });
+        }
+        
     }
  });
 
@@ -101,6 +116,9 @@ app.post('/api/dashboard',(req,res)=>{
                     Event.find({players:{"$nin":[req.user.id]}}).then((going_events)=>{
                         data.suggested = Object.assign([],going_events);
                         //console.log(data.suggested,'scakjvckasv');
+                        if(data.suggested.length == 0){
+                            res.json(data);
+                        }
                         for(let i=0;i<data.suggested.length;i++){
                             User.find({_id:data.suggested[i].admins[0]}).then((admin)=>{
                                 data.suggested[i] = Object.assign({},data.suggested[i]._doc);
@@ -116,6 +134,8 @@ app.post('/api/dashboard',(req,res)=>{
                     });
             });
         
+    }else{
+        res.sendStatus(401);
     }
  });
 
@@ -139,15 +159,17 @@ data.user = Object.assign({},user._doc);
             res.json({photo:'/images/users_images/'  + req.user_filename});
         });
     }
-    if(req.body.phone){
+    else if(req.user && req.body.phone){
         User.updateOne({_id:req.user.id},{$set:{phone:req.body.phone}}).then((status,data)=>{
                 res.json({phone:req.body.phone});
         });
     }
-    if(req.body.name){
+    else if(req.user && req.body.name){
         User.updateOne({_id:req.user.id},{$set:{name:req.body.name}}).then((status,data)=>{
                 res.json({name:req.body.name});
         });
+    }else{
+        res.sendStatus(401);
     }
  });
 
@@ -186,5 +208,19 @@ data.user = Object.assign({},user._doc);
     console.log(req.body);
     console.log(req.file);
     // res.json({done: "truee"})
+ });
+
+ app.post('/api/add_or_delete_participant/:ev_id/:action',(req,res)=>{
+    if(req.user){
+        if(req.params.action == 'add')
+        {
+            Event.updateOne({_id:req.params.ev_id},{$push:{players:req.user.id}}).then((err,status)=>{
+                User.updateOne({_id:req.user.id},{$push:{attending_events:req.params.ev_id}}).then((err1,status1)=>{
+                    res.json({st1:status,st2:status1});
+                })
+                
+            })
+        }
+    }
  });
 module.exports = app;
