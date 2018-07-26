@@ -82,12 +82,16 @@ app.get('/api/events/:type',(req,res)=>{
         else if(req.params.type == 'suggested'){
             Event.find({players:{"$nin":[req.user.id]}}).then((suggested_events)=>{
                 data.events = suggested_events;
+                console.log('in suggested');
                 res.json(data);
             });        
         }
-        else if(req.param.type == 'attending'){
+        else if(req.params.type == 'attending'){
             Event.find({players:{"$in":[req.user.id]}}).then((attending_events)=>{
-                data.events = attending_events;
+                data.events = attending_events.filter((elem)=>{
+                    return elem.admins[0] != req.user.id;
+                });
+                console.log('in attending');
                 res.json(data);
             });
         }
@@ -118,6 +122,7 @@ app.post('/api/dashboard',(req,res)=>{
                         //console.log(data.suggested,'scakjvckasv');
                         if(data.suggested.length == 0){
                             res.json(data);
+                            //console.log('111111111111111');
                         }
                         for(let i=0;i<data.suggested.length;i++){
                             User.find({_id:data.suggested[i].admins[0]}).then((admin)=>{
