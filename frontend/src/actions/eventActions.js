@@ -1,16 +1,19 @@
-const getAllEventsSuccess = data => ({
-  type: 'ALL_EVENTS',
-  allEventsArr: data
+const getSuggestedEventsSuccess = data => ({
+  type: 'SUGGESTED_EVENTS',
+  suggestedEventsObj: data
 });
 
-export const getAllEvents = () => {
+export const getSuggestedEvents = () => {
   return (dispatch) => {
     const options = {
       headers: { 'Content-Type': 'application/json' }
     };
-    const f = fetch('/api/events', options);
+    const f = fetch('/api/events/suggested', options);
     f.then(res => res.json())
-      .then(DataArr => dispatch(getAllEventsSuccess(DataArr)))
+      .then((DataArr) => {
+        console.log(DataArr);
+        dispatch(getSuggestedEventsSuccess(DataArr));
+      })
       .catch(err => console.log(err));
   };
 };
@@ -20,7 +23,7 @@ const getOwnEventsSuccess = data => ({ // obj,vori key-i poxum e store-y
   ownEventsObj: data
 });
 
-export const getOwnEvents = (_id) => {
+export const getOwnEvents = () => {
   return (dispatch) => {
     const options = {
       credentials: 'include',
@@ -30,12 +33,12 @@ export const getOwnEvents = (_id) => {
         Accept: 'application/json'
       }
     };
-    const f = fetch('/api/own_events', options);
+    const f = fetch('/api/events/own_events', options);
     f.then((res) => {
       return res.json();
     })
       .then((DataObj) => {
-        // console.log('DataObj in actions', DataObj);
+        console.log('DataObj in actions', DataObj);
         return dispatch(getOwnEventsSuccess(DataObj));
       })
       .catch(err => console.log(err));
@@ -43,21 +46,28 @@ export const getOwnEvents = (_id) => {
 };
 
 
-const getGoEventsSuccess = data => ({
-  type: 'GO_EVENTS',
-  goEventsArr: data
+const getAttendingEventsSuccess = data => ({
+  type: 'ATTENDING_EVENTS',
+  attendingEventsArr: data
 });
 
-export const getGoEvents = (payload, _id) => {
+export const getAttendingEvents = () => {
   return (dispatch) => {
     const options = {
-      headers: { 'Content-Type': 'application/json ' }
+      credentials: 'include',
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json ',
+        Accept: 'application/json'
+      }
     };
-    const f = fetch(`/api/events/${payload}/${_id}`, options);
+    const f = fetch('/api/events/attending', options);
+    console.log(9999999999);
     f.then((res) => {
       return res.json();
     }).then((DataArr) => {
-      return dispatch(getGoEventsSuccess(DataArr));
+      console.log('DataObj in actions', DataArr);
+      return dispatch(getAttendingEventsSuccess(DataArr));
     }).catch(err => console.log(err));
   };
 };

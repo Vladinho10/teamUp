@@ -9,7 +9,7 @@ const Header = () => (
     <div className='row'>
       <div className="navbar">
         <p className="navbar__logo-box">
-          <NavLink to="/" role="link"><img src={logo} alt="logo" width="190" height="80" className="navbar__logo" role="logo" /></NavLink>
+          <NavLink to="/dashboard" role="link"><img src={logo} alt="logo" width="190" height="80" className="navbar__logo" role="logo" /></NavLink>
         </p>
         <div className="navbar__search-box">
           <form className="navbar__form search-form" action="/:id" method="get">

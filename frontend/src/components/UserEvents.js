@@ -2,14 +2,22 @@ import React, { Component } from 'react';
 // import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Articles from './Articles';
-import { getOwnEvents } from '../actions/eventActions';
+import { getOwnEvents, getAttendingEvents, getSuggestedEvents } from '../actions/eventActions';
 
 
 class WrappedUserEvents extends Component {
+  handleGetSuggestedEvents = (e) => {
+    this.props.dispatch(getSuggestedEvents());
+  };
+
   handleGetOwnEvents = (e) => {
     this.props.dispatch(getOwnEvents());
-    // console.log('onclik userEvents ', this.props.own_events);
-  }
+  };
+
+  handleGetAttendingEvents = () => {
+    console.log(888);
+    this.props.dispatch(getAttendingEvents());
+  };
 
   render() {
     console.log(' UserEvents props', this.props);
@@ -18,9 +26,9 @@ class WrappedUserEvents extends Component {
       <section sec={this.props} className='events-section'>
         <div className="navbar">
           <ul className="navbar__list">
-            <li className="navbar__item"><button onClick={this.handleGetOwnEvents} className="btn">Suggested</button></li>
+            <li className="navbar__item"><button onClick={this.handleGetSuggestedEvents} className="btn">Suggested</button></li>
             <li className="navbar__item"><button onClick={this.handleGetOwnEvents} className="btn">Own</button></li>
-            <li className="navbar__item"><button onClick={() => this.handleGetOwnEvents} className="btn">Attending</button></li>
+            <li className="navbar__item"><button onClick={this.handleGetAttendingEvents} className="btn">Attending</button></li>
           </ul>
         </div>
         <div>
