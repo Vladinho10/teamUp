@@ -14,7 +14,7 @@ class UserAvatar extends Component {
     addPhone: null,
     selectedFile: null,
     imageSrc: null,
-    savedImageSrc: null,
+    // savedImageSrc: null,
     show: undefined
   }
 
@@ -86,7 +86,7 @@ class UserAvatar extends Component {
 
   handleFileUpload = () => {
     this.handleToggleModal();
-    this.setState(prevState => ({ savedImageSrc: prevState.imageSrc }));
+    // this.setState(prevState => ({ savedImageSrc: prevState.imageSrc }));
     const fd = new FormData();
     fd.append('avatar', this.state.selectedFile);
     this.props.dispatch(editUser(fd));
@@ -97,7 +97,7 @@ class UserAvatar extends Component {
     // console.log(this.props.userInfoState.phoneNumber, 'userAvatar phone NUmber');
     let handlePhoneNumber;
     let handleEditPhoneNumber;
-    let src;
+    // let src;
     // console.log(this.state, 'state');
     console.log(this.props, 'proooooooooopssss userAvatar');
     if (this.state.addPhone) {
