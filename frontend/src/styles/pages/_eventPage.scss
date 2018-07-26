@@ -10,7 +10,6 @@
 
     &-avatar {
         background-color: white;
-        height: 50vh;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -26,12 +25,14 @@
         margin: 0 ;
         background-color: white;
         color: rgb(240, 42, 42);
-        font-size: 50px;
+        font-size: 30px;
+        padding-right: 10px;
     }
     &-title {
         color: rgb(77, 73, 73);
         margin: auto;
-        font-size: 50px;
+        font-size: 30px;
+        padding-left: 10px;
     }
 }
 

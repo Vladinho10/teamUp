@@ -97,7 +97,6 @@ class WrappedArticles extends Component {
 const mapStateToProps = (state) => {
   return {
     events: state.userData.events,
-    currentUser: state.userData.user,
   };
 };
 const Articles = connect(mapStateToProps)(WrappedArticles);
