@@ -1,9 +1,11 @@
 export default (state = [], action) => {
+  // console.log('action', action.ownEventsArr);
   switch (action.type) {
     case 'ALL_EVENTS':
       return action.allEventsArr;
     case 'OWN_EVENTS':
-      return action.myEventsArr;
+      // console.log('action.ownEventsObj.own_events', action.ownEventsObj.own_events);
+      return action.ownEventsObj.own_events; // arr
     case 'GO_EVENTS':
       return action.goEventsArr;
     case 'ADD_EVENT':

@@ -15,9 +15,9 @@ export const getAllEvents = () => {
   };
 };
 
-const getOwnEventsSuccess = data => ({
-  type: 'MY_EVENTS',
-  myEventsArr: data
+const getOwnEventsSuccess = data => ({ // obj,vori key-i poxum e store-y
+  type: 'OWN_EVENTS',
+  ownEventsObj: data
 });
 
 export const getOwnEvents = () => {
@@ -28,15 +28,16 @@ export const getOwnEvents = () => {
       headers: {
         'Content-Type': 'application/json ',
         Accept: 'application/json'
-     }
+      }
     };
     const f = fetch('/api/own_events', options);
     f.then((res) => {
-      console.log('resssssssssssssssssssssss', res);
-      console.log('resssssssssssssssssssssss', res.json());
       return res.json();
     })
-      .then(DataArr => dispatch(getOwnEventsSuccess(DataArr)))
+      .then((DataObj) => {
+        // console.log('DataObj in actions', DataObj);
+        return dispatch(getOwnEventsSuccess(DataObj));
+      })
       .catch(err => console.log(err));
   };
 };

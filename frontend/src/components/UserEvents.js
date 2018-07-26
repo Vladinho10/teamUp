@@ -8,10 +8,11 @@ import { getOwnEvents } from '../actions/eventActions';
 class WrappedUserEvents extends Component {
   handleGetOwnEvents = (e) => {
     this.props.dispatch(getOwnEvents());
+    // console.log('onclik userEvents ', this.props.own_events);
   }
 
   render() {
-    // console.log('this.props UserEvents', this.props);
+    console.log(' UserEvents props', this.props);
     // console.log('this.state UserEvents', this.state);
     return (
       <section sec={this.props} className='events-section'>
@@ -23,7 +24,7 @@ class WrappedUserEvents extends Component {
           </ul>
         </div>
         <div>
-          <Articles events={this.props.userData.events}/>
+          <Articles events={this.props.state.userData.suggested} />
         </div>
       </section>
     );
@@ -31,13 +32,14 @@ class WrappedUserEvents extends Component {
 
   // componentDidMount() {
   //   this.props.dispatch(getOwnEvents());
+  //   console.log('USerEvents', this.props);
   // }
 }
 
 const mapStateToProps = (state) => { // this.props.toDosArr
   return {
-    // events: state.events,
-    userData: state.userData
+    // userData: state.userData
+    state
   };
 };
 const UserEvents = connect(mapStateToProps)(WrappedUserEvents);
