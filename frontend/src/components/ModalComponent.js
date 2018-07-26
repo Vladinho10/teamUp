@@ -1,6 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 import UserArticle from './UserArticle';
+import JoinBtn from './JoinBtn';
 
 const participents = '17'; // this.props.event.participants.length
 
@@ -29,7 +30,7 @@ class ModalComponent extends React.Component {
       <div>
         <section className='btn-section'>
           <button onClick={this.openModal} className="participants-open-btn"> {participents} people are going </button>
-          <button className="join-btn"> JOIN </button>
+          <JoinBtn/>
         </section>
         <Modal
           isOpen={this.state.modalIsOpen}

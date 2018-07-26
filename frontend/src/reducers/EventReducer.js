@@ -1,11 +1,12 @@
 export default (state = [], action) => {
   // console.log('action', action.ownEventsArr);
   switch (action.type) {
-    case 'ALL_EVENTS':
-      return action.allEventsArr;
+    case 'ADD_USER':
+      console.log();
+      return action.userData.suggested;
     case 'OWN_EVENTS':
       // console.log('action.ownEventsObj.own_events', action.ownEventsObj.own_events);
-      return action.ownEventsObj.own_events; // arr
+      return action.ownEventsObj.own_events;
     case 'GO_EVENTS':
       return action.goEventsArr;
     case 'ADD_EVENT':

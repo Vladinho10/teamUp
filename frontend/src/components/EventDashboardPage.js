@@ -76,7 +76,7 @@ class EventDashboardPage extends Component {
   }
 
   render() {
-    console.log(this.props, 'proooooooooopssss dashboard');
+    // console.log(this.props, 'proooooooooopssss dashboard');
     return (
       !this.state.loaded ? <div className="loader">
         <Loader
@@ -117,7 +117,7 @@ class EventDashboardPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    events: state.events,
+    // events: state.events,
     userData: state.userData
   };
 };

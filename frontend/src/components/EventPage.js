@@ -5,9 +5,10 @@ import { EventClockIcon, EventLocationIcon, PhotoIcon } from './SvgIcons';
 import ModalComponent from './ModalComponent';
 import UploadModal from './modals/UploadPhoto';
 
-const eventCover = require('../../dist/images/events_images/event1532515541293.jpg'); // this.state.currentEvent.photo
+const eventCover = require('../../dist/images/events_images/event1532515541293.jpg');
 
-const date = 'July 31'; // this.state.currentEvent.date
+const defaultEventCover = require('../../dist/images/eventCover.jpg'); // this.state.currentEvent.photo
+
 const adminNames = 'Admin'; //  this.state.currentEvent.admins[0];
 
 
@@ -17,11 +18,26 @@ class EventPage extends Component {
     selectedFile: null,
     imageSrc: '',
     show: undefined,
-    currentEvent: {}
+    currentEvent: {},
+    dateAndTime: '',
+    date: ''
+  }
+
+  componentDidMount = () => {
+    const currentEvent_id = this.props.match.params.id;
+    const allEvents = this.props.events;
+    const currentEvent = allEvents.find(event => event._id === currentEvent_id);
+    const dateAndTime = this.formatDateAndTime(currentEvent.date);
+    const date = this.formatDate(currentEvent.date);
+
+    this.setState({
+      currentEvent,
+      dateAndTime,
+      date
+    });
   }
 
   handleClick = () => {
-    console.log('clicked', this.state.showUploadModal);
     this.setState({ showUploadModal: !this.state.showUploadModal });
   }
 
@@ -50,18 +66,31 @@ class EventPage extends Component {
   //       this.setState({ imageSrc: res.url });
   //     });
   // }
-componentDidMount = () => {
-  const currentEvent_id = this.props.match.params.id;
-  const allEvents = this.props.events;
-  const currentEvent = allEvents.find(event => event._id === currentEvent_id);
-  this.setState({ currentEvent });
-}
+
+
+formatDateAndTime = (stringDate) => {
+  const options = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit'
+  };
+  return new Date(stringDate).toLocaleDateString([], options);
+};
+
+formatDate = (stringDate) => {
+  const options = {
+    month: 'short',
+    day: 'numeric',
+  };
+  return new Date(stringDate).toLocaleDateString([], options);
+};
+
 
 render() {
-  console.log(this.props.match.params.id, 'this.props.id');
-  console.dir(this.props.events, 'this.props.events');
-  console.dir(this.props.currentUser, 'this.props.currentUser');
-  console.log(this.state);
+  console.log(this.props, "check if admin's obj exists");
   return (
     <React.Fragment>
       <Header/>
@@ -70,7 +99,7 @@ render() {
         </div>
         <div className='event'>
           <div className='event-avatar'>
-            <img src={eventCover} alt="event-cover" height = "250" width="300"/>
+            <img src={ eventCover || defaultEventCover } alt="event-cover"/>
           </div>
           <div className="edit-photo-icon" onClick={ this.handleToggleModal } ><PhotoIcon/></div>
           {
@@ -84,13 +113,13 @@ render() {
           }
           <hr/>
           <div className="event-short-desc">
-            <h2 className="event-date" color="black">{date}</h2>
-            <h2 className="event-title">{this.state.currentEvent.title}</h2>
+            <h4 className="event-date" color="black">{this.state.date}</h4>
+            <h4 className="event-title">{this.state.currentEvent.title}</h4>
           </div>
           <div className="long-desc">
             <div className="long-desc-date">
               <EventClockIcon className ="icon"/>
-              <span>{this.state.currentEvent.date}</span>
+              <span>{this.state.dateAndTime}</span>
             </div>
             <div className="long-desc-location">
               <EventLocationIcon className ="icon"/>
