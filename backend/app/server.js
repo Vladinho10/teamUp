@@ -74,20 +74,20 @@ app.get('/api/events/:type',(req,res)=>{
         let data = {};
         if(req.params.type == 'own_events'){
             Event.find({admins:{"$in":[req.user.id]}}).then((own_events)=>{
-                data.own_events = own_events;
+                data.events = own_events;
                 console.log('vvvvvvvvllllllllaaaaaadddddd',data);
                 res.json(data);    
             });
         }
         else if(req.params.type == 'suggested'){
             Event.find({players:{"$nin":[req.user.id]}}).then((suggested_events)=>{
-                data.suggested_events = suggested_events;
+                data.events = suggested_events;
                 res.json(data);
             });        
         }
         else if(req.param.type == 'going'){
             Event.find({players:{"$in":[req.user.id]}}).then((going_events)=>{
-                data.suggested_events = going_events;
+                data.events = going_events;
                 res.json(data);
             });
         }
