@@ -101,6 +101,9 @@ app.post('/api/dashboard',(req,res)=>{
                     Event.find({players:{"$nin":[req.user.id]}}).then((going_events)=>{
                         data.suggested = Object.assign([],going_events);
                         //console.log(data.suggested,'scakjvckasv');
+                        if(data.suggested.length == 0){
+                            res.json(data);
+                        }
                         for(let i=0;i<data.suggested.length;i++){
                             User.find({_id:data.suggested[i].admins[0]}).then((admin)=>{
                                 data.suggested[i] = Object.assign({},data.suggested[i]._doc);
@@ -116,6 +119,8 @@ app.post('/api/dashboard',(req,res)=>{
                     });
             });
         
+    }else{
+        res.sendStatus(401);
     }
  });
 
@@ -139,15 +144,17 @@ data.user = Object.assign({},user._doc);
             res.json({photo:'/images/users_images/'  + req.user_filename});
         });
     }
-    if(req.body.phone){
+    else if(req.user && req.body.phone){
         User.updateOne({_id:req.user.id},{$set:{phone:req.body.phone}}).then((status,data)=>{
                 res.json({phone:req.body.phone});
         });
     }
-    if(req.body.name){
+    else if(req.user && req.body.name){
         User.updateOne({_id:req.user.id},{$set:{name:req.body.name}}).then((status,data)=>{
                 res.json({name:req.body.name});
         });
+    }else{
+        res.sendStatus(401);
     }
  });
 
