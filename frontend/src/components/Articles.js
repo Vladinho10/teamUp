@@ -30,41 +30,18 @@ class WrappedArticles extends Component {
   };
 
   render() {
-    console.log(this.props, 'this.props in Article');
-    const tempArray = [
-      {
-        title: 22,
-        picSrc: '',
-        desc: `Here must be a description.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua`,
-        going: 15,
-        missing: 3,
-        dateTime: '07.07.2027',
-        localtion: 'Vardan Mamikonyan'
-      },
-      {
-        title: 22,
-        picSrc: './images/favicon.png',
-        desc: `Here must be a description.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua`,
-        going: 15,
-        missing: 3,
-        dateTime: '07.07.2027',
-        localtion: 'Vardan Mamikonyan'
-      }
-    ];
+    // console.log('this.props in Article', this.props);
     let { events } = this.props;
-    console.log(events);
+    // let { own_events } = this.props;
+    // console.log('events', events);
     events = events || [];
-    console.log('events[events.length - 1]');
+    // console.log('events[events.length - 1]');
     return (
       events.map((el, i, arr) => {
         return (
           <article key={el._id || i} a={this.props} onClick={e => this.goToEventPage(e, el._id)} className='eventArticle'>
             <div className='event-photo'>
-              <img className='event-photo__img' src={el.photo || 'default.jpg'} alt='Event Photo' />
+              <img className='event-photo__img' src={el.photo || './images/default.jpg'} alt='Event Photo' />
             </div>
             <div className='event-container'>
               <header className='event-container__header'>
@@ -100,8 +77,11 @@ class WrappedArticles extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    events: state.userData.events
+    // own_events: state.own_events.events,
+    states: state.a
+    // events: state.userData.suggested  };
   };
 };
+
 const Articles = connect(mapStateToProps)(WrappedArticles);
 export default withRouter(Articles);

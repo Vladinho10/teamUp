@@ -99,7 +99,7 @@ class UserAvatar extends Component {
     let handleEditPhoneNumber;
     // let src;
     // console.log(this.state, 'state');
-    console.log(this.props, 'proooooooooopssss userAvatar');
+    // console.log(this.props, 'proooooooooopssss userAvatar');
     if (this.state.addPhone) {
       handlePhoneNumber = <form className="phone-form" onSubmit={this.handleSavePhone} method="POST">
         <input type="text" name="phone" defaultValue={this.props.user.phone} />

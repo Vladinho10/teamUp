@@ -53,7 +53,7 @@ class Header extends Component {
                 <NavLink role="link" to="/notifications" activeClassName="navbar__link navbar__link--is-active" exact={true}>Notifications</NavLink>
               </li>
               <li className="navbar__item">
-                <NavLink role="link" to="/" activeClassName="navbar__link navbar__link--is-active">Logout</NavLink>
+                <a role="link" href="/logout" ClassName="navbar__link navbar__link--is-active">Logout</a>
               </li>
             </ul>
           </nav>
