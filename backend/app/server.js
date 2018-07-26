@@ -99,9 +99,20 @@ app.post('/api/dashboard',(req,res)=>{
             User.findOne({_id:req.user.id}).then((user)=>{
                 data.user = Object.assign({},user._doc);
                     Event.find({players:{"$nin":[req.user.id]}}).then((going_events)=>{
-                        data.suggested = going_events;
-                        console.log(data);
-                        res.json(data);
+                        data.suggested = Object.assign([],going_events);
+                        //console.log(data.suggested,'scakjvckasv');
+                        for(let i=0;i<data.suggested.length;i++){
+                            User.find({_id:data.suggested[i].admins[0]}).then((admin)=>{
+                                data.suggested[i] = Object.assign({},data.suggested[i]._doc);
+                                data.suggested[i].admins = admin;
+                                //console.log(admin,'admin');
+                                if( i == data.suggested.length-1 ){
+                                    //console.log(data.suggested[i].admins[0],'<------>');
+                                    res.json(data);     
+                                }
+                            });
+                        }
+                      
                     });
             });
         
