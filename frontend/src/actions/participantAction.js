@@ -33,7 +33,7 @@ const deleteParticipantSuccess = participant => ({
 });
 
 export const deleteParticipant = (ev_id) => {
-  console.log(ev_id, 'event_id');
+  console.log(ev_id, 'ev_id');
   return (dispatch) => {
     const data = {
       ev_id,
