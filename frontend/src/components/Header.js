@@ -29,7 +29,6 @@ class Header extends Component {
   }
 
   render() {
-    console.log(this.state.query);
     return (
       <header className="header">
         <div className='row'>
