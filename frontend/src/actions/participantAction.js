@@ -20,9 +20,9 @@ export const addParticipant = (ev_id) => {
     fetch('/api/add_or_delete_participant', options)
       .then((res) => {
         return res.json();
-      }).then((participant) => {
-        console.log(participant, 'this participant is added');
-        return dispatch(addParticipantSuccess(participant));
+      }).then((participants_count) => {
+        console.log(participants_count, 'participants_count');
+        return dispatch(addParticipantSuccess(participants_count));
       }).catch(err => console.log(err));
   };
 };
@@ -49,9 +49,9 @@ export const deleteParticipant = (ev_id) => {
     fetch('/api/add_or_delete_participant', options)
       .then((res) => {
         return res.json();
-      }).then((participant) => {
-        console.log(participant, 'this participant is removed');
-        return dispatch(deleteParticipantSuccess(participant));
+      }).then((participants_count) => {
+        console.log(participants_count, 'participants_count');
+        return dispatch(deleteParticipantSuccess(participants_count));
       }).catch(err => console.log(err));
   };
 };
