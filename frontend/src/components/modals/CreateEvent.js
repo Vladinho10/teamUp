@@ -122,7 +122,7 @@ class CreateEventModal extends Component {
                 </div> : null}
               </div>
               <div className="create-event__submit-form">
-                <button className="btn btn--cancel" onClick={this.props.handleToggleModal}>Cancel</button>
+                <button className="btn btn--cancel" type="button" onClick={this.props.handleToggleModal}>Cancel</button>
                 <button className="btn btn--create">Create Event</button>
               </div>
             </form>
