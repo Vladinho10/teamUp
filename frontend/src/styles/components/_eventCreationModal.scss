@@ -69,6 +69,12 @@
             height: 100%;
             display: block;
         }
+        & .rc-time-picker-input {
+            height: 100%;
+            font-size: 1.6rem;
+            text-align: center;
+            padding: 1.4rem .7rem;
+        }
     }
 
     &__image-preview {
@@ -140,4 +146,9 @@
             margin-left: 2rem;
         }
     }
+}
+
+.rc-time-picker-panel-input {
+    font-size: 1.6rem !important;
+    text-align: center !important;
 }

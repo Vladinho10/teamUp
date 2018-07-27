@@ -3,7 +3,6 @@ import Modal from 'react-modal';
 import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 import TimePicker from 'rc-time-picker';
-// import TimePicker from 'react-times';
 import { PlusIcon, DeleteIcon } from '../SvgIcons';
 
 
@@ -22,12 +21,7 @@ class CreateEventModal extends Component {
       this.setState(() => ({ calendarFocused: focused }));
     };
 
-    // onTimeChange = ({ hour, minute }) => {
-    //   this.setState({ currentTime: moment().format(`${hour}${minute}`) });
-    // }
-
     onTimeChange = (currentTime) => {
-      console.log('test');
       this.setState({ currentTime });
     }
 
@@ -84,22 +78,10 @@ class CreateEventModal extends Component {
                 />
                 <TimePicker
                   id="timepicker"
-                  // showTimezone={true}
-                  // withoutIcon={false}
-                  // colorPalette="light"
                   time={this.state.currentTime}
                   defaultValue={this.state.currentTime}
-                  inputName="timepicker"
-                  // theme="classic"
-                  // showSecond={true}
-                  // timeFormat='HH:MM'
-                  // minuteStep={5}
-                  // timeConfig={{
-                  //   from: '08:00 PM',
-                  //   to: '08:00 AM',
-                  //   step: 15,
-                  //   unit: 'minute'
-                  // }}
+                  name="timepicker"
+                  showSecond={false}
                   style={{ width: 100 }}
                   showSecond={true}
                   className="create-event__timepicker"
