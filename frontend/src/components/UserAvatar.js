@@ -14,7 +14,7 @@ class UserAvatar extends Component {
     addPhone: null,
     selectedFile: null,
     imageSrc: null,
-    savedImageSrc: null,
+    // savedImageSrc: null,
     show: undefined
   }
 
@@ -86,7 +86,7 @@ class UserAvatar extends Component {
 
   handleFileUpload = () => {
     this.handleToggleModal();
-    this.setState(prevState => ({ savedImageSrc: prevState.imageSrc }));
+    // this.setState(prevState => ({ savedImageSrc: prevState.imageSrc }));
     const fd = new FormData();
     fd.append('avatar', this.state.selectedFile);
     this.props.dispatch(editUser(fd));
@@ -97,7 +97,7 @@ class UserAvatar extends Component {
     // console.log(this.props.userInfoState.phoneNumber, 'userAvatar phone NUmber');
     let handlePhoneNumber;
     let handleEditPhoneNumber;
-    let src;
+    // let src;
     // console.log(this.state, 'state');
     // console.log(this.props, 'proooooooooopssss userAvatar');
     if (this.state.addPhone) {
@@ -121,18 +121,18 @@ class UserAvatar extends Component {
       </React.Fragment>;
     }
 
-    if (this.state.savedImageSrc !== null) {
-      src = this.state.savedImageSrc;
-    } else {
-      src = this.props.user.photo;
-    }
+    // if (this.state.savedImageSrc !== null) {
+    //   src = this.state.savedImageSrc;
+    // } else {
+    //   src = this.props.user.photo;
+    // }
     return (
       <React.Fragment>
         <div className="user-avatar">
           <div className="user-avatar__logo-box">
             {
               this.props.user.photo
-                ? <NavLink className="user-avatar__link" to="/"><img className="user-avatar__logo" src={src} alt="User Photo" width="200" height="300" /></NavLink>
+                ? <NavLink className="user-avatar__link" to="/"><img className="user-avatar__logo" src={this.props.user.photo} alt="User Photo" width="200" height="300" /></NavLink>
                 : <NavLink className="user-avatar__link" to="/"><img className="user-avatar__logo" src={defaultPhoto} alt="User Photo" width="200" height="300" /></NavLink>
             }
             <div className="user-avatar__add-photo" onClick={this.handleToggleModal}>
