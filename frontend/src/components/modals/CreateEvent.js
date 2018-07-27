@@ -56,7 +56,7 @@ class CreateEventModal extends Component {
               </div>
 
               <div className="create-event__types">
-                <select name="event-type" className="create-event-select">
+                <select name="event_type" className="create-event-select">
                   <option selected defaultValue="sport">Sport</option>
                   <option value="meeting">Meeting</option>
                   <option value="seminar">Seminar</option>
