@@ -227,12 +227,16 @@ data.user = Object.assign({},user._doc);
     if(req.user){
         if(req.body.action == 'add')
         {
+            let data;
             Event.findOneAndUpdate({_id:req.body.ev_id,players:{"$nin":[req.user.id]}},{$push:{players:req.user.id}},{new:true}).then((event)=>{
+                data = event;
                 User.updateOne({_id:req.user.id},{$push:{attending_events:req.body.ev_id}}).then((status1)=>{
-                    if(event){
-                        res.json({max_members:event.players.length});
+                    if(data){
+                        console.log(data.players.length);
+                        res.json({max_members:data.players.length});
                     }else{
-                        res.json({err:"event object not find"});
+                        
+                        res.json({err:"event object not found"});
                     }
                     
                 })
