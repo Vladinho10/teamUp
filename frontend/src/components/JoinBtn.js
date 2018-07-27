@@ -10,8 +10,12 @@ class JoinBtn extends React.Component {
     handleChange = () => {
       this.setState({ isGoing: !this.state.isGoing }, () => {
         if (this.state.isGoing) {
-          this.props.join();
-        } else this.props.unjoin();
+          this.props.join(this.props.event_id);
+          this.props.getNumberOfPlayers(this.props.participants_count);
+        } else {
+          this.props.unjoin(this.props.event_id);
+          this.props.getNumberOfPlayers(this.props.participants_count);
+        }
       });
     }
 
@@ -30,16 +34,16 @@ class JoinBtn extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    events: state.userData.events, // participantin avelacnel events.players-i mej
-    currentUser: state.userData.user // avelacnel et eventy user-i going []-i mej
+    events: state.events, // participantin avelacnel events.players-i mej
+    currentUser: state.userData.user, // avelacnel et eventy user-i going []-i mej
+    participants_count: state.participants_count
   };
 };
 
-
 const mapDispatchToProps = (dispatch) => {
   return {
-    join: id => dispatch(addParticipant(id)),
-    unjoin: id => dispatch(deleteParticipant(id))
+    join: ev_id => dispatch(addParticipant(ev_id)),
+    unjoin: ev_id => dispatch(deleteParticipant(ev_id)),
   };
 };
 

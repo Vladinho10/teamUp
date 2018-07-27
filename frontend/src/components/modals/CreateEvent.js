@@ -61,6 +61,18 @@ class CreateEventModal extends Component {
                 <input type="number" id="count" name="event_members_count" min="0" defaultValue="0" />
               </div>
 
+              <div className="create-event__types">
+                <select name="event-type" className="create-event-select">
+                  <option selected value="sport">Sport</option>
+                  <option value="meeting">Meeting</option>
+                  <option value="seminar">Seminar</option>
+                  <option value="travel">Travel</option>
+                  <option value="entertainment">Entertainment</option>
+                  <option value="family">Family</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
               <div className="create-event__datepicker">
                 <SingleDatePicker
                   id="datepicker"

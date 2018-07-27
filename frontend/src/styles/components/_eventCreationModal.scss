@@ -48,6 +48,15 @@
 
     }
 
+    &__types {
+        & .create-event-select {
+            width: 100%;
+            padding: .8rem .5rem;
+            font-family: inherit;
+            font-size: 1.6rem;
+        }
+    }
+
     &__datepicker {
         & .SingleDatePicker {
             flex-grow: 1;

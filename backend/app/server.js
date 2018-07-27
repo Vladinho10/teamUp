@@ -98,6 +98,14 @@ app.get('/api/events/:type',(req,res)=>{
         
     }
  });
+app.get('/logout',(req,res)=>{
+    if(req.user){
+        console.log(req.user,'before destroy');
+        req.logout();
+        console.log(req.user,'after destroy');
+    }
+    res.redirect('/');
+});
 
 app.get('/*', (req,res) => {
     //console.log(req.user.id);
@@ -215,17 +223,51 @@ data.user = Object.assign({},user._doc);
     // res.json({done: "truee"})
  });
 
- app.post('/api/add_or_delete_participant/:ev_id/:action',(req,res)=>{
+ app.post('/api/add_or_delete_participant',(req,res)=>{
     if(req.user){
-        if(req.params.action == 'add')
+        if(req.body.action == 'add')
         {
-            Event.updateOne({_id:req.params.ev_id},{$push:{players:req.user.id}}).then((err,status)=>{
-                User.updateOne({_id:req.user.id},{$push:{attending_events:req.params.ev_id}}).then((err1,status1)=>{
-                    res.json({st1:status,st2:status1});
+            Event.findOneAndUpdate({_id:req.body.ev_id,players:{"$nin":[req.user.id]}},{$push:{players:req.user.id}},{new:true}).then((event)=>{
+                User.updateOne({_id:req.user.id},{$push:{attending_events:req.body.ev_id}}).then((status1)=>{
+                    if(event){
+                        res.json({max_members:event.players.length});
+                    }else{
+                        res.json({err:"event object not find"});
+                    }
+                    
                 })
                 
             })
         }
+    }else{
+        res.sendStatus(401);
     }
+ });
+
+ app.post('/api/search_results/:keyword',(req,res)=>{
+     //if(req.user){
+        let keyword = req.params.keyword;
+        console.log(keyword);
+        console.log(req.user.id);
+        let search_result = {};
+        Event.find({title:keyword,players:{"$nin":[req.user.id]}}).then((events)=>{
+            //console.log(events);
+            search_result.events = Object.assign([],events);
+            search_result.events = search_result.events.filter((el) => {
+                return el.admins[0] != req.user.id
+            });
+            //console.log(search_result);
+            User.find({name:keyword,_id:{"$ne":req.user.id}}).then((users)=>{
+                console.log(users);
+                search_result.users = Object.assign([],users);
+                console.log(search_result);
+                res.json(search_result);
+            });
+        });
+     //}else{
+      //   res.sendStatus(401);
+    // }
+        
+    
  });
 module.exports = app;
