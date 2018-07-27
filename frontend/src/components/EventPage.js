@@ -5,8 +5,6 @@ import { EventClockIcon, EventLocationIcon, PhotoIcon } from './SvgIcons';
 import ModalComponent from './ModalComponent';
 import UploadModal from './modals/UploadPhoto';
 
-const eventCover = require('../../dist/images/events_images/event1532515541293.jpg');
-
 const defaultEventCover = require('../../dist/images/eventCover.jpg'); // this.state.currentEvent.photo
 
 const adminNames = 'Admin'; //  this.state.currentEvent.admins[0];
@@ -28,6 +26,7 @@ class EventPage extends Component {
     const allEvents = this.props.events;
     const currentEvent = allEvents.find(event => event._id === currentEvent_id);
     const dateAndTime = this.formatDateAndTime(currentEvent.date);
+    console.log(dateAndTime, 'dateAndTime');
     const date = this.formatDate(currentEvent.date);
 
     this.setState({
@@ -74,12 +73,12 @@ formatDateAndTime = (stringDate) => {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit'
+    hour: 'numeric',
+    minute: 'numeric'
   };
   return new Date(stringDate).toLocaleDateString([], options);
 };
+
 
 formatDate = (stringDate) => {
   const options = {
