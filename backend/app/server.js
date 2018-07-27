@@ -10,6 +10,7 @@ const fs = require('fs');
 const session = require('express-session');
 const cors = require('cors');
 const passport = require('./passport');
+const utf8 = require('utf8');
 const {check,validationResult} = require('express-validator/check');
 const {User,Event} = require('./model_crud');
 
@@ -248,29 +249,29 @@ data.user = Object.assign({},user._doc);
     }
  });
 
- app.post('/api/search_results/:keyword',(req,res)=>{
-     //if(req.user){
+ app.post('/api/search_results/:keyword',(req,res)=>{  //use encodeURIComponent
+     if(req.user){
         let keyword = req.params.keyword;
-        console.log(keyword);
-        console.log(req.user.id);
+        //console.log(req.user.id);
         let search_result = {};
-        Event.find({title:keyword,players:{"$nin":[req.user.id]}}).then((events)=>{
+        let user_id = req.user.id;
+        Event.find({title:{"$regex":'^'+keyword,"$options":'i'},players:{"$nin":[user_id]}}).then((events)=>{
             //console.log(events);
             search_result.events = Object.assign([],events);
             search_result.events = search_result.events.filter((el) => {
-                return el.admins[0] != req.user.id
+                return el.admins[0] != user_id
             });
             //console.log(search_result);
-            User.find({name:keyword,_id:{"$ne":req.user.id}}).then((users)=>{
+            User.find({name:{"$regex":'^'+keyword,"$options":'i'},_id:{"$ne":user_id}}).then((users)=>{
                 console.log(users);
                 search_result.users = Object.assign([],users);
                 console.log(search_result);
                 res.json(search_result);
             });
         });
-     //}else{
-      //   res.sendStatus(401);
-    // }
+     }else{
+         res.sendStatus(401);
+     }
         
     
  });
