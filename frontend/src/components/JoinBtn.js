@@ -20,6 +20,8 @@ class JoinBtn extends React.Component {
     }
 
     render() {
+      console.log(this.props.currentUser, 'currentUser');
+      console.log(this.props.events, 'events');
       return (
         <div>
           {
@@ -33,6 +35,7 @@ class JoinBtn extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state, 'state inJoinBtns mapStateToProps');
   return {
     events: state.events, // participantin avelacnel events.players-i mej
     currentUser: state.userData.user, // avelacnel et eventy user-i going []-i mej
