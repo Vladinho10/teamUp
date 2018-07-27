@@ -227,8 +227,10 @@ data.user = Object.assign({},user._doc);
     if(req.user){
         if(req.body.action == 'add')
         {
-            Event.updateOne({_id:req.body.ev_id},{$push:{players:req.user.id}}).then((err,status)=>{
-                User.updateOne({_id:req.user.id},{$push:{attending_events:req.body.ev_id}}).then((err1,status1)=>{
+            Event.updateOne({_id:req.body.ev_id},{$push:{players:req.user.id}}).then((status)=>{
+                
+                User.updateOne({_id:req.user.id},{$push:{attending_events:req.body.ev_id}}).then((status1)=>{
+                    
                     res.json({st1:status,st2:status1});
                 })
                 
