@@ -25,10 +25,10 @@ class WrappedUserEvents extends Component {
     return (
       <section sec={this.props} className='events-section'>
         <div className="navbar">
-          <ul className="navbar__list">
-            <li className="navbar__item"><button onClick={this.handleGetSuggestedEvents} className="btn">Suggested</button></li>
-            <li className="navbar__item"><button onClick={this.handleGetOwnEvents} className="btn">Own</button></li>
-            <li className="navbar__item"><button onClick={this.handleGetAttendingEvents} className="btn">Attending</button></li>
+          <ul className="navbar__listZ">
+            <li className="navbar__itemZ"><button onClick={this.handleGetSuggestedEvents} className="navbar__item__button">Suggested</button></li>
+            <li className="navbar__itemZ"><button onClick={this.handleGetOwnEvents} className="navbar__item__button">Own</button></li>
+            <li className="navbar__itemZ"><button onClick={this.handleGetAttendingEvents} className="navbar__item__button">Attending</button></li>
           </ul>
         </div>
         <div>
