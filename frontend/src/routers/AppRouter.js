@@ -13,7 +13,7 @@ const AppRouter = () => (
         <Route path="/" component={EventLoginPage} exact />
         <Route path="/dashboard" component={EventDashboardPage} />
         <Route path='/eventpage/:id' component={EventPage} />
-        <Route path='/search/:search-filter/:query' component={SearchResultsPage} />
+        <Route path='/search/:search/' component={SearchResultsPage} />
         <Route component={NotFoundPage} />
       </Switch>
     </React.Fragment>
