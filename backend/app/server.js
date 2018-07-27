@@ -234,6 +234,8 @@ data.user = Object.assign({},user._doc);
                 
             })
         }
+    }else{
+        res.sendStatus(401);
     }
  });
 
