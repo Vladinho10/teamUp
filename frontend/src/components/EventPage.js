@@ -99,7 +99,7 @@ render() {
         </div>
         <div className='event'>
           <div className='event-avatar'>
-            <img src={ eventCover || defaultEventCover } alt="event-cover"/>
+            <img src={ this.state.currentEvent.photo || defaultEventCover } alt="event-cover"/>
           </div>
           <div className="edit-photo-icon" onClick={ this.handleToggleModal } ><PhotoIcon/></div>
           {

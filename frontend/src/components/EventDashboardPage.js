@@ -16,7 +16,8 @@ class EventDashboardPage extends Component {
     // phoneNumber: null,
     imagePreviewSrc: '',
     selectedFile: null,
-    show: null,
+    show: false,
+    prevShow: this.prevShow,
     loaded: false
   }
 
@@ -36,7 +37,7 @@ class EventDashboardPage extends Component {
       this.setState(prevState => ({ loaded: !prevState.loaded }));
       // this.setState({
       //   userName: DataObj.user.name,
-      //   imageSrc: DataObj.user.photo,
+      //   imageSrc: DataObj.user.photo,handleEventFormSubmit
       //   phoneNumber: DataObj.user.phone
       // });
     }).catch(err => console.log(err));
@@ -72,6 +73,9 @@ class EventDashboardPage extends Component {
     }
 
     const data = new FormData(event.target);
+    for (var key of data.keys()) {
+      console.log(key); 
+   }
     this.props.dispatch(addEvent(data));
   }
 

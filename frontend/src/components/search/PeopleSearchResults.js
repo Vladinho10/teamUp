@@ -8,7 +8,7 @@ const PeopleSearchResults = props => (
     <section className="filter-results">
       <h2 className="filter-results__heading">Filter results</h2>
       <div className="filter-results__filters">
-        <NavLink>
+        <NavLink to="/">
           <label for="event-member">Event member</label>
           <button id="event-member"><RadioButton /></button>
         </NavLink>
@@ -23,7 +23,6 @@ const PeopleSearchResults = props => (
           </h3>
         </header>
         <section className="people-results__container">
-    
         </section>
       </section>
     </section>

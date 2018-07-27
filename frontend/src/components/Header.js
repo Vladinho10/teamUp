@@ -38,12 +38,12 @@ class Header extends Component {
               <NavLink to="/" role="link"><img src={logo} alt="logo" width="190" height="80" className="navbar__logo" role="logo" /></NavLink>
             </p>
             <div className="navbar__search-box">
-              <form className="navbar__form search-form">
+              <div className="navbar__form search-form">
                 <div className="icon-wrapper">
                   <input type="text" name="eventSearch" placeholder="Search" className="search-form__input" aria-label='Enter search text' onChange={this.handleInputChange}/>
                   <SearchIcon className="search__icon" role="icon" />
                 </div>
-              </form>
+              </div>
               <div className="search-dropdown">
                 {this.state.dropdown ? <SearchDropdown query={this.state.query} /> : null}
               </div>
@@ -53,7 +53,7 @@ class Header extends Component {
                 <NavLink role="link" to="/notifications" activeClassName="navbar__link navbar__link--is-active" exact={true}>Notifications</NavLink>
               </li>
               <li className="navbar__item">
-                <a role="link" href="/logout" ClassName="navbar__link navbar__link--is-active">Logout</a>
+                <a role="link" href="/logout" className="navbar__link navbar__link--is-active">Logout</a>
               </li>
             </ul>
           </nav>
