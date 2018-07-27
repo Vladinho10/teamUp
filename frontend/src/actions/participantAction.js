@@ -3,14 +3,15 @@ const addParticipantSuccess = participant => ({
   participant
 });
 
-export const addParticipant = (event_id) => {
-  console.log(event_id, 'event_id');
+export const addParticipant = (ev_id) => {
+  console.log(ev_id, 'event_id');
   return (dispatch) => {
     const data = {
-      event_id,
-      key: 'add'
+      ev_id,
+      action: 'add'
     };
     const options = {
+      credentials: 'include',
       method: 'POST',
       body: JSON.stringify(data),
       headers: { 'Content-type': 'application/json' }
@@ -31,14 +32,15 @@ const deleteParticipantSuccess = participant => ({
   participant
 });
 
-export const deleteParticipant = (event_id) => {
-  console.log(event_id, 'event_id');
+export const deleteParticipant = (ev_id) => {
+  console.log(ev_id, 'event_id');
   return (dispatch) => {
     const data = {
-      event_id,
-      key: 'delete'
+      ev_id,
+      action: 'delete'
     };
     const options = {
+      credentials: 'include',
       method: 'POST',
       body: JSON.stringify(data),
       headers: { 'Content-type': 'application/json' }

@@ -10,7 +10,6 @@ class JoinBtn extends React.Component {
     handleChange = () => {
       this.setState({ isGoing: !this.state.isGoing }, () => {
         if (this.state.isGoing) {
-          console.log(this.props, 'props in JoinBtn');
           this.props.join(this.props.event_id);
         } else this.props.unjoin(this.props.event_id);
       });
