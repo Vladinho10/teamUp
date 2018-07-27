@@ -223,25 +223,36 @@ data.user = Object.assign({},user._doc);
     // res.json({done: "truee"})
  });
 
- app.post('/api/add_or_delete_participant/:ev_id/:action',(req,res)=>{
+ app.post('/api/add_or_delete_participant',(req,res)=>{
     if(req.user){
         if(req.body.action == 'add')
         {
-            Event.updateOne({_id:req.body.ev_id},{$push:{players:req.user.id}}).then((err,status)=>{
-                User.updateOne({_id:req.user.id},{$push:{attending_events:req.body.ev_id}}).then((err1,status1)=>{
-                    res.json({st1:status,st2:status1});
+            let data;
+            Event.findOneAndUpdate({_id:req.body.ev_id,players:{"$nin":[req.user.id]}},{$push:{players:req.user.id}},{new:true}).then((event)=>{
+                data = event;
+                User.updateOne({_id:req.user.id},{$push:{attending_events:req.body.ev_id}}).then((status1)=>{
+                    if(data){
+                        console.log(data.players.length);
+                        res.json({max_members:data.players.length});
+                    }else{
+                        
+                        res.json({err:"event object not found"});
+                    }
+                    
                 })
                 
             })
         }
+    }else{
+        res.sendStatus(401);
     }
  });
 
  app.post('/api/search_results/:keyword',(req,res)=>{
-     if(req.user){
+     //if(req.user){
         let keyword = req.params.keyword;
         console.log(keyword);
-        console.log(req.body.id);
+        console.log(req.user.id);
         let search_result = {};
         Event.find({title:keyword,players:{"$nin":[req.user.id]}}).then((events)=>{
             //console.log(events);
@@ -257,9 +268,9 @@ data.user = Object.assign({},user._doc);
                 res.json(search_result);
             });
         });
-     }else{
-         res.sendStatus(401);
-     }
+     //}else{
+      //   res.sendStatus(401);
+    // }
         
     
  });

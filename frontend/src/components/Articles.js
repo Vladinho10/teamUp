@@ -20,6 +20,14 @@ class WrappedArticles extends Component {
     // this.value === 'Join' ? this.value = 'Unjoin' : this.value = 'Join';
   }
 
+  formatDate = (stringDate) => {
+    const options = {
+      month: 'short',
+      day: 'numeric',
+    };
+    return new Date(stringDate).toLocaleDateString([], options);
+  };
+
   goToEventPage = (e, id) => {
     console.log(id);
     if (!e.target.matches('.event-container__joinButton')) {
@@ -38,6 +46,7 @@ class WrappedArticles extends Component {
     // console.log('events[events.length - 1]');
     return (
       events.map((el, i, arr) => {
+        console.log(el);
         return (
           <article key={el._id || i} a={this.props} onClick={e => this.goToEventPage(e, el._id)} className='eventArticle'>
             <div className='event-photo'>
@@ -45,12 +54,13 @@ class WrappedArticles extends Component {
             </div>
             <div className='event-container'>
               <header className='event-container__header'>
-                <h3>{el.title || 'Let\'s play contact'}</h3>
+                <h4>{el.title || 'Let\'s play contact'}</h4>
               </header>
               <div className='event-container__desc'>
-                <p>{el.description.length > 140 ? `${el.description.slice(0, 140)}. . .` : el.description}</p>
-                <a className='event-container__desc-seeMore'>see more</a>
+                <p>{el.description.length > 80 ? `${el.description.slice(0, 80)}. . .` : el.description}
+                </p>
               </div>
+              <span className='event-container__desc-seeMore'>see more</span>
               <div className='event-container__eventInfo'>
                 <p>going </p>
                 <p>missing </p>
@@ -60,11 +70,11 @@ class WrappedArticles extends Component {
               </div>
               <footer className='event-container__footer'>
                 <div className='event-container__footer-date'>
-                  {el.date || '07.07.2007'}
+                  {this.formatDate(el.date) || 'Date is not defined'}
                 </div>
                 <div className='event-container__footer-place'>
                   <LocationIcon role='icon' />
-                  {el.localtion || 'Al. Spandaryan 12'}
+                  {el.location || 'location is not found'}
                 </div>
               </footer>
             </div>

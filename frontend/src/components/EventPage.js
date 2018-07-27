@@ -32,6 +32,7 @@ class EventPage extends Component {
 
     this.setState({
       currentEvent,
+      currentEvent_id,
       dateAndTime,
       date
     });
@@ -90,7 +91,6 @@ formatDate = (stringDate) => {
 
 
 render() {
-  console.log(this.props, "check if admin's obj exists");
   return (
     <React.Fragment>
       <Header/>
@@ -99,7 +99,7 @@ render() {
         </div>
         <div className='event'>
           <div className='event-avatar'>
-            <img src={ eventCover || defaultEventCover } alt="event-cover"/>
+            <img src={ this.state.currentEvent.photo || defaultEventCover } alt="event-cover"/>
           </div>
           <div className="edit-photo-icon" onClick={ this.handleToggleModal } ><PhotoIcon/></div>
           {
@@ -126,7 +126,7 @@ render() {
               <span>{this.state.currentEvent.location}</span>
             </div>
             <br/>
-            { <ModalComponent/> }
+            { <ModalComponent currentEvent_id={this.state.currentEvent_id}/> }
             <br/>
             <div className="long-desc-text">
               <p className="red-subtitles">Description</p>
@@ -143,7 +143,7 @@ render() {
 
 const mapStateToProps = (state) => {
   return {
-    events: state.userData.events,
+    events: state.events,
     currentUser: state.userData.user
   };
 };

@@ -48,7 +48,7 @@ export const getOwnEvents = () => {
 
 const getAttendingEventsSuccess = data => ({
   type: 'ATTENDING_EVENTS',
-  attendingEventsArr: data
+  attendingEventsObj: data
 });
 
 export const getAttendingEvents = () => {
@@ -62,11 +62,11 @@ export const getAttendingEvents = () => {
       }
     };
     const f = fetch('/api/events/attending', options);
-    console.log(9999999999);
+    console.log(999);
     f.then((res) => {
       return res.json();
     }).then((DataArr) => {
-      console.log('DataObj in actions', DataArr);
+      console.log('DataObj in actions attending', DataArr);
       return dispatch(getAttendingEventsSuccess(DataArr));
     }).catch(err => console.log(err));
   };

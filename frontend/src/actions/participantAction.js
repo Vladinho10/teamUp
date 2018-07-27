@@ -3,21 +3,26 @@ const addParticipantSuccess = participant => ({
   participant
 });
 
-export const addParticipant = (event_id) => {
+export const addParticipant = (ev_id) => {
+  console.log(ev_id, 'event_id');
   return (dispatch) => {
-    const _id = { event_id };
+    const data = {
+      ev_id,
+      action: 'add'
+    };
     const options = {
+      credentials: 'include',
       method: 'POST',
-      body: JSON.stringify(_id),
+      body: JSON.stringify(data),
       headers: { 'Content-type': 'application/json' }
     };
 
-    fetch('/api/add_participant', options)
+    fetch('/api/add_or_delete_participant', options)
       .then((res) => {
         return res.json();
-      }).then((participant) => {
-        console.log(participant, 'this participant is added');
-        return dispatch(addParticipantSuccess(participant));
+      }).then((participants_count) => {
+        console.log(participants_count, 'participants_count');
+        return dispatch(addParticipantSuccess(participants_count));
       }).catch(err => console.log(err));
   };
 };
@@ -27,21 +32,26 @@ const deleteParticipantSuccess = participant => ({
   participant
 });
 
-export const deleteParticipant = (event_id) => {
+export const deleteParticipant = (ev_id) => {
+  console.log(ev_id, 'ev_id');
   return (dispatch) => {
-    const _id = { event_id };
+    const data = {
+      ev_id,
+      action: 'delete'
+    };
     const options = {
-      method: 'DELETE',
-      body: JSON.stringify(_id),
+      credentials: 'include',
+      method: 'POST',
+      body: JSON.stringify(data),
       headers: { 'Content-type': 'application/json' }
     };
 
-    fetch('/api/delete_participant', options)
+    fetch('/api/add_or_delete_participant', options)
       .then((res) => {
         return res.json();
-      }).then((participant) => {
-        console.log(participant, 'this participant is removed');
-        return dispatch(deleteParticipantSuccess(participant));
+      }).then((participants_count) => {
+        console.log(participants_count, 'participants_count');
+        return dispatch(deleteParticipantSuccess(participants_count));
       }).catch(err => console.log(err));
   };
 };

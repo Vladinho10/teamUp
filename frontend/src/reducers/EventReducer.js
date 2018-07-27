@@ -11,8 +11,8 @@ export default (state = [], action) => {
       console.log('action.ownEventsObj.own_events', action.ownEventsObj);
       return action.ownEventsObj.events;
     case 'ATTENDING_EVENTS':
-      console.log('action.attendingEventsArr', action.attendingEventsArr);
-      return action.attendingEventsArr;
+      console.log('action.attendingEventsObj', action.attendingEventsObj);
+      return action.attendingEventsObj.events;
     case 'ADD_EVENT':
       return [...state, action.event];
     // case 'EDIT_EVENT':

@@ -3,14 +3,13 @@ import Modal from 'react-modal';
 import UserArticle from './UserArticle';
 import JoinBtn from './JoinBtn';
 
-const participents = '17'; // this.props.event.participants.length
-
 class ModalComponent extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      modalIsOpen: false
+      modalIsOpen: false,
+      participants: 0
     };
 
     this.openModal = this.openModal.bind(this);
@@ -25,12 +24,20 @@ class ModalComponent extends React.Component {
     this.setState({ modalIsOpen: false });
   }
 
+  getNumberOfPlayers = (num) => {
+    this.setState({ participants: num });
+  }
+
   render() {
+    console.log(this.state, 'state in ModalComponent');
     return (
       <div>
         <section className='btn-section'>
-          <button onClick={this.openModal} className="participants-open-btn"> {participents} people are going </button>
-          <JoinBtn/>
+          <button onClick={this.openModal} className="participants-open-btn"> {this.state.participants} people are going </button>
+          <JoinBtn
+            event_id={this.props.currentEvent_id}
+            getNumberOfPlayers={this.getNumberOfPlayers}
+          />
         </section>
         <Modal
           isOpen={this.state.modalIsOpen}
