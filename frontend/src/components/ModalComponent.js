@@ -30,7 +30,7 @@ class ModalComponent extends React.Component {
       <div>
         <section className='btn-section'>
           <button onClick={this.openModal} className="participants-open-btn"> {participents} people are going </button>
-          <JoinBtn/>
+          <JoinBtn event_id={this.props.currentEvent_id} />
         </section>
         <Modal
           isOpen={this.state.modalIsOpen}
