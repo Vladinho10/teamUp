@@ -1,0 +1,117 @@
+.profile{
+    position: relative;
+    width:280px;
+    left: 10%;
+}
+.profile_pic {
+    width: 200px;
+    margin:0 auto;
+    padding-top: 5%;
+    
+}
+.profile_pic img{
+    border:1px solid black;
+    border-radius: 5%;
+    
+}
+.profile_name{
+    width: 200px;
+    margin:0 auto;
+    padding-top: 5%;
+    text-align: center;
+    border:3px solid black;
+    border-radius: 10%;
+    background-color: rgb(104, 50, 9);
+    color:white;
+    box-shadow: 3px 5px darkslategray;
+}
+.profile_event{
+    padding-top: 15%;
+    display:flex;
+}
+
+.profile_events_frame{
+    width:50%;
+    position: absolute;
+    left:40%;
+    top:10%;
+}
+.profile_event_left{
+    height:220px;
+    width:35%;
+    border:3px solid black;
+    border-radius: 5%;
+    box-shadow: 7px 7px #232326;
+    transform: rotate(0deg);
+    background-color: #dba539;
+}
+
+.profile_event_left img{
+    height: 150px;
+    width: 150px;
+    border-radius: 5px;
+    border:2px solid black;
+}
+.profile_event_img{
+    width:150px;
+    margin:0 auto;
+    padding-top: 10px;
+    
+}
+.profile_event_title{
+    min-width:150px;
+    margin:0 auto;
+    text-align: center;
+    border:2px solid black;
+    border-radius:5%;
+    background-color: #2d4eaf;
+    color: whitesmoke;
+}
+.profile_event_right{
+    width:50%;
+    height:220px;
+    border:1px solid black;
+    position: relative;
+    left:4%;
+    border-radius: 5%;
+    box-shadow: 8px 5px #232326;
+    background-color:  #e0e3e5;
+}
+.profile_event_day{
+    border:2px solid black;
+    color:red;
+    border-radius: 10%;
+    width:40%;
+    text-align: center;
+    background-color: #2d4eaf;
+    position: relative;
+    left:65%;
+    top:18%;
+    transform: rotate(45deg);
+}
+.profile_event_time{
+    font-size: 25px;
+    color:white;
+    width: 35%;
+    background-color: #2d4eaf;
+    text-align: center;
+    border-radius: 10%;
+    margin: auto 0;
+    position: relative;
+    top:-10%;
+}
+.profile_event_loc{
+    width:60%;
+    background-color: #2d4eaf;
+    font-size: 20px;
+    color:white;
+    text-align: center;
+    border-radius: 10%;
+}
+.profile_event_loc,.profile_event_time{
+    border:2px solid black;
+    position: relative;
+    left:5%;
+    box-shadow: 2px 2px #232326;
+}
+
