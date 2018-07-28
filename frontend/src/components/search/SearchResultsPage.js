@@ -8,13 +8,6 @@ import EventsSearchResults from './EventsSearchResults';
 // import { EventClockIcon, EventLocationIcon, PhotoIcon } from './SvgIcons';
 
 class SearchResultsPage extends Component {
-  state = {
-  }
-
-  componentDidMount = () => {
-
-  }
-
   render() {
     console.log(this.props, 'searchresultspage');
     return (

@@ -177,6 +177,25 @@
                         }
                     }
                 }
+
+                & .see-all-results {
+                    
+
+                    &__link,
+                    &__link:link,
+                    &__link:visited {
+                        display: block;
+                        padding: 1.5rem;
+                        font-size: 2.2rem;
+                        color: #365899;
+                        text-align: center;
+                        text-transform: capitalize;
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                }
             }
         }
     }

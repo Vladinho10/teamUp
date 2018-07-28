@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import { SearchIcon } from './SvgIcons';
 import SearchDropdown from './search/SearchDropdown';
 import getSearch from '../actions/searchActions';
@@ -35,7 +35,7 @@ class Header extends Component {
         <div className='row'>
           <nav className="navbar" role="navigation">
             <p className="navbar__logo-box">
-              <NavLink to="/" role="link"><img src={logo} alt="logo" width="190" height="80" className="navbar__logo" role="logo" /></NavLink>
+              <NavLink to="/dashboard" role="link"><img src={logo} alt="logo" width="190" height="80" className="navbar__logo" role="logo" /></NavLink>
             </p>
             <div className="navbar__search-box">
               <form className="navbar__form search-form">
@@ -72,4 +72,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Header);
+export default withRouter(connect(mapStateToProps)(Header));
