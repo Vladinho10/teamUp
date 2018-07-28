@@ -24,15 +24,18 @@ class SearchResultsPage extends Component {
           <header className="search-header">
             <nav role="navigation" className="search-header__navbar navbar">
               <ul className="navbar__list">
-                <li className="navbar__item"><NavLink activeClassName="navbar__active-link" to={`/search/all/${this.props.location.search}`}>All</NavLink></li>
-                <li className="navbar__item"><NavLink activeClassName="navbar__active-link" to={`/search/people/${this.props.location.search}`}>People</NavLink></li>
-                <li className="navbar__item"><NavLink activeClassName="navbar__active-link" to={`/search/events/${this.props.location.search}`}>Events</NavLink></li>
+                <li className="navbar__item"><NavLink className={`${this.props.location.pathname === '/search/all/' && 'navbar__active-link'} navbar__link`} activeClassName="navbar-active-link" exact to={`/search/all/${this.props.location.search}`}>All</NavLink></li>
+                <li className="navbar__item"><NavLink className={`${this.props.location.pathname === '/search/people/' && 'navbar__active-link'} navbar__link`} activeClassName="navbar-active-link" to={`/search/people/${this.props.location.search}`}>People</NavLink></li>
+                <li className="navbar__item"><NavLink className={`${this.props.location.pathname === '/search/events/' && 'navbar__active-link'} navbar__link`} activeClassName="navbar-active-link" to={`/search/events/${this.props.location.search}`}>Events</NavLink></li>
               </ul>
             </nav>
           </header>
           <div className="row">
             <div className="main-wrapper">
-              <AllSearchResults />
+              {(this.props.location.pathname === '/search/all/' && <AllSearchResults />)
+                || (this.props.location.pathname === '/search/people/' && <PeopleSearchResults />)
+                || (this.props.location.pathname === '/search/events/' && <EventsSearchResults />)
+              }
             </div>
           </div>
         </main>

@@ -74,9 +74,6 @@ class EventDashboardPage extends Component {
     }
 
     const data = new FormData(event.target);
-    for (var key of data.keys()) {
-      console.log(key); 
-   }
     this.props.dispatch(addEvent(data));
   }
 

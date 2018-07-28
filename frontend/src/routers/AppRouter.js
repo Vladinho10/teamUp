@@ -14,7 +14,9 @@ const AppRouter = () => (
         <Route path="/" component={EventLoginPage} exact />
         <Route path="/dashboard" component={EventDashboardPage} />
         <Route path='/eventpage/:id' component={EventPage} />
-        <Route path='/search/:search/' component={SearchResultsPage} />
+        <Route path='/search/all/' component={SearchResultsPage} />
+        <Route path='/search/people/' component={SearchResultsPage} />
+        <Route path='/search/events/' component={SearchResultsPage} />
         <Route path='/account/:id' component={AccountPage} />
         <Route component={NotFoundPage} />
       </Switch>

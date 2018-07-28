@@ -4,11 +4,13 @@
 @import 'components/userEvents';
 @import 'components/uploadModal';
 @import 'components/eventCreationModal';
+@import 'components/search-dropdown';
 @import 'layout/grid';
 @import 'layout/header';
 @import 'pages/dashboardPage';
 @import 'pages/loginPage';
 @import 'pages/notFoundPage';
+@import 'pages/searchResultsPage';
 @import 'utils/variables';
 @import 'utils/mixins';
 @import 'utils/extends';
