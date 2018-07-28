@@ -9,6 +9,7 @@ import CreateEventModal from './modals/CreateEvent';
 import { PlusIcon } from './SvgIcons';
 import { addEvent } from '../actions/eventActions';
 
+
 class EventDashboardPage extends Component {
   state = {
     // userName: null,

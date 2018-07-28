@@ -70,9 +70,12 @@ app.get('/',(req,res)=>{
 
 });
 
+
+
 app.get('/api/events/:type',(req,res)=>{
     if(req.user){
         let data = {};
+        
         if(req.params.type == 'own_events'){
             Event.find({admins:{"$in":[req.user.id]}}).then((own_events)=>{
                 data.events = own_events;
@@ -96,8 +99,28 @@ app.get('/api/events/:type',(req,res)=>{
                 res.json(data);
             });
         }
+        else if(req.params.type.split('$')[0] == 'profile_events'){
+            User.findOne({_id:req.params.type.split('$')[1]}).then((user)=>{
+                console.log(user,'user--->');
+                let events = user.own_events.concat(user.attending_events);
+                console.log(events);
+                Event.find({_id:{'$in':events}}).then((events)=>{
+                    console.log(events);
+                    res.json({events});
+                }); 
+            })
+            //Event.findAll({_id:{"$in":}})
+        }
         
     }
+ });
+ 
+ app.get('/api/profile/:id',(req,res)=>{
+     console.log('ping');
+    User.find({_id:req.params.id}).then((user)=>{
+        console.log(user);
+        res.json({user});
+    });
  });
 app.get('/logout',(req,res)=>{
     if(req.user){
@@ -198,8 +221,11 @@ data.user = Object.assign({},user._doc);
         }
             let ev = new Event({
                 title: req.body.event_title,
+                type:req.body.event_type,
                 description: req.body.event_description,
                 date: req.body.datepicker,
+                time:req.body.timepicker,
+                type:req.body.event_type,
                 location: req.body.event_address,
                 quantity: req.body.event_members_count,
                 admins: [req.user.id],
