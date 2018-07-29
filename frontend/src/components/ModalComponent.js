@@ -9,7 +9,7 @@ class ModalComponent extends React.Component {
 
     this.state = {
       modalIsOpen: false,
-      participants: 0
+      participants: 1
     };
 
     this.openModal = this.openModal.bind(this);
@@ -29,7 +29,6 @@ class ModalComponent extends React.Component {
   }
 
   render() {
-    console.log(this.state, 'state in ModalComponent');
     return (
       <div>
         <section className='btn-section'>

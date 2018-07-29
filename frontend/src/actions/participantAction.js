@@ -1,6 +1,6 @@
-const addParticipantSuccess = participant => ({
+const addParticipantSuccess = participants_count => ({
   type: 'ADD_PARTICIPANT',
-  participant
+  participants_count: participants_count.max_members
 });
 
 export const addParticipant = (ev_id) => {
@@ -27,9 +27,9 @@ export const addParticipant = (ev_id) => {
   };
 };
 
-const deleteParticipantSuccess = participant => ({
+const deleteParticipantSuccess = participants_count => ({
   type: 'DELETE_PARTICIPANT',
-  participant
+  participants_count
 });
 
 export const deleteParticipant = (ev_id) => {
