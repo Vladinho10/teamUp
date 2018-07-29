@@ -5,9 +5,16 @@ import { NavLink } from 'react-router-dom';
 
 export class UserProfileData extends Component {
   state = {
-    
+    switch_events:'admin'
   }
-  componentDidMount = () =>{
+  transfer_to_sibling = (param) => {
+    this.props.info_transfer(param);
+    this.setState({
+      switch_events:param
+    });
+  }
+  
+  componentDidMount = () => {
     console.log(this.props.id);
     fetch('/api/profile/' + this.props.id ,{
       credentials:'include',
@@ -16,6 +23,7 @@ export class UserProfileData extends Component {
       this.setState({
         profile:profile.user[0]
       });
+      console.log(this.state,'sjkxsbjbx');
     });
   }
 
@@ -43,15 +51,27 @@ export class UserProfileData extends Component {
     return (
       <React.Fragment>
         <div className = 'profile'>
-          <div className = 'profile_pic'>
-            <img src= {this.state.profile?this.state.profile.photo:''} alt="No photo....Sorry"/>
+          <div className = 'profile_pic_frame'>
+            <div className = 'profile_pic'>
+              <img src= {this.state.profile?this.state.profile.photo:''} alt="No photo....Sorry"/>
+            </div>
           </div>
           <div className = 'profile_name'>
-            {this.state.profile?this.state.profile.name:''}
+            <div className = 'profile_name_txt'>
+              {this.state.profile?this.state.profile.name:''}
+            </div>
+            <div className='profile_events_info'>
+              <ul>
+                <li className = {this.state.switch_events == 'admin'?'profile_events_switch':''} onClick = {() => {this.transfer_to_sibling('admin')}}> 
+                  Created Events ({this.state.profile?this.state.profile.own_events.length:''})
+                </li>
+                <li className = {this.state.switch_events == 'user'?'profile_events_switch':''} onClick = {() => {this.transfer_to_sibling('user')}}>
+                  Going Events ({this.state.profile?this.state.profile.attending_events.length:''})
+                </li>
+              </ul>
+            </div>
           </div>
-          <div>
-            {this.state.profile?this.state.profile.phone:''}
-          </div>
+          
         </div>
       </React.Fragment>
     );

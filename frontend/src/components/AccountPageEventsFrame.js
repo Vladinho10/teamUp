@@ -4,7 +4,7 @@ export default class AccountPageEventsFrame extends Component{
     render(){
         return(
             <div className = 'profile_events_frame'>
-                <AccountPageEvents id={this.props.id}/>
+                <AccountPageEvents id={this.props.id} switcher={this.props.switcher}/>
             </div>
         );
     }

@@ -100,18 +100,25 @@ app.get('/api/events/:type',(req,res)=>{
             });
         }
         else if(req.params.type.split('$')[0] == 'profile_events'){
+            let data = {};
             User.findOne({_id:req.params.type.split('$')[1]}).then((user)=>{
                 console.log(user,'user--->');
-                let events = user.own_events.concat(user.attending_events);
-                console.log(events);
-                Event.find({_id:{'$in':events}}).then((events)=>{
-                    console.log(events);
-                    res.json({events});
+                Event.find({_id:{'$in':user.own_events}}).then((events)=>{
+                    data.own_events = events;
+                    Event.find({_id:{'$in':user.attending_events}}).then((events)=>{
+                        data.attending_events = events;
+                        res.json(data);
+                    });
                 }); 
             })
             //Event.findAll({_id:{"$in":}})
         }
+        else{
+            res.end();
+        }
         
+    }else{
+        res.sendStatus(401);
     }
  });
  
