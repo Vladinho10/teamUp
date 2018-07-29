@@ -131,15 +131,14 @@
 .join_btn button {
     width:100%;
 }
-.profile_event_img_frame:hover   .profile_event_btn {
-    opacity: 1;
-}
+
 .profile_events_info{
     position: relative;
     top:10%;
     width:100%;
     height: 50%;
     text-decoration: underline;
+    font-size: 18px;
     cursor: pointer;
 }
 .profile_events_info ul li:hover{
@@ -148,4 +147,27 @@
 }
 .profile_events_switch{
     color:red;
+}
+.profile_event_dn{
+    width:100%;
+    height:70%;
+}
+.profile_event_count{
+    width:100%;
+    height: 30%;
+    display: flex;
+    position: relative;
+    top:-7%;
+}
+.profile_name_count_part{
+    width:30%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    margin: auto;
+    padding-bottom: -5px;
+}
+.profile_name_count_part img{
+    position: relative;
+    top:10%;
 }

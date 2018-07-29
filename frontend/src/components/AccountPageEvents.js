@@ -45,9 +45,6 @@ export default class AccountPageEvents extends Component{
                         <div className = 'profile_event_img_frame'>
                             <div className = 'profile_event_img'>
                                 <img src={el.photo} alt=""/>
-                                <div className='join_btn'>
-                                    <button className='profile_event_btn'>JOIN</button>
-                                </div>
                             </div>
                         </div>
                         <div className = 'profile_event_info_frame'>
@@ -61,7 +58,18 @@ export default class AccountPageEvents extends Component{
                             </div>
                             <div className = 'profile_event_info_footer'>
                                 <div className = 'profile_event_description'>
-                                    {el.description.slice(0,25)}
+                                    <div className = 'profile_event_dn'>
+                                        {el.description.slice(0,25)}
+                                    </div>
+                                    <div className = 'profile_event_count'>
+                                        <div className = 'profile_name_count_part'>
+                                            <img src="./images/people.png" height='18' width='20' />
+                                            {el.quantity}
+                                        </div>
+                                        <div className = 'profile_name_count_part'>
+                                            Missing {el.quantity-el.players.length}
+                                        </div>
+                                    </div>
                                 </div>
                                 <div className = 'profile_event_under_footer'>
                                 <div>
