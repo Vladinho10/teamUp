@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import { LocationIcon } from '../SvgIcons';
+
+const defaultPhoto = require('../../../dist/images/eventCover.jpg');
 
 class Users extends Component {
   state = {
-    count: 3,
+    count: 5,
     join: true
   }
 
@@ -36,27 +38,28 @@ class Users extends Component {
         tempArray.push(searchEventsResults[i]);
       }
     }
+    console.log(tempArray, 'temparray events');
+    console.log(this.props, 'temparray props');
 
     return (
       tempArray.map((event) => {
         return (
           <article key={ event._id } className="searched-events__event searched-event">
             <NavLink className="searched-event__link-image" to="/">
-              <img className="searched-event__image" src={event.photo} alt="User Photo" />
+              <img className="searched-event__image" src={event.photo || defaultPhoto} alt="Event Photo" />
             </NavLink>
             <div className="searched-event__event-info">
               <header className="searched-event__header">
                 <NavLink className="searched-event__event-name" to="/">
                   <h3 className="searched-event__heading">{event.title}</h3>
                 </NavLink>
-                <span>
-                  <small>category:</small>
+                <p className="searched-event__event-type">
                   <NavLink className="searched-event__event-type" to="/">
-                    <p className="searched-event__heading">{event.type}</p>
+                    <span>{event.type}</span>
                   </NavLink>
-                </span>
+                </p>
                 {this.state.join
-                  ? <button className="btn btn_join" onClick={this.handleJoinEvent} className="searched-event__join-btn">Join</button>
+                  ? <button disabled={ +(event.quantity - event.players.length) ? null : true } className="btn btn_join" onClick={this.handleJoinEvent} className="searched-event__join-btn">Join</button>
                   : <button className="btn btn_join" onClick={this.handleUnjoinEvent} className="searched-event__join-btn">Unjoin</button>
                 }
               </header>
@@ -64,15 +67,15 @@ class Users extends Component {
                 <div className="searched-event__description-box">
                   <p>{event.description}</p>
                 </div>
+                <div className="searched-event__date-location">
+                  <time dateTime={this.formatDate(event.date)}>
+                    {this.formatDate(event.date)} <span>{event.time || 'time is not defined'}</span>
+                  </time>
+                  <p><LocationIcon /> {event.location}</p>
+                </div>
                 <div className="searched-event__members">
                   <p className="searched-event__going">going - {event.players.length}</p>
                   <p className="searched-event__missing">missing - {event.quantity - event.players.length}</p>
-                </div>
-                <div className="searched-event__date-location">
-                  <time dateTime={this.formatDate(event.date)}>
-                    {this.formatDate(event.date)} <span>{event.time}</span>
-                  </time>
-                  <p><LocationIcon /> {event.location}</p>
                 </div>
               </div>
             </div>
@@ -91,4 +94,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Users);
+export default withRouter(connect(mapStateToProps)(Users));

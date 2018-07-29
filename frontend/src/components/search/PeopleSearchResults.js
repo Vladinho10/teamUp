@@ -2,6 +2,7 @@ import React from 'react';
 // import { connect } from 'react-redux';
 import { NavLink, withRouter } from 'react-router-dom';
 import { RadioButton, UsersIcon } from '../SvgIcons';
+import Users from './Users';
 
 const PeopleSearchResults = props => (
   <React.Fragment>
@@ -29,6 +30,9 @@ const PeopleSearchResults = props => (
           </h3>
         </header>
         <section className="people-results__container">
+          <div className="searched-users">
+            <Users />
+          </div>
         </section>
       </section>
     </section>

@@ -6,9 +6,16 @@ import Users from './Users';
 import Events from './Events';
 
 class AllSearchResults extends Component {
-  handleLocationChange = () => {
+  handlePeopleLocationChange = () => {
     this.props.history.push({
       pathname: '/search/people/',
+      // search: `${this.props.location.search}`
+    });
+  }
+
+  handleEventsLocationChange = () => {
+    this.props.history.push({
+      pathname: '/search/events/',
       // search: `${this.props.location.search}`
     });
   }
@@ -29,14 +36,14 @@ class AllSearchResults extends Component {
                 <p><UsersIcon /></p>
                 <span>People</span>
               </h3>
-              <NavLink to="#" onClick={this.handleLocationChange}>See all</NavLink>
+              <NavLink to="#" onClick={this.handlePeopleLocationChange}>See all</NavLink>
             </header>
             <section className="people-results__container">
               <div className="searched-users">
                 <Users />
               </div>
               <div className="see-all-results">
-                <NavLink className="see-all-results__link" to="#" onClick={this.handleLocationChange}>See all</NavLink>
+                <NavLink className="see-all-results__link" to="#" onClick={this.handlePeopleLocationChange}>See all</NavLink>
               </div>
             </section>
           </section>
@@ -46,14 +53,14 @@ class AllSearchResults extends Component {
                 <p><EventIcon /></p>
                 <span>Events</span>
               </h3>
-              <NavLink to="/"></NavLink>
+              <NavLink className="see-all-results__link" to="#" onClick={this.handleEventsLocationChange}>See all</NavLink>
             </header>
             <section className="event-results__container">
               <div className="searched-events">
                 <Events />
               </div>
               <div className="see-all-results">
-                <NavLink to="/">See all</NavLink>
+                <NavLink className="see-all-results__link" to="#" onClick={this.handleEventsLocationChange}>See all</NavLink>
               </div>
             </section>
           </section>
