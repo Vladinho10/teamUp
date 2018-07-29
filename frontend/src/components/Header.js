@@ -15,6 +15,7 @@ class Header extends Component {
 
   handleInputChange = (event) => {
     event.preventDefault();
+    console.log(event.target.value, 'event target');
     if (event.target.value.length !== 0) {
       this.setState({ dropdown: true });
     } else {
@@ -24,12 +25,11 @@ class Header extends Component {
     this.props.dispatch(getSearch(event.target.value));
   }
 
-  handleDropdownShow = () => {
-
+  handleToggleDropdown = () => {
+    this.setState(prevState => ({ dropdown: !prevState.dropdown }));
   }
 
   render() {
-    console.log(this.state.query);
     return (
       <header className="header">
         <div className='row'>
@@ -38,14 +38,17 @@ class Header extends Component {
               <NavLink to="/" role="link"><img src={logo} alt="logo" width="190" height="80" className="navbar__logo" role="logo" /></NavLink>
             </p>
             <div className="navbar__search-box">
-              <div className="navbar__form search-form">
+              <form className="navbar__form search-form">
                 <div className="icon-wrapper">
                   <input type="text" name="eventSearch" placeholder="Search" className="search-form__input" aria-label='Enter search text' onChange={this.handleInputChange}/>
                   <SearchIcon className="search__icon" role="icon" />
                 </div>
-              </div>
+              </form>
               <div className="search-dropdown">
-                {this.state.dropdown ? <SearchDropdown query={this.state.query} /> : null}
+                {this.state.dropdown ? <SearchDropdown
+                  handleToggleDropdown={this.handleToggleDropdown}
+                  query={this.state.query}
+                /> : null}
               </div>
             </div>
             <ul className="navbar__list">

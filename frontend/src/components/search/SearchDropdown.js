@@ -4,7 +4,7 @@ import { NavLink, withRouter } from 'react-router-dom';
 
 class SearchDropdown extends Component {
   render() {
-    console.log(this.props, 'searchdropdown');
+    console.log(this.props.searchData, 'searchdata from searchDropdon map');
     return (
       <React.Fragment>
         <ul className="search-dropdown__list">
@@ -12,7 +12,7 @@ class SearchDropdown extends Component {
             return <li key={item._id} className="search-dropdown__item"><NavLink activeClassName="search-dropdown__link" to='/api/:id' >{item.title || item.type || item.name}</NavLink></li>;
           })}
         </ul>
-        <p><NavLink to={`/search/all/?query=${this.props.query}`} >See all results for {this.props.query}</NavLink></p>
+        <p><NavLink onClick={this.props.handleToggleDropdown} to={`/search/all/?query=${this.props.query}`} >See all results for {this.props.query}</NavLink></p>
       </React.Fragment>
     );
   }

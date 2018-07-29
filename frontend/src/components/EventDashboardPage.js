@@ -9,6 +9,7 @@ import CreateEventModal from './modals/CreateEvent';
 import { PlusIcon } from './SvgIcons';
 import { addEvent } from '../actions/eventActions';
 
+
 class EventDashboardPage extends Component {
   state = {
     // userName: null,
@@ -73,9 +74,6 @@ class EventDashboardPage extends Component {
     }
 
     const data = new FormData(event.target);
-    for (var key of data.keys()) {
-      console.log(key); 
-   }
     this.props.dispatch(addEvent(data));
   }
 

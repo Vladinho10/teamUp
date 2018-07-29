@@ -10,6 +10,7 @@ const fs = require('fs');
 const session = require('express-session');
 const cors = require('cors');
 const passport = require('./passport');
+const utf8 = require('utf8');
 const {check,validationResult} = require('express-validator/check');
 const {User,Event} = require('./model_crud');
 
@@ -69,9 +70,12 @@ app.get('/',(req,res)=>{
 
 });
 
+
+
 app.get('/api/events/:type',(req,res)=>{
     if(req.user){
         let data = {};
+        
         if(req.params.type == 'own_events'){
             Event.find({admins:{"$in":[req.user.id]}}).then((own_events)=>{
                 data.events = own_events;
@@ -95,8 +99,35 @@ app.get('/api/events/:type',(req,res)=>{
                 res.json(data);
             });
         }
+        else if(req.params.type.split('$')[0] == 'profile_events'){
+            let data = {};
+            User.findOne({_id:req.params.type.split('$')[1]}).then((user)=>{
+                console.log(user,'user--->');
+                Event.find({_id:{'$in':user.own_events}}).then((events)=>{
+                    data.own_events = events;
+                    Event.find({_id:{'$in':user.attending_events}}).then((events)=>{
+                        data.attending_events = events;
+                        res.json(data);
+                    });
+                }); 
+            })
+            //Event.findAll({_id:{"$in":}})
+        }
+        else{
+            res.end();
+        }
         
+    }else{
+        res.sendStatus(401);
     }
+ });
+ 
+ app.get('/api/profile/:id',(req,res)=>{
+     console.log('ping');
+    User.find({_id:req.params.id}).then((user)=>{
+        console.log(user);
+        res.json({user});
+    });
  });
 app.get('/logout',(req,res)=>{
     if(req.user){
@@ -197,8 +228,11 @@ data.user = Object.assign({},user._doc);
         }
             let ev = new Event({
                 title: req.body.event_title,
+                type:req.body.event_type,
                 description: req.body.event_description,
                 date: req.body.datepicker,
+                time:req.body.timepicker,
+                type:req.body.event_type,
                 location: req.body.event_address,
                 quantity: req.body.event_members_count,
                 admins: [req.user.id],
@@ -248,29 +282,29 @@ data.user = Object.assign({},user._doc);
     }
  });
 
- app.post('/api/search_results/:keyword',(req,res)=>{
-     //if(req.user){
+ app.post('/api/search_results/:keyword',(req,res)=>{  //use encodeURIComponent
+     if(req.user){
         let keyword = req.params.keyword;
-        console.log(keyword);
-        console.log(req.user.id);
+        //console.log(req.user.id);
         let search_result = {};
-        Event.find({title:keyword,players:{"$nin":[req.user.id]}}).then((events)=>{
+        let user_id = req.user.id;
+        Event.find({title:{"$regex":'^'+keyword,"$options":'i'},players:{"$nin":[user_id]}}).then((events)=>{
             //console.log(events);
             search_result.events = Object.assign([],events);
             search_result.events = search_result.events.filter((el) => {
-                return el.admins[0] != req.user.id
+                return el.admins[0] != user_id
             });
             //console.log(search_result);
-            User.find({name:keyword,_id:{"$ne":req.user.id}}).then((users)=>{
+            User.find({name:{"$regex":'^'+keyword,"$options":'i'},_id:{"$ne":user_id}}).then((users)=>{
                 console.log(users);
                 search_result.users = Object.assign([],users);
                 console.log(search_result);
                 res.json(search_result);
             });
         });
-     //}else{
-      //   res.sendStatus(401);
-    // }
+     }else{
+         res.sendStatus(401);
+     }
         
     
  });
