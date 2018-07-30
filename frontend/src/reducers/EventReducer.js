@@ -1,20 +1,25 @@
-export default (state = [], action) => {
+// export default (state = [], action) => {
+export default (state = {
+  sug: [],
+  my: [],
+  go: []
+}, action) => {
   // console.log('action', action.ownEventsArr);
   switch (action.type) {
     case 'ADD_USER':
       console.log();
-      return action.userData.suggested;
+      return { sug: action.userData.suggested };
     case 'SUGGESTED_EVENTS':
       console.log('action.suggestedEventsObj', action.suggestedEventsObj);
-      return action.suggestedEventsObj.events;
+      return { sug: action.suggestedEventsObj.events };
     case 'OWN_EVENTS':
-      console.log('action.ownEventsObj.own_events', action.ownEventsObj);
-      return action.ownEventsObj.events;
+      return { my: action.ownEventsObj.events };
     case 'ATTENDING_EVENTS':
       console.log('action.attendingEventsObj', action.attendingEventsObj);
       return action.attendingEventsObj.events;
     case 'ADD_EVENT':
-      return [...state, action.event];
+      console.log('state during add', state);
+      return { ...state, my: [...state.my, action.addEventObj] };
     // case 'EDIT_EVENT':
     //   return state.map((el) => {
     //     return el._id !== action.editingEventObj._id ? el : action.editingEventObj;

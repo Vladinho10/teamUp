@@ -6,6 +6,51 @@ import { getOwnEvents, getAttendingEvents, getSuggestedEvents } from '../actions
 
 
 class WrappedUserEvents extends Component {
+  state = {
+    total: 12,
+    currentCount: 3,
+    offset: 3,
+    list: [],
+    isFetching: false
+  }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.loadOnScroll);
+  }
+
+  loadOnScroll = (e) => {
+    // If all the content loaded
+    if (this.state.currentCount === this.state.total) return;
+
+    // Get div at the bottom of the content
+    const el = document.getElementById('content-end');
+
+    const rect = el.getBoundingClientRect();
+    const isAtEnd = (
+      // rect.top >= 0 &&
+      // rect.left >= 0 &&
+      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+          && rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+
+      // User at the end of content. load more content
+    if (isAtEnd) {
+      // If content list is still loading do not request for another content list.
+      if (this.state.isFetching) return;
+      this.setState({ isFetching: true });
+
+      // Call server and request content.
+      /**
+        * AJAX reuest
+        */
+
+      // On AJAX request success
+      this.setState({ isFetching: false });
+      // Update content list
+    }
+  }
+
+
   handleGetSuggestedEvents = (e) => {
     this.props.dispatch(getSuggestedEvents());
   };
@@ -15,15 +60,13 @@ class WrappedUserEvents extends Component {
   };
 
   handleGetAttendingEvents = () => {
-    console.log(888);
     this.props.dispatch(getAttendingEvents());
   };
 
   render() {
     console.log(' UserEvents props', this.props);
-    // console.log('this.state UserEvents', this.state);
     return (
-      <section sec={this.props} className='events-section'>
+      <section className='events-section'>
         <div className="navbar">
           <ul className="navbar__listZ">
             <li className="navbar__itemZ"><button onClick={this.handleGetSuggestedEvents} className="navbar__item__button">Suggested</button></li>
@@ -37,18 +80,11 @@ class WrappedUserEvents extends Component {
       </section>
     );
   }
-
-  // componentDidMount() {
-  //   this.props.dispatch(getOwnEvents());
-  //   console.log('USerEvents', this.props);
-  // }
 }
 
 const mapStateToProps = (state) => { // this.props.toDosArr
   return {
-    // userData: state.userData
     events: state.events
-
   };
 };
 const UserEvents = connect(mapStateToProps)(WrappedUserEvents);
