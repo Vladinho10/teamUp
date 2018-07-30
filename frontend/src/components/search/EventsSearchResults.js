@@ -5,13 +5,20 @@ import { EventIcon, PlusCircleIcon, RadioButton } from '../SvgIcons';
 import Events from './Events';
 
 class EventsSearchResults extends Component {
+  state = {
+    filter: ''
+  }
+
   handleEventFilter = (event) => {
     for (let i = 0; i < document.querySelectorAll('svg').length; i += 1) {
       if (document.querySelectorAll('svg')[i].classList.contains('radio-button_clicked')) {
         document.querySelectorAll('svg')[i].classList.remove('radio-button_clicked');
       }
     }
-    console.log(event.target.children[0].children[0].classList.add('radio-button_clicked'), 'radio button');
+    event.target.children[0].children[0].classList.add('radio-button_clicked');
+    console.log(event.target.children[0].id, 'radio button id');
+
+    this.setState({ filter: event.target.children[0].id });
   }
 
   render() {
@@ -25,7 +32,7 @@ class EventsSearchResults extends Component {
             <section className="filter-results__location-filters filter-section">
               <h3 className="filter-section__heading">Location</h3>
               <NavLink onClick={this.handleEventFilter} to="#" className="filter-section__radio" role="radio">
-                <button type="button" id="anywhere"><RadioButton /></button>
+                <button type="button" id="type-anywhere"><RadioButton /></button>
                 Anywhere
               </NavLink>
               <div className="filter-section__add-manual">
@@ -36,14 +43,14 @@ class EventsSearchResults extends Component {
             <section className="filter-results__name-filters filter-section">
               <h3 className="filter-section__heading">Name</h3>
               <NavLink onClick={this.handleEventFilter} to="#" className="filter-section__radio" role="radio">
-                <button type="button" id="title-name"><RadioButton /></button>
+                <button type="button" id="type-name"><RadioButton /></button>
                 Title Name
               </NavLink>
             </section>
             <section className="filter-results__type-filters filter-section">
               <h3 className="filter-section__heading">Type</h3>
               <NavLink onClick={this.handleEventFilter} to="#" className="filter-section__radio" role="radio">
-                <button type="button" id="all-types"><RadioButton /></button>
+                <button type="button" id="type-all"><RadioButton /></button>
                 All Types
               </NavLink>
               <NavLink onClick={this.handleEventFilter} to="#" className="filter-section__radio" role="radio">
@@ -114,7 +121,7 @@ class EventsSearchResults extends Component {
             </header>
             <section className="event-results__container">
               <div className="searched-events">
-                <Events />
+                <Events filter={this.state.filter} />
               </div>
             </section>
           </section>
