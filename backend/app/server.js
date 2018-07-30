@@ -122,9 +122,9 @@ app.get('/api/events/:type',(req,res)=>{
     }
  });
 
- app.get('/api/user',(req,res)=>{
+ app.get('/api/user/:id',(req,res)=>{
     if(req.user) {
-        User.findOne({_id: req.user.id}).then(user=> res.json(user))
+        User.findOne({_id: req.params.id}).then(user=> res.json(user))
     } else {
         res.sendStatus(401)
     }
