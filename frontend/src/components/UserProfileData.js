@@ -20,8 +20,9 @@ export class UserProfileData extends Component {
       credentials:'include',
       method:'GET'
     }).then((res)=>{return res.json()}).then((profile) => {
+      console.log(profile);
       this.setState({
-        profile:profile.user[0]
+        profile:profile
       });
       console.log(this.state,'sjkxsbjbx');
     });
@@ -58,7 +59,8 @@ export class UserProfileData extends Component {
           </div>
           <div className = 'profile_name'>
             <div className = 'profile_name_txt'>
-              {this.state.profile?this.state.profile.name:''}
+              {this.state.profile?this.state.profile.name:''}{ '  '} 
+              {this.state.profile?this.state.profile.phone:''}
             </div>
             <div className='profile_events_info'>
               <ul>
