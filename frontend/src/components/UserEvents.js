@@ -15,6 +15,7 @@ class WrappedUserEvents extends Component {
   }
 
   componentDidMount() {
+    this.refs.btnSug.setAttribute('disabled', 'disabled');
     window.addEventListener('scroll', this.loadOnScroll);
   }
 
@@ -53,14 +54,23 @@ class WrappedUserEvents extends Component {
 
   handleGetSuggestedEvents = (e) => {
     this.props.dispatch(getSuggestedEvents());
+    this.refs.btnSug.setAttribute('disabled', 'disabled');
+    this.refs.btnMy.removeAttribute('disabled', 'disabled');
+    this.refs.btnGo.removeAttribute('disabled', 'disabled');
   };
 
   handleGetOwnEvents = (e) => {
     this.props.dispatch(getOwnEvents());
+    this.refs.btnMy.setAttribute('disabled', 'disabled');
+    this.refs.btnSug.removeAttribute('disabled', 'disabled');
+    this.refs.btnGo.removeAttribute('disabled', 'disabled');
   };
 
   handleGetAttendingEvents = () => {
     this.props.dispatch(getAttendingEvents());
+    this.refs.btnGo.setAttribute('disabled', 'disabled');
+    this.refs.btnSug.removeAttribute('disabled', 'disabled');
+    this.refs.btnMy.removeAttribute('disabled', 'disabled');
   };
 
   render() {
@@ -69,9 +79,9 @@ class WrappedUserEvents extends Component {
       <section className='events-section'>
         <div className="navbar">
           <ul className="navbar__listZ">
-            <li className="navbar__itemZ"><button onClick={this.handleGetSuggestedEvents} className="navbar__item__button">Suggested</button></li>
-            <li className="navbar__itemZ"><button onClick={this.handleGetOwnEvents} className="navbar__item__button">Own</button></li>
-            <li className="navbar__itemZ"><button onClick={this.handleGetAttendingEvents} className="navbar__item__button">Attending</button></li>
+            <li className="navbar__itemZ"><button ref='btnSug' onClick={this.handleGetSuggestedEvents} className="navbar__item__button">Suggested</button></li>
+            <li className="navbar__itemZ"><button ref='btnMy' onClick={this.handleGetOwnEvents} className="navbar__item__button">Own</button></li>
+            <li className="navbar__itemZ"><button ref='btnGo' onClick={this.handleGetAttendingEvents} className="navbar__item__button">Attending</button></li>
           </ul>
         </div>
         <div>

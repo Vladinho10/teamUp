@@ -1,5 +1,5 @@
 .events-section {
-  width: 55%;
+  width: 57%;
   line-height: normal;
   color: #333;
 }
@@ -12,10 +12,16 @@
 
 
 .navbar__item__button {
- background-color: #4eb5f1;
+ background-color: #1cd2c0;
  padding:0.3em 1.2em;
  border-radius: 2em;
  text-transform: uppercase;
+}
+
+.navbar__item__button:disabled {
+ background-color: #e2129d;
+ // font-weight: bold;
+ color: black;
 }
 
 .navbar__item__button:hover {
@@ -34,6 +40,10 @@
   width: 50%;
   height: 100%;
   margin-left:8px
+}
+
+.event-container {
+  margin-right: 40px;
 }
 
 .event-photo {
@@ -98,7 +108,7 @@
   justify-content: space-between;
 }
 
-// .event-container__footer-date {
-//   margin-left: 10px;
-//   margin-right: 10px;
-// }
+.event-type {
+  transform: rotate(-90deg);
+  border: 1px solid;
+}
