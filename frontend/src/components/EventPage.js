@@ -104,7 +104,7 @@ class EventPage extends Component {
             <hr/>
             <div className="event-short-desc">
               <h4 className="event-date" color="black">
-                {moment(new Date(this.state.currentEvent.date)).format('MMM DD')}
+                { moment(new Date(this.state.currentEvent.date)).format('MMM DD') }
               </h4>
               <h4 className="event-title">{this.state.currentEvent.title}</h4>
             </div>
@@ -112,7 +112,7 @@ class EventPage extends Component {
               <div className="long-desc-date">
                 <EventClockIcon className ="icon"/>
                 <span>
-                  {moment(new Date(this.state.currentEvent.date)).format('MMMM Do YYYY, h:mm a')}
+                  { moment(new Date(this.state.currentEvent.date)).format('MMMM Do YYYY, h:mm a') }
                 </span>
               </div>
               <div className="long-desc-location">
