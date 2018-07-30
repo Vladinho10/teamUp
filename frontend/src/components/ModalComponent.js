@@ -9,7 +9,7 @@ class ModalComponent extends React.Component {
 
     this.state = {
       modalIsOpen: false,
-      participants: 1
+      participants: '1 participant',
     };
 
     this.openModal = this.openModal.bind(this);
