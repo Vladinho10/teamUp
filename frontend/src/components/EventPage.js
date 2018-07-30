@@ -29,33 +29,24 @@ class EventPage extends Component {
     // const currentEvent = events.find(event => event._id === this.props.match.params.id);
     const currentId = this.props.match.params.id;
     this.getCurrentEvent(currentId);
-
-    // const dateAndTime = moment(new Date(currentEvent.date)).format('MMMM Do YYYY, h:mm a');
-    // console.log(dateAndTime, 'dateAndTime');
-    // const date = moment(new Date(currentEvent.date)).format('MMM DD');
-
-    // this.setState({
-    //   dateAndTime,
-    //   date
-    // });
   }
 
   getCurrentEvent = (ev_id) => {
     console.log(ev_id, 'event_id in EventPage feching');
-    const data = { ev_id };
     const options = {
       credentials: 'include',
       method: 'GET',
-      body: JSON.stringify(data),
-      headers: { 'Content-type': 'application/json' }
     };
 
-    fetch('api/event/:id', options)
+    fetch(`/api/event/${ev_id}`, options)
       .then((res) => {
         return res.json();
       }).then((event) => {
         console.log(event, 'getting current event');
-        this.setState({ currentEvent: event });
+        this.setState({
+          currentEvent: event.event[0],
+          dateAndTime: event.event[0].date
+        });
       }).catch(err => console.log(err));
   };
 
@@ -112,13 +103,17 @@ class EventPage extends Component {
             }
             <hr/>
             <div className="event-short-desc">
-              <h4 className="event-date" color="black">{this.state.date}</h4>
+              <h4 className="event-date" color="black">
+                {moment(new Date(this.state.currentEvent.date)).format('MMM DD')}
+              </h4>
               <h4 className="event-title">{this.state.currentEvent.title}</h4>
             </div>
             <div className="long-desc">
               <div className="long-desc-date">
                 <EventClockIcon className ="icon"/>
-                <span>{this.state.dateAndTime}</span>
+                <span>
+                  {moment(new Date(this.state.currentEvent.date)).format('MMMM Do YYYY, h:mm a')}
+                </span>
               </div>
               <div className="long-desc-location">
                 <EventLocationIcon className ="icon"/>

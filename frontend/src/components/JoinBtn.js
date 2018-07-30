@@ -9,9 +9,10 @@ class JoinBtn extends React.Component {
 
     componentDidMount = () => {
       console.log(this.props.event_id, '-----this.props.event_id----');
-      if (this.props.currentUser.attending_events.includes(this.props.event_id)) {
-        this.setState({ isGoing: true });
-      }
+      console.log(this.props.currentUser, 'this.props.currentUser');
+      // if (this.props.currentUser.attending_events.includes(this.props.event_id)) {
+      //   this.setState({ isGoing: true });
+      // }
     }
 
     handleChange = () => {
@@ -42,6 +43,7 @@ class JoinBtn extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state, 'state in joinBTN');
   return {
     events: state.events, // participantin avelacnel events.players-i mej
     currentUser: state.userData.user, // avelacnel et eventy user-i going []-i mej
