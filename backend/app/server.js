@@ -291,6 +291,22 @@ data.user = Object.assign({},user._doc);
                 
             });
         }
+        else if(req.body.action == 'delete'){
+            Event.findOneAndUpdate({_id:req.body.ev_id,players:{"$in":[req.user.id]}},{$pull:{players:req.user.id}},{new:true}).then((event)=>{
+                data = event;
+                User.updateOne({_id:req.user.id},{$pull:{attending_events:req.body.ev_id}}).then((status1)=>{
+                    if(data){
+                        console.log(data.players.length);
+                        res.json({max_members:data.players.length});
+                    }else{
+                        
+                        res.json({err:"event object not found"});
+                    }
+                    
+                })
+                
+            });
+        }
     }else{
         res.sendStatus(401);
     }
