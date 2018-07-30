@@ -23,21 +23,41 @@ class EventPage extends Component {
   }
 
   componentDidMount = () => {
-    console.log(this.props, 'this.props in EventPage');
-    // const currentEvent_id = this.props.match.params.id;
-    // console.log(currentEvent_id, 'currentEvent_id getting from url');
-    const events = this.props.events.sug || this.props.events.my || this.props.events.go || [];
-    const currentEvent = events.find(event => event._id === this.props.match.params.id);
-    const dateAndTime = moment(new Date(currentEvent.date)).format('MMMM Do YYYY, h:mm a');
-    console.log(dateAndTime, 'dateAndTime');
-    const date = moment(new Date(currentEvent.date)).format('MMM DD');
+    // console.log(this.props, 'this.props in EventPage');
+    // const events = this.props.events.sug || this.props.events.my || this.props.events.go || [];
+    // console.log(events, 'events in eventPage');
+    // const currentEvent = events.find(event => event._id === this.props.match.params.id);
+    const currentId = this.props.match.params.id;
+    this.getCurrentEvent(currentId);
 
-    this.setState({
-      currentEvent,
-      dateAndTime,
-      date
-    });
+    // const dateAndTime = moment(new Date(currentEvent.date)).format('MMMM Do YYYY, h:mm a');
+    // console.log(dateAndTime, 'dateAndTime');
+    // const date = moment(new Date(currentEvent.date)).format('MMM DD');
+
+    // this.setState({
+    //   dateAndTime,
+    //   date
+    // });
   }
+
+  getCurrentEvent = (ev_id) => {
+    console.log(ev_id, 'event_id in EventPage feching');
+    const data = { ev_id };
+    const options = {
+      credentials: 'include',
+      method: 'GET',
+      body: JSON.stringify(data),
+      headers: { 'Content-type': 'application/json' }
+    };
+
+    fetch('api/event/:id', options)
+      .then((res) => {
+        return res.json();
+      }).then((event) => {
+        console.log(event, 'getting current event');
+        this.setState({ currentEvent: event });
+      }).catch(err => console.log(err));
+  };
 
   handleClick = () => {
     this.setState({ showUploadModal: !this.state.showUploadModal });
@@ -68,7 +88,6 @@ class EventPage extends Component {
   //       this.setState({ imageSrc: res.url });
   //     });
   // }
-
 
   render() {
     return (
