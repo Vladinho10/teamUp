@@ -23,21 +23,32 @@ class EventPage extends Component {
   }
 
   componentDidMount = () => {
-    console.log(this.props, 'this.props in EventPage');
-    // const currentEvent_id = this.props.match.params.id;
-    // console.log(currentEvent_id, 'currentEvent_id getting from url');
-    const events = this.props.events.sug || this.props.events.my || this.props.events.go || [];
-    const currentEvent = events.find(event => event._id === this.props.match.params.id);
-    const dateAndTime = moment(new Date(currentEvent.date)).format('MMMM Do YYYY, h:mm a');
-    console.log(dateAndTime, 'dateAndTime');
-    const date = moment(new Date(currentEvent.date)).format('MMM DD');
-
-    this.setState({
-      currentEvent,
-      dateAndTime,
-      date
-    });
+    // console.log(this.props, 'this.props in EventPage');
+    // const events = this.props.events.sug || this.props.events.my || this.props.events.go || [];
+    // console.log(events, 'events in eventPage');
+    // const currentEvent = events.find(event => event._id === this.props.match.params.id);
+    const currentId = this.props.match.params.id;
+    this.getCurrentEvent(currentId);
   }
+
+  getCurrentEvent = (ev_id) => {
+    console.log(ev_id, 'event_id in EventPage feching');
+    const options = {
+      credentials: 'include',
+      method: 'GET',
+    };
+
+    fetch(`/api/event/${ev_id}`, options)
+      .then((res) => {
+        return res.json();
+      }).then((event) => {
+        console.log(event, 'getting current event');
+        this.setState({
+          currentEvent: event.event[0],
+          dateAndTime: event.event[0].date
+        });
+      }).catch(err => console.log(err));
+  };
 
   handleClick = () => {
     this.setState({ showUploadModal: !this.state.showUploadModal });
@@ -69,7 +80,6 @@ class EventPage extends Component {
   //     });
   // }
 
-
   render() {
     return (
       <React.Fragment>
@@ -93,13 +103,17 @@ class EventPage extends Component {
             }
             <hr/>
             <div className="event-short-desc">
-              <h4 className="event-date" color="black">{this.state.date}</h4>
+              <h4 className="event-date" color="black">
+                {moment(new Date(this.state.currentEvent.date)).format('MMM DD')}
+              </h4>
               <h4 className="event-title">{this.state.currentEvent.title}</h4>
             </div>
             <div className="long-desc">
               <div className="long-desc-date">
                 <EventClockIcon className ="icon"/>
-                <span>{this.state.dateAndTime}</span>
+                <span>
+                  {moment(new Date(this.state.currentEvent.date)).format('MMMM Do YYYY, h:mm a')}
+                </span>
               </div>
               <div className="long-desc-location">
                 <EventLocationIcon className ="icon"/>
