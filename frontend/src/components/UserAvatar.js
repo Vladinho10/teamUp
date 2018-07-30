@@ -132,7 +132,7 @@ class UserAvatar extends Component {
           <div className="user-avatar__logo-box">
             {
               this.props.user.photo
-                ? <NavLink className="user-avatar__link" to={'/account/'+ this.props.user._id}><img className="user-avatar__logo" src={this.props.user.photo} alt="User Photo" width="200" height="300" /></NavLink>
+                ? <NavLink className="user-avatar__link" to={`{/account/${this.props.user._id}`}><img className="user-avatar__logo" src={this.props.user.photo} alt="User Photo" width="200" height="300" /></NavLink>
                 : <NavLink className="user-avatar__link" to="/"><img className="user-avatar__logo" src={defaultPhoto} alt="User Photo" width="200" height="300" /></NavLink>
             }
             <div className="user-avatar__add-photo" onClick={this.handleToggleModal}>

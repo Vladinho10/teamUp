@@ -38,15 +38,15 @@ class WrappedArticles extends Component {
   };
 
   render() {
-    // console.log('this.props in Article', this.props);
-    let { events } = this.props;
-    // let { own_events } = this.props;
-    // console.log('events', events);
-    events = events || [];
-    // console.log('events[events.length - 1]');
+    const events = (
+      this.props.events.sug
+      || this.props.events.my
+      || this.props.events.go
+      || []
+    );
+    console.log('events in Article', this.props);
     return (
       events.map((el, i, arr) => {
-        console.log(el);
         return (
           <article key={el._id || i} a={this.props} onClick={e => this.goToEventPage(e, el._id)} className='eventArticle'>
             <div className='event-photo'>
@@ -57,15 +57,15 @@ class WrappedArticles extends Component {
                 <h4>{el.title || 'Let\'s play contact'}</h4>
               </header>
               <div className='event-container__desc'>
-                <p>{el.description.length > 80 ? `${el.description.slice(0, 80)}. . .` : el.description}
+                <p>{el.description && el.description.length > 80 ? `${el.description.slice(0, 80)}. . .` : el.description}
                 </p>
               </div>
               <span className='event-container__desc-seeMore'>see more</span>
               <div className='event-container__eventInfo'>
-                <p>going </p>
-                <p>missing </p>
+                <p>going {el.players.length} </p>
+                <p>missing {el.quantity && el.quantity - el.players.length} </p>
                 <div className='event-container__eventInfo-btn'>
-                  <button onClick={ this.changeBtnName } className='event-container__joinButton'>Join</button>
+                  {false && <button onClick={ this.changeBtnName } className='event-container__joinButton'>Join</button>}
                 </div>
               </div>
               <footer className='event-container__footer'>
@@ -87,9 +87,7 @@ class WrappedArticles extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    // own_events: state.own_events.events,
     states: state.a
-    // events: state.userData.suggested  };
   };
 };
 

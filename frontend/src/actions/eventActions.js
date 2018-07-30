@@ -72,10 +72,10 @@ export const getAttendingEvents = () => {
   };
 };
 
-// const addEventSuccess = event => ({
-//   type: 'ADD_EVENT',
-//   event
-// });
+const addEventSuccess = data => ({
+  type: 'ADD_EVENT',
+  addEventObj: data
+});
 
 export const addEvent = (payload) => {
   return (dispatch) => {
@@ -98,8 +98,8 @@ export const addEvent = (payload) => {
     f.then((res) => {
       return res.json();
     }).then((data) => {
-      console.log(data, 'event from serverik');
-      // return dispatch(addEventSuccess(data.event));
+      // console.log('event from serverik', data);
+      return dispatch(addEventSuccess(data.event));
     }).catch(err => console.log(err));
   };
 };

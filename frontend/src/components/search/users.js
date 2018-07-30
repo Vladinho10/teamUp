@@ -1,28 +1,42 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-const Users = (props) => {
-  console.log(props, 'Users props');
-  return (
-    props.searchData.filter((item) => {
+class Users extends Component {
+  state = {
+    count: 3
+  }
+
+  render() {
+    const tempArray = [];
+    const searchUserResults = this.props.searchData.filter((item) => {
       return !!item.name;
-    }).map((item) => {
-      return (
-        <section key={ item._id } className="searched-users__user searched-user">
-          <NavLink className="searched-user__link-image" to="/">
-            <img className="searched-user__image" src={item.photo} alt="User Photo" />
-          </NavLink>
-          <div className="searched-user__user-info">
-            <NavLink className="searched-user__user-name" to="/">
-              <h3 className="searched-user__heading">{item.name}</h3>
+    });
+
+    for (let i = 0; i < searchUserResults.length; i += 1) {
+      if (i < this.state.count) {
+        tempArray.push(searchUserResults[i]);
+      }
+    }
+
+    return (
+      tempArray.map((item) => {
+        return (
+          <section key={ item._id } className="searched-users__user searched-user">
+            <NavLink className="searched-user__link-image" to="/">
+              <img className="searched-user__image" src={item.photo} alt="User Photo" />
             </NavLink>
-          </div>
-        </section>
-      );
-    })
-  );
-};
+            <div className="searched-user__user-info">
+              <NavLink className="searched-user__user-name" to="/">
+                <h3 className="searched-user__heading">{item.name}</h3>
+              </NavLink>
+            </div>
+          </section>
+        );
+      })
+    );
+  }
+}
 
 
 const mapStateToProps = (state) => {

@@ -3,12 +3,23 @@ import { connect } from 'react-redux';
 import { NavLink, withRouter } from 'react-router-dom';
 
 class SearchDropdown extends Component {
+  state = {
+    count: 10
+  }
+
   render() {
+    const tempArray = [];
+
+    for (let i = 0; i < this.props.searchData.length; i += 1) {
+      if (i < this.state.count) {
+        tempArray.push(this.props.searchData[i]);
+      }
+    }
     console.log(this.props.searchData, 'searchdata from searchDropdon map');
     return (
       <React.Fragment>
         <ul className="search-dropdown__list">
-          {this.props.searchData.map((item) => {
+          {tempArray.map((item) => {
             return <li key={item._id} className="search-dropdown__item"><NavLink activeClassName="search-dropdown__link" to='/api/:id' >{item.title || item.type || item.name}</NavLink></li>;
           })}
         </ul>
