@@ -9,6 +9,7 @@ import CreateEventModal from './modals/CreateEvent';
 import { PlusIcon } from './SvgIcons';
 import { addEvent } from '../actions/eventActions';
 
+
 class EventDashboardPage extends Component {
   state = {
     // userName: null,
@@ -16,7 +17,8 @@ class EventDashboardPage extends Component {
     // phoneNumber: null,
     imagePreviewSrc: '',
     selectedFile: null,
-    show: null,
+    show: false,
+    prevShow: this.prevShow,
     loaded: false
   }
 
@@ -36,7 +38,7 @@ class EventDashboardPage extends Component {
       this.setState(prevState => ({ loaded: !prevState.loaded }));
       // this.setState({
       //   userName: DataObj.user.name,
-      //   imageSrc: DataObj.user.photo,
+      //   imageSrc: DataObj.user.photo,handleEventFormSubmit
       //   phoneNumber: DataObj.user.phone
       // });
     }).catch(err => console.log(err));

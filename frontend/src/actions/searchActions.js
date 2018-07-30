@@ -6,6 +6,7 @@ const getSearchSuccess = result => ({
 const getSearch = (keyword) => {
   return (dispatch) => {
     const options = {
+      credentials: 'include',
       method: 'POST',
       body: JSON.stringify({ keyword }),
       headers: { 'Content-Type': 'application/json ' }
@@ -14,6 +15,7 @@ const getSearch = (keyword) => {
     f.then((res) => {
       return res.json();
     }).then((result) => {
+      console.log(result, 'result from search');
       return dispatch(getSearchSuccess(result));
     }).catch(err => console.log(err));
   };

@@ -29,6 +29,7 @@ class ModalComponent extends React.Component {
   }
 
   render() {
+    console.log(this.state, 'state in ModalComponent');
     return (
       <div>
         <section className='btn-section'>

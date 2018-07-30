@@ -1,0 +1,296 @@
+.search-main {
+    background-color: rgb(233, 235, 238);
+}
+
+.search-header {
+    background-color: rgb(255,255,255);
+
+    .navbar {
+
+        &__list {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        &__item {
+
+        }
+
+        &__active-link,
+        &__active-link:link,
+        &__active-link:visited, {
+            display: block;
+            white-space: nowrap;
+            border-bottom: 4px solid #4267b2;
+            padding: 1rem;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: black;
+        }
+
+        &__link {
+            display: block;
+            white-space: nowrap;
+            padding: 1rem;
+            font-size: 2.2rem;
+            font-weight: 400;
+            color: black;
+        }
+        
+    }
+    
+}
+
+.main-wrapper {
+    display: flex;
+    margin-top: 1.5rem;
+
+    .filter-results {
+        flex-basis: 20%;
+
+        &__header {
+
+        }
+
+        &__heading {
+
+        }
+
+        &__filters {
+            display: flex;
+            flex-direction: column;
+
+            & .filter-section {
+                display: flex;
+                flex-direction: column;
+
+                &__heading {
+                    margin-bottom: .5rem;
+                    font-size: 2.2rem;
+                    font-weight: 500;
+                    text-transform: uppercase;
+                    color:#4B4F56;
+                }
+
+                &__radio,
+                &__link,
+                &__visited {
+                    display: flex;
+                    align-items: center;
+                    color: rgb(106, 106, 106);
+
+                    & button {
+                        background-color: transparent;
+                        border: 0;
+                        margin-right: 1rem;
+                        cursor: pointer;
+                    }
+
+                    & label {
+                        font-size: 1.2rem;
+                        line-height: 1;
+                        order: 1;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+
+    .search-results {
+        flex-grow: 1;
+        margin-left: 1.5rem;
+
+        & .people-results {
+            border-radius: .8rem;
+            @extend %event-type-search-box;
+
+            &__header {
+               @extend %event-type-search-box-header;
+            }
+
+            @include search-box-heading(rgb(128, 128, 128));
+
+            &__container {
+                & .searched-users {
+                    border-bottom: 1px solid rgb(238, 238, 238);
+                    
+                    & .searched-user {
+                        display: flex;
+                        padding: 1.8rem;
+                        border-bottom: 1px solid rgb(238, 238, 238);
+
+                        &__link-image {
+                            height: 15rem;
+                        }
+
+                        &__image {
+                            display: block;
+                            max-width: 100%;
+                            height: 100%;
+                        }
+
+                        &__user-info {
+                            margin-left: 2rem;
+                        }
+
+                        &__user-name,
+                        &__user-name:link,
+                        &__user-name:visited {
+                            color: #365899;
+                        
+                            &:hover {
+                                text-decoration: underline;
+                            }
+                        }
+                    }
+                }
+
+                & .see-all-results {
+                    &__link,
+                    &__link:link,
+                    &__link:visited {
+                        @extend %link-in-search;
+                    }
+                }
+            }
+        }
+
+        & .event-results {
+            border-radius: .8rem;
+            @extend %event-type-search-box;
+
+            &__header {
+                @extend %event-type-search-box-header;
+            }
+
+            @include search-box-heading(rgb(239, 39, 54));
+
+            &__container {
+                & .searched-events {
+                    border-bottom: 1px solid rgb(238, 238, 238);
+                    
+                    & .searched-event {
+                        display: flex;
+                        padding: 1.8rem;
+                        border-bottom: 1px solid rgb(238, 238, 238);
+
+                        &__link-image {
+                            height: 15rem;
+                            flex-basis: 20%;
+                        }
+
+                        &__image {
+                            display: block;
+                            width: 100%;
+                            height: 100%;
+                        }
+
+                        &__event-info {
+                            display: flex;
+                            flex-direction: column;
+                            flex-grow: 1;
+                            flex-basis: 75%;
+                            margin-left: 2rem;
+                        }
+
+                        &__header {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+
+                            & > a,
+                            & > a:link,
+                            & > a:visited {
+                                display: block;
+                                font-size: 1.8rem;
+                                line-height: 1.3;
+                                text-align: left;
+                                color: #365899;
+
+                                &:hover {
+                                    text-decoration: underline;
+                                }
+                            }
+
+                            & .searched-event__event-type {
+                                margin: 0 1.5rem 0 auto;
+
+                                & ,
+                                &:link,
+                                &:visited {
+                                    display: block;
+                                    font-size: 1.4rem;
+                                    line-height: 1.2;
+                                    text-align: center;
+                                    color: #4565a2;
+                                }
+
+                                &:hover {
+                                    text-decoration: underline;
+                                }
+                            }
+                        }
+
+                        // event info details
+                        &__details {
+                            color: #4b4f56;
+                        }
+
+                        &__description-box {
+                            font-size: 1.6rem;
+                            line-height: 1.6rem;
+                            margin-top: .4rem;
+
+                            & p {
+                                text-overflow: ellipsis;
+                                overflow: hidden;
+                                white-space: nowrap;
+                                width: 50rem;
+                                line-height: 1.5;
+                            }
+                        }
+
+                        &__date-location {
+                            display: flex;
+                            align-items: center;
+                            padding: 1rem 0;
+                            color: #90949c;
+
+                            & time {
+                                margin-right: 15rem;
+
+                                & span {
+                                    margin-left: 5rem;
+                                }
+                            }
+                        }
+
+                        &__members {
+                            display: flex;
+                            font-weight: 500;
+                            color: rgb(12, 12, 12);
+                        }
+
+                        &__going {
+                            margin-right: 5rem;
+                        }
+
+                        &__missing {
+                            color: rgb(232, 76, 92);
+                        }
+                    }
+                }
+
+                & .see-all-results {
+                    
+                    &__link,
+                    &__link:link,
+                    &__link:visited {
+                        @extend %link-in-search
+                    }
+                }
+            }
+        }
+    }
+}

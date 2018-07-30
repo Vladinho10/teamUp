@@ -21,19 +21,15 @@
 
         &__search-box {
             flex-grow: 1;
+            position: relative;
 
             .search-form {
                 display: flex;
 
                 & .icon-wrapper {
                     position: relative;
-                    width: 60%;
+                    width: 80%;
                     margin: 0 auto;
-                    transition: width .3s linear;
-
-                    &:hover {
-                        width: 80%;
-                    }
                 }
 
                 &__input {

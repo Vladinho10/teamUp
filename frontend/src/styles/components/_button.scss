@@ -89,3 +89,24 @@
 	background-color: transparent;
     border: 0;
 }
+
+.searched-event__join-btn {
+	padding: .5rem 2rem;
+    background-color: #f6f7f9;
+    border: 1px solid #ced0d4;
+    color: #4b4f56;
+    cursor: pointer;
+
+	&:hover {
+		background-color: #e8ebee;
+	}
+
+	&:disabled {
+		opacity: 0.65; 
+  		cursor: not-allowed;
+	}
+}
+
+.radio-button_clicked {
+	fill: rgb(77, 249, 43);
+}

@@ -1,17 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 
 class SearchDropdown extends Component {
+  state = {
+    count: 10
+  }
+
   render() {
+    const tempArray = [];
+
+    for (let i = 0; i < this.props.searchData.length; i += 1) {
+      if (i < this.state.count) {
+        tempArray.push(this.props.searchData[i]);
+      }
+    }
+    console.log(this.props.searchData, 'searchdata from searchDropdon map');
     return (
       <React.Fragment>
         <ul className="search-dropdown__list">
-          {this.props.searchData.map((item) => {
+          {tempArray.map((item) => {
             return <li key={item._id} className="search-dropdown__item"><NavLink activeClassName="search-dropdown__link" to='/api/:id' >{item.title || item.type || item.name}</NavLink></li>;
           })}
         </ul>
-        <p><NavLink to={`/search/all/:${this.props.query}`} >See all results for {this.props.query}</NavLink></p>
+        <p><NavLink onClick={this.props.handleToggleDropdown} to={`/search/all/?query=${this.props.query}`} >See all results for {this.props.query}</NavLink></p>
       </React.Fragment>
     );
   }
@@ -23,4 +35,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(SearchDropdown);
+export default withRouter(
+  connect(mapStateToProps)(SearchDropdown)
+);

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import { SearchIcon } from './SvgIcons';
 import SearchDropdown from './search/SearchDropdown';
 import getSearch from '../actions/searchActions';
@@ -15,6 +15,7 @@ class Header extends Component {
 
   handleInputChange = (event) => {
     event.preventDefault();
+    console.log(event.target.value, 'event target');
     if (event.target.value.length !== 0) {
       this.setState({ dropdown: true });
     } else {
@@ -24,18 +25,17 @@ class Header extends Component {
     this.props.dispatch(getSearch(event.target.value));
   }
 
-  handleDropdownShow = () => {
-
+  handleToggleDropdown = () => {
+    this.setState(prevState => ({ dropdown: !prevState.dropdown }));
   }
 
   render() {
-    console.log(this.state.query);
     return (
       <header className="header">
         <div className='row'>
           <nav className="navbar" role="navigation">
             <p className="navbar__logo-box">
-              <NavLink to="/" role="link"><img src={logo} alt="logo" width="190" height="80" className="navbar__logo" role="logo" /></NavLink>
+              <NavLink to="/dashboard" role="link"><img src={logo} alt="logo" width="190" height="80" className="navbar__logo" role="logo" /></NavLink>
             </p>
             <div className="navbar__search-box">
               <form className="navbar__form search-form">
@@ -45,7 +45,10 @@ class Header extends Component {
                 </div>
               </form>
               <div className="search-dropdown">
-                {this.state.dropdown ? <SearchDropdown query={this.state.query} /> : null}
+                {this.state.dropdown ? <SearchDropdown
+                  handleToggleDropdown={this.handleToggleDropdown}
+                  query={this.state.query}
+                /> : null}
               </div>
             </div>
             <ul className="navbar__list">
@@ -69,4 +72,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Header);
+export default withRouter(connect(mapStateToProps)(Header));
