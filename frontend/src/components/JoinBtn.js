@@ -5,6 +5,14 @@ import { addParticipant, deleteParticipant } from '../actions/participantAction'
 class JoinBtn extends React.Component {
     state = {
       isGoing: false
+    };
+
+    componentDidMount = () => {
+      console.log(this.props.event_id, '-----this.props.event_id----');
+      console.log(this.props.currentUser, 'this.props.currentUser');
+      // if (this.props.currentUser.attending_events.includes(this.props.event_id)) {
+      //   this.setState({ isGoing: true });
+      // }
     }
 
     handleChange = () => {
@@ -12,6 +20,7 @@ class JoinBtn extends React.Component {
         if (this.state.isGoing) {
           this.props.join(this.props.event_id);
           this.props.getNumberOfPlayers(this.props.participants_count);
+          console.log(this.props.getNumberOfPlayers(this.props.participants_count), 'this.props.getNumberOfPlayers(this.props.participants_count);');
         } else {
           this.props.unjoin(this.props.event_id);
           this.props.getNumberOfPlayers(this.props.participants_count);
@@ -20,8 +29,7 @@ class JoinBtn extends React.Component {
     }
 
     render() {
-      console.log(this.props.currentUser, 'currentUser');
-      console.log(this.props.events, 'events');
+      console.log(this.props, 'props in JoinBtn');
       return (
         <div>
           {
@@ -35,7 +43,7 @@ class JoinBtn extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state, 'state inJoinBtns mapStateToProps');
+  console.log(state, 'state in joinBTN');
   return {
     events: state.events, // participantin avelacnel events.players-i mej
     currentUser: state.userData.user, // avelacnel et eventy user-i going []-i mej

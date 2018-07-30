@@ -40,8 +40,7 @@
     width:40%;
     margin: 0 auto;
     margin-top: 2%;
-    border-radius: 12%;
-    box-shadow: 5px 5px black;
+    box-shadow: 5px 5px gray;
     display: flex;
     color:black;
 }
@@ -53,8 +52,8 @@
     border-right: double #232326;
 }
 .profile_event_img{
-    width:80%;
-    height:80%;
+    width:92%;
+    height:92%;
     position: relative;
     top: 50%;
     transform: translateY(-50%);
@@ -63,9 +62,9 @@
 .profile_event_img img{
     height: 100%;
     width: 100%;
-    border:1px solid black;
-    border-radius: 20%;
-    box-shadow:3px 3px #232326;
+    border:1px solid gray;
+    border-radius: 1%;
+    box-shadow:3px 3px gray;
 }
 .profile_event_info_frame{
     width:65%;

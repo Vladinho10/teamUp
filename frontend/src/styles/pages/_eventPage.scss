@@ -7,7 +7,7 @@
     height: 90vh;
     width: 50vw;
     margin: 1%;
-
+    
     &-avatar {
         display: flex;
         align-items: center;
@@ -38,6 +38,7 @@
         padding-left: 10px;
     }
 }
+
 
 .long-desc {
     height: auto;
@@ -73,7 +74,7 @@
 }
 
 .edit-photo-icon:hover {
-    background-color: rgba(10, 40, 54, 0.281);
+    background-color: rgba(0, 0, 0, 0.548);
     transition: 0.5s
 }
 
