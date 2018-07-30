@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import Header from './Header';
 import { EventClockIcon, EventLocationIcon, PhotoIcon } from './SvgIcons';
 import ModalComponent from './ModalComponent';
 import UploadModal from './modals/UploadPhoto';
-
-const eventCover = require('../../dist/images/events_images/event1532515541293.jpg');
 
 const defaultEventCover = require('../../dist/images/eventCover.jpg'); // this.state.currentEvent.photo
 
@@ -24,19 +23,32 @@ class EventPage extends Component {
   }
 
   componentDidMount = () => {
-    const currentEvent_id = this.props.match.params.id;
-    const allEvents = this.props.events;
-    const currentEvent = allEvents.find(event => event._id === currentEvent_id);
-    const dateAndTime = this.formatDateAndTime(currentEvent.date);
-    const date = this.formatDate(currentEvent.date);
-
-    this.setState({
-      currentEvent,
-      currentEvent_id,
-      dateAndTime,
-      date
-    });
+    // console.log(this.props, 'this.props in EventPage');
+    // const events = this.props.events.sug || this.props.events.my || this.props.events.go || [];
+    // console.log(events, 'events in eventPage');
+    // const currentEvent = events.find(event => event._id === this.props.match.params.id);
+    const currentId = this.props.match.params.id;
+    this.getCurrentEvent(currentId);
   }
+
+  getCurrentEvent = (ev_id) => {
+    console.log(ev_id, 'event_id in EventPage feching');
+    const options = {
+      credentials: 'include',
+      method: 'GET',
+    };
+
+    fetch(`/api/event/${ev_id}`, options)
+      .then((res) => {
+        return res.json();
+      }).then((event) => {
+        console.log(event, 'getting current event');
+        this.setState({
+          currentEvent: event.event[0],
+          dateAndTime: event.event[0].date
+        });
+      }).catch(err => console.log(err));
+  };
 
   handleClick = () => {
     this.setState({ showUploadModal: !this.state.showUploadModal });
@@ -68,77 +80,62 @@ class EventPage extends Component {
   //     });
   // }
 
-
-formatDateAndTime = (stringDate) => {
-  const options = {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit'
-  };
-  return new Date(stringDate).toLocaleDateString([], options);
-};
-
-formatDate = (stringDate) => {
-  const options = {
-    month: 'short',
-    day: 'numeric',
-  };
-  return new Date(stringDate).toLocaleDateString([], options);
-};
-
-
-render() {
-  return (
-    <React.Fragment>
-      <Header/>
-      <div className='main-eventpage'>
-        <div temp={this.props} className='user-side'>
-        </div>
-        <div className='event'>
-          <div className='event-avatar'>
-            <img src={ this.state.currentEvent.photo || defaultEventCover } alt="event-cover"/>
+  render() {
+    return (
+      <React.Fragment>
+        <Header/>
+        <div className='main-eventpage'>
+          <div temp={this.props} className='user-side'>
           </div>
-          <div className="edit-photo-icon" onClick={ this.handleToggleModal } ><PhotoIcon/></div>
-          {
-            <UploadModal
-              handleFileChange={this.handleFileChange}
-              handleFileUpload={this.handleFileUpload}
-              handleToggleModal={this.handleToggleModal}
-              show={this.state.show}
-              imageSrc={this.state.imageSrc}
-            />
-          }
-          <hr/>
-          <div className="event-short-desc">
-            <h4 className="event-date" color="black">{this.state.date}</h4>
-            <h4 className="event-title">{this.state.currentEvent.title}</h4>
-          </div>
-          <div className="long-desc">
-            <div className="long-desc-date">
-              <EventClockIcon className ="icon"/>
-              <span>{this.state.dateAndTime}</span>
+          <div className='event'>
+            <div className='event-avatar'>
+              <img src={ this.state.currentEvent.photo || defaultEventCover } alt="event-cover"/>
             </div>
-            <div className="long-desc-location">
-              <EventLocationIcon className ="icon"/>
-              <span>{this.state.currentEvent.location}</span>
+            <div className="edit-photo-icon" onClick={ this.handleToggleModal } ><PhotoIcon/></div>
+            {
+              <UploadModal
+                handleFileChange={this.handleFileChange}
+                handleFileUpload={this.handleFileUpload}
+                handleToggleModal={this.handleToggleModal}
+                show={this.state.show}
+                imageSrc={this.state.imageSrc}
+              />
+            }
+            <hr/>
+            <div className="event-short-desc">
+              <h4 className="event-date" color="black">
+                {moment(new Date(this.state.currentEvent.date)).format('MMM DD')}
+              </h4>
+              <h4 className="event-title">{this.state.currentEvent.title}</h4>
             </div>
-            <br/>
-            { <ModalComponent currentEvent_id={this.state.currentEvent_id}/> }
-            <br/>
-            <div className="long-desc-text">
-              <p className="red-subtitles">Description</p>
-              <div className="description-text">{this.state.currentEvent.description}</div>
-              <p className="red-subtitles">Admins</p><span>{adminNames}</span>
+            <div className="long-desc">
+              <div className="long-desc-date">
+                <EventClockIcon className ="icon"/>
+                <span>
+                  {moment(new Date(this.state.currentEvent.date)).format('MMMM Do YYYY, h:mm a')}
+                </span>
+              </div>
+              <div className="long-desc-location">
+                <EventLocationIcon className ="icon"/>
+                <span>{this.state.currentEvent.location}</span>
+              </div>
+              <br/>
+              {<ModalComponent
+                currentEvent_id={this.props.match.params.id}
+                participants={this.state.currentEvent.players}
+              />}
+              <br/>
+              <div className="long-desc-text">
+                <p className="red-subtitles">Description</p>
+                <div className="description-text">{this.state.currentEvent.description}</div>
+                <p className="red-subtitles">Admins</p><span>{adminNames}</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </React.Fragment>
-  );
-}
+      </React.Fragment>
+    );
+  }
 }
 
 const mapStateToProps = (state) => {

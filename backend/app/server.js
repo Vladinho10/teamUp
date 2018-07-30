@@ -129,6 +129,20 @@ app.get('/api/events/:type',(req,res)=>{
         res.json({user});
     });
  });
+
+ app.get('/api/event/:id',(req,res)=>{
+    console.log('ping');
+    if(req.user){
+        Event.find({_id:req.params.id}).then((event)=>{
+            console.log(event);
+            res.json({event});
+        });
+    }else{
+        res.sendStatus(401);
+    }
+   
+});
+
 app.get('/logout',(req,res)=>{
     if(req.user){
         console.log(req.user,'before destroy');
@@ -275,7 +289,7 @@ data.user = Object.assign({},user._doc);
                     
                 })
                 
-            })
+            });
         }
     }else{
         res.sendStatus(401);

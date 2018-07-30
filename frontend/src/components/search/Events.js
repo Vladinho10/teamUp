@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import { NavLink, withRouter } from 'react-router-dom';
 import { LocationIcon } from '../SvgIcons';
 
@@ -7,7 +8,7 @@ const defaultPhoto = require('../../../dist/images/eventCover.jpg');
 
 class Users extends Component {
   state = {
-    count: 5,
+    count: 100,
     join: true
   }
 
@@ -29,9 +30,34 @@ class Users extends Component {
 
   render() {
     const tempArray = [];
+
     const searchEventsResults = this.props.searchData.filter((item) => {
       return !!item.title;
     });
+
+    const { filter = '' } = this.props;
+
+    const typeFilteredArray = searchEventsResults.filter((event) => {
+      return event.type === filter.slice(5);
+    });
+
+    const dateFilteredArray = searchEventsResults.filter((event) => {
+      switch (filter) {
+        case 'today':
+          return moment().format(event.date) === moment(new Date());
+
+        case 'tomorrow':
+          return moment().format(event.date) === moment(new Date()).add(154, 'days');
+
+        case 'month':
+          return moment().format(event.date) === moment(new Date()).add(moment().daysInMonth() - moment().startOf('month').format('DD'), 'days');
+
+        default:
+          return true;
+      }
+    });
+
+    const filteredArray = typeFilteredArray || dateFilteredArray;
 
     for (let i = 0; i < searchEventsResults.length; i += 1) {
       if (i < this.state.count) {
@@ -42,7 +68,7 @@ class Users extends Component {
     console.log(this.props, 'temparray props');
 
     return (
-      tempArray.map((event) => {
+      (this.props.filter ? filteredArray : tempArray).map((event) => {
         return (
           <article key={ event._id } className="searched-events__event searched-event">
             <NavLink className="searched-event__link-image" to="/">
