@@ -26,8 +26,8 @@ class EventPage extends Component {
     console.log(this.props, 'this.props in EventPage');
     // const currentEvent_id = this.props.match.params.id;
     // console.log(currentEvent_id, 'currentEvent_id getting from url');
-    // const allEvents = this.props.events;
-    const currentEvent = this.props.events.find(event => event._id === this.props.match.params.id);
+    const events = this.props.events.sug || this.props.events.my || this.props.events.go || [];
+    const currentEvent = events.find(event => event._id === this.props.match.params.id);
     const dateAndTime = moment(new Date(currentEvent.date)).format('MMMM Do YYYY, h:mm a');
     console.log(dateAndTime, 'dateAndTime');
     const date = moment(new Date(currentEvent.date)).format('MMM DD');
