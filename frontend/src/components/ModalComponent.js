@@ -9,7 +9,7 @@ class ModalComponent extends React.Component {
 
     this.state = {
       modalIsOpen: false,
-      participants: '1 participant',
+      // participants: 1  // {this.state.participants}
     };
 
     this.openModal = this.openModal.bind(this);
@@ -24,19 +24,14 @@ class ModalComponent extends React.Component {
     this.setState({ modalIsOpen: false });
   }
 
-  getNumberOfPlayers = (num) => {
-    this.setState({ participants: num });
-  }
-
   render() {
     console.log(this.state.participants, 'this.state.participants in Modal');
     return (
       <div>
         <section className='btn-section'>
-          <button onClick={this.openModal} className="participants-open-btn"> {this.state.participants} </button>
+          <button onClick={this.openModal} className="participants-open-btn"> Participants </button>
           <JoinBtn
             event_id={this.props.currentEvent_id}
-            getNumberOfPlayers={this.getNumberOfPlayers}
           />
         </section>
         <Modal

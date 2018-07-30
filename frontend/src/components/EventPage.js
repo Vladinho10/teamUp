@@ -18,17 +18,13 @@ class EventPage extends Component {
     imageSrc: '',
     show: undefined,
     currentEvent: {},
-    dateAndTime: '',
-    date: ''
+    dateAndTime: ''
   }
 
   componentDidMount = () => {
-    // console.log(this.props, 'this.props in EventPage');
-    // const events = this.props.events.sug || this.props.events.my || this.props.events.go || [];
-    // console.log(events, 'events in eventPage');
-    // const currentEvent = events.find(event => event._id === this.props.match.params.id);
     const currentId = this.props.match.params.id;
     this.getCurrentEvent(currentId);
+    this.getCurrentUser();
   }
 
   getCurrentEvent = (ev_id) => {
@@ -41,14 +37,28 @@ class EventPage extends Component {
     fetch(`/api/event/${ev_id}`, options)
       .then((res) => {
         return res.json();
-      }).then((event) => {
+      })
+      .then((event) => {
         console.log(event, 'getting current event');
         this.setState({
-          currentEvent: event.event[0],
-          dateAndTime: event.event[0].date
+          currentEvent: event,
+          dateAndTime: event.date
         });
-      }).catch(err => console.log(err));
-  };
+      })
+      .then(() => {
+        fetch('/api/user', options)
+          .then((res) => {
+            return res.json();
+          })
+          .then((user) => {
+            console.log(user, 'getting current user');
+            this.setState({
+              currentUser: user,
+            });
+          });
+      })
+      .catch(err => console.log(err));
+  }
 
   handleClick = () => {
     this.setState({ showUploadModal: !this.state.showUploadModal });
@@ -139,6 +149,7 @@ class EventPage extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state, 'state from EventPage');
   return {
     events: state.events,
     currentUser: state.userData.user

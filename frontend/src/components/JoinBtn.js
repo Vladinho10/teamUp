@@ -10,20 +10,17 @@ class JoinBtn extends React.Component {
     componentDidMount = () => {
       console.log(this.props.event_id, '-----this.props.event_id----');
       console.log(this.props.currentUser, 'this.props.currentUser');
-      // if (this.props.currentUser.attending_events.includes(this.props.event_id)) {
-      //   this.setState({ isGoing: true });
-      // }
+      if (this.props.currentUser.attending_events.includes(this.props.event_id)) {
+        this.setState({ isGoing: true });
+      }
     }
 
     handleChange = () => {
       this.setState({ isGoing: !this.state.isGoing }, () => {
         if (this.state.isGoing) {
           this.props.join(this.props.event_id);
-          this.props.getNumberOfPlayers(this.props.participants_count);
-          console.log(this.props.getNumberOfPlayers(this.props.participants_count), 'this.props.getNumberOfPlayers(this.props.participants_count);');
         } else {
           this.props.unjoin(this.props.event_id);
-          this.props.getNumberOfPlayers(this.props.participants_count);
         }
       });
     }
