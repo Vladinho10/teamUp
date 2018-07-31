@@ -18,7 +18,9 @@
     
 }
 .profile_name{
-    width:60%;
+    position:absolute;
+    left:40%;
+    width:50%;
     height:100%px;
     text-align: center;
     
@@ -171,3 +173,14 @@
     position: relative;
     top:10%;
 }
+.invite_btn_frame{
+    position:absolute;
+    width:30%;
+}
+.invitation_list{
+    display: none;
+    height:400px;
+    width:200px;
+    background-color: red;
+}
+
