@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { withRouter } from 'react-router-dom';
-import InfiniteScroll from 'react-simple-infinite-scroll';
 import Event from './Event';
 
 class Users extends Component {
@@ -14,27 +13,44 @@ class Users extends Component {
     cursor: 0
   }
 
-  // componentDidMount() {
-  //   this.loadMore();
-  // }
+  componentDidMount() {
+    this.loadMore();
+    window.addEventListener('scroll', this.loadMore, false);
+  }
 
-  // loadMore = () => {
-  //   this.setState({ isLoading: true, error: undefined });
-  //   fetch(`/api/search_results_loading/${this.props.location.search.slice(7)}?from=${this.state.cursor}`)
-  //     .then(res => res.json())
-  //     .then(
-  //       (res) => {
-  //         this.setState(state => ({
-  //           items: [...state.items, ...res.items],
-  //           cursor: res.cursor,
-  //           isLoading: false
-  //         }));
-  //       },
-  //       (error) => {
-  //         this.setState({ isLoading: false, error });
-  //       }
-  //     );
-  // }
+  componentWillUnmount = () => {
+    window.removeEventListener('scroll', this.onScroll, false);
+  }
+
+  loadMore = () => {
+    const { innerHeight, scrollY } = window;
+    // console.log(innerHeight, 'innerHeight');
+    // console.log(scrollY, 'scrollY');
+    // console.log(document.body.offsetHeight, 'doc offsetHeight');
+
+    if (document.body.offsetHeight < innerHeight + scrollY + 150) {
+      const options = {
+        credentials: 'include',
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json ' }
+      };
+      fetch(`/api/search_results_load/events?keyword=${this.props.location.search.slice(7)}&from=${this.state.cursor}`, options)
+        .then(res => res.json())
+        .then(
+          (res) => {
+            console.log(res, 'reeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeesssssssssssssssssssssssss');
+            this.setState(state => ({
+              searchData: [...state.searchData, ...res.events],
+              cursor: +res.cursor,
+              isLoading: false
+            }));
+          },
+          (error) => {
+            this.setState({ isLoading: false, error });
+          }
+        );
+    }
+  }
 
   handleJoinEvent = (event) => {
     event.preventDefault();
@@ -45,9 +61,7 @@ class Users extends Component {
   }
 
   render() {
-    const searchEventsResults = this.props.searchData.filter((item) => {
-      return !!item.title;
-    });
+    const searchEventsResults = this.state.searchData;
 
     const { filter = '' } = this.props;
 
@@ -90,27 +104,17 @@ class Users extends Component {
     // console.log(typeFilteredArray, 'typeFilteredArray');
     // console.log(dateFilteredArray, 'dateFilteredArray');
     // console.log(filteredArray, 'filteredArray');
-    // console.log(this.props.filter, 'this.props.filter');
+    console.log(this.props.filter, 'this.props.filter');
+    console.log(searchEventsResults, 'searchEventsResults');
 
     return (
       (this.props.filter ? filteredArray || [] : searchEventsResults).map((event) => {
         return (
-          <React.Fragment>
-            {/* <InfiniteScroll
-              throttle={100}
-              threshold={300}
-              isLoading={this.state.isLoading}
-              hasMore={!!this.state.cursor}
-              onLoadMore={this.loadMore}
-            > */}
-            <Event
-              event={event}
-              join={this.state.join}
-            />
-            {/* </InfiniteScroll> */}
-
-          </React.Fragment>
-
+          <Event
+            key={event._id}
+            event={event}
+            join={this.state.join}
+          />
         );
       })
     );

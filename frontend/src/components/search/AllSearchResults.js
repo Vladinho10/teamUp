@@ -82,7 +82,7 @@ class AllSearchResults extends Component {
                 {
                   tempArray.map((event) => {
                     return (
-                      <Event event={event} />
+                      <Event key={event._id} event={event} />
                     );
                   })
                 }
