@@ -48,7 +48,7 @@ class WrappedArticles extends Component {
     return (
       events.map((el, i, arr) => {
         return (
-          <article key={el._id || i} a={this.props} onClick={e => this.goToEventPage(e, el._id)} className='eventArticle'>
+          <article key={el._id || i} onClick={e => this.goToEventPage(e, el._id)} className='eventArticle'>
             <div className='event-photo'>
               <img className='event-photo__img' src={el.photo || './images/default.jpg'} alt='Event Photo' />
             </div>
@@ -61,6 +61,7 @@ class WrappedArticles extends Component {
                 </p>
               </div>
               <span className='event-container__desc-seeMore'>see more</span>
+              <span className='event-container__desc-seeMore'>{el.type}</span>
               <div className='event-container__eventInfo'>
                 <p>going {el.players.length} </p>
                 <p>missing {el.quantity && el.quantity - el.players.length} </p>
@@ -77,6 +78,11 @@ class WrappedArticles extends Component {
                   {el.location || 'location is not found'}
                 </div>
               </footer>
+            </div>
+            <div>
+              <div className='event-type'>
+                {el.type}
+              </div>
             </div>
           </article>
         );

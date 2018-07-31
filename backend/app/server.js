@@ -121,21 +121,58 @@ app.get('/api/events/:type',(req,res)=>{
         res.sendStatus(401);
     }
  });
+
+ app.get('/api/user/:id',(req,res)=>{
+    if(req.user) {
+        User.findOne({_id: req.params.id}).then(user=> res.json(user))
+    } else {
+        res.sendStatus(401)
+    }
+ });
  
  app.get('/api/profile/:id',(req,res)=>{
      console.log('ping');
-    User.find({_id:req.params.id}).then((user)=>{
-        console.log(user);
-        res.json({user});
-    });
+     if(req.user){
+        Event.find({admins:req.user.id}).then((events)=>{
+            let checking_arr = []; 
+            
+            for(let i in events){
+                checking_arr = checking_arr.concat(events[i].players);
+             }
+             
+            User.find({_id:req.params.id}).then((user)=>{
+                console.log(checking_arr);
+                console.log(checking_arr.includes(req.params.id));
+    
+                res.json(filter_data(user[0],checking_arr.includes(req.params.id)));
+                
+            }); 
+         });
+     }else{
+         res.sendStatus(401);
+    }
+     
+    
  });
+function filter_data(user,access_for_phone){
+    let data = Object.assign({},user._doc);
+    
+    return {
+        name: data.name,
+        phone: access_for_phone?data.phone:'',
+        photo: data.photo,
+        own_events: data.own_events,
+        attending_events: data.attending_events,
+        finished_events: data.finished_events
+    }
+}
 
  app.get('/api/event/:id',(req,res)=>{
     console.log('ping');
     if(req.user){
-        Event.find({_id:req.params.id}).then((event)=>{
+        Event.findOne({_id:req.params.id}).then((event)=>{
             console.log(event);
-            res.json({event});
+            res.json(event);
         });
     }else{
         res.sendStatus(401);
@@ -279,6 +316,23 @@ data.user = Object.assign({},user._doc);
             Event.findOneAndUpdate({_id:req.body.ev_id,players:{"$nin":[req.user.id]}},{$push:{players:req.user.id}},{new:true}).then((event)=>{
                 data = event;
                 User.updateOne({_id:req.user.id},{$push:{attending_events:req.body.ev_id}}).then((status1)=>{
+                    if(data){
+                        console.log(data.players.length);
+                        res.json({max_members:data.players.length});
+                    }else{
+                        
+                        res.json({err:"event object not found"});
+                    }
+                    
+                })
+                
+            });
+        }
+        else if(req.body.action == 'delete'){
+            let data;
+            Event.findOneAndUpdate({_id:req.body.ev_id,players:{"$in":[req.user.id]}},{$pull:{players:req.user.id}},{new:true}).then((event)=>{
+                data = event;
+                User.updateOne({_id:req.user.id},{$pull:{attending_events:req.body.ev_id}}).then((status1)=>{
                     if(data){
                         console.log(data.players.length);
                         res.json({max_members:data.players.length});

@@ -42,14 +42,15 @@
     margin-top: 2%;
     box-shadow: 5px 5px gray;
     display: flex;
-    color:black;
+    background-color: black;
+    color:white;
 }
 .profile_event_img_frame{
     position: relative;
     left:0%;
     width:30%;
     height:100%;
-    border-right: double #232326;
+    border-right: double white;
 }
 .profile_event_img{
     width:92%;
@@ -58,13 +59,13 @@
     top: 50%;
     transform: translateY(-50%);
     margin: 0 auto;
+    background-color: #232326;
 }
 .profile_event_img img{
     height: 100%;
     width: 100%;
     border:1px solid gray;
     border-radius: 1%;
-    box-shadow:3px 3px gray;
 }
 .profile_event_info_frame{
     width:65%;
@@ -72,7 +73,7 @@
 .profile_event_info_header{
     width:100%;
     height: 30%;
-    border-bottom: double #232326;
+    border-bottom: double white;
     display: flex;
 }
 .profile_event_info_footer{
@@ -96,7 +97,7 @@
     height:70%;
     width:100%;
     text-align: center;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid whitesmoke;
 }
 .profile_event_under_footer{
     height:30%;

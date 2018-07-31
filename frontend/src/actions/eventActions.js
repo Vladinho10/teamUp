@@ -6,6 +6,7 @@ const getSuggestedEventsSuccess = data => ({
 export const getSuggestedEvents = () => {
   return (dispatch) => {
     const options = {
+      credentials: 'include',
       headers: { 'Content-Type': 'application/json' }
     };
     const f = fetch('/api/events/suggested', options);
