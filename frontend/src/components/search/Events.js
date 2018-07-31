@@ -121,7 +121,6 @@ class Users extends Component {
   }
 }
 
-
 const mapStateToProps = (state) => {
   // console.log(ownProps, 'searchresultspage ownprrops'); here i can find the query
   return {

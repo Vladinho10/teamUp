@@ -1,48 +1,71 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { NavLink, withRouter } from 'react-router-dom';
-import getSearch from '../../actions/searchActions';
+import { withRouter } from 'react-router-dom';
+import User from './User';
 
 class Users extends Component {
   state = {
-    count: 3
+    count: 3,
+    join: true,
+    searchData: [],
+    isLoading: true,
+    cursor: 0
   }
 
-  componentDidMount = () => {
-    this.props.dispatch(getSearch(this.props.location.search.slice(7)));
+  componentDidMount() {
+    this.loadMore();
+    window.addEventListener('scroll', this.loadMore, false);
+  }
+
+  componentWillUnmount = () => {
+    window.removeEventListener('scroll', this.onScroll, false);
+  }
+
+  loadMore = () => {
+    const { innerHeight, scrollY } = window;
+
+    if (document.body.offsetHeight < innerHeight + scrollY + 150) {
+      const options = {
+        credentials: 'include',
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json ' }
+      };
+      fetch(`/api/search_results_load/users?keyword=${this.props.location.search.slice(7)}&from=${this.state.cursor}`, options)
+        .then(res => res.json())
+        .then(
+          (res) => {
+            console.log(res, 'reeeeeeeeeeeeeeeeeeeesssss  useeeeeeeersss');
+            this.setState(state => ({
+              searchData: [...state.searchData, ...res.users],
+              cursor: +res.cursor,
+              isLoading: false
+            }));
+          },
+          (error) => {
+            this.setState({ isLoading: false, error });
+          }
+        );
+    }
   }
 
   render() {
-    const tempArray = [];
-    const searchUserResults = this.props.searchData.filter((item) => {
-      return !!item.name;
+    const { filter = '' } = this.props;
+    const searchUsersResults = this.state.searchData;
+
+    const userFilteredArray = searchUsersResults.filter((user) => {
+      return filter.slice(5) === 'all';
     });
 
-    for (let i = 0; i < searchUserResults.length; i += 1) {
-      if (i < this.state.count) {
-        tempArray.push(searchUserResults[i]);
-      }
-    }
-
+    const filteredArray = (userFilteredArray.length ? userFilteredArray : null);
     return (
-      tempArray.map((item) => {
+      (this.props.filter ? filteredArray || [] : searchUsersResults).map((user) => {
         return (
-          <section key={ item._id } className="searched-users__user searched-user">
-            <NavLink className="searched-user__link-image" to="/">
-              <img className="searched-user__image" src={item.photo} alt="User Photo" />
-            </NavLink>
-            <div className="searched-user__user-info">
-              <NavLink className="searched-user__user-name" to="/">
-                <h3 className="searched-user__heading">{item.name}</h3>
-              </NavLink>
-            </div>
-          </section>
+          <User user={user} key={user._id} />
         );
       })
     );
   }
 }
-
 
 const mapStateToProps = (state) => {
   // console.log(ownProps, 'searchresultspage ownprrops'); here i can find the query

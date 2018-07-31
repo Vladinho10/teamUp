@@ -16,12 +16,12 @@ class Event extends Component {
   render() {
     return (
       <article key={ this.props.event._id } className="searched-events__event searched-event">
-        <NavLink className="searched-event__link-image" to="/">
+        <NavLink className="searched-event__link-image" to={`/eventpage/${this.props.event._id}`}>
           <img className="searched-event__image" src={this.props.event.photo || defaultPhoto} alt="Event Photo" />
         </NavLink>
         <div className="searched-event__event-info">
           <header className="searched-event__header">
-            <NavLink className="searched-event__event-name" to="/">
+            <NavLink className="searched-event__event-name" to={`/eventpage/${this.props.event._id}`}>
               <h3 className="searched-event__heading">{this.props.event.title}</h3>
             </NavLink>
             <p className="searched-event__event-type">
@@ -54,5 +54,6 @@ class Event extends Component {
     );
   }
 }
+
 
 export default Event;

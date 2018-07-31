@@ -20,7 +20,7 @@ class SearchDropdown extends Component {
       <React.Fragment>
         <ul className="search-dropdown__list">
           {tempArray.map((item) => {
-            return <li key={item._id} className="search-dropdown__item"><NavLink activeClassName="search-dropdown__link" to={item.name ? `/account/${item._id}` : `/eventpage/${item._id}`} >{item.title || item.type || item.name}</NavLink></li>;
+            return <li key={item._id} className="search-dropdown__item"><NavLink activeClassName="search-dropdown__link" to={item.name ? `/account/${item._id}` : `/eventpage/${item._id}`}>{item.title || item.type || item.name}</NavLink></li>;
           })}
         </ul>
         <p><NavLink onClick={this.props.handleToggleDropdown} to={`/search/all/?query=${this.props.query}`} >See all results for {this.props.query}</NavLink></p>

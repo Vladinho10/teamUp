@@ -56,7 +56,7 @@ class EventsSearchResults extends Component {
           <div className="filter-results__filters">
             <section className="filter-results__location-filters filter-section">
               <h3 className="filter-section__heading">Location</h3>
-              <NavLink onClick={this.handleEventFilter} to="#" className="filter-section__radio" role="radio">
+              <NavLink onClick={this.handleEventFilter} to={`${this.props.location.search}`} className="filter-section__radio" role="radio">
                 <button type="button" id="type-anywhere"><RadioButton /></button>
                 Anywhere
               </NavLink>
@@ -69,58 +69,58 @@ class EventsSearchResults extends Component {
             </section>
             <section className="filter-results__type-filters filter-section">
               <h3 className="filter-section__heading">Type</h3>
-              <NavLink onClick={this.handleEventFilter} to="#" className="filter-section__radio" role="radio">
+              <NavLink onClick={this.handleEventFilter} to={`${this.props.location.search}`} className="filter-section__radio" role="radio">
                 <button type="button" id="type-all"><RadioButton /></button>
                 All Types
               </NavLink>
-              <NavLink onClick={this.handleEventFilter} to="#" className="filter-section__radio" role="radio">
+              <NavLink onClick={this.handleEventFilter} to={`${this.props.location.search}`} className="filter-section__radio" role="radio">
                 <button type="button" id="type-sport"><RadioButton /></button>
                 Sport
               </NavLink>
-              <NavLink onClick={this.handleEventFilter} to="#" className="filter-section__radio" role="radio">
+              <NavLink onClick={this.handleEventFilter} to={`${this.props.location.search}`} className="filter-section__radio" role="radio">
                 <button type="button" id="type-meeting"><RadioButton /></button>
                 Meeting
               </NavLink>
-              <NavLink onClick={this.handleEventFilter} to="#" className="filter-section__radio" role="radio">
+              <NavLink onClick={this.handleEventFilter} to={`${this.props.location.search}`} className="filter-section__radio" role="radio">
                 <button type="button" id="type-seminar"><RadioButton /></button>
                 Seminar
               </NavLink>
-              <NavLink onClick={this.handleEventFilter} to="#" className="filter-section__radio" role="radio">
+              <NavLink onClick={this.handleEventFilter} to={`${this.props.location.search}`} className="filter-section__radio" role="radio">
                 <button type="button" id="type-travel"><RadioButton /></button>
                 Travel
               </NavLink>
-              <NavLink onClick={this.handleEventFilter} to="#" className="filter-section__radio" role="radio">
+              <NavLink onClick={this.handleEventFilter} to={`${this.props.location.search}`} className="filter-section__radio" role="radio">
                 <button type="button" id="type-entertainment"><RadioButton /></button>
                 Entertainment
               </NavLink>
-              <NavLink onClick={this.handleEventFilter} to="#" className="filter-section__radio" role="radio">
+              <NavLink onClick={this.handleEventFilter} to={`${this.props.location.search}`} className="filter-section__radio" role="radio">
                 <button type="button" id="type-family"><RadioButton /></button>
                 Family
               </NavLink>
-              <NavLink onClick={this.handleEventFilter} to="#" className="filter-section__radio" role="radio">
+              <NavLink onClick={this.handleEventFilter} to={`${this.props.location.search}`} className="filter-section__radio" role="radio">
                 <button type="button" id="type-other"><RadioButton /></button>
                 Other
               </NavLink>
             </section>
             <section className="filter-results__date-filters filter-section">
               <h3 className="filter-section__heading">Date</h3>
-              <NavLink onClick={this.handleEventFilter} to="#" className="filter-section__radio" role="radio">
+              <NavLink onClick={this.handleEventFilter} to={`${this.props.location.search}`} className="filter-section__radio" role="radio">
                 <button type="button" id="date-any"><RadioButton /></button>
                 Any Date
               </NavLink>
-              <NavLink onClick={this.handleEventFilter} to="#" className="filter-section__radio" role="radio">
+              <NavLink onClick={this.handleEventFilter} to={`${this.props.location.search}`} className="filter-section__radio" role="radio">
                 <button type="button" id="date-today"><RadioButton /></button>
                 Today
               </NavLink>
-              <NavLink onClick={this.handleEventFilter} to="#" className="filter-section__radio" role="radio">
+              <NavLink onClick={this.handleEventFilter} to={`${this.props.location.search}`} className="filter-section__radio" role="radio">
                 <button type="button" id="date-tomorrow"><RadioButton /></button>
                 Tomorrow
               </NavLink>
-              <NavLink onClick={this.handleEventFilter} to="#" className="filter-section__radio" role="radio">
+              <NavLink onClick={this.handleEventFilter} to={`${this.props.location.search}`} className="filter-section__radio" role="radio">
                 <button type="button" id="date-week"><RadioButton /></button>
                 This Week
               </NavLink>
-              <NavLink onClick={this.handleEventFilter} to="#" className="filter-section__radio" role="radio">
+              <NavLink onClick={this.handleEventFilter} to={`${this.props.location.search}`} className="filter-section__radio" role="radio">
                 <button type="button" id="date-month"><RadioButton /></button>
                 This Month
               </NavLink>
