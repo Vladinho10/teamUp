@@ -6,15 +6,18 @@ const getSuggestedEventsSuccess = data => ({
 export const getSuggestedEvents = () => {
   return (dispatch) => {
     const options = {
+      credentials: 'include',
       headers: { 'Content-Type': 'application/json' }
     };
-    const f = fetch('/api/events/suggested', options);
+    let t = 1;
+    const f = fetch(`/api/events/suggested${t}`, options);
     f.then(res => res.json())
       .then((DataArr) => {
         console.log(DataArr);
         dispatch(getSuggestedEventsSuccess(DataArr));
       })
       .catch(err => console.log(err));
+    t += 1;
   };
 };
 
@@ -23,7 +26,7 @@ const getOwnEventsSuccess = data => ({ // obj,vori key-i poxum e store-y
   ownEventsObj: data
 });
 
-export const getOwnEvents = () => {
+export const getOwnEvents = (count) => {
   return (dispatch) => {
     const options = {
       credentials: 'include',
@@ -33,7 +36,9 @@ export const getOwnEvents = () => {
         Accept: 'application/json'
       }
     };
-    const f = fetch('/api/events/own_events', options);
+    let t = count;
+    const f = fetch(`/api/events/own_events$${t}`, options);
+    if (t !== 0) t += 1;
     f.then((res) => {
       return res.json();
     })
