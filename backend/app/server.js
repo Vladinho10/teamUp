@@ -78,21 +78,21 @@ app.get('/api/events/:type',(req,res)=>{
         let type = req.params.type.split("$")[0];
         let page = req.params.type.split("$")[1];
         if(type == 'own_events'){
-            Event.find({admins:{"$in":[req.user.id]}}).sort({_id:-1}).skip(page?page*5:0).limit(5).then((own_events)=>{
+            Event.find({admins:{"$in":[req.user.id]}}).sort({_id:-1}).skip(page*5).limit(5).then((own_events)=>{
                 data.events = own_events;
                 console.log('vvvvvvvvllllllllaaaaaadddddd',data);
                 res.json(data);    
             });
         }
         else if(type == 'suggested'){
-            Event.find({players:{"$nin":[req.user.id]}}).sort({_id:-1}).skip(page?page*5:0).limit(5).then((suggested_events)=>{
+            Event.find({players:{"$nin":[req.user.id]}}).sort({_id:-1}).skip(page*5).limit(5).then((suggested_events)=>{
                 data.events = suggested_events;
                 console.log('in suggested');
                 res.json(data);
             });        
         }
         else if(type == 'attending'){
-            Event.find({players:{"$in":[req.user.id]}}).sort({_id:-1}).skip(page?page*5:0).limit(5).then((attending_events)=>{
+            Event.find({players:{"$in":[req.user.id]}}).sort({_id:-1}).skip(page*5).limit(5).then((attending_events)=>{
                 data.events = attending_events.filter((elem)=>{
                     return elem.admins[0] != req.user.id;
                 });
