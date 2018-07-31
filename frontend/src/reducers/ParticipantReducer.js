@@ -1,9 +1,9 @@
 export default (state = {}, action) => {
   switch (action.type) {
     case 'ADD_PARTICIPANT':
-      return { ...state, ...action.participants_count };
+      return state;
     case 'DELETE_PARTICIPANT':
-      return { ...state, ...action.participants_count };
+      return state; // { ...state, ...action.participants_count };
     default:
       return state;
   }
