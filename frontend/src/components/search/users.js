@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
+import getSearch from '../../actions/searchActions';
 
 class Users extends Component {
   state = {
     count: 3
+  }
+
+  componentDidMount = () => {
+    this.props.dispatch(getSearch(this.props.location.search.slice(7)));
   }
 
   render() {
@@ -46,4 +51,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Users);
+export default withRouter(connect(mapStateToProps)(Users));

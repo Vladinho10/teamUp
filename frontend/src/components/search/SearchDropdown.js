@@ -4,7 +4,7 @@ import { NavLink, withRouter } from 'react-router-dom';
 
 class SearchDropdown extends Component {
   state = {
-    count: 10
+    count: 8
   }
 
   render() {

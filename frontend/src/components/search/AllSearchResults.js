@@ -3,9 +3,18 @@ import { connect } from 'react-redux';
 import { NavLink, withRouter } from 'react-router-dom';
 import { UsersIcon, EventIcon } from '../SvgIcons';
 import Users from './Users';
-import Events from './Events';
+import Event from './Event';
+import getSearch from '../../actions/searchActions';
 
 class AllSearchResults extends Component {
+  state = {
+    eventsCount: 3
+  }
+
+  componentDidMount = () => {
+    this.props.dispatch(getSearch(this.props.location.search.slice(7)));
+  }
+
   handlePeopleLocationChange = () => {
     this.props.history.push({
       pathname: '/search/people/',
@@ -21,6 +30,19 @@ class AllSearchResults extends Component {
   }
 
   render() {
+    console.log(this.props, 'queryyyyyyyyy');
+    const tempArray = [];
+
+    const searchEventsResults = this.props.searchData.filter((item) => {
+      return !!item.title;
+    });
+
+    for (let i = 0; i < searchEventsResults.length; i += 1) {
+      if (i < this.state.eventsCount) {
+        tempArray.push(searchEventsResults[i]);
+      }
+    }
+
     return (
       <React.Fragment>
         <section className="filter-results">
@@ -57,7 +79,13 @@ class AllSearchResults extends Component {
             </header>
             <section className="event-results__container">
               <div className="searched-events">
-                <Events />
+                {
+                  tempArray.map((event) => {
+                    return (
+                      <Event event={event} />
+                    );
+                  })
+                }
               </div>
               <div className="see-all-results">
                 <NavLink className="see-all-results__link" to="#" onClick={this.handleEventsLocationChange}>See all</NavLink>

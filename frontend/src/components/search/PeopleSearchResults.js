@@ -6,7 +6,6 @@ import Users from './Users';
 
 const PeopleSearchResults = props => (
   <React.Fragment>
-    {console.log(props, 'peopleResult props')}
     <section className="filter-results">
       <header className="filter-results__header">
         <h2 className="filter-results__heading">Filter Results</h2>
