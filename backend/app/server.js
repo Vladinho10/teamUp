@@ -329,6 +329,7 @@ data.user = Object.assign({},user._doc);
             });
         }
         else if(req.body.action == 'delete'){
+            let data;
             Event.findOneAndUpdate({_id:req.body.ev_id,players:{"$in":[req.user.id]}},{$pull:{players:req.user.id}},{new:true}).then((event)=>{
                 data = event;
                 User.updateOne({_id:req.user.id},{$pull:{attending_events:req.body.ev_id}}).then((status1)=>{

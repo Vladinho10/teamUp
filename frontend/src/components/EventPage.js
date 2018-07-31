@@ -5,6 +5,7 @@ import Header from './Header';
 import { EventClockIcon, EventLocationIcon, PhotoIcon } from './SvgIcons';
 import ModalComponent from './ModalComponent';
 import UploadModal from './modals/UploadPhoto';
+// import UserArticle from './UserArticle';
 
 const defaultEventCover = require('../../dist/images/eventCover.jpg'); // this.state.currentEvent.photo
 
@@ -24,11 +25,9 @@ class EventPage extends Component {
   componentDidMount = () => {
     const currentId = this.props.match.params.id;
     this.getCurrentEvent(currentId);
-    this.getCurrentUser();
   }
 
   getCurrentEvent = (ev_id) => {
-    console.log(ev_id, 'event_id in EventPage feching');
     const options = {
       credentials: 'include',
       method: 'GET',
@@ -45,18 +44,18 @@ class EventPage extends Component {
           dateAndTime: event.date
         });
       })
-      .then(() => {
-        fetch('/api/user', options)
-          .then((res) => {
-            return res.json();
-          })
-          .then((user) => {
-            console.log(user, 'getting current user');
-            this.setState({
-              currentUser: user,
-            });
-          });
-      })
+      // .then(() => {
+      //   fetch('/api/user', options)
+      //     .then((res) => {
+      //       return res.json();
+      //     })
+      //     .then((user) => {
+      //       console.log(user, 'getting current user');
+      //       this.setState({
+      //         currentUser: user,
+      //       });
+      //     });
+      // })
       .catch(err => console.log(err));
   }
 
@@ -91,6 +90,7 @@ class EventPage extends Component {
   // }
 
   render() {
+    console.log(this.state, 'this.state');
     return (
       <React.Fragment>
         <Header/>
@@ -122,23 +122,28 @@ class EventPage extends Component {
               <div className="long-desc-date">
                 <EventClockIcon className ="icon"/>
                 <span>
-                  { moment(new Date(this.state.currentEvent.date)).format('MMMM Do YYYY, h:mm a') }
+                  { moment(new Date(this.state.currentEvent.date)).format('MMMM Do YYYY')},
+                  { this.state.currentEvent.time }
                 </span>
               </div>
               <div className="long-desc-location">
+
                 <EventLocationIcon className ="icon"/>
                 <span>{this.state.currentEvent.location}</span>
               </div>
               <br/>
               {<ModalComponent
                 currentEvent_id={this.props.match.params.id}
-                participants={this.state.currentEvent.players}
+                currentUser={this.state.currentUser}
+                currentEvent={this.state.currentEvent}
               />}
               <br/>
               <div className="long-desc-text">
                 <p className="red-subtitles">Description</p>
                 <div className="description-text">{this.state.currentEvent.description}</div>
-                <p className="red-subtitles">Admins</p><span>{adminNames}</span>
+                <p className="red-subtitles">
+                  Admins
+                </p><span>{adminNames}</span>
               </div>
             </div>
           </div>
@@ -149,12 +154,10 @@ class EventPage extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state, 'state from EventPage');
   return {
     events: state.events,
     currentUser: state.userData.user
   };
 };
-
 
 export default connect(mapStateToProps)(EventPage);

@@ -25,13 +25,14 @@ class ModalComponent extends React.Component {
   }
 
   render() {
-    console.log(this.state.participants, 'this.state.participants in Modal');
+    console.log(this.props, 'this.props im modal component');
     return (
       <div>
         <section className='btn-section'>
           <button onClick={this.openModal} className="participants-open-btn"> Participants </button>
           <JoinBtn
             event_id={this.props.currentEvent_id}
+            currentEvent={this.props.currentEvent}
           />
         </section>
         <Modal
