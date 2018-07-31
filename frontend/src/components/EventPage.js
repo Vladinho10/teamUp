@@ -5,6 +5,7 @@ import Header from './Header';
 import { EventClockIcon, EventLocationIcon, PhotoIcon } from './SvgIcons';
 import ModalComponent from './ModalComponent';
 import UploadModal from './modals/UploadPhoto';
+// import UserArticle from './UserArticle';
 
 const defaultEventCover = require('../../dist/images/eventCover.jpg'); // this.state.currentEvent.photo
 
@@ -18,21 +19,15 @@ class EventPage extends Component {
     imageSrc: '',
     show: undefined,
     currentEvent: {},
-    dateAndTime: '',
-    date: ''
+    dateAndTime: ''
   }
 
   componentDidMount = () => {
-    // console.log(this.props, 'this.props in EventPage');
-    // const events = this.props.events.sug || this.props.events.my || this.props.events.go || [];
-    // console.log(events, 'events in eventPage');
-    // const currentEvent = events.find(event => event._id === this.props.match.params.id);
     const currentId = this.props.match.params.id;
     this.getCurrentEvent(currentId);
   }
 
   getCurrentEvent = (ev_id) => {
-    console.log(ev_id, 'event_id in EventPage feching');
     const options = {
       credentials: 'include',
       method: 'GET',
@@ -41,14 +36,28 @@ class EventPage extends Component {
     fetch(`/api/event/${ev_id}`, options)
       .then((res) => {
         return res.json();
-      }).then((event) => {
+      })
+      .then((event) => {
         console.log(event, 'getting current event');
         this.setState({
-          currentEvent: event.event[0],
-          dateAndTime: event.event[0].date
+          currentEvent: event,
+          dateAndTime: event.date
         });
-      }).catch(err => console.log(err));
-  };
+      })
+      // .then(() => {
+      //   fetch('/api/user', options)
+      //     .then((res) => {
+      //       return res.json();
+      //     })
+      //     .then((user) => {
+      //       console.log(user, 'getting current user');
+      //       this.setState({
+      //         currentUser: user,
+      //       });
+      //     });
+      // })
+      .catch(err => console.log(err));
+  }
 
   handleClick = () => {
     this.setState({ showUploadModal: !this.state.showUploadModal });
@@ -81,6 +90,7 @@ class EventPage extends Component {
   // }
 
   render() {
+    console.log(this.state, 'this.state');
     return (
       <React.Fragment>
         <Header/>
@@ -104,7 +114,7 @@ class EventPage extends Component {
             <hr/>
             <div className="event-short-desc">
               <h4 className="event-date" color="black">
-                {moment(new Date(this.state.currentEvent.date)).format('MMM DD')}
+                { moment(new Date(this.state.currentEvent.date)).format('MMM DD') }
               </h4>
               <h4 className="event-title">{this.state.currentEvent.title}</h4>
             </div>
@@ -112,23 +122,28 @@ class EventPage extends Component {
               <div className="long-desc-date">
                 <EventClockIcon className ="icon"/>
                 <span>
-                  {moment(new Date(this.state.currentEvent.date)).format('MMMM Do YYYY, h:mm a')}
+                  { moment(new Date(this.state.currentEvent.date)).format('MMMM Do YYYY')},
+                  { this.state.currentEvent.time }
                 </span>
               </div>
               <div className="long-desc-location">
+
                 <EventLocationIcon className ="icon"/>
                 <span>{this.state.currentEvent.location}</span>
               </div>
               <br/>
               {<ModalComponent
                 currentEvent_id={this.props.match.params.id}
-                participants={this.state.currentEvent.players}
+                currentUser={this.state.currentUser}
+                currentEvent={this.state.currentEvent}
               />}
               <br/>
               <div className="long-desc-text">
                 <p className="red-subtitles">Description</p>
                 <div className="description-text">{this.state.currentEvent.description}</div>
-                <p className="red-subtitles">Admins</p><span>{adminNames}</span>
+                <p className="red-subtitles">
+                  Admins
+                </p><span>{adminNames}</span>
               </div>
             </div>
           </div>
@@ -144,6 +159,5 @@ const mapStateToProps = (state) => {
     currentUser: state.userData.user
   };
 };
-
 
 export default connect(mapStateToProps)(EventPage);

@@ -12,8 +12,8 @@ export default class AccountPageEvents extends Component{
           credentials:'include',
           method:'GET'
         }).then((res)=>{return res.json()}).then((profile) => {
-            console.log(profile)
-            let events = profile.user[0].own_events;
+            console.log(profile,'125151515')
+            let events = profile.own_events;
             console.log(events);
             fetch('/api/events/profile_events$'+ this.props.id,{
                 credentials:'include',

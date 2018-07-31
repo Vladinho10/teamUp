@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Invite from './Invite';
 import { NavLink } from 'react-router-dom';
 
 
@@ -20,8 +20,9 @@ export class UserProfileData extends Component {
       credentials:'include',
       method:'GET'
     }).then((res)=>{return res.json()}).then((profile) => {
+      console.log(profile);
       this.setState({
-        profile:profile.user[0]
+        profile:profile
       });
       console.log(this.state,'sjkxsbjbx');
     });
@@ -58,9 +59,11 @@ export class UserProfileData extends Component {
           </div>
           <div className = 'profile_name'>
             <div className = 'profile_name_txt'>
-              {this.state.profile?this.state.profile.name:''}
+              {this.state.profile?this.state.profile.name:''}{ '  '} 
+              {this.state.profile?this.state.profile.phone:''}
             </div>
             <div className='profile_events_info'>
+              <Invite />
               <ul>
                 <li className = {this.state.switch_events == 'admin'?'profile_events_switch':''} onClick = {() => {this.transfer_to_sibling('admin')}}> 
                   Created Events ({this.state.profile?this.state.profile.own_events.length:''})

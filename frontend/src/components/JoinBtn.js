@@ -4,32 +4,52 @@ import { addParticipant, deleteParticipant } from '../actions/participantAction'
 
 class JoinBtn extends React.Component {
     state = {
-      isGoing: false
+      isGoing: false,
+      user: {},
     };
 
     componentDidMount = () => {
-      console.log(this.props.event_id, '-----this.props.event_id----');
-      console.log(this.props.currentUser, 'this.props.currentUser');
-      // if (this.props.currentUser.attending_events.includes(this.props.event_id)) {
-      //   this.setState({ isGoing: true });
-      // }
+      this.getCurrentUser();
     }
 
+    getCurrentUser = () => {
+      const options = {
+        credentials: 'include',
+        method: 'GET',
+      };
+      fetch('/api/user', options)
+        .then((res) => {
+          return res.json();
+        })
+        .then((user) => {
+          console.log(this.props.event_id, 'this.props.event_id');
+          console.log(user, 'current user from joinbtn');
+          if (user.attending_events.includes(this.props.event_id)
+          || this.props.currentEvent.admins.includes(this.state.user._id)) {
+            this.setState({
+              isGoing: true,
+              user
+            });
+          }
+        })
+        .catch(err => console.log(err));
+    };
+
     handleChange = () => {
+      if (this.props.currentEvent.admins.includes(this.state.user._id)) {
+        alert("You are admin. You can't unjoin the event");
+        return;
+      }
       this.setState({ isGoing: !this.state.isGoing }, () => {
         if (this.state.isGoing) {
           this.props.join(this.props.event_id);
-          this.props.getNumberOfPlayers(this.props.participants_count);
-          console.log(this.props.getNumberOfPlayers(this.props.participants_count), 'this.props.getNumberOfPlayers(this.props.participants_count);');
         } else {
           this.props.unjoin(this.props.event_id);
-          this.props.getNumberOfPlayers(this.props.participants_count);
         }
       });
     }
 
     render() {
-      console.log(this.props, 'props in JoinBtn');
       return (
         <div>
           {
@@ -42,15 +62,6 @@ class JoinBtn extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => {
-  console.log(state, 'state in joinBTN');
-  return {
-    events: state.events, // participantin avelacnel events.players-i mej
-    currentUser: state.userData.user, // avelacnel et eventy user-i going []-i mej
-    participants_count: state.participants_count
-  };
-};
-
 const mapDispatchToProps = (dispatch) => {
   return {
     join: ev_id => dispatch(addParticipant(ev_id)),
@@ -58,4 +69,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(JoinBtn);
+export default connect(null, mapDispatchToProps)(JoinBtn);

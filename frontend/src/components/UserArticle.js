@@ -4,7 +4,7 @@ const defaultPhoto = require('../../dist/images/no-avatar.png');
 
 class UserArticle extends Component {
   state ={
-    participants: [{ UserName: 'aaaa aaaaaaaaaaaaaaaaaaaaaa' }, { UserName: 'bbb bbbbbbb' }, { UserName: 'ccccc ccccccccc' },
+    members: [{ UserName: 'aaaa aaaaaaaaaaaaaaaaaaaaaa' }, { UserName: 'bbb bbbbbbb' }, { UserName: 'ccccc ccccccccc' },
       { UserName: 'aaaa aaaaaaaa' }, { UserName: 'bbb bbbbbbb' }, { UserName: 'ccccc ccccccccc' },
       { UserName: 'aaaa aaaaaaaa' }, { UserName: 'bbb bbbbbbb' }, { UserName: 'ccccc ccccccccc' }]
   }
@@ -12,7 +12,7 @@ class UserArticle extends Component {
   render() {
     return (
       <div className="modal-container">
-        { this.state.participants.map((member) => {
+        { this.state.members.map((member) => {
           return (
             <section className="main-participant">
               <div className="main-participant-photo"><img src={defaultPhoto} width="50"/></div>
