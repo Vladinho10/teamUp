@@ -12,11 +12,11 @@ const cors = require('cors');
 const passport = require('./passport');
 const utf8 = require('utf8');
 const {check,validationResult} = require('express-validator/check');
-const {User,Event} = require('./model_crud');
+const {User,Event,Notification} = require('./model_crud');
 
 const Storage = multer.diskStorage({
     destination:function(req,file,cb){
-        console.log(file);
+        // console.log(file);
         cb(null,'../frontend/dist/images/users_images');
     },
     filename:function(req,file,cb){
@@ -27,7 +27,7 @@ const Storage = multer.diskStorage({
 
 const Storage_Event = multer.diskStorage({
     destination:function(req,file,cb){
-        console.log(file);
+        // console.log(file);
         req.directory = '../frontend/dist/images/events_images';
         cb(null,req.directory);
     },
@@ -59,8 +59,8 @@ app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { successRedirect: '/dashboard',
                                       failureRedirect: '/' }));
 app.get('/',(req,res)=>{
-    console.log('in / path');
-    console.log(req.user.id);
+    // console.log('in / path');
+    // console.log(req.user.id);
         if(!req.user){
             res.sendFile(path.join(__dirname,'../../frontend/dist/index.html'));
             return;
@@ -80,14 +80,14 @@ app.get('/api/events/:type',(req,res)=>{
         if(type == 'own_events'){
             Event.find({admins:{"$in":[req.user.id]}}).sort({_id:-1}).skip(page*5).limit(5).then((own_events)=>{
                 data.events = own_events;
-                console.log('vvvvvvvvllllllllaaaaaadddddd',data);
+                // console.log('vvvvvvvvllllllllaaaaaadddddd',data);
                 res.json(data);    
             });
         }
         else if(type == 'suggested'){
             Event.find({players:{"$nin":[req.user.id]}}).sort({_id:-1}).skip(page*5).limit(5).then((suggested_events)=>{
                 data.events = suggested_events;
-                console.log('in suggested');
+                // console.log('in suggested');
                 res.json(data);
             });        
         }
@@ -96,14 +96,14 @@ app.get('/api/events/:type',(req,res)=>{
                 data.events = attending_events.filter((elem)=>{
                     return elem.admins[0] != req.user.id;
                 });
-                console.log('in attending');
+                // console.log('in attending');
                 res.json(data);
             });
         }
         else if(req.params.type.split('$')[0] == 'profile_events'){
             let data = {};
             User.findOne({_id:req.params.type.split('$')[1]}).then((user)=>{
-                console.log(user,'user--->');
+                // console.log(user,'user--->');
                 Event.find({_id:{'$in':user.own_events}}).then((events)=>{
                     data.own_events = events;
                     Event.find({_id:{'$in':user.attending_events}}).then((events)=>{
@@ -125,40 +125,26 @@ app.get('/api/events/:type',(req,res)=>{
 
  app.get('/api/user/:id',(req,res)=>{
     if(req.user) {
-        User.findOne({_id: req.params.id}).then(user=> res.json(user))
+        User.findOne({_id: (req.params.id=='me')?req.user.id:req.params.id})
+        .populate(['own_events']).then(user=> res.json(user));
+        
     } else {
         res.sendStatus(401)
     }
  });
  
  app.get('/api/profile/:id',(req,res)=>{
-     console.log('ping');
-     if(req.user){
-        Event.find({admins:req.user.id}).then((events)=>{
-            let checking_arr = []; 
-            
-            for(let i in events){
-                checking_arr = checking_arr.concat(events[i].players);
-             }
-             
-            User.find({_id:req.params.id}).then((user)=>{
-                console.log(checking_arr);
-                console.log(checking_arr.includes(req.params.id));
-    
-                res.json(filter_data(user[0],checking_arr.includes(req.params.id)));
-                
-            }); 
-         });
-     }else{
-         res.sendStatus(401);
-    }
-     
-    
+    //  console.log('ping');
+    User.find({_id:req.params.id}).then((user)=>{
+        // console.log(user);
+        res.json({user});
+    });
  });
 function filter_data(user,access_for_phone){
     let data = Object.assign({},user._doc);
     
     return {
+        _id:data._id,
         name: data.name,
         phone: access_for_phone?data.phone:'',
         photo: data.photo,
@@ -169,11 +155,11 @@ function filter_data(user,access_for_phone){
 }
 
  app.get('/api/event/:id',(req,res)=>{
-    console.log('ping');
+    // console.log('ping');
     if(req.user){
-        Event.findOne({_id:req.params.id}).then((event)=>{
-            console.log(event);
-            res.json(event);
+        Event.find({_id:req.params.id}).then((event)=>{
+            // console.log(event);
+            res.json({event});
         });
     }else{
         res.sendStatus(401);
@@ -183,9 +169,9 @@ function filter_data(user,access_for_phone){
 
 app.get('/logout',(req,res)=>{
     if(req.user){
-        console.log(req.user,'before destroy');
+        // console.log(req.user,'before destroy');
         req.logout();
-        console.log(req.user,'after destroy');
+        // console.log(req.user,'after destroy');
     }
     res.redirect('/');
 });
@@ -201,11 +187,11 @@ app.get('/*', (req,res) => {
 
 app.post('/api/dashboard',(req,res)=>{
    // console.log(req.body);
-    console.log('under api/dashboard');
+    // console.log('under api/dashboard');
     if(req.user){
-        console.log('under req.user');
+        // console.log('under req.user');
         let data = {};
-            console.log('under event callback');
+            // console.log('under event callback');
             User.findOne({_id:req.user.id}).then((user)=>{
                 data.user = Object.assign({},user._doc);
                     Event.find({players:{"$nin":[req.user.id]}}).sort({_id:-1}).limit(5).then((going_events)=>{
@@ -248,10 +234,10 @@ data.user = Object.assign({},user._doc);
 */ 
 
  app.post('/api/edit_profile',upload.single('avatar'),(req,res)=>{
-     console.log('---------><---------');
+    //  console.log('---------><---------');
      if(req.user && req.file){
         User.updateOne({_id:req.user.id},{$set:{photo:'/images/users_images/'+req.user_filename }}).then((err,data)=>{
-            console.log('saved');
+            // console.log('saved');
             res.json({photo:'/images/users_images/'  + req.user_filename});
         });
     }
@@ -271,7 +257,7 @@ data.user = Object.assign({},user._doc);
 
  app.post('/api/create_event',upload2.single('photo'),(req,res) => {
     if(req.user){
-        console.log(req.body);
+        // console.log(req.body);
         let img_src;
         if(req.file){
             img_src = '/images/events_images/' + req.event_filename;
@@ -292,7 +278,7 @@ data.user = Object.assign({},user._doc);
                 completed: false,
                 photo:img_src
               }).save().then((data)=>{
-                  console.log(data);
+                //   console.log(data);
                   User.updateOne({_id:req.user.id},{$push:{own_events:data._id}}).then((err,status)=>{
                     if(err)
                         console.log(err);
@@ -304,8 +290,6 @@ data.user = Object.assign({},user._doc);
               
               
         }
-    console.log(req.body);
-    console.log(req.file);
     // res.json({done: "truee"})
  });
 
@@ -318,24 +302,7 @@ data.user = Object.assign({},user._doc);
                 data = event;
                 User.updateOne({_id:req.user.id},{$push:{attending_events:req.body.ev_id}}).then((status1)=>{
                     if(data){
-                        console.log(data.players.length);
-                        res.json({max_members:data.players.length});
-                    }else{
-                        
-                        res.json({err:"event object not found"});
-                    }
-                    
-                })
-                
-            });
-        }
-        else if(req.body.action == 'delete'){
-            let data;
-            Event.findOneAndUpdate({_id:req.body.ev_id,players:{"$in":[req.user.id]}},{$pull:{players:req.user.id}},{new:true}).then((event)=>{
-                data = event;
-                User.updateOne({_id:req.user.id},{$pull:{attending_events:req.body.ev_id}}).then((status1)=>{
-                    if(data){
-                        console.log(data.players.length);
+                        // console.log(data.players.length);
                         res.json({max_members:data.players.length});
                     }else{
                         
@@ -350,7 +317,34 @@ data.user = Object.assign({},user._doc);
         res.sendStatus(401);
     }
  });
-
+ app.post('/api/notification_creater',(req,res) =>{
+    if(req.user){
+        console.log(req.body.to);
+        new Notification({
+            from: req.user.id,
+            to: req.body.to,
+            date: Date.now(),
+            type:req.body.type,  //can be join,unjoin,invite,reminder
+            seen:false,
+            event: req.body.event
+        }).save().then((data)=>{
+            res.json({status:"OK"});
+            console.log(data,'notification');
+        });
+    }else{
+        res.sendStatus(401);
+    }
+ });
+app.post('/api/notification_check_invite',(req,res)=>{
+    if(req.user){
+        Notification.find({to:req.body.to,from:req.user.id}).select('event').then((notification)=>{
+            res.json({events:notification});
+        });
+    }else{
+        res.sendStatus(401);
+    }
+    
+});
  app.post('/api/search_results/:keyword',(req,res)=>{  //use encodeURIComponent
      if(req.user){
         let keyword = req.params.keyword;
@@ -365,16 +359,44 @@ data.user = Object.assign({},user._doc);
             });
             //console.log(search_result);
             User.find({name:{"$regex":'^'+keyword,"$options":'i'},_id:{"$ne":user_id}}).then((users)=>{
-                console.log(users);
+                // console.log(users);
                 search_result.users = Object.assign([],users);
-                console.log(search_result);
+                // console.log(search_result);
                 res.json(search_result);
             });
         });
      }else{
          res.sendStatus(401);
      }
-        
-    
  });
+
+ app.post('/api/search_results_load/:option',(req,res)=>{  //use encodeURIComponent
+    if(req.user){
+        console.log(req.params, 'request params');
+        console.log(req.query, 'request queries');
+        let option = req.params.option;
+        let clientCursor = req.query.from;
+        let serverCursor = +clientCursor + 5;
+        let keyword = req.query.keyword;
+        let search_result = {};
+        let user_id = req.user.id;
+
+        if (option === 'events') {
+            Event.find({title:{"$regex":'^'+keyword,"$options":'i'},players:{"$nin":[user_id]}}).then((events)=>{
+            search_result.events = events.filter((event) => event.admins[0] != user_id ).slice( clientCursor, serverCursor );
+            search_result.cursor = serverCursor;
+            res.json(search_result);
+         });
+        } else {
+            User.find({name:{"$regex":'^'+keyword,"$options":'i'},_id:{"$ne":user_id}}).then((users)=>{
+                search_result.users = users.slice( clientCursor, serverCursor );
+                search_result.cursor = serverCursor;
+                res.json(search_result);
+            });
+        }
+    } else{
+        res.sendStatus(401);
+    }
+});
+
 module.exports = app;

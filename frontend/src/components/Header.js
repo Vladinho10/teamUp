@@ -10,23 +10,27 @@ const logo = require('../../dist/images/logo.png');
 class Header extends Component {
   state = {
     query: '',
-    dropdown: false
+    dropdown: false,
+    focused: false
   }
 
   handleInputChange = (event) => {
     event.preventDefault();
     console.log(event.target.value, 'event target');
     if (event.target.value.length !== 0) {
-      this.setState({ dropdown: true });
+      this.setState({ dropdown: true, query: event.target.value });
     } else {
       this.setState({ dropdown: false });
     }
-    this.setState({ query: event.target.value });
     this.props.dispatch(getSearch(event.target.value));
   }
 
   handleToggleDropdown = () => {
     this.setState(prevState => ({ dropdown: !prevState.dropdown }));
+  }
+
+  handleToggleFocused = () => {
+    this.setState(prevState => ({ focused: !prevState.focused }));
   }
 
   render() {
@@ -44,7 +48,7 @@ class Header extends Component {
                   <SearchIcon className="search__icon" role="icon" />
                 </div>
               </form>
-              <div className="search-dropdown">
+              <div onBlur={this.handleToggleDropdown} className="search-dropdown">
                 {this.state.dropdown ? <SearchDropdown
                   handleToggleDropdown={this.handleToggleDropdown}
                   query={this.state.query}

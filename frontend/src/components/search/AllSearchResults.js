@@ -2,14 +2,24 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink, withRouter } from 'react-router-dom';
 import { UsersIcon, EventIcon } from '../SvgIcons';
-import Users from './Users';
-import Events from './Events';
+import User from './User';
+import Event from './Event';
+import getSearch from '../../actions/searchActions';
 
 class AllSearchResults extends Component {
+  state = {
+    count: 3,
+    join: true
+  }
+
+  componentDidMount = () => {
+    this.props.dispatch(getSearch(this.props.location.search.slice(7)));
+  }
+
   handlePeopleLocationChange = () => {
     this.props.history.push({
-      pathname: '/search/people/',
-      // search: `${this.props.location.search}`
+      pathname: `/search/people/${this.props.location.search}`,
+      // search: '?query=abc',
     });
   }
 
@@ -21,14 +31,31 @@ class AllSearchResults extends Component {
   }
 
   render() {
+    const tempArrayEvents = [];
+    const tempArrayUsers = [];
+
+    const searchEventsResults = this.props.searchData.filter((item) => {
+      return !!item.title;
+    });
+
+    const searchUserResults = this.props.searchData.filter((item) => {
+      return !!item.name;
+    });
+
+    for (let i = 0; i < searchUserResults.length; i += 1) {
+      if (i < this.state.count) {
+        tempArrayUsers.push(searchUserResults[i]);
+      }
+    }
+
+    for (let i = 0; i < searchEventsResults.length; i += 1) {
+      if (i < this.state.count) {
+        tempArrayEvents.push(searchEventsResults[i]);
+      }
+    }
+
     return (
       <React.Fragment>
-        <section className="filter-results">
-          <header className="filter-results__header">
-            <h2 className="filter-results__heading">Filter Results</h2>
-          </header>
-          <div className="filter-results__filters"></div>
-        </section>
         <section className="search-results">
           <section className="people-results">
             <header className="people-results__header">
@@ -36,14 +63,20 @@ class AllSearchResults extends Component {
                 <p><UsersIcon /></p>
                 <span>People</span>
               </h3>
-              <NavLink to="#" onClick={this.handlePeopleLocationChange}>See all</NavLink>
+              <NavLink to={`/search/people/${this.props.location.search}`} onClick={this.handlePeopleLocationChange}>See all</NavLink>
             </header>
             <section className="people-results__container">
               <div className="searched-users">
-                <Users />
+                {
+                  tempArrayUsers.map((user) => {
+                    return (
+                      <User key={user._id} user={user} join={this.state.join} />
+                    );
+                  })
+                }
               </div>
               <div className="see-all-results">
-                <NavLink className="see-all-results__link" to="#" onClick={this.handlePeopleLocationChange}>See all</NavLink>
+                <NavLink className="see-all-results__link" to={`/search/people/${this.props.location.search}`} onClick={this.handlePeopleLocationChange}>See all</NavLink>
               </div>
             </section>
           </section>
@@ -53,14 +86,20 @@ class AllSearchResults extends Component {
                 <p><EventIcon /></p>
                 <span>Events</span>
               </h3>
-              <NavLink className="see-all-results__link" to="#" onClick={this.handleEventsLocationChange}>See all</NavLink>
+              <NavLink className="see-all-results__link" to={`/search/events/${this.props.location.search}`} onClick={this.handleEventsLocationChange}>See all</NavLink>
             </header>
             <section className="event-results__container">
               <div className="searched-events">
-                <Events />
+                {
+                  tempArrayEvents.map((event) => {
+                    return (
+                      <Event key={event._id} event={event} join={this.state.join} />
+                    );
+                  })
+                }
               </div>
               <div className="see-all-results">
-                <NavLink className="see-all-results__link" to="#" onClick={this.handleEventsLocationChange}>See all</NavLink>
+                <NavLink className="see-all-results__link" to={`/search/events/${this.props.location.search}`} onClick={this.handleEventsLocationChange}>See all</NavLink>
               </div>
             </section>
           </section>
