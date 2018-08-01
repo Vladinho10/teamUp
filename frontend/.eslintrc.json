@@ -24,6 +24,7 @@
     "import"
   ],
   "rules": {
+    "no-console": "off",
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",
     "comma-dangle": 0,
@@ -41,7 +42,6 @@
         "args": "none"
       }
     ],
-    "no-console": 1,
     "camelcase": 0,
     "no-return-assign": 0,
     "arrow-body-style": 0,

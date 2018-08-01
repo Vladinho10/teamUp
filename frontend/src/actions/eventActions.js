@@ -3,13 +3,15 @@ const getSuggestedEventsSuccess = data => ({
   suggestedEventsObj: data
 });
 
-export const getSuggestedEvents = () => {
+export const getSuggestedEvents = (count) => {
   return (dispatch) => {
     const options = {
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' }
     };
-    const f = fetch('/api/events/suggested', options);
+    let sug = count;
+    const f = fetch(`/api/events/suggested$${sug}`, options);
+    if (sug !== 0) sug += 1;
     f.then(res => res.json())
       .then((DataArr) => {
         console.log(DataArr);
@@ -19,12 +21,15 @@ export const getSuggestedEvents = () => {
   };
 };
 
-const getOwnEventsSuccess = data => ({ // obj,vori key-i poxum e store-y
+const getOwnEventsSuccess = (data, num) => ({ // obj,vori key-i poxum e store-y
   type: 'OWN_EVENTS',
-  ownEventsObj: data
+  ownEventsObj: data,
+  num
 });
 
-export const getOwnEvents = () => {
+let t = 1;
+let temp = 0;
+export const getOwnEvents = (count) => {
   return (dispatch) => {
     const options = {
       credentials: 'include',
@@ -34,15 +39,31 @@ export const getOwnEvents = () => {
         Accept: 'application/json'
       }
     };
-    const f = fetch('/api/events/own_events', options);
-    f.then((res) => {
-      return res.json();
-    })
-      .then((DataObj) => {
-        console.log('DataObj in actions', DataObj);
-        return dispatch(getOwnEventsSuccess(DataObj));
+    if (count === false) {
+      t = 0;
+      const f = fetch(`/api/events/own_events$${t}`, options);
+      console.log('tttttttttttttttttttttttttttttttttt', t);
+      f.then((res) => {
+        return res.json();
       })
-      .catch(err => console.log(err));
+        .then((DataObj) => {
+          return dispatch(getOwnEventsSuccess(DataObj, t));
+        })
+        .catch(err => console.log(err));
+    } else {
+      temp++;
+      const f = fetch(`/api/events/own_events$${temp}`, options);
+      console.log('tttttttttttttttttttttttttttttttttt', temp);
+      f.then((res) => {
+        return res.json();
+      })
+        .then((DataObj) => {
+          if (!DataObj.events.length) temp--;
+          return dispatch(getOwnEventsSuccess(DataObj, temp));
+        })
+        .catch(err => console.log(err));
+    }
+
   };
 };
 
@@ -52,7 +73,7 @@ const getAttendingEventsSuccess = data => ({
   attendingEventsObj: data
 });
 
-export const getAttendingEvents = () => {
+export const getAttendingEvents = (count) => {
   return (dispatch) => {
     const options = {
       credentials: 'include',
@@ -62,8 +83,10 @@ export const getAttendingEvents = () => {
         Accept: 'application/json'
       }
     };
-    const f = fetch('/api/events/attending', options);
+    let t = count;
+    const f = fetch(`/api/events/attending$${t}`, options);
     console.log(999);
+    if (t !== 0) t += 1;
     f.then((res) => {
       return res.json();
     }).then((DataArr) => {

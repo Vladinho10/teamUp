@@ -9,7 +9,7 @@ const UserSchema = new Schema({
     photo: String,
     access_token: String,
     refresh_token: String,
-    own_events: [String],
+    own_events: [{ type: Schema.Types.ObjectId, ref: 'Event' }],
     attending_events: [String],
     finished_events: [String]
 })

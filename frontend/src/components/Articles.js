@@ -4,38 +4,24 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { LocationIcon } from './SvgIcons';
+import { getOwnEvents, getAttendingEvents, getSuggestedEvents } from '../actions/eventActions';
+
 
 class WrappedArticles extends Component {
-  // state = {
-  //   buttonJoin: false
-  // };
-
-  changeBtnName() {
-    // this.setState(prevState => ({
-    //   buttonJoin: !prevState.buttonJoin
-    // }));
-    console.log(this.state);
-    // if (this.value === 'Join') this.value = 'Unjoin';
-    // else this.value = 'Join';
-    // this.value === 'Join' ? this.value = 'Unjoin' : this.value = 'Join';
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScrollOnScroll, false);
   }
 
-  formatDate = (stringDate) => {
-    const options = {
-      month: 'short',
-      day: 'numeric',
-    };
-    return new Date(stringDate).toLocaleDateString([], options);
-  };
-
-  goToEventPage = (e, id) => {
-    console.log(id);
-    if (!e.target.matches('.event-container__joinButton')) {
-      this.props.history.push({
-        pathname: `/eventpage/${id}`
-      });
-    }
-  };
+  //
+  // componentWillReceiveProps() {
+  //   console.log("propppppppppppppppp", this.props);
+  //   this.loadInitialContent();
+  // }
+  //
+  //
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScrollOnScroll);
+  }
 
   render() {
     const events = (
@@ -44,8 +30,9 @@ class WrappedArticles extends Component {
       || this.props.events.go
       || []
     );
-    console.log('events in Article', this.props);
     return (
+      // <div>
+      //   {
       events.map((el, i, arr) => {
         return (
           <article key={el._id || i} onClick={e => this.goToEventPage(e, el._id)} className='eventArticle'>
@@ -87,8 +74,64 @@ class WrappedArticles extends Component {
           </article>
         );
       })
+      //     }
+      // </div>
+
     );
   }
+
+  handleScrollOnScroll = () => {
+    // const scrollHeight = Math.max(
+    //   document.body.scrollHeight, document.documentElement.scrollHeight,
+    //   document.body.offsetHeight, document.documentElement.offsetHeight,
+    //   document.body.clientHeight, document.documentElement.clientHeight
+    // );
+    const { innerHeight, scrollY } = window;
+    const fil = (
+      this.props.events.sug
+      || this.props.events.my
+      || this.props.events.go
+      || []
+    );
+
+    if (document.body.offsetHeight < innerHeight + scrollY + 150) {
+    // if (window.pageYOffset === scrollHeight) {
+      switch (fil) {
+        case this.props.events.sug:
+          this.props.dispatch(getSuggestedEvents(1));
+          break;
+        case this.props.events.my:
+          this.props.dispatch(getOwnEvents(true));
+          break;
+        case this.props.events.go:
+          this.props.dispatch(getAttendingEvents(1));
+          break;
+        default:
+          console.log('deeeeeeeef');
+      }
+    }
+  }
+
+  changeBtnName() {
+    console.log(this.state);
+  }
+
+  formatDate = (stringDate) => {
+    const options = {
+      month: 'short',
+      day: 'numeric',
+    };
+    return new Date(stringDate).toLocaleDateString([], options);
+  };
+
+  goToEventPage = (e, id) => {
+    console.log(id);
+    if (!e.target.matches('.event-container__joinButton')) {
+      this.props.history.push({
+        pathname: `/eventpage/${id}`
+      });
+    }
+  };
 }
 
 const mapStateToProps = (state) => {

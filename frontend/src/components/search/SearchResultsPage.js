@@ -25,9 +25,9 @@ class SearchResultsPage extends Component {
           </header>
           <div className="row">
             <div className="main-wrapper">
-              {(this.props.location.pathname === '/search/all/' && <AllSearchResults />)
-                || (this.props.location.pathname === '/search/people/' && <PeopleSearchResults />)
-                || (this.props.location.pathname === '/search/events/' && <EventsSearchResults />)
+              {(this.props.match.path === '/search/all/' && <AllSearchResults />)
+                || (this.props.match.path === '/search/people/' && <PeopleSearchResults />)
+                || (this.props.match.path === '/search/events/' && <EventsSearchResults />)
               }
             </div>
           </div>

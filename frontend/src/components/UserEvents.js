@@ -6,75 +6,71 @@ import { getOwnEvents, getAttendingEvents, getSuggestedEvents } from '../actions
 
 
 class WrappedUserEvents extends Component {
-  state = {
-    total: 12,
-    currentCount: 3,
-    offset: 3,
-    list: [],
-    isFetching: false
-  }
-
   componentDidMount() {
     this.refs.btnSug.setAttribute('disabled', 'disabled');
-    window.addEventListener('scroll', this.loadOnScroll);
+    // window.addEventListener('scroll', this.handleScrollOnScroll, false);
   }
 
-  loadOnScroll = (e) => {
-    // If all the content loaded
-    if (this.state.currentCount === this.state.total) return;
-
-    // Get div at the bottom of the content
-    const el = document.getElementById('content-end');
-
-    const rect = el.getBoundingClientRect();
-    const isAtEnd = (
-      // rect.top >= 0 &&
-      // rect.left >= 0 &&
-      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
-          && rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
-
-      // User at the end of content. load more content
-    if (isAtEnd) {
-      // If content list is still loading do not request for another content list.
-      if (this.state.isFetching) return;
-      this.setState({ isFetching: true });
-
-      // Call server and request content.
-      /**
-        * AJAX reuest
-        */
-
-      // On AJAX request success
-      this.setState({ isFetching: false });
-      // Update content list
-    }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScrollOnScroll, false);
   }
-
 
   handleGetSuggestedEvents = (e) => {
-    this.props.dispatch(getSuggestedEvents());
+    this.props.dispatch(getSuggestedEvents(0));
     this.refs.btnSug.setAttribute('disabled', 'disabled');
     this.refs.btnMy.removeAttribute('disabled', 'disabled');
     this.refs.btnGo.removeAttribute('disabled', 'disabled');
   };
 
   handleGetOwnEvents = (e) => {
-    this.props.dispatch(getOwnEvents());
+    this.props.dispatch(getOwnEvents(false));
     this.refs.btnMy.setAttribute('disabled', 'disabled');
     this.refs.btnSug.removeAttribute('disabled', 'disabled');
     this.refs.btnGo.removeAttribute('disabled', 'disabled');
   };
 
   handleGetAttendingEvents = () => {
-    this.props.dispatch(getAttendingEvents());
+    this.props.dispatch(getAttendingEvents(0));
     this.refs.btnGo.setAttribute('disabled', 'disabled');
     this.refs.btnSug.removeAttribute('disabled', 'disabled');
     this.refs.btnMy.removeAttribute('disabled', 'disabled');
   };
 
+  // handleScrollOnScroll = () => {
+  //   // const scrollHeight = Math.max(
+  //   //   document.body.scrollHeight, document.documentElement.scrollHeight,
+  //   //   document.body.offsetHeight, document.documentElement.offsetHeight,
+  //   //   document.body.clientHeight, document.documentElement.clientHeight
+  //   // );
+  //   const { innerHeight, scrollY } = window;
+  //   const fil = (
+  //     this.props.events.sug
+  //     || this.props.events.my
+  //     || this.props.events.go
+  //     || []
+  //   );
+  //
+  //   if (document.body.offsetHeight < innerHeight + scrollY + 150) {
+  //   // if (window.pageYOffset === scrollHeight) {
+  //     switch (fil) {
+  //       case this.props.events.sug:
+  //         this.props.dispatch(getSuggestedEvents(1));
+  //         break;
+  //       case this.props.events.my:
+  //         this.props.dispatch(getOwnEvents(true));
+  //         break;
+  //       case this.props.events.go:
+  //         this.props.dispatch(getAttendingEvents(1));
+  //         break;
+  //       default:
+  //         console.log('deeeeeeeef');
+  //     }
+  //   }
+  // }
+
+
   render() {
-    console.log(' UserEvents props', this.props);
+    // console.log(' UserEvents props', this.props);
     return (
       <section className='events-section'>
         <div className="navbar">

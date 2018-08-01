@@ -1,7 +1,8 @@
 .profile{
-    position: relative;
     border-bottom: double;
+    position: relative;
     display: flex;
+    top:100px;
 }
 .profile_pic_frame {
     width: 35%;  
@@ -18,8 +19,10 @@
     
 }
 .profile_name{
-    width:60%;
-    height:100%px;
+    
+    left:40%;
+    width:50%;
+    height:100%;
     text-align: center;
     
 }
@@ -31,6 +34,8 @@
     border-bottom: double #232326;
 }
 .profile_events_frame{
+    position: relative;
+    top:100px;
     display: flex;
     flex-wrap: wrap;
 }
@@ -171,3 +176,14 @@
     position: relative;
     top:10%;
 }
+.invite_btn_frame{
+    position:absolute;
+    width:30%;
+}
+.invitation_list{
+    display: none;
+    height:400px;
+    width:200px;
+    background-color: red;
+}
+
