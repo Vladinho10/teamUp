@@ -20,8 +20,9 @@ export class UserProfileData extends Component {
       credentials:'include',
       method:'GET'
     }).then((res)=>{return res.json()}).then((profile) => {
+      console.log(profile,'jskbjkcbjcsbjksb');
       this.setState({
-        profile:profile
+        profile:profile.user[0]
       });
     });
   }
