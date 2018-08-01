@@ -29,7 +29,7 @@ class ModalComponent extends React.Component {
     return (
       <div>
         <section className='btn-section'>
-          <button onClick={this.openModal} className="participants-open-btn"> Participants </button>
+          <button onClick={this.openModal} className="participants-open-btn"> PARTICIPANTS </button>
           <JoinBtn
             event_id={this.props.currentEvent_id}
             currentEvent={this.props.currentEvent}
