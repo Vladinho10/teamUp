@@ -13,7 +13,7 @@
         }
 
         &__item {
-
+            line-height: 1.3;
         }
 
         &__active-link,
@@ -43,18 +43,11 @@
 
 .main-wrapper {
     display: flex;
+    justify-content: space-between;
     margin-top: 1.5rem;
 
     .filter-results {
-        flex-basis: 20%;
-
-        &__header {
-
-        }
-
-        &__heading {
-
-        }
+        flex-basis: 24%;
 
         &__filters {
             display: flex;
@@ -94,12 +87,29 @@
                     }
                 }
             }
+
+            & .filter-section:first-child {
+                & .filter-section__add-manual {
+                    display: flex;
+                    align-items: center;
+
+                    & svg {
+                        margin-right: .7rem;
+                    }
+                }
+
+                & .filter-section__write-manual {
+                    & input {
+                        padding: .5rem .8rem;
+                    }
+                }
+            }
         }
     }
 
     .search-results {
-        flex-grow: 1;
-        margin-left: 1.5rem;
+        flex-basis: 74%;
+        margin: 0 auto;
 
         & .people-results {
             border-radius: .8rem;
