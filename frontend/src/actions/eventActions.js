@@ -143,9 +143,11 @@ const editEventSuccess = data => ({
 });
 
 export const editEvent = (editingData, _id) => {
+  console.log('---hasanq edit event');
   return (dispatch) => {
     const data = { ...editingData, _id };
     const options = {
+      credentials: 'include',
       method: 'PUT',
       body: JSON.stringify(data),
       headers: { 'Content-Type': 'application/json ' }
@@ -165,9 +167,11 @@ const deleteEventSuccess = _id => ({
 });
 
 export const deleteEvent = (_id) => {
+  console.log('---hasanq delete event action');
   return (dispatch) => {
     const data = { _id };
     const options = {
+      credentials: 'include',
       method: 'DELETE',
       body: JSON.stringify(data),
       headers: { 'Content-Type': 'application/json ' }
