@@ -9,7 +9,7 @@ import EventsSearchResults from './EventsSearchResults';
 
 class SearchResultsPage extends Component {
   render() {
-    console.log(this.props, 'searchresultspage');
+    // console.log(this.props, 'searchresultspage');
     return (
       <React.Fragment>
         <Header state={this.state}/>

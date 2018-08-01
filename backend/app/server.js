@@ -401,15 +401,25 @@ app.post('/api/notification_check_invite',(req,res)=>{
 
         if (option === 'events') {
             Event.find({title:{"$regex":'^'+keyword,"$options":'i'},players:{"$nin":[user_id]}}).then((events)=>{
-            search_result.events = events.filter((event) => event.admins[0] != user_id ).slice( clientCursor, serverCursor );
-            search_result.cursor = serverCursor;
-            res.json(search_result);
+                console.log(serverCursor, 'servercursor');
+                if (clientCursor >= events.filter((event) => event.admins[0] != user_id ).length) {
+                    res.end();
+                } else {
+                    search_result.events = events.filter((event) => event.admins[0] != user_id ).slice( clientCursor, serverCursor );
+                    search_result.cursor = serverCursor;
+                    search_result.length = events.filter((event) => event.admins[0] != user_id ).length;
+                    res.json(search_result);
+                }
          });
         } else {
             User.find({name:{"$regex":'^'+keyword,"$options":'i'},_id:{"$ne":user_id}}).then((users)=>{
-                search_result.users = users.slice( clientCursor, serverCursor );
-                search_result.cursor = serverCursor;
-                res.json(search_result);
+                if (clientCursor >= users.length) {
+                    res.status(200).send();
+                } else {
+                    search_result.users = users.slice( clientCursor, serverCursor );
+                    search_result.cursor = serverCursor;
+                    res.json(search_result);
+                } 
             });
         }
     } else{
