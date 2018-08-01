@@ -19,6 +19,7 @@ class WrappedArticles extends Component {
   // }
   //
   //
+
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScrollOnScroll);
   }
@@ -81,24 +82,30 @@ class WrappedArticles extends Component {
   }
 
   handleScrollOnScroll = () => {
-    // const scrollHeight = Math.max(
-    //   document.body.scrollHeight, document.documentElement.scrollHeight,
-    //   document.body.offsetHeight, document.documentElement.offsetHeight,
-    //   document.body.clientHeight, document.documentElement.clientHeight
-    // );
-    const { innerHeight, scrollY } = window;
+    const scrollHeight = Math.max(
+      document.body.scrollHeight, document.documentElement.scrollHeight,
+      document.body.offsetHeight, document.documentElement.offsetHeight,
+      document.body.clientHeight, document.documentElement.clientHeight
+    );
+
+    const { innerHeight, scrollY, pageYOffset } = window;
     const fil = (
       this.props.events.sug
       || this.props.events.my
       || this.props.events.go
       || []
     );
-
-    if (document.body.offsetHeight < innerHeight + scrollY + 150) {
-    // if (window.pageYOffset === scrollHeight) {
+    const sug = 0;
+    const my = 0;
+    const go = 0;
+    // if (document.body.offsetHeight < innerHeight + scrollY + 150) {
+    if (pageYOffset > scrollHeight * 0.3) {
       switch (fil) {
         case this.props.events.sug:
+          // if(demo < pageYOffset) {
+          //   demo = pageYOffset;
           this.props.dispatch(getSuggestedEvents(1));
+          // }
           break;
         case this.props.events.my:
           this.props.dispatch(getOwnEvents(true));

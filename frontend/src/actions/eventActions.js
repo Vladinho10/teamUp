@@ -1,23 +1,35 @@
-const getSuggestedEventsSuccess = data => ({
+const getSuggestedEventsSuccess = (data, num) => ({
   type: 'SUGGESTED_EVENTS',
-  suggestedEventsObj: data
+  suggestedEventsObj: data,
+  num
 });
 
-export const getSuggestedEvents = (count) => {
+let sugNum = 0;
+export const getSuggestedEvents = (isScroll) => {
   return (dispatch) => {
     const options = {
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' }
     };
-    let sug = count;
-    const f = fetch(`/api/events/suggested$${sug}`, options);
-    if (sug !== 0) sug += 1;
-    f.then(res => res.json())
-      .then((DataArr) => {
-        console.log(DataArr);
-        dispatch(getSuggestedEventsSuccess(DataArr));
-      })
-      .catch(err => console.log(err));
+    if (isScroll) {
+      sugNum += 1;
+      const f = fetch(`/api/events/suggested$${sugNum}`, options);
+      f.then(res => res.json())
+        .then((DataArr) => {
+          console.log(DataArr);
+          dispatch(getSuggestedEventsSuccess(DataArr, sugNum));
+        })
+        .catch(err => console.log(err));
+    } else {
+      sugNum = 0;
+      const f = fetch(`/api/events/suggested$${sugNum}`, options);
+      f.then(res => res.json())
+        .then((DataArr) => {
+          console.log(DataArr);
+          dispatch(getSuggestedEventsSuccess(DataArr, sugNum));
+        })
+        .catch(err => console.log(err));
+    }
   };
 };
 
@@ -27,9 +39,8 @@ const getOwnEventsSuccess = (data, num) => ({ // obj,vori key-i poxum e store-y
   num
 });
 
-let t = 1;
-let temp = 0;
-export const getOwnEvents = (count) => {
+let ownNum = 0;
+export const getOwnEvents = (isScroll) => {
   return (dispatch) => {
     const options = {
       credentials: 'include',
@@ -39,31 +50,28 @@ export const getOwnEvents = (count) => {
         Accept: 'application/json'
       }
     };
-    if (count === false) {
-      t = 0;
-      const f = fetch(`/api/events/own_events$${t}`, options);
-      console.log('tttttttttttttttttttttttttttttttttt', t);
+    if (isScroll) {
+      ownNum += 1;
+      const f = fetch(`/api/events/own_events$${ownNum}`, options);
+      console.log('tttttttttttttttttttttttttttttttttt', ownNum);
       f.then((res) => {
         return res.json();
       })
         .then((DataObj) => {
-          return dispatch(getOwnEventsSuccess(DataObj, t));
+          return dispatch(getOwnEventsSuccess(DataObj, ownNum));
         })
         .catch(err => console.log(err));
     } else {
-      temp++;
-      const f = fetch(`/api/events/own_events$${temp}`, options);
-      console.log('tttttttttttttttttttttttttttttttttt', temp);
+      ownNum = 0;
+      const f = fetch('/api/events/own_events$0', options);
       f.then((res) => {
         return res.json();
       })
         .then((DataObj) => {
-          if (!DataObj.events.length) temp--;
-          return dispatch(getOwnEventsSuccess(DataObj, temp));
+          return dispatch(getOwnEventsSuccess(DataObj, 0));
         })
         .catch(err => console.log(err));
     }
-
   };
 };
 
@@ -73,7 +81,7 @@ const getAttendingEventsSuccess = data => ({
   attendingEventsObj: data
 });
 
-export const getAttendingEvents = (count) => {
+export const getAttendingEvents = (isScroll) => {
   return (dispatch) => {
     const options = {
       credentials: 'include',
@@ -83,7 +91,7 @@ export const getAttendingEvents = (count) => {
         Accept: 'application/json'
       }
     };
-    let t = count;
+    let t = isScroll;
     const f = fetch(`/api/events/attending$${t}`, options);
     console.log(999);
     if (t !== 0) t += 1;
@@ -96,12 +104,13 @@ export const getAttendingEvents = (count) => {
   };
 };
 
-const addEventSuccess = data => ({
+const addEventSuccess = (data, num) => ({
   type: 'ADD_EVENT',
-  addEventObj: data
+  addEventObj: data,
+  num
 });
 
-export const addEvent = (payload) => {
+export const addEvent = (payload, isScroll) => {
   return (dispatch) => {
     let options;
     if (payload instanceof FormData) {
