@@ -1,32 +1,46 @@
-const getSuggestedEventsSuccess = data => ({
+const getSuggestedEventsSuccess = (data, num) => ({
   type: 'SUGGESTED_EVENTS',
-  suggestedEventsObj: data
+  suggestedEventsObj: data,
+  num
 });
 
-export const getSuggestedEvents = () => {
+let sugNum = 0;
+export const getSuggestedEvents = (isScroll) => {
   return (dispatch) => {
     const options = {
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' }
     };
-    let t = 1;
-    const f = fetch(`/api/events/suggested${t}`, options);
-    f.then(res => res.json())
-      .then((DataArr) => {
-        console.log(DataArr);
-        dispatch(getSuggestedEventsSuccess(DataArr));
-      })
-      .catch(err => console.log(err));
-    t += 1;
+    if (isScroll) {
+      sugNum += 1;
+      const f = fetch(`/api/events/suggested$${sugNum}`, options);
+      f.then(res => res.json())
+        .then((DataArr) => {
+          console.log(DataArr);
+          dispatch(getSuggestedEventsSuccess(DataArr, sugNum));
+        })
+        .catch(err => console.log(err));
+    } else {
+      sugNum = 0;
+      const f = fetch(`/api/events/suggested$${sugNum}`, options);
+      f.then(res => res.json())
+        .then((DataArr) => {
+          console.log(DataArr);
+          dispatch(getSuggestedEventsSuccess(DataArr, sugNum));
+        })
+        .catch(err => console.log(err));
+    }
   };
 };
 
-const getOwnEventsSuccess = data => ({ // obj,vori key-i poxum e store-y
+const getOwnEventsSuccess = (data, num) => ({ // obj,vori key-i poxum e store-y
   type: 'OWN_EVENTS',
-  ownEventsObj: data
+  ownEventsObj: data,
+  num
 });
 
-export const getOwnEvents = (count) => {
+let ownNum = 0;
+export const getOwnEvents = (isScroll) => {
   return (dispatch) => {
     const options = {
       credentials: 'include',
@@ -36,17 +50,28 @@ export const getOwnEvents = (count) => {
         Accept: 'application/json'
       }
     };
-    let t = count;
-    const f = fetch(`/api/events/own_events$${t}`, options);
-    if (t !== 0) t += 1;
-    f.then((res) => {
-      return res.json();
-    })
-      .then((DataObj) => {
-        console.log('DataObj in actions', DataObj);
-        return dispatch(getOwnEventsSuccess(DataObj));
+    if (isScroll) {
+      ownNum += 1;
+      const f = fetch(`/api/events/own_events$${ownNum}`, options);
+      console.log('tttttttttttttttttttttttttttttttttt', ownNum);
+      f.then((res) => {
+        return res.json();
       })
-      .catch(err => console.log(err));
+        .then((DataObj) => {
+          return dispatch(getOwnEventsSuccess(DataObj, ownNum));
+        })
+        .catch(err => console.log(err));
+    } else {
+      ownNum = 0;
+      const f = fetch('/api/events/own_events$0', options);
+      f.then((res) => {
+        return res.json();
+      })
+        .then((DataObj) => {
+          return dispatch(getOwnEventsSuccess(DataObj, 0));
+        })
+        .catch(err => console.log(err));
+    }
   };
 };
 
@@ -56,7 +81,7 @@ const getAttendingEventsSuccess = data => ({
   attendingEventsObj: data
 });
 
-export const getAttendingEvents = () => {
+export const getAttendingEvents = (isScroll) => {
   return (dispatch) => {
     const options = {
       credentials: 'include',
@@ -66,8 +91,10 @@ export const getAttendingEvents = () => {
         Accept: 'application/json'
       }
     };
-    const f = fetch('/api/events/attending', options);
+    let t = isScroll;
+    const f = fetch(`/api/events/attending$${t}`, options);
     console.log(999);
+    if (t !== 0) t += 1;
     f.then((res) => {
       return res.json();
     }).then((DataArr) => {
@@ -77,12 +104,13 @@ export const getAttendingEvents = () => {
   };
 };
 
-const addEventSuccess = data => ({
+const addEventSuccess = (data, num) => ({
   type: 'ADD_EVENT',
-  addEventObj: data
+  addEventObj: data,
+  num
 });
 
-export const addEvent = (payload) => {
+export const addEvent = (payload, isScroll) => {
   return (dispatch) => {
     let options;
     if (payload instanceof FormData) {
@@ -115,9 +143,11 @@ const editEventSuccess = data => ({
 });
 
 export const editEvent = (editingData, _id) => {
+  console.log('---hasanq edit event');
   return (dispatch) => {
     const data = { ...editingData, _id };
     const options = {
+      credentials: 'include',
       method: 'PUT',
       body: JSON.stringify(data),
       headers: { 'Content-Type': 'application/json ' }
@@ -137,9 +167,11 @@ const deleteEventSuccess = _id => ({
 });
 
 export const deleteEvent = (_id) => {
+  console.log('---hasanq delete event action');
   return (dispatch) => {
     const data = { _id };
     const options = {
+      credentials: 'include',
       method: 'DELETE',
       body: JSON.stringify(data),
       headers: { 'Content-Type': 'application/json ' }

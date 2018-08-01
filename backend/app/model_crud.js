@@ -1,5 +1,6 @@
 const userScheme = require('./models/user');
 const eventScheme = require('./models/event');
+const notificationScheme = require('./models/notification');
 const mongoose = require('mongoose');
 
 userScheme.statics.findUser = function(id,res){
@@ -38,5 +39,5 @@ userScheme.statics.addUser = function(user,done,displayName){
 
 const User = mongoose.model('User',userScheme);
 const Event = mongoose.model('Event',eventScheme);
-
-module.exports = {User,Event};
+const Notification  = mongoose.model('Notification',notificationScheme);
+module.exports = {User,Event,Notification};

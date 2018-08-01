@@ -7,13 +7,18 @@ export default (state = {
   // console.log('action', action.ownEventsArr);
   switch (action.type) {
     case 'ADD_USER':
-      console.log();
       return { sug: action.userData.suggested };
     case 'SUGGESTED_EVENTS':
-      console.log('action.suggestedEventsObj', action.suggestedEventsObj);
-      return { sug: action.suggestedEventsObj.events };
+      if (action.num === 0) {
+        return { sug: action.suggestedEventsObj.events };
+      }
+      return { ...state, sug: [...state.sug, ...action.suggestedEventsObj.events] };
+      // console.log('action.suggestedEventsObj', action.suggestedEventsObj);
     case 'OWN_EVENTS':
-      return { my: action.ownEventsObj.events };
+      if (action.num === 0) {
+        return { my: action.ownEventsObj.events };
+      }
+      return { ...state, my: [...state.my, ...action.ownEventsObj.events] };
     case 'ATTENDING_EVENTS':
       console.log('action.attendingEventsObj', action.attendingEventsObj);
       return action.attendingEventsObj.events;

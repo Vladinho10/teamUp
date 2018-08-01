@@ -17,7 +17,7 @@ class JoinBtn extends React.Component {
         credentials: 'include',
         method: 'GET',
       };
-      fetch('/api/user', options)
+      fetch('/api/user/me', options)
         .then((res) => {
           return res.json();
         })
