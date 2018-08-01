@@ -4,51 +4,49 @@ import moment from 'moment';
 import { withRouter } from 'react-router-dom';
 import Event from './Event';
 
-class Users extends Component {
+class Events extends Component {
   state = {
-    count: 100,
     join: true,
     searchData: [],
-    isLoading: true,
-    cursor: 0
+    cursor: 0,
+    length: 0
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     this.loadMore();
-    window.addEventListener('scroll', this.loadMore, false);
+    window.addEventListener('scroll', this.loadMore);
   }
 
   componentWillUnmount = () => {
-    window.removeEventListener('scroll', this.onScroll, false);
+    window.removeEventListener('scroll', this.loadMore);
   }
 
   loadMore = () => {
     const { innerHeight, scrollY } = window;
-    // console.log(innerHeight, 'innerHeight');
-    // console.log(scrollY, 'scrollY');
-    // console.log(document.body.offsetHeight, 'doc offsetHeight');
 
     if (document.body.offsetHeight < innerHeight + scrollY + 150) {
-      const options = {
+      // console.log(this.state, 'stateeee');
+      if (this.state.searchData.length === this.state.length) {
+        window.removeEventListener('scroll', this.loadMore, false);
+      }
+      // console.log('fetch');
+      fetch(`/api/search_results_load/events?keyword=${this.props.location.search.slice(7)}&from=${this.state.cursor}`, {
         credentials: 'include',
         method: 'POST',
         headers: { 'Content-Type': 'application/json ' }
-      };
-      fetch(`/api/search_results_load/events?keyword=${this.props.location.search.slice(7)}&from=${this.state.cursor}`, options)
-        .then(res => res.json())
-        .then(
-          (res) => {
-            console.log(res, 'reeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeesssssssssssssssssssssssss');
-            this.setState(state => ({
-              searchData: [...state.searchData, ...res.events],
-              cursor: +res.cursor,
-              isLoading: false
-            }));
-          },
-          (error) => {
-            this.setState({ isLoading: false, error });
-          }
-        );
+      }).then(res => res.json())
+        .then((res) => {
+          console.log(res, 'reeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeesssssssssssssssssssssssss');
+          // console.log(res.status, 'reeeeesss   statuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuus');
+          this.setState(state => ({
+            searchData: [...state.searchData, ...res.events],
+            cursor: +res.cursor,
+            length: +res.length,
+          }));
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }
 
@@ -61,7 +59,8 @@ class Users extends Component {
   }
 
   render() {
-    const searchEventsResults = this.state.searchData;
+    const searchEventsResults = this.state.searchData.filter((item, i, ar) => { return ar.indexOf(item) === i; });
+    console.log(searchEventsResults, 'searchEventsResults');
 
     const { filter = '' } = this.props;
 
@@ -104,8 +103,6 @@ class Users extends Component {
     // console.log(typeFilteredArray, 'typeFilteredArray');
     // console.log(dateFilteredArray, 'dateFilteredArray');
     // console.log(filteredArray, 'filteredArray');
-    console.log(this.props.filter, 'this.props.filter');
-    console.log(searchEventsResults, 'searchEventsResults');
 
     return (
       (this.props.filter ? filteredArray || [] : searchEventsResults).map((event) => {
@@ -128,4 +125,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default withRouter(connect(mapStateToProps)(Users));
+export default withRouter(connect(mapStateToProps)(Events));

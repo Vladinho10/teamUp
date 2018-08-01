@@ -7,13 +7,13 @@ class EventLoginPage extends Component {
   render() {
     return (
       <React.Fragment>
-        <header file={this.props} className='main-header'>
+        <header file={this.props} className='login-header'>
           <div className="row">
-            <div className="main-header__wrapper">
-              <div className='main-header__logo-box'>
+            <div className="login-header__wrapper">
+              <div className='login-header__logo-box'>
                 <NavLink to="/" role="link"><img src={logo} alt="logo" width="190" height="80" className="navbar__logo" role="logo" /></NavLink>
               </div>
-              <h1 className="main-header__heading">Welcome to teamUp !</h1>
+              <h1 className="login-header__heading">Welcome to teamUp !</h1>
             </div>
           </div>
         </header>

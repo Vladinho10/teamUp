@@ -20,7 +20,7 @@
     width: 100%;
     border: 0;
     border-radius: .3rem;
-    box-shadow: .3rem .2rem .5rem rgba(245, 245, 244, 0.939);
+    box-shadow: 0 0 1rem rgba(154, 192, 213, 0.939);
 }
 
 %event-type-search-box {
@@ -80,5 +80,19 @@
 
     &:hover {
         text-decoration: underline;
+    }
+}
+
+%user-info-submit-button {
+    background-color: rgb(6, 123, 196);
+    color: $color-white;
+    padding: .6rem 2rem;
+    margin-top: .5rem;
+    border: 0;
+    border-radius: 3px;
+    box-shadow: 0 0 1rem rgb(115, 158, 186);
+
+    &:hover {
+        background-color: rgb(8, 90, 142);
     }
 }

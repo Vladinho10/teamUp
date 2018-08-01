@@ -17,7 +17,7 @@ class JoinBtn extends React.Component {
         credentials: 'include',
         method: 'GET',
       };
-      fetch('/api/user', options)
+      fetch('/api/user/me', options)
         .then((res) => {
           return res.json();
         })
@@ -42,9 +42,9 @@ class JoinBtn extends React.Component {
       }
       this.setState({ isGoing: !this.state.isGoing }, () => {
         if (this.state.isGoing) {
-          this.props.join(this.props.event_id);
+          this.props.join(this.props.currentEvent._id);
         } else {
-          this.props.unjoin(this.props.event_id);
+          this.props.unjoin(this.props.currentEvent._id);
         }
       });
     }

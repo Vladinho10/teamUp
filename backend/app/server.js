@@ -302,7 +302,24 @@ data.user = Object.assign({},user._doc);
                 data = event;
                 User.updateOne({_id:req.user.id},{$push:{attending_events:req.body.ev_id}}).then((status1)=>{
                     if(data){
-                        // console.log(data.players.length);
+                        console.log(data.players.length);
+                        res.json({max_members:data.players.length});
+                    }else{
+                        
+                        res.json({err:"event object not found"});
+                    }
+                    
+                })
+                
+            });
+        }
+        else if(req.body.action == 'delete'){
+            let data;
+            Event.findOneAndUpdate({_id:req.body.ev_id,players:{"$in":[req.user.id]}},{$pull:{players:req.user.id}},{new:true}).then((event)=>{
+                data = event;
+                User.updateOne({_id:req.user.id},{$pull:{attending_events:req.body.ev_id}}).then((status1)=>{
+                    if(data){
+                        console.log(data.players.length);
                         res.json({max_members:data.players.length});
                     }else{
                         
@@ -317,6 +334,7 @@ data.user = Object.assign({},user._doc);
         res.sendStatus(401);
     }
  });
+ 
  app.post('/api/notification_creater',(req,res) =>{
     if(req.user){
         console.log(req.body.to);
@@ -383,15 +401,25 @@ app.post('/api/notification_check_invite',(req,res)=>{
 
         if (option === 'events') {
             Event.find({title:{"$regex":'^'+keyword,"$options":'i'},players:{"$nin":[user_id]}}).then((events)=>{
-            search_result.events = events.filter((event) => event.admins[0] != user_id ).slice( clientCursor, serverCursor );
-            search_result.cursor = serverCursor;
-            res.json(search_result);
+                console.log(serverCursor, 'servercursor');
+                if (clientCursor >= events.filter((event) => event.admins[0] != user_id ).length) {
+                    res.end();
+                } else {
+                    search_result.events = events.filter((event) => event.admins[0] != user_id ).slice( clientCursor, serverCursor );
+                    search_result.cursor = serverCursor;
+                    search_result.length = events.filter((event) => event.admins[0] != user_id ).length;
+                    res.json(search_result);
+                }
          });
         } else {
             User.find({name:{"$regex":'^'+keyword,"$options":'i'},_id:{"$ne":user_id}}).then((users)=>{
-                search_result.users = users.slice( clientCursor, serverCursor );
-                search_result.cursor = serverCursor;
-                res.json(search_result);
+                if (clientCursor >= users.length) {
+                    res.status(200).send();
+                } else {
+                    search_result.users = users.slice( clientCursor, serverCursor );
+                    search_result.cursor = serverCursor;
+                    res.json(search_result);
+                } 
             });
         }
     } else{

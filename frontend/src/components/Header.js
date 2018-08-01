@@ -26,18 +26,14 @@ class Header extends Component {
   }
 
   handleToggleDropdown = () => {
-    this.setState(prevState => ({ dropdown: !prevState.dropdown }));
-  }
-
-  handleToggleFocused = () => {
-    this.setState(prevState => ({ focused: !prevState.focused }));
+    this.setState({ dropdown: false });
   }
 
   render() {
     return (
-      <header className="header">
+      <header className="main-header">
         <div className='row'>
-          <nav className="navbar" role="navigation">
+          <nav className="main-header__navbar navbar" role="navigation">
             <p className="navbar__logo-box">
               <NavLink to="/dashboard" role="link"><img src={logo} alt="logo" width="190" height="80" className="navbar__logo" role="logo" /></NavLink>
             </p>
@@ -48,7 +44,7 @@ class Header extends Component {
                   <SearchIcon className="search__icon" role="icon" />
                 </div>
               </form>
-              <div onBlur={this.handleToggleDropdown} className="search-dropdown">
+              <div className="search-dropdown">
                 {this.state.dropdown ? <SearchDropdown
                   handleToggleDropdown={this.handleToggleDropdown}
                   query={this.state.query}

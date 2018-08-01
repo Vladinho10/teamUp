@@ -9,7 +9,8 @@ class Users extends Component {
     join: true,
     searchData: [],
     isLoading: true,
-    cursor: 0
+    cursor: 0,
+    length: 0
   }
 
   componentDidMount() {
@@ -21,36 +22,38 @@ class Users extends Component {
     window.removeEventListener('scroll', this.onScroll, false);
   }
 
+
   loadMore = () => {
     const { innerHeight, scrollY } = window;
 
     if (document.body.offsetHeight < innerHeight + scrollY + 150) {
-      const options = {
+      // console.log(this.state, 'stateeee');
+      if (this.state.searchData.length === this.state.length) {
+        window.removeEventListener('scroll', this.loadMore, false);
+      }
+      // console.log('fetch');
+      fetch(`/api/search_results_load/users?keyword=${this.props.location.search.slice(7)}&from=${this.state.cursor}`, {
         credentials: 'include',
         method: 'POST',
         headers: { 'Content-Type': 'application/json ' }
-      };
-      fetch(`/api/search_results_load/users?keyword=${this.props.location.search.slice(7)}&from=${this.state.cursor}`, options)
-        .then(res => res.json())
+      }).then(res => res.json())
         .then(
           (res) => {
             console.log(res, 'reeeeeeeeeeeeeeeeeeeesssss  useeeeeeeersss');
             this.setState(state => ({
               searchData: [...state.searchData, ...res.users],
               cursor: +res.cursor,
-              isLoading: false
             }));
-          },
-          (error) => {
-            this.setState({ isLoading: false, error });
           }
-        );
+        ).catch((err) => {
+          console.log(err);
+        });
     }
   }
 
   render() {
     const { filter = '' } = this.props;
-    const searchUsersResults = this.state.searchData;
+    const searchUsersResults = this.state.searchData.filter((item, i, ar) => { return ar.indexOf(item) === i; });
 
     const userFilteredArray = searchUsersResults.filter((user) => {
       return filter.slice(5) === 'all';
