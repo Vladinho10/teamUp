@@ -12,7 +12,7 @@ const cors = require('cors');
 const passport = require('./passport');
 const utf8 = require('utf8');
 const {check,validationResult} = require('express-validator/check');
-const {User,Event} = require('./model_crud');
+const {User,Event,Notification} = require('./model_crud');
 
 const Storage = multer.diskStorage({
     destination:function(req,file,cb){
@@ -125,7 +125,9 @@ app.get('/api/events/:type',(req,res)=>{
 
  app.get('/api/user/:id',(req,res)=>{
     if(req.user) {
-        User.findOne({_id: req.params.id}).then(user=> res.json(user))
+        User.findOne({_id: (req.params.id=='me')?req.user.id:req.params.id})
+        .populate(['own_events']).then(user=> res.json(user));
+        
     } else {
         res.sendStatus(401)
     }
@@ -159,6 +161,7 @@ function filter_data(user,access_for_phone){
     let data = Object.assign({},user._doc);
     
     return {
+        _id:data._id,
         name: data.name,
         phone: access_for_phone?data.phone:'',
         photo: data.photo,
@@ -350,7 +353,34 @@ data.user = Object.assign({},user._doc);
         res.sendStatus(401);
     }
  });
-
+ app.post('/api/notification_creater',(req,res) =>{
+    if(req.user){
+        console.log(req.body.to);
+        new Notification({
+            from: req.user.id,
+            to: req.body.to,
+            date: Date.now(),
+            type:req.body.type,  //can be join,unjoin,invite,reminder
+            seen:false,
+            event: req.body.event
+        }).save().then((data)=>{
+            res.json({status:"OK"});
+            console.log(data,'notification');
+        });
+    }else{
+        res.sendStatus(401);
+    }
+ });
+app.post('/api/notification_check_invite',(req,res)=>{
+    if(req.user){
+        Notification.find({to:req.body.to,from:req.user.id}).select('event').then((notification)=>{
+            res.json({events:notification});
+        });
+    }else{
+        res.sendStatus(401);
+    }
+    
+});
  app.post('/api/search_results/:keyword',(req,res)=>{  //use encodeURIComponent
      if(req.user){
         let keyword = req.params.keyword;
