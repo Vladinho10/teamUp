@@ -49,7 +49,7 @@ class EventPage extends Component {
         return res.json();
       })
       .then((event) => {
-        console.dir(event.event[0], 'getting current event');
+        console.log(event.event[0], 'getting current event');
         this.setState({
           currentEvent: event.event[0],
           dateAndTime: event.date,
