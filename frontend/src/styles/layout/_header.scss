@@ -1,6 +1,10 @@
 @import "utils/variables";
 
-.header {
+.main-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+	z-index: 1;
     background-color: rgb(240, 241, 242);
 
     .navbar {
@@ -55,6 +59,7 @@
         &__list {
             flex-basis: 25%;
             display: flex;
+            align-self: stretch;
             justify-content: space-around;
             margin-left: 2rem;
             color: $color-primary;
@@ -63,8 +68,22 @@
 
             & a:link,
             & a:visited {
+                display: flex;
+                align-items: center;
+                padding: 0 1rem;
+                height: 100%;
                 color: $text-color;
+                transition: all .1s linear;
+
+                &:hover {
+                    background-color: #E1E1E1;
+                }
             }
+        }
+
+        &__item {
+            display: flex;
+            align-items: center;
         }
     }
 }

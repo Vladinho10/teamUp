@@ -2,6 +2,10 @@
   width: 57%;
   line-height: normal;
   color: #333;
+
+  &__navbar {
+    margin-bottom: 5rem;
+  }
 }
 .navbar__listZ {
   display: flex;
@@ -12,8 +16,9 @@
 
 
 .navbar__item__button {
- background-color: #1cd2c0;
- padding:0.3em 1.2em;
+ padding: 1rem 2rem;
+ border: 0;
+ border-bottom: 3px solid rgb(6, 123, 196);
  border-radius: 2em;
  text-transform: uppercase;
 }

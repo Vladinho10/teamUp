@@ -15,7 +15,7 @@ const getSearch = (keyword) => {
     f.then((res) => {
       return res.json();
     }).then((result) => {
-      console.log(result, 'result from search');
+      // console.log(result, 'result from search');
       return dispatch(getSearchSuccess(result));
     }).catch(err => console.log(err));
   };

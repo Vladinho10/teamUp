@@ -35,7 +35,7 @@ class WrappedUserEvents extends Component {
     console.log(' UserEvents props', this.props);
     return (
       <section className='events-section'>
-        <div className="navbar">
+        <div className="events-section__navbar navbar">
           <ul className="navbar__listZ">
             <li className="navbar__itemZ"><button ref='btnSug' onClick={this.handleGetSuggestedEvents} className="navbar__item__button">Suggested</button></li>
             <li className="navbar__itemZ"><button ref='btnMy' onClick={this.handleGetOwnEvents} className="navbar__item__button">Own</button></li>
