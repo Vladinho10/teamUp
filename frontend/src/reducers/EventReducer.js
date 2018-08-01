@@ -13,7 +13,10 @@ export default (state = {
       console.log('action.suggestedEventsObj', action.suggestedEventsObj);
       return { sug: action.suggestedEventsObj.events };
     case 'OWN_EVENTS':
-      return { my: action.ownEventsObj.events };
+      if (action.num === 0) {
+        return { my: action.ownEventsObj.events };
+      }
+      return { ...state, my: [...state.my, ...action.ownEventsObj.events] };
     case 'ATTENDING_EVENTS':
       console.log('action.attendingEventsObj', action.attendingEventsObj);
       return action.attendingEventsObj.events;
