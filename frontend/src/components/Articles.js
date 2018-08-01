@@ -4,8 +4,13 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { LocationIcon } from './SvgIcons';
-import { getOwnEvents, getAttendingEvents, getSuggestedEvents } from '../actions/eventActions';
-
+import {
+  getOwnEvents,
+  getAttendingEvents,
+  getSuggestedEvents,
+  JoinUser,
+  unJoinUser
+} from '../actions/eventActions';
 
 class WrappedArticles extends Component {
   componentDidMount() {
@@ -22,6 +27,22 @@ class WrappedArticles extends Component {
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScrollOnScroll);
+  }
+
+  getButton = (_id) => {
+    const events = (
+      this.props.events.sug
+      || this.props.events.my
+      || this.props.events.go
+      || []
+    );
+    console.log(this.props, 'mmmmmmmmmmmmmmmmmmmmmmmmmm', _id);
+    if (events === this.props.events.sug) {
+      return <button onClick={() => this.handleJoin(_id) } className='event-container__joinButton'>Join</button>;
+    } else if (events === this.props.events.go) {
+      return <button onClick={() => this.handleUnJoin(_id) } className='event-container__joinButton'>UnJoin</button>
+    }
+    return null;
   }
 
   render() {
@@ -54,7 +75,7 @@ class WrappedArticles extends Component {
                 <p>going {el.players.length} </p>
                 <p>missing {el.quantity && el.quantity - el.players.length} </p>
                 <div className='event-container__eventInfo-btn'>
-                  {false && <button onClick={ this.changeBtnName } className='event-container__joinButton'>Join</button>}
+                  {this.getButton(el._id)}
                 </div>
               </div>
               <footer className='event-container__footer'>
@@ -81,6 +102,15 @@ class WrappedArticles extends Component {
     );
   }
 
+  handleJoin = (el_id) => {
+    this.props.dispatch(JoinUser(el_id));
+  }
+
+  handleUnJoin = (el_id) => {
+    this.props.dispatch(unJoinUser(el_id));
+  }
+
+
   handleScrollOnScroll = () => {
     const scrollHeight = Math.max(
       document.body.scrollHeight, document.documentElement.scrollHeight,
@@ -88,16 +118,13 @@ class WrappedArticles extends Component {
       document.body.clientHeight, document.documentElement.clientHeight
     );
 
-    const { innerHeight, scrollY, pageYOffset } = window;
+    const { pageYOffset } = window;
     const fil = (
       this.props.events.sug
       || this.props.events.my
       || this.props.events.go
       || []
     );
-    const sug = 0;
-    const my = 0;
-    const go = 0;
     // if (document.body.offsetHeight < innerHeight + scrollY + 150) {
     if (pageYOffset > scrollHeight * 0.3) {
       switch (fil) {
