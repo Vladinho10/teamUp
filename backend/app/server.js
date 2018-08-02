@@ -493,10 +493,8 @@ app.put('/api/change_event/:id',upload2.single('photo'),(req,res)=>{
       }else{
           img_src = undefined;
       }
-
-
-    console.log(`req.bodyyyyyyyyyyyy`, req.body);
-      Event.updateOne({_id: req.params.id}, {$set: {
+      var query   = { id: req.param.id };
+      var update  = {
         title: req.body.event_title,
         type:req.body.event_type,
         description: req.body.event_description,
@@ -509,14 +507,16 @@ app.put('/api/change_event/:id',upload2.single('photo'),(req,res)=>{
         players: [req.user.id],
         completed: false,
         photo:img_src
-      }}). then((status) => {
-        console.log(`dataaaaaaaaa`, req.body);
-        return res.json({event: req.body});
+      };
+      var options = { new: true };
+      Event.findOneAndUpdate(query, update, options, function(err, doc){
+        if(err) console.log(err);
+        console.log('docccccccccccc', doc);
+        res.json({events: doc})
+      });
 
-      })
-   }else{
+   } else {
        res.sendStatus(401);
-
    }
 });
 
