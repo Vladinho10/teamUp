@@ -46,6 +46,7 @@ class EventDashboardPage extends Component {
 
   handleToggleModal = () => {
     this.setState(prevState => ({ show: !prevState.show }));
+    this.handleDeleteImage();
   }
 
   handleFileChange = (event) => {
@@ -74,7 +75,9 @@ class EventDashboardPage extends Component {
     }
 
     const data = new FormData(event.target);
+    console.log(data.get('event_type'));
     this.props.dispatch(addEvent(data));
+    this.handleDeleteImage();
   }
 
   render() {
@@ -85,8 +88,8 @@ class EventDashboardPage extends Component {
           className="loader"
           type="Bars"
           color="#00BFFF"
-          height="500"
-          width="500"
+          height="200"
+          width="200"
         >
         </Loader>
       </div> : <React.Fragment>

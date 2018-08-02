@@ -29,21 +29,6 @@ class WrappedArticles extends Component {
     window.removeEventListener('scroll', this.handleScrollOnScroll);
   }
 
-  getButton = (_id) => {
-    const events = (
-      this.props.events.sug
-      || this.props.events.my
-      || this.props.events.go
-      || []
-    );
-    if (events === this.props.events.sug) {
-      return <button onClick={() => this.handleJoin(_id) } className='event-container__joinButton'>Join</button>;
-    } else if (events === this.props.events.go) {
-      return <button onClick={() => this.handleUnJoin(_id) } className='event-container__joinButton'>UnJoin</button>
-    }
-    return null;
-  }
-
   render() {
     const events = (
       this.props.events.sug
@@ -68,28 +53,26 @@ class WrappedArticles extends Component {
                 <p>{el.description && el.description.length > 80 ? `${el.description.slice(0, 80)}. . .` : el.description}
                 </p>
               </div>
-              <span className='event-container__desc-seeMore'>see more</span>
-              <span className='event-container__desc-seeMore'>{el.type}</span>
               <div className='event-container__eventInfo'>
-                <p>going {el.players.length} </p>
-                <p>missing {el.quantity && el.quantity - el.players.length} </p>
-                <div className='event-container__eventInfo-btn'>
-                  {this.getButton(el._id)}
+                <div className="event-container__eventInfo-wrapper">
+                  <p> <CheckedIcon /> going
+                    <span>{el.players.length}</span>
+                  </p>
+                  <p>
+                    <QuestionIcon /> missing
+                    <span>{el.quantity && el.quantity - el.players.length}</span>
+                  </p>
                 </div>
               </div>
-              <footer className='event-container__footer'>
-                <div className='event-container__footer-date'>
-                  {this.formatDate(el.date) || 'Date is not defined'}
-                </div>
-                <div className='event-container__footer-place'>
-                  <LocationIcon role='icon' />
-                  {el.location || 'location is not found'}
-                </div>
-              </footer>
-            </div>
-            <div>
-              <div className='event-type'>
-                {el.type}
+              <div className='event-container__footer-place'>
+                <LocationIcon role='icon' />
+                <span>{el.location || 'location is not found'}</span>
+              </div>
+              <div className='event-container__eventInfo-btn'>
+                {false && <button onClick={ this.changeBtnName } className='event-container__joinButton'>Join</button>}
+              </div>
+              <div className='event-container__footer-date'>
+                {this.formatDate(el.date) || 'Date is not defined'}
               </div>
             </div>
           </article>
@@ -101,6 +84,21 @@ class WrappedArticles extends Component {
     );
   }
 
+  getButton = (_id) => {
+    const events = (
+      this.props.events.sug
+      || this.props.events.my
+      || this.props.events.go
+      || []
+    );
+    if (events === this.props.events.sug) {
+      return <button onClick={() => this.handleJoin(_id) } className='event-container__joinButton'>Join</button>;
+    } else if (events === this.props.events.go) {
+      return <button onClick={() => this.handleUnJoin(_id) } className='event-container__joinButton'>UnJoin</button>
+    }
+    return null;
+  }
+
   handleJoin = (el_id) => {
     this.props.dispatch(JoinUser(el_id));
   }
@@ -108,7 +106,6 @@ class WrappedArticles extends Component {
   handleUnJoin = (el_id) => {
     this.props.dispatch(unJoinUser(el_id));
   }
-
 
   handleScrollOnScroll = () => {
     const scrollHeight = Math.max(
