@@ -155,13 +155,21 @@ export const editEvent = (editingData, _id) => {
   console.log(_id, '_id');
   console.log(editingData, 'editingData');
   return (dispatch) => {
-    const data = { ...editingData, _id };
-    const options = {
-      credentials: 'include',
-      method: 'PUT',
-      body: JSON.stringify(data),
-      headers: { 'Content-Type': 'application/json ' }
-    };
+    let options;
+    if (editingData instanceof FormData) {
+      options = {
+        credentials: 'include',
+        method: 'PUT',
+        body: editingData,
+      };
+    } else {
+      options = {
+        credentials: 'include',
+        method: 'PUT',
+        body: JSON.stringify({ data: editingData }),
+        headers: { 'Content-Type': 'application/json ' }
+      };
+    }
     const f = fetch(`/api/change_event/${_id}`, options);
     f.then((res) => {
       return res.json();
@@ -187,11 +195,12 @@ export const deleteEvent = (_id) => {
       body: JSON.stringify(data),
       headers: { 'Content-Type': 'application/json ' }
     };
-    const f = fetch(`/api/events/${_id}`, options);
+    const f = fetch(`/api/change_event/${_id}`, options);
     f.then((res) => {
       return res.json();
-    }).then((deletedDataObj_id) => {
-      return dispatch(deleteEventSuccess(deletedDataObj_id));
+    }).then((status) => {
+      console.log(status, 'killed!!!!');
+      // return dispatch(deleteEventSuccess(deletedDataObj_id));
     }).catch(err => console.log(err));
   };
 };

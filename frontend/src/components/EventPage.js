@@ -124,7 +124,7 @@ class EventPage extends Component {
     }
 
     const data = new FormData(event.target);
-    console.log(data, 'edited data');
+    console.log(data.get('event_title'), 'edited title');
     this.props.dispatch(editEvent(data, this.props.match.params.id));
   }
 
