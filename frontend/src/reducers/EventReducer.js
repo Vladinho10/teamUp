@@ -20,8 +20,10 @@ export default (state = {
       }
       return { ...state, my: [...state.my, ...action.ownEventsObj.events] };
     case 'ATTENDING_EVENTS':
-      console.log('action.attendingEventsObj', action.attendingEventsObj);
-      return action.attendingEventsObj.events;
+      if (action.num === 0) {
+        return { go: action.attendingEventsObj.events };
+      }
+      return { ...state, go: [...state.go, ...action.attendingEventsObj.events] };
     case 'ADD_EVENT':
       console.log('state during add', state);
       return { ...state, my: [...state.my, action.addEventObj] };
@@ -35,6 +37,22 @@ export default (state = {
     //     return el._id !== action.deletingEventObj_id;
     //   });
     //   // return deletedDataArr;
+    case 'JOIN_EVENT': {
+      const takenArr = state.sug.filter((el) => {
+        console.log('el._iddddddd', el._id, 'aaaaaaaaaaaaaaaaction.ev_id', action.ev_id);
+        return el._id !== action.id;
+      });
+      // console.log('takenArraaaaaaaaa', takenArr);
+      return { ...state, sug: takenArr };
+    }
+    case 'UNJOIN_EVENT': {
+      const takenArr = state.go.filter((el) => {
+        console.log('el._iddddddd', el._id, 'aaaaaaaaaaaaaaaaction.ev_id', action.ev_id);
+        return el._id !== action.id;
+      });
+      // console.log('takenArraaaaaaaaa', takenArr);
+      return { ...state, go: takenArr };
+    }
     default:
       return state;
   }
