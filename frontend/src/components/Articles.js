@@ -123,7 +123,7 @@ class WrappedArticles extends Component {
       || []
     );
     // if (document.body.offsetHeight < innerHeight + scrollY + 150) {
-    if (pageYOffset > scrollHeight * 0.6) {
+    if (pageYOffset > scrollHeight * 0.3) {
       switch (fil) {
         case this.props.events.sug:
           // if(demo < pageYOffset) {
