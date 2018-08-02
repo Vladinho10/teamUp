@@ -335,7 +335,7 @@ data.user = Object.assign({},user._doc);
                             seen:false,
                             event:data._id
                         }).save().then((status)=>{
-                            res.json({max_members:data.players.length});
+                            res.json(filterUser(data,false));
                         });
                         console.log(data.players.length);
                     }else{
@@ -361,7 +361,7 @@ data.user = Object.assign({},user._doc);
                             seen:false,
                             event:data._id
                         }).save().then((status)=>{
-                            res.json({max_members:data.players.length});
+                            res.json(filterUser(data,false));
                         });
                     }else{
                         
