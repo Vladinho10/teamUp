@@ -20,15 +20,15 @@ class EventPage extends Component {
     imageSrc: '',
     imagePreviewSrc: '',
     show: false,
-    currentUserId: '',
     currentEvent: {},
+    participants: [],
     dateAndTime: ''
   }
 
   componentDidMount = () => {
     const currentId = this.props.match.params.id;
     this.getCurrentEvent(currentId);
-    this.setState({ currentUserId: this.props.currentUser._id });
+    // this.getParticipants();
   }
 
   // shouldComponentUpdate(nextProps, nextState) {
@@ -55,20 +55,37 @@ class EventPage extends Component {
           dateAndTime: event.date,
         });
       })
-      // .then(() => {
-      //   fetch('/api/user', options)
-      //     .then((res) => {
-      //       return res.json();
-      //     })
-      //     .then((user) => {
-      //       console.log(user, 'getting current user');
-      //       this.setState({
-      //         currentUser: user,
-      //       });
-      //     });
-      // })
       .catch(err => console.log(err));
   }
+
+  // getParticipants = (participants) => {
+  //   // this.setState({
+  //   //   participants: [{ UserName: 'aaaa aaaaaaaaaaaaa' }, { UserName: 'bbb bbbbbbb' }, { UserName: 'ccccc ccccccccc' },
+  //   //     { UserName: 'aaaa aaaaaaaa' }, { UserName: 'bbb bbbbbbb' }, { UserName: 'ccccc ccccccccc' },
+  //   //     { UserName: 'aaaa aaaaaaaa' }, { UserName: 'bbb bbbbbbb' }]
+
+  //   // });
+
+  //   const data = { participants };
+  //   const options = {
+  //     credentials: 'include',
+  //     method: 'POST',
+  //     body: JSON.stringify(data),
+  //     headers: { 'Content-type': 'application/json' }
+  //   };
+
+  //   fetch('/api/participants', options)
+  //     .then((res) => {
+  //       return res.json();
+  //     })
+  //     .then((players) => {
+  //       console.log(players, 'getting participants in eventPage');
+  //       this.setState({
+  //         participants: players
+  //       });
+  //     })
+  //     .catch(err => console.log(err));
+  // }
 
   /**
    * Handle event edit
@@ -117,11 +134,10 @@ class EventPage extends Component {
       <React.Fragment>
         <Header/>
         <div className='main-eventpage'>
-          <div temp={this.props} className='user-side'>
-          </div>
           <div className='event'>
             <div className='event-avatar'>
               <img src={ this.state.currentEvent.photo || defaultEventCover } alt="event-cover"/>
+              <span className='event-avatar-type' >{this.state.currentEvent.type}</span>
             </div>
             <div className="event-short-desc">
               <h4 className="event-date" color="black">
@@ -147,6 +163,7 @@ class EventPage extends Component {
                 currentEvent_id={this.props.match.params.id}
                 currentUser={this.state.currentUser}
                 currentEvent={this.state.currentEvent}
+                participants={this.state.participants}
               />}
               <br/>
               <div className="long-desc-text">
@@ -161,7 +178,7 @@ class EventPage extends Component {
                 </section> */}
               </div>
               <section className="event-edit-delete">
-                <button className="" onClick={this.handleToggleModal} >EDIT EVENT</button>
+                <button className="" onClick={this.handleToggleModal} >EDIT</button>
                 <CreateEventModal
                   show={this.state.show}
                   handleFileChange={this.handleFileChange}

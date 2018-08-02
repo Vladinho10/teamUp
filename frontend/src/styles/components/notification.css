@@ -28,7 +28,7 @@
 .unseen{
     position: absolute;
     text-align: center;
-    top:-3px;
+    top:12px;
     height:20px;
     line-height: 20px;
     width:20px;
@@ -40,4 +40,7 @@
 }
 .seen{
     display: none;
+}
+#notific{
+    cursor: pointer;
 }

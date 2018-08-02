@@ -327,8 +327,17 @@ data.user = Object.assign({},user._doc);
                 data = event;
                 User.updateOne({_id:req.user.id},{$push:{attending_events:req.body.ev_id}}).then((status1)=>{
                     if(data){
+                        let notific = new Notification({
+                            from: req.user.id,
+                            to: data.admins[0],
+                            date: Date.now(),
+                            type:'join',  //can be join,unjoin,invite,reminder
+                            seen:false,
+                            event:data._id
+                        }).save().then((status)=>{
+                            res.json(filterUser(data,false));
+                        });
                         console.log(data.players.length);
-                        res.json({max_members:data.players.length});
                     }else{
                         
                         res.json({err:"event object not found"});
@@ -344,8 +353,16 @@ data.user = Object.assign({},user._doc);
                 data = event;
                 User.updateOne({_id:req.user.id},{$pull:{attending_events:req.body.ev_id}}).then((status1)=>{
                     if(data){
-                        console.log(data.players.length);
-                        res.json({max_members:data.players.length});
+                        let notific = new Notification({
+                            from: req.user.id,
+                            to: data.admins[0],
+                            date: Date.now(),
+                            type:'unjoin',  //can be join,unjoin,invite,reminder
+                            seen:false,
+                            event:data._id
+                        }).save().then((status)=>{
+                            res.json(filterUser(data,false));
+                        });
                     }else{
                         
                         res.json({err:"event object not found"});
@@ -360,6 +377,17 @@ data.user = Object.assign({},user._doc);
     }
  });
  
+ app.post('/api/participants',(req,res)=>{
+     if(req.user){
+         let part_data = [];
+         User.find({_id:{$in:req.body.participants}}).then((participants)=>{
+            for(let i = 0;i<participants.length;i++){
+                part_data.push(filterUser(participants[i],false));
+            }
+            res.json({part_data});
+         });
+     }
+ });
  app.post('/api/notification_creater',(req,res) =>{
     if(req.user){
         console.log(req.body.to);
