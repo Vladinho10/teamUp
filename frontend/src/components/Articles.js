@@ -143,10 +143,6 @@ class WrappedArticles extends Component {
     }
   }
 
-  changeBtnName() {
-    console.log(this.state);
-  }
-
   formatDate = (stringDate) => {
     const options = {
       month: 'short',
@@ -157,7 +153,7 @@ class WrappedArticles extends Component {
 
   goToEventPage = (e, id) => {
     console.log(id);
-    if (!e.target.matches('.event-container__joinButton')) {
+    if (e.target.matches('.event-photo__img') || e.target.matches('.event-container__footer-date') || e.target.matches('.event-container__header')) {
       this.props.history.push({
         pathname: `/eventpage/${id}`
       });
