@@ -20,7 +20,7 @@ const Storage = multer.diskStorage({
         cb(null,'../frontend/dist/images/users_images');
     },
     filename:function(req,file,cb){
-        req.user_filename = req.user.id + '-'+ Date.now() + '-avatar.jpg'; 
+        req.user_filename = req.user.id + '-'+ Date.now() + '-avatar.jpg';
         cb(null,req.user_filename);
     }
 });
@@ -32,7 +32,7 @@ const Storage_Event = multer.diskStorage({
         cb(null,req.directory);
     },
     filename:function(req,file,cb){
-        req.event_filename = 'event' + Date.now() + '.jpg'; 
+        req.event_filename = 'event' + Date.now() + '.jpg';
         cb(null,req.event_filename);
     }
 });
@@ -72,7 +72,7 @@ app.get('/',(req,res)=>{
 
 
 
-app.get('/api/events/:type',(req,res)=>{ 
+app.get('/api/events/:type',(req,res)=>{
     if(req.user){
         let data = {};
         let type = req.params.type.split("$")[0];
@@ -81,7 +81,7 @@ app.get('/api/events/:type',(req,res)=>{
             Event.find({admins:{"$in":[req.user.id]}}).sort({_id:-1}).skip(page*5).limit(5).then((own_events)=>{
                 data.events = own_events;
                 // console.log('vvvvvvvvllllllllaaaaaadddddd',data);
-                res.json(data);    
+                res.json(data);
             });
         }
         else if(type == 'suggested'){
@@ -89,7 +89,7 @@ app.get('/api/events/:type',(req,res)=>{
                 data.events = suggested_events;
                 // console.log('in suggested');
                 res.json(data);
-            });        
+            });
         }
         else if(type == 'attending'){
             Event.find({players:{"$in":[req.user.id]}}).sort({_id:-1}).skip(page*5).limit(5).then((attending_events)=>{
@@ -110,14 +110,14 @@ app.get('/api/events/:type',(req,res)=>{
                         data.attending_events = events;
                         res.json(data);
                     });
-                }); 
+                });
             })
             //Event.findAll({_id:{"$in":}})
         }
         else{
             res.end();
         }
-        
+
     }else{
         res.sendStatus(401);
     }
@@ -129,28 +129,28 @@ app.get('/api/events/:type',(req,res)=>{
         .populate(['own_events']).then((user)=> {
             res.json(filterUser(user,false));
         });
-        
+
     } else {
         res.sendStatus(401)
     }
  });
- 
+
  app.get('/api/profile/:id',(req,res)=>{
     if(req.user){
         Event.find({admins:req.user.id}).then((events)=>{
-            let checking_arr = []; 
-            
+            let checking_arr = [];
+
             for(let i in events){
                 checking_arr = checking_arr.concat(events[i].players);
              }
-             
+
             User.find({_id:req.params.id}).then((user)=>{
                 console.log(checking_arr);
                 console.log(checking_arr.includes(req.params.id));
-    
+
                 res.json(filterUser(user[0],checking_arr.includes(req.params.id)));
-                
-            }); 
+
+            });
          });
      }
  });
@@ -165,7 +165,7 @@ app.get('/api/events/:type',(req,res)=>{
     }else{
         res.sendStatus(401);
     }
-   
+
 });
 
 app.get('/logout',(req,res)=>{
@@ -220,20 +220,20 @@ app.post('/api/dashboard',(req,res)=>{
                                 //console.log(admin,'admin');
                                 if( i == data.suggested.length-1 ){
                                     //console.log(data.suggested[i].admins[0],'<------>');
-                                    res.json(data);     
+                                    res.json(data);
                                 }
                             });
                         }
-                      
+
                     });
             });
-        
+
     }else{
         res.sendStatus(401);
     }
  });
 
- 
+
 /*
 data.user = Object.assign({},user._doc);
                 Event.find({admins:{"$in":[req.user.id]}}).then((own_events)=>{
@@ -243,7 +243,7 @@ data.user = Object.assign({},user._doc);
                         res.json(data);
                     });
                 });
-*/ 
+*/
 
  app.post('/api/edit_profile',upload.single('avatar'),(req,res)=>{
     //  console.log('---------><---------');
@@ -312,8 +312,8 @@ data.user = Object.assign({},user._doc);
                   });
                   res.json({event:data});
               });
-              
-              
+
+
         }
     // res.json({done: "truee"})
  });
@@ -339,12 +339,12 @@ data.user = Object.assign({},user._doc);
                         });
                         console.log(data.players.length);
                     }else{
-                        
+
                         res.json({err:"event object not found"});
                     }
-                    
+
                 })
-                
+
             });
         }
         else if(req.body.action == 'delete'){
@@ -364,19 +364,19 @@ data.user = Object.assign({},user._doc);
                             res.json({max_members:data.players.length});
                         });
                     }else{
-                        
+
                         res.json({err:"event object not found"});
                     }
-                    
+
                 })
-                
+
             });
         }
     }else{
         res.sendStatus(401);
     }
  });
- 
+
  app.post('/api/participants',(req,res)=>{
      if(req.user){
          let part_data = [];
@@ -414,7 +414,7 @@ app.post('/api/notification_check_invite',(req,res)=>{
     }else{
         res.sendStatus(401);
     }
-    
+
 });
  app.post('/api/search_results/:keyword',(req,res)=>{  //use encodeURIComponent
      if(req.user){
@@ -473,12 +473,55 @@ app.post('/api/notification_check_invite',(req,res)=>{
                     search_result.users = users.slice( clientCursor, serverCursor );
                     search_result.cursor = serverCursor;
                     res.json(search_result);
-                } 
+                }
             });
         }
     } else{
         res.sendStatus(401);
     }
 });
+
+app.put('/api/change_event/:id',upload2.single('photo'),(req,res)=>{
+   //  console.log('---------><---------');
+    if(req.user){
+    console.log(`req.bodyyyyyyyyyyyy`, req.body);
+      Event.updateOne({_id: req.params.id}, {$set: {
+        title: req.body.title,
+        type: req.body.type,
+        description: req.body.description,
+        date: req.body.date,
+        time:req.body.time,
+        location: req.body.location,
+        quantity: req.body.quantity,
+        admins: [req.body.admins],
+        players: [req.body.players],
+        completed: req.body.completed,
+        photo:req.body.photo
+      }}). then((status) => {
+        console.log(`dataaaaaaaaa`, req.body);
+        return res.json({event: req.body});
+
+      })
+   }else{
+       res.sendStatus(401);
+
+   }
+});
+
+app.delete('/api/change_event/:id', (req,res)=>{
+   //  console.log('---------><---------');
+    if(req.user){
+    console.log(`req.bodyyyyyyyyyyyy`, req.body);
+      Event.findByIdAndRemove(req.params.id, () => {
+        console.log(`idddddddddddd`, req.params.id);
+        res.json({event_id: req.params.id});
+      })
+   }else{
+       res.sendStatus(401);
+
+   }
+});
+
+
 
 module.exports = app;
