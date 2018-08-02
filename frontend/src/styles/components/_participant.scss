@@ -2,8 +2,14 @@
     display: flex;
 }
 
+.main-participant-photo {
+    margin-right: 10px;
+    align-self: center;
+}
+
 .main-participant-name {
-    color: #555
+    color: #555;
+    margin: auto 0;
 }
 
 .modal-container{
@@ -26,17 +32,19 @@
     text-align: center;
     font-size: 16px;
     border-radius: 12px;
+    cursor: pointer;
 }
 
 .participants-close-btn {
     background-color:  rgb(103, 162, 185); 
     border: none;
     color: white;
-    padding: 10px 25px;
+    padding: 8px 22px;
     text-align: center;
     display: flex;
     margin: 0 auto;
-    font-size: 20px;
+    font-size: 17px;
+    border-radius: 12px;
     cursor: pointer;
 }
 
@@ -49,6 +57,7 @@
     text-align: center;
     font-size: 16px;
     border-radius: 12px;
+    cursor: pointer;
 }
 
 .join-btn:hover {

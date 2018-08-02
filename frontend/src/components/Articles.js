@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 // import { Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { LocationIcon, CheckedIcon, QuestionIcon } from './SvgIcons';
+import { LocationIcon } from './SvgIcons';
 import {
   getOwnEvents,
   getAttendingEvents,
@@ -69,7 +69,7 @@ class WrappedArticles extends Component {
                 <span>{el.location || 'location is not found'}</span>
               </div>
               <div className='event-container__eventInfo-btn'>
-                {false && <button onClick={ this.changeBtnName } className='event-container__joinButton'>Join</button>}
+                {this.getButton(el._id)}
               </div>
               <div className='event-container__footer-date'>
                 {this.formatDate(el.date) || 'Date is not defined'}
@@ -93,8 +93,9 @@ class WrappedArticles extends Component {
     );
     if (events === this.props.events.sug) {
       return <button onClick={() => this.handleJoin(_id) } className='event-container__joinButton'>Join</button>;
-    } else if (events === this.props.events.go) {
-      return <button onClick={() => this.handleUnJoin(_id) } className='event-container__joinButton'>UnJoin</button>
+    }
+    if (events === this.props.events.go) {
+      return <button onClick={() => this.handleUnJoin(_id) } className='event-container__joinButton'>UnJoin</button>;
     }
     return null;
   }
