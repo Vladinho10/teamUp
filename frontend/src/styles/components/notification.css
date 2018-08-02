@@ -41,3 +41,6 @@
 .seen{
     display: none;
 }
+#notific{
+    cursor: pointer;
+}
