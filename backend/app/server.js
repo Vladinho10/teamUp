@@ -483,20 +483,32 @@ app.post('/api/notification_check_invite',(req,res)=>{
 
 app.put('/api/change_event/:id',upload2.single('photo'),(req,res)=>{
    //  console.log('---------><---------');
+   console.log(`aaaaaaaa`, req.params.id);
+   console.log(`zzzzzzzzzzzzzzzzzzzzzzz`, req.body);
     if(req.user){
+
+      let img_src;
+      if(req.file){
+          img_src = '/images/events_images/' + req.event_filename;
+      }else{
+          img_src = undefined;
+      }
+
+
     console.log(`req.bodyyyyyyyyyyyy`, req.body);
       Event.updateOne({_id: req.params.id}, {$set: {
-        title: req.body.title,
-        type: req.body.type,
-        description: req.body.description,
-        date: req.body.date,
-        time:req.body.time,
-        location: req.body.location,
-        quantity: req.body.quantity,
-        admins: [req.body.admins],
-        players: [req.body.players],
-        completed: req.body.completed,
-        photo:req.body.photo
+        title: req.body.event_title,
+        type:req.body.event_type,
+        description: req.body.event_description,
+        date: req.body.datepicker,
+        time:req.body.timepicker,
+        type:req.body.event_type,
+        location: req.body.event_address,
+        quantity: req.body.event_members_count,
+        admins: [req.user.id],
+        players: [req.user.id],
+        completed: false,
+        photo:img_src
       }}). then((status) => {
         console.log(`dataaaaaaaaa`, req.body);
         return res.json({event: req.body});
