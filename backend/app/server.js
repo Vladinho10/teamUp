@@ -453,14 +453,15 @@ app.post('/api/notification_check_invite',(req,res)=>{
         let user_id = req.user.id;
 
         if (option === 'events') {
-            Event.find({title:{"$regex":'^'+keyword,"$options":'i'},players:{"$nin":[user_id]}}).then((events)=>{
+            Event.find({title:{"$regex":'^'+keyword,"$options":'i'},admins:{"$nin":[user_id]}}).then((events)=>{
                 console.log(serverCursor, 'servercursor');
-                if (clientCursor >= events.filter((event) => event.admins[0] != user_id ).length) {
+                console.log(events.length, 'leeeeeeeeeeeeeeeeeeeeeeeeeeength');
+                if (clientCursor >= events.length) {
                     res.end();
                 } else {
-                    search_result.events = events.filter((event) => event.admins[0] != user_id ).slice( clientCursor, serverCursor );
+                    search_result.events = events.slice( clientCursor, serverCursor );
                     search_result.cursor = serverCursor;
-                    search_result.length = events.filter((event) => event.admins[0] != user_id ).length;
+                    search_result.length = events.length;
                     res.json(search_result);
                 }
          });
