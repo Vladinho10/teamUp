@@ -1,10 +1,12 @@
 .user-avatar {
-    margin-right: 5rem;
     flex-basis: 25%;
 
     &__logo-box {
         position: relative;
         background-color: #ffffff;
+        border: 3px solid #ffffff;
+        border-radius: 3px;
+        box-shadow: 0 0 1rem rgb(1, 1, 28);
     }
 
     &__link,
@@ -33,6 +35,14 @@
         transition: all .3s;
         cursor: pointer;
 
+        & .upload-icon {
+            fill: white;
+        }
+
+        & span {
+            color: white;
+        }
+
         .upload-photo {
             height: 100%;
             opacity: 0;
@@ -50,7 +60,7 @@
     }
 
     &__info {
-        margin-top: 1rem;
+        margin-top: 2rem;
     }
 
     &__name-box,
@@ -59,9 +69,11 @@
         justify-content: space-between;
         align-items: center;
         margin-bottom: 1.5rem;
+        color: black;
 
         .edit-icon {
             cursor: pointer;
+            fill: rgb(6, 123, 196);
         }
     }
 
@@ -76,7 +88,7 @@
                 @extend %info-input;
             }
             & input[type=submit] {
-                padding: .5rem;
+                @extend %user-info-submit-button;
             }
         }
     }
@@ -87,8 +99,12 @@
                 @extend %info-input;
             }
             & input[type=submit] {
-                padding: .5rem;
+                @extend %user-info-submit-button;
             }
+        }
+
+        & p {
+            font-size: 1.8rem;
         }
     } 
 }

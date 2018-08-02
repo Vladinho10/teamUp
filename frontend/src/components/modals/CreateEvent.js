@@ -10,7 +10,7 @@ class CreateEventModal extends Component {
     state = {
       currentDate: moment(),
       currentTime: moment(),
-      calendarFocused: false
+      calendarFocused: false,
     }
 
     onDateChange = (currentDate) => {
@@ -32,32 +32,42 @@ class CreateEventModal extends Component {
           contentLabel="Upload Photo"
           onRequestClose={this.props.handleToggleModal}
           closeTimeoutMS={200}
+          ariaHideApp={false}
         >
           <div className="create-event">
             <form className="create-event__form" method="POST" onSubmit={this.props.handleEventFormSubmit}>
               <div className="create-event__title">
                 <label htmlFor="title">Title</label>
-                <input type="text" id="title" name="event_title" placeholder="Title" />
+                <input required type="text" id="title" name="event_title"
+                  defaultValue={this.props.event ? this.props.event.title : '' }
+                  placeholder= "title"
+                />
               </div>
 
               <div className="create-event__address">
                 <label htmlFor="address">Address</label>
-                <input type="text" id="address" name="event_address" placeholder="Address" />
+                <input required type="text" id="address" name="event_address" placeholder="Address"
+                  defaultValue={this.props.event ? this.props.event.location : '' }
+                />
               </div>
 
               <div className="create-event__description">
                 <label htmlFor="description">Description</label>
-                <textarea rows="3" cols="50" id="description" name="event_description" placeholder="Write a description here"></textarea>
+                <textarea rows="3" cols="50" id="description" name="event_description" placeholder="Write a description here"
+                  defaultValue={this.props.event ? this.props.event.description : '' }
+                ></textarea>
               </div>
 
               <div className="create-event__members">
                 <label htmlFor="count">max. members</label>
-                <input type="number" id="count" name="event_members_count" min="0" defaultValue="0" />
+                <input required type="number" id="count" name="event_members_count" min="0"
+                  // defaultValue={this.props.event ? this.props.event.quantity : '' }
+                />
               </div>
 
               <div className="create-event__types">
-                <select name="event_type" className="create-event-select">
-                  <option selected defaultValue="sport">Sport</option>
+                <select required name="event_type" className="create-event-select">
+                  <option defaultValue="sport">Sport</option>
                   <option value="meeting">Meeting</option>
                   <option value="seminar">Seminar</option>
                   <option value="travel">Travel</option>
@@ -78,8 +88,8 @@ class CreateEventModal extends Component {
                 />
                 <TimePicker
                   id="timepicker"
-                  time={this.state.currentTime}
-                  defaultValue={this.state.currentTime}
+                  time={this.props.event ? this.props.event.time : this.state.currentTime}
+                  defaultValue={this.state.currentTime }
                   name="timepicker"
                   showSecond={false}
                   style={{ width: 100 }}
@@ -105,7 +115,11 @@ class CreateEventModal extends Component {
               </div>
               <div className="create-event__submit-form">
                 <button className="btn btn--cancel" type="button" onClick={this.props.handleToggleModal}>Cancel</button>
-                <button className="btn btn--create">Create Event</button>
+                {
+                  !this.props.event
+                    ? <button className="btn btn--create">Create Event</button>
+                    : <button className="btn btn--create">Save</button>
+                }
               </div>
             </form>
           </div>

@@ -3,7 +3,7 @@
     &__form {
         display: flex;
         flex-direction: column;
-        background-color: #DADADA;
+        background-color: white;
         padding: 1.5rem;
         font-size: 1.4rem;
 
@@ -42,7 +42,7 @@
 
         & > input {
             @extend %event-creating-input;
-            font-size: 1.5rem !important;
+            font-size: 1.4rem !important;
             flex-basis: 20% !important;
         }
 
@@ -53,7 +53,7 @@
             width: 100%;
             padding: .8rem .5rem;
             font-family: inherit;
-            font-size: 1.6rem;
+            font-size: 1.4rem;
         }
     }
 
@@ -71,7 +71,7 @@
         }
         & .rc-time-picker-input {
             height: 100%;
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             text-align: center;
             padding: 1.4rem .7rem;
         }
@@ -93,9 +93,9 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        padding: 2.5rem;
-        margin-bottom: 2rem;
-        background: $color-grey-light;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        background: rgb(0, 110, 176);
         color: $color-white;
         outline: none;
         font-size: 1.4rem;
@@ -124,7 +124,7 @@
 
     &__input-upload-box {
         margin: 0 0 1rem 0;
-        font-size: 2rem;
+        font-size: 2r4m;
         font-weight: 300;
         word-break: break-all;
     }
@@ -137,9 +137,14 @@
         display: flex;
 
         & button {
+            background-color: rgb(141, 198, 63);
             flex-grow: 1;
-            padding: 1rem 1rem;
-            font-size: 2.2rem;
+            padding: .7rem;
+            font-size: 1.6rem;
+
+            &:hover {
+                background-color: rgb(108, 152, 46);
+            }
         }
 
         & button:last-child {
@@ -149,6 +154,6 @@
 }
 
 .rc-time-picker-panel-input {
-    font-size: 1.6rem !important;
+    font-size: 1.4rem !important;
     text-align: center !important;
 }

@@ -27,7 +27,7 @@
         width: auto;
         margin: 0 ;
         background-color: white;
-        color: rgb(240, 42, 42);
+        color: rgb(243, 53, 132);
         font-size: 30px;
         padding-right: 10px;
     }
@@ -38,7 +38,6 @@
         padding-left: 10px;
     }
 }
-
 
 .long-desc {
     height: auto;
@@ -54,27 +53,46 @@
 
 .icon__location, .icon__clock {
     opacity: 0.5;
-    height: 3vh;
+    height: 20px;
     align-self: center;
 }
-
 
 .description-text {
     color: rgb(94, 93, 93);
 }
 
 .red-subtitles {
-    color: rgb(240, 42, 42);
+    color: rgb(243, 53, 132);
 }
 
-.edit-photo-icon {
+// .edit-photo-icon {
+//     display: flex;
+//     justify-content: flex-end;
+
+// }
+
+// .edit-photo-icon:hover {
+//     background-color: rgba(0, 0, 0, 0.548);
+//     transition: 0.5s
+// }
+
+.delete-event {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-around;
+    
+    &-cancel, &-confirm {
+        background-color:  rgb(165, 172, 173); 
+        border: none;
+        color: white;
+        padding: 8px 22px;
+        text-align: center;
+        display: flex;
+        margin: 0 auto;
+        font-size: 17px;
+        cursor: pointer; 
+    }
 
+    &-confirm {
+        background-color:  #fd1e86; 
+    }
 }
-
-.edit-photo-icon:hover {
-    background-color: rgba(0, 0, 0, 0.548);
-    transition: 0.5s
-}
-

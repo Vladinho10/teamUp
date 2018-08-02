@@ -19,13 +19,13 @@
 }
 
 .participants-open-btn {
-    background-color:  rgb(103, 162, 185); 
+    background-color:  rgb(68, 161, 197); 
     border: none;
     color: white;
     width: 20vw;
-    height: 5vh;
     text-align: center;
     font-size: 16px;
+    border-radius: 12px;
 }
 
 .participants-close-btn {
@@ -45,9 +45,10 @@
     border: none;
     color: white;
     width: 20vw;
-    height: 5vh;
+    padding: 10px 25px;
     text-align: center;
     font-size: 16px;
+    border-radius: 12px;
 }
 
 .join-btn:hover {
@@ -55,11 +56,11 @@
 }
 
 .unjoin-btn {
-    background-color:  rgb(214, 73, 73);
+    background-color: #ff579d;
 }
 
 .unjoin-btn:hover {
-    background-color:  rgb(207, 17, 58);
+    background-color:  #fd1e86;
 }
 
 .participants-open-btn:hover, .participants-close-btn:hover, ::-webkit-scrollbar-thumb:hover{

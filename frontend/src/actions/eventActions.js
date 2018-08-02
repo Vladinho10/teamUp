@@ -1,32 +1,44 @@
-const getSuggestedEventsSuccess = data => ({
+const getSuggestedEventsSuccess = (data, num) => ({
   type: 'SUGGESTED_EVENTS',
-  suggestedEventsObj: data
+  suggestedEventsObj: data,
+  num
 });
 
-export const getSuggestedEvents = () => {
+let sugNum = 0;
+export const getSuggestedEvents = (isScroll) => {
   return (dispatch) => {
     const options = {
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' }
     };
-    let t = 1;
-    const f = fetch(`/api/events/suggested${t}`, options);
-    f.then(res => res.json())
-      .then((DataArr) => {
-        console.log(DataArr);
-        dispatch(getSuggestedEventsSuccess(DataArr));
-      })
-      .catch(err => console.log(err));
-    t += 1;
+    if (isScroll) {
+      sugNum += 1;
+      const f = fetch(`/api/events/suggested$${sugNum}`, options);
+      f.then(res => res.json())
+        .then((DataArr) => {
+          dispatch(getSuggestedEventsSuccess(DataArr, sugNum));
+        })
+        .catch(err => console.log(err));
+    } else {
+      sugNum = 0;
+      const f = fetch(`/api/events/suggested$${sugNum}`, options);
+      f.then(res => res.json())
+        .then((DataArr) => {
+          dispatch(getSuggestedEventsSuccess(DataArr, sugNum));
+        })
+        .catch(err => console.log(err));
+    }
   };
 };
 
-const getOwnEventsSuccess = data => ({ // obj,vori key-i poxum e store-y
+const getOwnEventsSuccess = (data, num) => ({ // obj,vori key-i poxum e store-y
   type: 'OWN_EVENTS',
-  ownEventsObj: data
+  ownEventsObj: data,
+  num
 });
 
-export const getOwnEvents = (count) => {
+let ownNum = 0;
+export const getOwnEvents = (isScroll) => {
   return (dispatch) => {
     const options = {
       credentials: 'include',
@@ -36,27 +48,39 @@ export const getOwnEvents = (count) => {
         Accept: 'application/json'
       }
     };
-    let t = count;
-    const f = fetch(`/api/events/own_events$${t}`, options);
-    if (t !== 0) t += 1;
-    f.then((res) => {
-      return res.json();
-    })
-      .then((DataObj) => {
-        console.log('DataObj in actions', DataObj);
-        return dispatch(getOwnEventsSuccess(DataObj));
+    if (isScroll) {
+      ownNum += 1;
+      const f = fetch(`/api/events/own_events$${ownNum}`, options);
+      f.then((res) => {
+        return res.json();
       })
-      .catch(err => console.log(err));
+        .then((DataObj) => {
+          return dispatch(getOwnEventsSuccess(DataObj, ownNum));
+        })
+        .catch(err => console.log(err));
+    } else {
+      ownNum = 0;
+      const f = fetch(`/api/events/own_events$${ownNum}`, options);
+      f.then((res) => {
+        return res.json();
+      })
+        .then((DataObj) => {
+          return dispatch(getOwnEventsSuccess(DataObj, ownNum));
+        })
+        .catch(err => console.log(err));
+    }
   };
 };
 
 
-const getAttendingEventsSuccess = data => ({
+const getAttendingEventsSuccess = (data, num) => ({
   type: 'ATTENDING_EVENTS',
-  attendingEventsObj: data
+  attendingEventsObj: data,
+  num
 });
 
-export const getAttendingEvents = () => {
+let attNum = 0;
+export const getAttendingEvents = (isScroll) => {
   return (dispatch) => {
     const options = {
       credentials: 'include',
@@ -66,23 +90,35 @@ export const getAttendingEvents = () => {
         Accept: 'application/json'
       }
     };
-    const f = fetch('/api/events/attending', options);
-    console.log(999);
-    f.then((res) => {
-      return res.json();
-    }).then((DataArr) => {
-      console.log('DataObj in actions attending', DataArr);
-      return dispatch(getAttendingEventsSuccess(DataArr));
-    }).catch(err => console.log(err));
+    if (isScroll) {
+      attNum += 1;
+      const f = fetch(`/api/events/attending$${attNum}`, options);
+      f.then((res) => {
+        return res.json();
+      }).then((DataObj) => {
+        console.log('DataObj in actions attending', DataObj);
+        return dispatch(getAttendingEventsSuccess(DataObj, attNum));
+      }).catch(err => console.log(err));
+    } else {
+      attNum = 0;
+      const f = fetch(`/api/events/attending$${attNum}`, options);
+      f.then((res) => {
+        return res.json();
+      }).then((DataObj) => {
+        console.log('DataObj in actions attending', DataObj);
+        return dispatch(getAttendingEventsSuccess(DataObj, attNum));
+      }).catch(err => console.log(err));
+    }
   };
 };
 
-const addEventSuccess = data => ({
+const addEventSuccess = (data, num) => ({
   type: 'ADD_EVENT',
-  addEventObj: data
+  addEventObj: data,
+  num
 });
 
-export const addEvent = (payload) => {
+export const addEvent = (payload, isScroll) => {
   return (dispatch) => {
     let options;
     if (payload instanceof FormData) {
@@ -115,9 +151,11 @@ const editEventSuccess = data => ({
 });
 
 export const editEvent = (editingData, _id) => {
+  console.log('---hasanq edit event');
   return (dispatch) => {
     const data = { ...editingData, _id };
     const options = {
+      credentials: 'include',
       method: 'PUT',
       body: JSON.stringify(data),
       headers: { 'Content-Type': 'application/json ' }
@@ -137,9 +175,11 @@ const deleteEventSuccess = _id => ({
 });
 
 export const deleteEvent = (_id) => {
+  console.log('---hasanq delete event action');
   return (dispatch) => {
     const data = { _id };
     const options = {
+      credentials: 'include',
       method: 'DELETE',
       body: JSON.stringify(data),
       headers: { 'Content-Type': 'application/json ' }
@@ -150,5 +190,78 @@ export const deleteEvent = (_id) => {
     }).then((deletedDataObj_id) => {
       return dispatch(deleteEventSuccess(deletedDataObj_id));
     }).catch(err => console.log(err));
+  };
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const JoinUserSuccess = (participants_count, id) => ({
+  type: 'JOIN_EVENT',
+  participants_count: participants_count.max_members,
+  id
+});
+
+export const JoinUser = (ev_id) => {
+  console.log(ev_id, 'event_id');
+  return (dispatch) => {
+    const data = {
+      ev_id,
+      action: 'add'
+    };
+    const options = {
+      credentials: 'include',
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: { 'Content-type': 'application/json' }
+    };
+
+    fetch('/api/add_or_delete_participant', options)
+      .then((res) => {
+        return res.json();
+      }).then((participants_count) => {
+        console.log(participants_count, 'participants_count');
+        return dispatch(JoinUserSuccess(participants_count, ev_id));
+      }).catch(err => console.log(err));
+  };
+};
+
+const unJoinUserSuccess = (participants_count, id) => ({
+  type: 'UNJOIN_EVENT',
+  participants_count,
+  id
+});
+
+export const unJoinUser = (ev_id) => {
+  console.log(ev_id, 'ev_id');
+  return (dispatch) => {
+    const data = {
+      ev_id,
+      action: 'delete'
+    };
+    const options = {
+      credentials: 'include',
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: { 'Content-type': 'application/json' }
+    };
+
+    fetch('/api/add_or_delete_participant', options)
+      .then((res) => {
+        return res.json();
+      }).then((participants_count) => {
+        console.log(participants_count, 'participants_count');
+        return dispatch(unJoinUserSuccess(participants_count, ev_id));
+      }).catch(err => console.log(err));
   };
 };

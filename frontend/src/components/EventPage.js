@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import Header from './Header';
-import { EventClockIcon, EventLocationIcon, PhotoIcon } from './SvgIcons';
+import { EventClockIcon, EventLocationIcon } from './SvgIcons';
 import ModalComponent from './ModalComponent';
-import UploadModal from './modals/UploadPhoto';
 // import UserArticle from './UserArticle';
+import CreateEventModal from './modals/CreateEvent';
+import { editEvent, deleteEvent } from '../actions/eventActions';
+import DeleteEvent from './DeleteEvent';
 
 const defaultEventCover = require('../../dist/images/eventCover.jpg'); // this.state.currentEvent.photo
-
-const adminNames = 'Admin'; //  this.state.currentEvent.admins[0];
+// const defaultPhoto = require('../../dist/images/no-avatar.png');
 
 
 class EventPage extends Component {
@@ -17,7 +18,9 @@ class EventPage extends Component {
     change: false,
     selectedFile: null,
     imageSrc: '',
-    show: undefined,
+    imagePreviewSrc: '',
+    show: false,
+    currentUserId: '',
     currentEvent: {},
     dateAndTime: ''
   }
@@ -25,7 +28,15 @@ class EventPage extends Component {
   componentDidMount = () => {
     const currentId = this.props.match.params.id;
     this.getCurrentEvent(currentId);
+    this.setState({ currentUserId: this.props.currentUser._id });
   }
+
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log(nextProps, nextState);
+  //   console.log(this.props, this.state);
+
+  //   return true;
+  // }
 
   getCurrentEvent = (ev_id) => {
     const options = {
@@ -38,10 +49,10 @@ class EventPage extends Component {
         return res.json();
       })
       .then((event) => {
-        console.log(event, 'getting current event');
+        console.log(event.event[0], 'getting current event');
         this.setState({
-          currentEvent: event,
-          dateAndTime: event.date
+          currentEvent: event.event[0],
+          dateAndTime: event.date,
         });
       })
       // .then(() => {
@@ -59,38 +70,49 @@ class EventPage extends Component {
       .catch(err => console.log(err));
   }
 
-  handleClick = () => {
-    this.setState({ showUploadModal: !this.state.showUploadModal });
-  }
+  /**
+   * Handle event edit
+   */
 
   handleToggleModal = () => {
     this.setState(prevState => ({ show: !prevState.show }));
   }
 
   handleFileChange = (event) => {
-    const imageSrc = URL.createObjectURL(event.target.files[0]);
+    const imagePreviewSrc = URL.createObjectURL(event.target.files[0]);
     this.setState({
-      selectedFile: event.target.files[0],
-      imageSrc
+      imagePreviewSrc
     });
   }
 
-  // handleFileUpload = () => {
-  //   fetch('url', {
-  //     method: 'POST',
-  //     body: JSON.stringify(this.state.selectedFile),
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     }
-  //   }).then(res => res.json())
-  //     .catch(error => console.error('Error:', error))
-  //     .then((res) => {
-  //       this.setState({ imageSrc: res.url });
-  //     });
-  // }
+  handleDeleteImage = () => {
+    this.setState(() => ({ imagePreviewSrc: null }));
+  }
+
+  handleEventFormSubmit = (event) => {
+    event.preventDefault();
+
+    if (this.state.show) {
+      this.handleToggleModal();
+    }
+
+    const data = new FormData(event.target);
+    this.props.dispatch(editEvent(data));
+  }
+
+  /**
+   * handle delete event
+   */
+  handleDeleteEvent = () => {
+    this.props.dispatch(deleteEvent());
+  }
+
 
   render() {
-    console.log(this.state, 'this.state');
+    console.log(this.state, '---this.state');
+    console.log(this.props, '---this.props');
+    // console.log(this.state.currentEvent._id, 'this.state.currentEvent._id');
+    // console.log(this.state.currentUser._id, 'this.state.currentUser._id');
     return (
       <React.Fragment>
         <Header/>
@@ -101,17 +123,6 @@ class EventPage extends Component {
             <div className='event-avatar'>
               <img src={ this.state.currentEvent.photo || defaultEventCover } alt="event-cover"/>
             </div>
-            <div className="edit-photo-icon" onClick={ this.handleToggleModal } ><PhotoIcon/></div>
-            {
-              <UploadModal
-                handleFileChange={this.handleFileChange}
-                handleFileUpload={this.handleFileUpload}
-                handleToggleModal={this.handleToggleModal}
-                show={this.state.show}
-                imageSrc={this.state.imageSrc}
-              />
-            }
-            <hr/>
             <div className="event-short-desc">
               <h4 className="event-date" color="black">
                 { moment(new Date(this.state.currentEvent.date)).format('MMM DD') }
@@ -142,11 +153,32 @@ class EventPage extends Component {
                 <p className="red-subtitles">Description</p>
                 <div className="description-text">{this.state.currentEvent.description}</div>
                 <p className="red-subtitles">
-                  Admins
-                </p><span>{adminNames}</span>
+                  Admin
+                </p>
+                {/* <section className="main-participant">
+                  <div className="main-participant-photo"><img src={ defaultPhoto} width="50"/></div>
+                  <p className="main-participant-name">{this.state.currentEvent.title}</p>
+                </section> */}
               </div>
+              <section className="event-edit-delete">
+                <button className="" onClick={this.handleToggleModal} >EDIT EVENT</button>
+                <CreateEventModal
+                  show={this.state.show}
+                  handleFileChange={this.handleFileChange}
+                  handleDeleteImage={this.handleDeleteImage}
+                  handleToggleModal={this.handleToggleModal}
+                  handleEventFormSubmit={this.handleEventFormSubmit}
+                  imagePreviewSrc={this.state.imagePreviewSrc}
+                  event={this.state.currentEvent}
+                />
+                {/* <button className="" onClick={this.handleToggleModal}> DELETE EVENT</button> */}
+                <DeleteEvent
+                  handleDeleteEvent={this.handleDeleteEvent}
+                />
+              </section>
             </div>
           </div>
+
         </div>
       </React.Fragment>
     );

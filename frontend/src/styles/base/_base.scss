@@ -34,18 +34,10 @@ body {
 	color: $text-color;
 }
 
-.header {
-	position: fixed;
-    top: 0;
-    width: 100%;
-	z-index: 1;
-	padding: .5rem;
-}
-
 .main, .search-main {
 	min-height: 100vh;
 	position: relative;
-    padding-top: 10rem;
+    padding-top: 66px;
 }
 
 a {text-decoration: none;}
