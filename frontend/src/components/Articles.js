@@ -36,7 +36,6 @@ class WrappedArticles extends Component {
       || this.props.events.go
       || []
     );
-    console.log(this.props, 'mmmmmmmmmmmmmmmmmmmmmmmmmm', _id);
     if (events === this.props.events.sug) {
       return <button onClick={() => this.handleJoin(_id) } className='event-container__joinButton'>Join</button>;
     } else if (events === this.props.events.go) {
@@ -126,7 +125,7 @@ class WrappedArticles extends Component {
       || []
     );
     // if (document.body.offsetHeight < innerHeight + scrollY + 150) {
-    if (pageYOffset > scrollHeight * 0.3) {
+    if (pageYOffset > scrollHeight * 0.6) {
       switch (fil) {
         case this.props.events.sug:
           // if(demo < pageYOffset) {
