@@ -84,15 +84,15 @@
         background-color:  rgb(165, 172, 173); 
         border: none;
         color: white;
-        padding: 10px 25px;
+        padding: 8px 22px;
         text-align: center;
         display: flex;
         margin: 0 auto;
-        font-size: 20px;
+        font-size: 17px;
         cursor: pointer; 
     }
 
     &-confirm {
-        background-color:  rgb(209, 68, 111); 
+        background-color:  #fd1e86; 
     }
 }
