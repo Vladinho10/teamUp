@@ -73,8 +73,8 @@ export default class Invite extends Component{
         return events.map((event)=>{
             return(
                 <div key={event._id} className = 'invitation_div'>
-                   <div>{event.title}</div> 
-                   <div><button className='invite_btn_style' id={event._id} onClick={this.notificationEmitter} > {event.invited?'Invited':'Invite'}</button></div>
+                   <div className='border_bottom_invite_list'>{event.title}</div> 
+                   <div><button className={event.invited?'invited_btn':'invite_btn_style'} id={event._id} onClick={this.notificationEmitter} disabled = {event.invited?'disabled':''} > {event.invited?'Invited':'Invite'}</button></div>
                 </div>
             );
         });

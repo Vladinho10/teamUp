@@ -3,9 +3,14 @@ import React, { Component } from 'react';
 // import { Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { LocationIcon, QuestionIcon, CheckedIcon } from './SvgIcons';
-import { getOwnEvents, getAttendingEvents, getSuggestedEvents } from '../actions/eventActions';
-
+import { LocationIcon } from './SvgIcons';
+import {
+  getOwnEvents,
+  getAttendingEvents,
+  getSuggestedEvents,
+  JoinUser,
+  unJoinUser
+} from '../actions/eventActions';
 
 class WrappedArticles extends Component {
   componentDidMount() {
@@ -79,6 +84,29 @@ class WrappedArticles extends Component {
     );
   }
 
+  getButton = (_id) => {
+    const events = (
+      this.props.events.sug
+      || this.props.events.my
+      || this.props.events.go
+      || []
+    );
+    if (events === this.props.events.sug) {
+      return <button onClick={() => this.handleJoin(_id) } className='event-container__joinButton'>Join</button>;
+    } else if (events === this.props.events.go) {
+      return <button onClick={() => this.handleUnJoin(_id) } className='event-container__joinButton'>UnJoin</button>
+    }
+    return null;
+  }
+
+  handleJoin = (el_id) => {
+    this.props.dispatch(JoinUser(el_id));
+  }
+
+  handleUnJoin = (el_id) => {
+    this.props.dispatch(unJoinUser(el_id));
+  }
+
   handleScrollOnScroll = () => {
     const scrollHeight = Math.max(
       document.body.scrollHeight, document.documentElement.scrollHeight,
@@ -86,18 +114,15 @@ class WrappedArticles extends Component {
       document.body.clientHeight, document.documentElement.clientHeight
     );
 
-    const { innerHeight, scrollY, pageYOffset } = window;
+    const { pageYOffset } = window;
     const fil = (
       this.props.events.sug
       || this.props.events.my
       || this.props.events.go
       || []
     );
-    const sug = 0;
-    const my = 0;
-    const go = 0;
     // if (document.body.offsetHeight < innerHeight + scrollY + 150) {
-    if (pageYOffset > scrollHeight * 0.3) {
+    if (pageYOffset > scrollHeight * 0.6) {
       switch (fil) {
         case this.props.events.sug:
           // if(demo < pageYOffset) {
