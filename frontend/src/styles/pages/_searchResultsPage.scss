@@ -217,6 +217,7 @@
                                 line-height: 1.3;
                                 text-align: left;
                                 color: #365899;
+                                flex-grow: 1;
 
                                 &:hover {
                                     text-decoration: underline;
@@ -224,7 +225,7 @@
                             }
 
                             & .searched-event__event-type {
-                                margin: 0 1.5rem 0 auto;
+                                flex-basis: 20%;
 
                                 & ,
                                 &:link,
@@ -238,6 +239,17 @@
 
                                 &:hover {
                                     text-decoration: underline;
+                                }
+                            }
+
+                            & .btn-container {
+                                flex-basis: 20%;
+                                text-align: center;
+                                & button {
+                                    width: auto;
+                                    font-size: 1.4rem;
+                                    width: auto;
+                                    padding: .7rem 1.2rem;
                                 }
                             }
                         }
@@ -274,6 +286,14 @@
                                     margin-left: 5rem;
                                 }
                             }
+
+                            & p {
+                                display: flex;
+                                align-items: center;
+                                & svg {
+                                    fill: #8DC63F;
+                                }
+                            }
                         }
 
                         &__members {
@@ -284,10 +304,33 @@
 
                         &__going {
                             margin-right: 5rem;
+                            display: flex;
+                            align-items: center;
                         }
 
                         &__missing {
+                            display: flex;
+                            align-items: center;
                             color: rgb(232, 76, 92);
+                        }
+
+                        &__missing,
+                        &__going {
+                            & svg {
+                                margin-right: .3rem;
+                            }
+                        
+                              & span {
+                                margin-left: .4rem;
+                            }
+                        
+                              &:first-child svg {
+                                fill: #8DC63F;
+                            }
+                        
+                              &:last-child svg {
+                                fill: #E455A2;
+                            }
                         }
                     }
                 }

@@ -52,11 +52,11 @@ class JoinBtn extends React.Component {
 
     render() {
       return (
-        <div>
+        <div className='btn-container'>
           {
             this.state.isGoing
-              ? <button className="unjoin-btn" onClick={this.handleChange} > UNJOIN </button>
-              : <button className="join-btn" onClick={this.handleChange}> JOIN </button>
+              ? <button className="unjoin-btn unjoin-btn_small" onClick={this.handleChange} > UNJOIN </button>
+              : <button className="join-btn join-btn_small" onClick={this.handleChange}> JOIN </button>
           }
         </div>
       );
