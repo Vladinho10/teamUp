@@ -23,7 +23,7 @@ const Storage = multer.diskStorage({
         cb(null,'../frontend/dist/images/users_images');
     },
     filename:function(req,file,cb){
-        req.user_filename = req.user.id + '-'+ Date.now() + '-avatar.jpg'; 
+        req.user_filename = req.user.id + '-'+ Date.now() + '-avatar.jpg';
         cb(null,req.user_filename);
     }
 });
@@ -35,7 +35,7 @@ const Storage_Event = multer.diskStorage({
         cb(null,req.directory);
     },
     filename:function(req,file,cb){
-        req.event_filename = 'event' + Date.now() + '.jpg'; 
+        req.event_filename = 'event' + Date.now() + '.jpg';
         cb(null,req.event_filename);
     }
 });
@@ -75,7 +75,7 @@ app.get('/',(req,res)=>{
 
 
 
-app.get('/api/events/:type',(req,res)=>{ 
+app.get('/api/events/:type',(req,res)=>{
     if(req.user){
         let data = {};
         let type = req.params.type.split("$")[0];
@@ -84,7 +84,7 @@ app.get('/api/events/:type',(req,res)=>{
             Event.find({admins:{"$in":[req.user.id]}}).sort({_id:-1}).skip(page*5).limit(5).then((own_events)=>{
                 data.events = own_events;
                 // console.log('vvvvvvvvllllllllaaaaaadddddd',data);
-                res.json(data);    
+                res.json(data);
             });
         }
         else if(type == 'suggested'){
@@ -92,7 +92,7 @@ app.get('/api/events/:type',(req,res)=>{
                 data.events = suggested_events;
                 // console.log('in suggested');
                 res.json(data);
-            });        
+            });
         }
         else if(type == 'attending'){
             Event.find({players:{"$in":[req.user.id]}}).sort({_id:-1}).skip(page*5).limit(5).then((attending_events)=>{
@@ -113,14 +113,14 @@ app.get('/api/events/:type',(req,res)=>{
                         data.attending_events = events;
                         res.json(data);
                     });
-                }); 
+                });
             })
             //Event.findAll({_id:{"$in":}})
         }
         else{
             res.end();
         }
-        
+
     }else{
         res.sendStatus(401);
     }
@@ -132,28 +132,28 @@ app.get('/api/events/:type',(req,res)=>{
         .populate(['own_events']).then((user)=> {
             res.json(filterUser(user,false));
         });
-        
+
     } else {
         res.sendStatus(401)
     }
  });
- 
+
  app.get('/api/profile/:id',(req,res)=>{
     if(req.user){
         Event.find({admins:req.user.id}).then((events)=>{
-            let checking_arr = []; 
-            
+            let checking_arr = [];
+
             for(let i in events){
                 checking_arr = checking_arr.concat(events[i].players);
              }
-             
+
             User.find({_id:req.params.id}).then((user)=>{
                 console.log(checking_arr);
                 console.log(checking_arr.includes(req.params.id));
-    
+
                 res.json(filterUser(user[0],checking_arr.includes(req.params.id)));
-                
-            }); 
+
+            });
          });
      }
  });
@@ -168,7 +168,7 @@ app.get('/api/events/:type',(req,res)=>{
     }else{
         res.sendStatus(401);
     }
-   
+
 });
 
 app.get('/logout',(req,res)=>{
@@ -223,20 +223,20 @@ app.post('/api/dashboard',(req,res)=>{
                                 //console.log(admin,'admin');
                                 if( i == data.suggested.length-1 ){
                                     //console.log(data.suggested[i].admins[0],'<------>');
-                                    res.json(data);     
+                                    res.json(data);
                                 }
                             });
                         }
-                      
+
                     });
             });
-        
+
     }else{
         res.sendStatus(401);
     }
  });
 
- 
+
 /*
 data.user = Object.assign({},user._doc);
                 Event.find({admins:{"$in":[req.user.id]}}).then((own_events)=>{
@@ -246,7 +246,7 @@ data.user = Object.assign({},user._doc);
                         res.json(data);
                     });
                 });
-*/ 
+*/
 
  app.post('/api/edit_profile',upload.single('avatar'),(req,res)=>{
     //  console.log('---------><---------');
@@ -314,8 +314,8 @@ data.user = Object.assign({},user._doc);
                   });
                   res.json({event:data});
               });
-              
-              
+
+
         }
     // res.json({done: "truee"})
  });
@@ -341,12 +341,12 @@ data.user = Object.assign({},user._doc);
                         });
                         console.log(data.players.length);
                     }else{
-                        
+
                         res.json({err:"event object not found"});
                     }
-                    
+
                 })
-                
+
             });
         }
         else if(req.body.action == 'delete'){
@@ -366,19 +366,19 @@ data.user = Object.assign({},user._doc);
                             res.json({max_members:data.players.length});
                         });
                     }else{
-                        
+
                         res.json({err:"event object not found"});
                     }
-                    
+
                 })
-                
+
             });
         }
     }else{
         res.sendStatus(401);
     }
  });
- 
+
  app.post('/api/participants',(req,res)=>{
      if(req.user){
          let part_data = [];
@@ -416,7 +416,7 @@ app.post('/api/notification_check_invite',(req,res)=>{
     }else{
         res.sendStatus(401);
     }
-    
+
 });
  app.post('/api/search_results/:keyword',(req,res)=>{  //use encodeURIComponent
      if(req.user){
@@ -455,14 +455,15 @@ app.post('/api/notification_check_invite',(req,res)=>{
         let user_id = req.user.id;
 
         if (option === 'events') {
-            Event.find({title:{"$regex":'^'+keyword,"$options":'i'},players:{"$nin":[user_id]}}).then((events)=>{
+            Event.find({title:{"$regex":'^'+keyword,"$options":'i'},admins:{"$nin":[user_id]}}).then((events)=>{
                 console.log(serverCursor, 'servercursor');
-                if (clientCursor >= events.filter((event) => event.admins[0] != user_id ).length) {
+                console.log(events.length, 'leeeeeeeeeeeeeeeeeeeeeeeeeeength');
+                if (clientCursor >= events.length) {
                     res.end();
                 } else {
-                    search_result.events = events.filter((event) => event.admins[0] != user_id ).slice( clientCursor, serverCursor );
+                    search_result.events = events.slice( clientCursor, serverCursor );
                     search_result.cursor = serverCursor;
-                    search_result.length = events.filter((event) => event.admins[0] != user_id ).length;
+                    search_result.length = events.length;
                     res.json(search_result);
                 }
          });
@@ -474,12 +475,67 @@ app.post('/api/notification_check_invite',(req,res)=>{
                     search_result.users = users.slice( clientCursor, serverCursor );
                     search_result.cursor = serverCursor;
                     res.json(search_result);
-                } 
+                }
             });
         }
     } else{
         res.sendStatus(401);
     }
 });
+
+app.put('/api/change_event/:id',upload2.single('photo'),(req,res)=>{
+   //  console.log('---------><---------');
+   console.log(`aaaaaaaa`, req.params.id);
+   console.log(`zzzzzzzzzzzzzzzzzzzzzzz`, req.body);
+    if(req.user){
+
+      let img_src;
+      if(req.file){
+          img_src = '/images/events_images/' + req.event_filename;
+      }else{
+          img_src = undefined;
+      }
+      var query   = { id: req.param.id };
+      var update  = {
+        title: req.body.event_title,
+        type:req.body.event_type,
+        description: req.body.event_description,
+        date: req.body.datepicker,
+        time:req.body.timepicker,
+        type:req.body.event_type,
+        location: req.body.event_address,
+        quantity: req.body.event_members_count,
+        admins: [req.user.id],
+        players: [req.user.id],
+        completed: false,
+        photo:img_src
+      };
+      var options = { new: true };
+      Event.findOneAndUpdate(query, update, options, function(err, doc){
+        if(err) console.log(err);
+        console.log('docccccccccccc', doc);
+        res.json({events: doc})
+      });
+
+   } else {
+       res.sendStatus(401);
+   }
+});
+
+app.delete('/api/change_event/:id', (req,res)=>{
+   //  console.log('---------><---------');
+    if(req.user){
+    console.log(`req.bodyyyyyyyyyyyy`, req.body);
+      Event.findByIdAndRemove(req.params.id, () => {
+        console.log(`idddddddddddd`, req.params.id);
+        res.json({event_id: req.params.id});
+      })
+   }else{
+       res.sendStatus(401);
+
+   }
+});
+
+
 
 module.exports = app;

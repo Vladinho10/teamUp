@@ -22,7 +22,7 @@ export const addParticipant = (ev_id) => {
         return res.json();
       }).then((participants_count) => {
         console.log(participants_count, 'participants_count');
-        return dispatch(addParticipantSuccess(participants_count));
+        // return dispatch(addParticipantSuccess(participants_count));
       }).catch(err => console.log(err));
   };
 };

@@ -61,7 +61,7 @@ class CreateEventModal extends Component {
               <div className="create-event__members">
                 <label htmlFor="count">max. members</label>
                 <input required type="number" id="count" name="event_members_count" min="0"
-                  // defaultValue={this.props.event ? this.props.event.quantity : '' }
+                  defaultValue={this.props.event ? this.props.event.quantity : '' }
                 />
               </div>
 

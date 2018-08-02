@@ -6,7 +6,6 @@ import Event from './Event';
 
 class Events extends Component {
   state = {
-    join: true,
     searchData: [],
     cursor: 0,
     length: 0
@@ -110,7 +109,6 @@ class Events extends Component {
           <Event
             key={event._id}
             event={event}
-            join={this.state.join}
           />
         );
       })

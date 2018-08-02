@@ -1,10 +1,16 @@
 .main-participant {
     display: flex;
+    padding: 1% 0;
 }
 
 .main-participant-photo {
-    margin-right: 10px;
-    align-self: center;
+    margin-right: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & img {
+        border-radius: 20px;
+    }
 }
 
 .main-participant-name {

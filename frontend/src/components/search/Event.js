@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import { LocationIcon } from '../SvgIcons';
+import { LocationIcon, CheckedIcon, QuestionIcon } from '../SvgIcons';
+import JoinBtn from '../JoinBtn';
 
 const defaultPhoto = require('../../../dist/images/eventCover.jpg');
 
@@ -29,10 +30,7 @@ class Event extends Component {
                 <span>{this.props.event.type}</span>
               </NavLink>
             </p>
-            {this.props.join
-              ? <button disabled={ +(this.props.event.quantity - this.props.event.players.length) ? null : true } className="btn btn_join" onClick={this.handleJoinEvent} className="searched-event__join-btn">Join</button>
-              : <button className="btn btn_join" onClick={this.handleUnjoinEvent} className="searched-event__join-btn">Unjoin</button>
-            }
+            <JoinBtn event_id={this.props.event._id} currentEvent={this.props.event} />
           </header>
           <div className="searched-event__details">
             <div className="searched-event__description-box">
@@ -45,8 +43,8 @@ class Event extends Component {
               <p><LocationIcon /> {this.props.event.location}</p>
             </div>
             <div className="searched-event__members">
-              <p className="searched-event__going">going - {this.props.event.players.length}</p>
-              <p className="searched-event__missing">missing - {this.props.event.quantity - this.props.event.players.length}</p>
+              <p className="searched-event__going"><CheckedIcon /> going - <span>{this.props.event.players.length}</span></p>
+              <p className="searched-event__missing"><QuestionIcon /> missing - <span>{this.props.event.quantity - this.props.event.players.length}</span></p>
             </div>
           </div>
         </div>
