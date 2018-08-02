@@ -72,7 +72,7 @@ export default class Notification extends Component{
                         return(
                             <div className='notification_row' key = {notification._id}>
                                 <div className= 'notification_img'>
-                                    <img src={notification.from.photo} className='notification_img' height='50' width='50'/>
+                                    <img src={'data:image/png;base64,'+notification.from.photo} className='notification_img' height='50' width='50'/>
                                 </div>
                                 <div>
                                     {notification.type}ed
