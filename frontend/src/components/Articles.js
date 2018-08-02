@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 // import { Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { LocationIcon,CheckedIcon,QuestionIcon } from './SvgIcons';
+import { LocationIcon, CheckedIcon, QuestionIcon } from './SvgIcons';
 import {
   getOwnEvents,
   getAttendingEvents,

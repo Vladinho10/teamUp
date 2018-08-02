@@ -178,7 +178,7 @@ class EventPage extends Component {
                 </section> */}
               </div>
               <section className="event-edit-delete">
-                <button className="" onClick={this.handleToggleModal} >EDIT EVENT</button>
+                <button className="" onClick={this.handleToggleModal} >EDIT</button>
                 <CreateEventModal
                   show={this.state.show}
                   handleFileChange={this.handleFileChange}
