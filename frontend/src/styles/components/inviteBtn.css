@@ -59,13 +59,22 @@
     width:45%;
     text-align: center;
 }
+.border_bottom_invite_list{
+    border-bottom: double;
+}
 .invite_btn_style{
     background-color: green;
     color: white;
     border:2px solid black;
     padding: 3px;
     box-shadow: 3px 3px gray;
+    border-radius:5px;
 }
 .invite_btn_style:hover{
     background-color: red;
 }
+.invited_btn{
+    background-color: #888;
+
+}
+

@@ -22,7 +22,7 @@ export class UserProfileData extends Component {
     }).then((res)=>{return res.json()}).then((profile) => {
       console.log(profile,'jskbjkcbjcsbjksb');
       this.setState({
-        profile:profile.user[0]
+        profile:profile
       });
     });
   }

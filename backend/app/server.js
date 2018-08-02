@@ -13,7 +13,7 @@ const passport = require('./passport');
 const utf8 = require('utf8');
 const {check,validationResult} = require('express-validator/check');
 const {User,Event,Notification} = require('./model_crud');
-
+const filterUser = require('./tools/filtrUser');
 const Storage = multer.diskStorage({
     destination:function(req,file,cb){
         // console.log(file);
@@ -126,7 +126,9 @@ app.get('/api/events/:type',(req,res)=>{
  app.get('/api/user/:id',(req,res)=>{
     if(req.user) {
         User.findOne({_id: (req.params.id=='me')?req.user.id:req.params.id})
-        .populate(['own_events']).then(user=> res.json(user));
+        .populate(['own_events']).then((user)=> {
+            res.json(filterUser(user,false));
+        });
         
     } else {
         res.sendStatus(401)
@@ -134,25 +136,24 @@ app.get('/api/events/:type',(req,res)=>{
  });
  
  app.get('/api/profile/:id',(req,res)=>{
-    //  console.log('ping');
-    User.find({_id:req.params.id}).then((user)=>{
-        // console.log(user);
-        res.json({user});
-    });
- });
-function filter_data(user,access_for_phone){
-    let data = Object.assign({},user._doc);
+    if(req.user){
+        Event.find({admins:req.user.id}).then((events)=>{
+            let checking_arr = []; 
+            
+            for(let i in events){
+                checking_arr = checking_arr.concat(events[i].players);
+             }
+             
+            User.find({_id:req.params.id}).then((user)=>{
+                console.log(checking_arr);
+                console.log(checking_arr.includes(req.params.id));
     
-    return {
-        _id:data._id,
-        name: data.name,
-        phone: access_for_phone?data.phone:'',
-        photo: data.photo,
-        own_events: data.own_events,
-        attending_events: data.attending_events,
-        finished_events: data.finished_events
-    }
-}
+                res.json(filterUser(user[0],checking_arr.includes(req.params.id)));
+                
+            }); 
+         });
+     }
+ });
 
  app.get('/api/event/:id',(req,res)=>{
     // console.log('ping');
@@ -176,6 +177,16 @@ app.get('/logout',(req,res)=>{
     res.redirect('/');
 });
 
+app.get('/api/notifications',(req,res)=>{
+    if(req.user){
+        Notification.find({to:req.user.id,seen:false}).populate('from').populate('event').then((notifications)=>{
+            res.json({notify:notifications});
+        });
+    }else{
+        res.sendStatus(401);
+    }
+});
+
 app.get('/*', (req,res) => {
     //console.log(req.user.id);
     if(req.user){
@@ -193,7 +204,8 @@ app.post('/api/dashboard',(req,res)=>{
         let data = {};
             // console.log('under event callback');
             User.findOne({_id:req.user.id}).then((user)=>{
-                data.user = Object.assign({},user._doc);
+                console.log(filterUser(user,true));
+                data.user = filterUser(user,true);
                     Event.find({players:{"$nin":[req.user.id]}}).sort({_id:-1}).limit(5).then((going_events)=>{
                         data.suggested = Object.assign([],going_events);
                         //console.log(data.suggested,'scakjvckasv');
@@ -253,6 +265,19 @@ data.user = Object.assign({},user._doc);
     }else{
         res.sendStatus(401);
     }
+ });
+
+ app.post('/api/notifications/seen',(req,res) =>{
+    let array = req.body.seen;
+    let count = 0;
+        for(let i = 0;i<array.length;i++){
+            Notification.update({_id:array[i]},{$set:{seen:true}}).then((status)=>{
+                count ++;
+                if(count == array.length){
+                    res.json({st:'OK'});
+                }
+            });
+        }
  });
 
  app.post('/api/create_event',upload2.single('photo'),(req,res) => {

@@ -8,7 +8,7 @@ export default class Invite extends Component{
         document.addEventListener("click", this.handleOutsideClick);
     }
     componentWillUnmount() {
-        document.removeEventListener("click",null);
+        document.removeEventListener("click",this.handleOutsideClick);
     }
     handleOutsideClick = event => {
         let content = this.refs.content;
