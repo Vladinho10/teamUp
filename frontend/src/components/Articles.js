@@ -43,7 +43,7 @@ class WrappedArticles extends Component {
         return (
           <article key={el._id || i} onClick={e => this.goToEventPage(e, el._id)} className='eventArticle'>
             <div className='event-photo'>
-              <img className='event-photo__img' src={el.photo || './images/default.jpg'} alt='Event Photo' />
+              <img className='event-photo__img' src={`data:image/png;base64,${el.photo}` || './images/default.jpg'} alt='Event Photo' />
             </div>
             <div className='event-container'>
               <header className='event-container__header'>
