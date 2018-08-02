@@ -379,8 +379,12 @@ data.user = Object.assign({},user._doc);
  
  app.post('/api/participants',(req,res)=>{
      if(req.user){
-         User.findMany({_id:{$in:req.body.participants}}).then((participants)=>{
-            console.log(participants);
+         let part_data = [];
+         User.find({_id:{$in:req.body.participants}}).then((participants)=>{
+            for(let i = 0;i<participants.length;i++){
+                part_data.push(filterUser(participants[i],false));
+            }
+            res.json({part_data});
          });
      }
  });
