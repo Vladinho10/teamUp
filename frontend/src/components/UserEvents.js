@@ -80,7 +80,7 @@ class WrappedUserEvents extends Component {
             <li className="navbar__itemZ"><button ref='btnGo' onClick={this.handleGetAttendingEvents} className="navbar__item__button">Attending</button></li>
           </ul>
         </div>
-        <div>
+        <div className="events-section__events">
           <Articles events={this.props.events} />
         </div>
       </section>

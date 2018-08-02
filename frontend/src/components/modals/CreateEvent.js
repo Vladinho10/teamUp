@@ -13,21 +13,6 @@ class CreateEventModal extends Component {
       calendarFocused: false,
     }
 
-    // componentDidMount = () => {
-    //   if (this.props.event) {
-    //     this.setState({
-    //       event: this.props.event
-    //     });
-    //   }
-    // }
-
-    // shouldComponentUpdate(nextProps, nextState) {
-    //   console.log(nextProps, nextState);
-    //   console.log(this.props, this.state);
-
-    //   return true;
-    // }
-
     onDateChange = (currentDate) => {
       this.setState({ currentDate });
     };
@@ -41,21 +26,19 @@ class CreateEventModal extends Component {
     }
 
     render() {
-      console.log(this.props, 'this.props in ');
-      // console.log(this.props.event.title, '***title***');
       return (
         <Modal
-
           isOpen={!!this.props.show}
           contentLabel="Upload Photo"
           onRequestClose={this.props.handleToggleModal}
           closeTimeoutMS={200}
+          ariaHideApp={false}
         >
           <div className="create-event">
             <form className="create-event__form" method="POST" onSubmit={this.props.handleEventFormSubmit}>
               <div className="create-event__title">
                 <label htmlFor="title">Title</label>
-                <input type="text" id="title" name="event_title"
+                <input required type="text" id="title" name="event_title"
                   defaultValue={this.props.event ? this.props.event.title : '' }
                   placeholder= "title"
                 />
@@ -63,7 +46,7 @@ class CreateEventModal extends Component {
 
               <div className="create-event__address">
                 <label htmlFor="address">Address</label>
-                <input type="text" id="address" name="event_address" placeholder="Address"
+                <input required type="text" id="address" name="event_address" placeholder="Address"
                   defaultValue={this.props.event ? this.props.event.location : '' }
                 />
               </div>
@@ -77,14 +60,14 @@ class CreateEventModal extends Component {
 
               <div className="create-event__members">
                 <label htmlFor="count">max. members</label>
-                <input type="number" id="count" name="event_members_count" min="0"
-                  defaultValue={this.props.event ? this.props.event.quantity : '' }
+                <input required type="number" id="count" name="event_members_count" min="0"
+                  // defaultValue={this.props.event ? this.props.event.quantity : '' }
                 />
               </div>
 
               <div className="create-event__types">
-                <select name="event_type" className="create-event-select">
-                  <option selected defaultValue="sport">Sport</option>
+                <select required name="event_type" className="create-event-select">
+                  <option defaultValue="sport">Sport</option>
                   <option value="meeting">Meeting</option>
                   <option value="seminar">Seminar</option>
                   <option value="travel">Travel</option>

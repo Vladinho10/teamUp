@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 // import { Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { LocationIcon } from './SvgIcons';
+import { LocationIcon, QuestionIcon, CheckedIcon } from './SvgIcons';
 import { getOwnEvents, getAttendingEvents, getSuggestedEvents } from '../actions/eventActions';
 
 
@@ -48,28 +48,26 @@ class WrappedArticles extends Component {
                 <p>{el.description && el.description.length > 80 ? `${el.description.slice(0, 80)}. . .` : el.description}
                 </p>
               </div>
-              <span className='event-container__desc-seeMore'>see more</span>
-              <span className='event-container__desc-seeMore'>{el.type}</span>
               <div className='event-container__eventInfo'>
-                <p>going {el.players.length} </p>
-                <p>missing {el.quantity && el.quantity - el.players.length} </p>
-                <div className='event-container__eventInfo-btn'>
-                  {false && <button onClick={ this.changeBtnName } className='event-container__joinButton'>Join</button>}
+                <div className="event-container__eventInfo-wrapper">
+                  <p> <CheckedIcon /> going
+                    <span>{el.players.length}</span>
+                  </p>
+                  <p>
+                    <QuestionIcon /> missing
+                    <span>{el.quantity && el.quantity - el.players.length}</span>
+                  </p>
                 </div>
               </div>
-              <footer className='event-container__footer'>
-                <div className='event-container__footer-date'>
-                  {this.formatDate(el.date) || 'Date is not defined'}
-                </div>
-                <div className='event-container__footer-place'>
-                  <LocationIcon role='icon' />
-                  {el.location || 'location is not found'}
-                </div>
-              </footer>
-            </div>
-            <div>
-              <div className='event-type'>
-                {el.type}
+              <div className='event-container__footer-place'>
+                <LocationIcon role='icon' />
+                <span>{el.location || 'location is not found'}</span>
+              </div>
+              <div className='event-container__eventInfo-btn'>
+                {false && <button onClick={ this.changeBtnName } className='event-container__joinButton'>Join</button>}
+              </div>
+              <div className='event-container__footer-date'>
+                {this.formatDate(el.date) || 'Date is not defined'}
               </div>
             </div>
           </article>
