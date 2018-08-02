@@ -159,13 +159,13 @@ export const editEvent = (editingData, _id) => {
     if (editingData instanceof FormData) {
       options = {
         credentials: 'include',
-        method: 'POST',
+        method: 'PUT',
         body: editingData,
       };
     } else {
       options = {
         credentials: 'include',
-        method: 'POST',
+        method: 'PUT',
         body: JSON.stringify({ data: editingData }),
         headers: { 'Content-Type': 'application/json ' }
       };
