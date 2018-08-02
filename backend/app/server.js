@@ -1,4 +1,7 @@
 'use strict';
+//const googleStorageDriver =  require('./tools/uploadGoogle');
+//const firebase = require('./tools/firebase');
+const base64maker = require('./tools/base64maker');
 const path = require('path');
 const express = require('express');
 const multer = require('multer');
@@ -248,9 +251,8 @@ data.user = Object.assign({},user._doc);
  app.post('/api/edit_profile',upload.single('avatar'),(req,res)=>{
     //  console.log('---------><---------');
      if(req.user && req.file){
-        User.updateOne({_id:req.user.id},{$set:{photo:'/images/users_images/'+req.user_filename }}).then((err,data)=>{
-            // console.log('saved');
-            res.json({photo:'/images/users_images/'  + req.user_filename});
+        User.findOneAndUpdate({_id:req.user.id},{$set:{photo:base64maker(req.file)}},{new:true}).then((err,data)=>{
+            res.json({photo:data.photo});
         });
     }
     else if(req.user && req.body.phone){
@@ -285,7 +287,7 @@ data.user = Object.assign({},user._doc);
         // console.log(req.body);
         let img_src;
         if(req.file){
-            img_src = '/images/events_images/' + req.event_filename;
+            img_src = base64maker(req.file);
         }else{
             img_src = undefined;
         }
