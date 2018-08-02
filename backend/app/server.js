@@ -361,7 +361,7 @@ data.user = Object.assign({},user._doc);
                             seen:false,
                             event:data._id
                         }).save().then((status)=>{
-                            res.json(filterUser(data,false));
+                            res.json({max_members:data.players.length});
                         });
                     }else{
                         
@@ -422,7 +422,7 @@ app.post('/api/notification_check_invite',(req,res)=>{
         //console.log(req.user.id);
         let search_result = {};
         let user_id = req.user.id;
-        Event.find({title:{"$regex":'^'+keyword,"$options":'i'},players:{"$nin":[user_id]}}).then((events)=>{
+        Event.find({title:{"$regex":'^'+keyword,"$options":'i'},admins:{"$nin":[user_id]}}).then((events)=>{
             //console.log(events);
             search_result.events = Object.assign([],events);
             search_result.events = search_result.events.filter((el) => {
