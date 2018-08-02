@@ -75,7 +75,7 @@ export default class Notification extends Component{
                                     <img src={notification.from.photo} className='notification_img' height='50' width='50'/>
                                 </div>
                                 <div>
-                                    invited
+                                    {notification.type}ed
                                 </div>
                                 <div>
                                     {notification.event.title.slice(0,10)}
