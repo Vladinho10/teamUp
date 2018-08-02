@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 import UserArticle from './UserArticle';
 import JoinBtn from './JoinBtn';
 
-class ModalComponent extends React.Component {
+class ParticipantsModal extends React.Component {
   constructor() {
     super();
 
@@ -17,9 +17,10 @@ class ModalComponent extends React.Component {
   }
 
   openModal() {
+    console.log(this.props.currentEvent.players, 'this.props.currentEvent.players');
     this.getParticipants(this.props.currentEvent.players);
 
-    this.setState({ modalIsOpen: true });
+    // this.setState({ modalIsOpen: true });
   }
 
 
@@ -28,6 +29,7 @@ class ModalComponent extends React.Component {
   }
 
   getParticipants = (participants) => {
+    console.log(participants, 'participants');
     const data = { participants };
     const options = {
       credentials: 'include',
@@ -41,9 +43,10 @@ class ModalComponent extends React.Component {
         return res.json();
       })
       .then((players) => {
-        console.log(players, 'getting participants in eventPage');
+        console.log(players, 'getting players of this event');
         this.setState({
-          participants: players
+          participants: players.part_data,
+          modalIsOpen: true
         });
       })
       .catch(err => console.log(err));
@@ -66,7 +69,7 @@ class ModalComponent extends React.Component {
           contentLabel="Modal of Participants"
         >
           {<UserArticle
-            participants={this.props.participants}
+            participants={this.state.participants}
           />}
           <input type="button" className="participants-close-btn" onClick={this.closeModal} value="close"/>
         </Modal>
@@ -75,4 +78,4 @@ class ModalComponent extends React.Component {
   }
 }
 
-export default ModalComponent;
+export default ParticipantsModal;

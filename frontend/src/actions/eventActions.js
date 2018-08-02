@@ -152,6 +152,8 @@ const editEventSuccess = data => ({
 
 export const editEvent = (editingData, _id) => {
   console.log('---hasanq edit event');
+  console.log(_id, '_id');
+  console.log(editingData, 'editingData');
   return (dispatch) => {
     const data = { ...editingData, _id };
     const options = {
@@ -160,11 +162,12 @@ export const editEvent = (editingData, _id) => {
       body: JSON.stringify(data),
       headers: { 'Content-Type': 'application/json ' }
     };
-    const f = fetch(`/api/events/${_id}`, options);
+    const f = fetch(`/api/change_event/${_id}`, options);
     f.then((res) => {
       return res.json();
     }).then((editedDataObj) => {
-      return dispatch(editEventSuccess(editedDataObj));
+      console.log(editedDataObj, 'editedDataObj');
+      // return dispatch(editEventSuccess(editedDataObj));
     }).catch(err => console.log(err));
   };
 };

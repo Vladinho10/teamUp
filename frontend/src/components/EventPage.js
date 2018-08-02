@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import Header from './Header';
 import { EventClockIcon, EventLocationIcon } from './SvgIcons';
-import ModalComponent from './ModalComponent';
+import ParticipantsModal from './ParticipantsModal';
 // import UserArticle from './UserArticle';
 import CreateEventModal from './modals/CreateEvent';
 import { editEvent, deleteEvent } from '../actions/eventActions';
 import DeleteEvent from './DeleteEvent';
+import UserArticle from './UserArticle';
 
 const defaultEventCover = require('../../dist/images/eventCover.jpg'); // this.state.currentEvent.photo
 // const defaultPhoto = require('../../dist/images/no-avatar.png');
@@ -22,12 +23,14 @@ class EventPage extends Component {
     show: false,
     currentEvent: {},
     participants: [],
-    dateAndTime: ''
+    dateAndTime: '',
+    admin: []
   }
 
   componentDidMount = () => {
-    const currentId = this.props.match.params.id;
-    this.getCurrentEvent(currentId);
+    const currentEventId = this.props.match.params.id;
+    this.getCurrentEvent(currentEventId);
+    // this.getAdmin();
     // this.getParticipants();
   }
 
@@ -43,45 +46,52 @@ class EventPage extends Component {
       credentials: 'include',
       method: 'GET',
     };
-
     fetch(`/api/event/${ev_id}`, options)
       .then((res) => {
         return res.json();
       })
       .then((event) => {
-        console.log(event.event[0], 'getting current event');
-        this.setState({
-          currentEvent: event.event[0],
-          dateAndTime: event.date,
-        });
+        const adminId = event.event[0].admins[0];
+
+        fetch(`/api/user/${adminId}`, options)
+          .then((res) => {
+            return res.json();
+          })
+          .then((admin) => {
+            this.setState({
+              admin: [admin],
+              currentEvent: event.event[0],
+              dateAndTime: event.date,
+            });
+          });
       })
       .catch(err => console.log(err));
+    //   fetch(`/api/event/user/${adminId}`, options)
+    //     .then((res) => {
+    //       return res.json();
+    //     })
+    //     .then((admin) => {
+    //       console.log(event, admin, 'event and admin');
+    //       this.setState({
+    //         admin,
+    //         currentEvent: event.event[0],
+    //         dateAndTime: event.date,
+    //       });
+    //     });
+    // })
+    // .catch(err => console.log(err));
   }
 
-  // getParticipants = (participants) => {
-  //   // this.setState({
-  //   //   participants: [{ UserName: 'aaaa aaaaaaaaaaaaa' }, { UserName: 'bbb bbbbbbb' }, { UserName: 'ccccc ccccccccc' },
-  //   //     { UserName: 'aaaa aaaaaaaa' }, { UserName: 'bbb bbbbbbb' }, { UserName: 'ccccc ccccccccc' },
-  //   //     { UserName: 'aaaa aaaaaaaa' }, { UserName: 'bbb bbbbbbb' }]
-
-  //   // });
-
-  //   const data = { participants };
-  //   const options = {
-  //     credentials: 'include',
-  //     method: 'POST',
-  //     body: JSON.stringify(data),
-  //     headers: { 'Content-type': 'application/json' }
-  //   };
-
-  //   fetch('/api/participants', options)
-  //     .then((res) => {
-  //       return res.json();
+  // console.log(event.event[0], 'getting current event');
+  // this.setState({
+  //   currentEvent: event.event[0],
+  //   dateAndTime: event.date,
+  // });
   //     })
-  //     .then((players) => {
-  //       console.log(players, 'getting participants in eventPage');
+  //     .then((event) => {
   //       this.setState({
-  //         participants: players
+  //         currentEvent: event.event[0],
+  //         dateAndTime: event.date,
   //       });
   //     })
   //     .catch(err => console.log(err));
@@ -114,7 +124,8 @@ class EventPage extends Component {
     }
 
     const data = new FormData(event.target);
-    this.props.dispatch(editEvent(data));
+    console.log(data, 'edited data');
+    this.props.dispatch(editEvent(data, this.props.match.params.id));
   }
 
   /**
@@ -126,8 +137,8 @@ class EventPage extends Component {
 
 
   render() {
-    console.log(this.state, '---this.state');
-    console.log(this.props, '---this.props');
+    // console.log(this.state, '---this.state');
+    // console.log(this.props, '---this.props');
     // console.log(this.state.currentEvent._id, 'this.state.currentEvent._id');
     // console.log(this.state.currentUser._id, 'this.state.currentUser._id');
     return (
@@ -159,7 +170,7 @@ class EventPage extends Component {
                 <span>{this.state.currentEvent.location}</span>
               </div>
               <br/>
-              {<ModalComponent
+              {<ParticipantsModal
                 currentEvent_id={this.props.match.params.id}
                 currentUser={this.state.currentUser}
                 currentEvent={this.state.currentEvent}
@@ -169,14 +180,13 @@ class EventPage extends Component {
               <div className="long-desc-text">
                 <p className="red-subtitles">Description</p>
                 <div className="description-text">{this.state.currentEvent.description}</div>
-                <p className="red-subtitles">
-                  Admin
-                </p>
-                {/* <section className="main-participant">
-                  <div className="main-participant-photo"><img src={ defaultPhoto} width="50"/></div>
-                  <p className="main-participant-name">{this.state.currentEvent.title}</p>
-                </section> */}
+                {/* <br/> */}
+                <p className="red-subtitles">Admin</p>
+                {<UserArticle
+                  participants={this.state.admin}
+                />}
               </div>
+              <br/>
               <section className="event-edit-delete">
                 <button className="" onClick={this.handleToggleModal} >EDIT</button>
                 <CreateEventModal
