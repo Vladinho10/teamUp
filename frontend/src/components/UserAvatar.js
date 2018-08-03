@@ -86,20 +86,14 @@ class UserAvatar extends Component {
 
   handleFileUpload = () => {
     this.handleToggleModal();
-    // this.setState(prevState => ({ savedImageSrc: prevState.imageSrc }));
     const fd = new FormData();
-    fd.append('avatar', this.state.selectedFile);
+    fd.append('avatar', this.state.imageSrc);
     this.props.dispatch(editUser(fd));
   }
 
   render() {
-    // console.log(this.props, 'userAvatar props');
-    // console.log(this.props.userInfoState.phoneNumber, 'userAvatar phone NUmber');
     let handlePhoneNumber;
     let handleEditPhoneNumber;
-    // let src;
-    // console.log(this.state, 'state');
-    // console.log(this.props, 'proooooooooopssss userAvatar');
     if (this.state.addPhone) {
       handlePhoneNumber = <form className="phone-form" onSubmit={this.handleSavePhone} method="POST">
         <input type="text" name="phone" defaultValue={this.props.user.phone} />
