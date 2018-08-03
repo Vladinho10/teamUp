@@ -1,14 +1,27 @@
 .dropdown_list{
     display: none;
     position: absolute;
-    top:100%;
-    height:200px;
+    top:0%;
+    height:1000%;
     overflow-y: auto;
     width: 320%;
     left:3%;
-    background-color:gray;
+    background-color:#aeb0b2;
+    opacity:0.6;
     color:white;
     border-radius: 5px;
+}
+#notific_slide{
+    animation:notific_slide;
+    animation-duration: 0.5s;
+
+}
+.join{
+    background-color: green;
+}
+@keyframes notific_slide {
+    from{ left:320%;}
+    to{ left:3%;}
 }
 .notification_img{
     border-top-left-radius: 50% 50%;
@@ -17,10 +30,17 @@
   border-bottom-left-radius: 50% 50%;
 }
 .notification_row{
+    background-color: gray;
+    opacity: 1;
+    border:1px solid black;
+    border-radius: 5px;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
+    width:80%;
+    margin:0 auto;
+    margin-bottom: 5%;
 }
 .notification_row div{
     width: 30%;
