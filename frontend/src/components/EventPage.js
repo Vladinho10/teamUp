@@ -19,13 +19,14 @@ class EventPage extends Component {
     currentEvent: {},
     participants: [],
     dateAndTime: '',
-    admin: []
+    admin: [],
+    isAdmin: false,
   }
 
   componentDidMount = () => {
     const currentEventId = this.props.match.params.id;
     this.getCurrentEvent(currentEventId);
-    console.log(this.props.currentUser, 'user is saved');
+    this.setState({ currentUserId: this.props.currentUser._id });
   };
 
   getCurrentEvent = (ev_id) => {
@@ -45,16 +46,69 @@ class EventPage extends Component {
             return res.json();
           })
           .then((admin) => {
+            if (this.props.currentUser._id === adminId) {
+              this.setState({
+                isAdmin: true
+              });
+            }
             this.setState({
               admin: [admin],
               currentEvent: event.event[0],
-              currentUser: this.props.currentUser,
               dateAndTime: event.date,
             });
           });
       })
       .catch(err => console.log(err));
   };
+
+  /**
+   * validation during editing
+   */
+
+  handleUserInput = (e) => {
+    console.log(e.target.name, 'name');
+    console.log(e.target.value, 'value');
+    const { name, value } = e.target;
+    this.setState({ [name]: value }, () => { this.validateField(name, value); });
+  }
+
+  validateField(fieldName, value) {
+    let { titleIsValid, addressIsValid, descriptionIsValid } = this.state;
+    const { formErrors } = this.state;
+    console.log(formErrors, 'formErrors');
+
+    switch (fieldName) {
+      case 'event_title':
+        titleIsValid = value.match(/^[a-zA-Z0-9]*/) && value.length >= 5 && value.length <= 25;
+        formErrors.event_title = titleIsValid ? '' : 'Title must contain min. 5 and max. 25 alphanumeric characters';
+        console.log(formErrors, 'formErrors in case title');
+        break;
+      case 'event_address':
+        addressIsValid = value.length >= 3 && value.match(/^[a-zA-Z0-9]*/);
+        formErrors.event_address = addressIsValid ? '' : 'Address must contain min. 5 and max. 20 alphanumeric characters';
+        break;
+      case 'event_description':
+        descriptionIsValid = value.length >= 6;
+        formErrors.event_description = descriptionIsValid ? '' : 'Description length must be min. 6 and max. 300';
+        break;
+      default:
+        break;
+    }
+    this.setState({
+      formErrors,
+      titleIsValid,
+      addressIsValid,
+      descriptionIsValid
+    }, this.validateForm);
+  }
+
+  validateForm() {
+    this.setState({
+      formIsValid: this.state.titleIsValid
+      && this.state.addressIsValid
+      && this.state.descriptionIsValid
+    });
+  }
 
   /**
    * Handle event edit and delete buttons
@@ -104,7 +158,7 @@ class EventPage extends Component {
         <div className='main-eventpage'>
           <div className='event'>
             <div className='event-avatar'>
-              <img src={ `data:image/png;base64${this.state.currentEvent.photo}`} alt="event-cover"/>
+              <img src={this.state.currentEvent.photo} alt="event-cover"/>
               <span className='event-avatar-type' >{this.state.currentEvent.type}</span>
             </div>
             <div className="event-short-desc">
@@ -143,21 +197,28 @@ class EventPage extends Component {
                 />}
               </div>
               <br/>
-              <section className="event-edit-delete">
-                <button className="edit-btn" onClick={this.handleToggleModal} >EDIT</button>
-                <CreateEventModal
-                  show={this.state.show}
-                  handleFileChange={this.handleFileChange}
-                  handleDeleteImage={this.handleDeleteImage}
-                  handleToggleModal={this.handleToggleModal}
-                  handleEventFormSubmit={this.handleEventFormSubmit}
-                  imagePreviewSrc={this.state.imagePreviewSrc}
-                  event={this.state.currentEvent}
-                />
-                <DeleteEvent
-                  handleDeleteEvent={this.handleDeleteEvent}
-                />
-              </section>
+              {
+                this.state.isAdmin && <section className="event-edit-delete">
+                  <button className="edit-btn" onClick={this.handleToggleModal} >EDIT</button>
+                  <CreateEventModal
+                    show={this.state.show}
+                    formIsValid={this.state.formIsValid}
+                    titleIsValid={this.state.titleIsValid}
+                    addressIsValid={this.state.addressIsValid}
+                    descriptionIsValid={this.state.descriptionIsValid}
+                    handleFileChange={this.handleFileChange}
+                    handleDeleteImage={this.handleDeleteImage}
+                    handleToggleModal={this.handleToggleModal}
+                    handleEventFormSubmit={this.handleEventFormSubmit}
+                    imagePreviewSrc={this.state.imagePreviewSrc}
+                    handleUserInput={this.handleUserInput}
+                    formErrors={this.state.formErrors}
+                  />
+                  <DeleteEvent
+                    handleDeleteEvent={this.handleDeleteEvent}
+                  />
+                </section>
+              }
             </div>
           </div>
 

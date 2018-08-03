@@ -100,10 +100,24 @@
     justify-content: flex-end;
 }
 
-.edit-btn {
-    
-
+.edit-btn , .delete-event-btn {
+    background-color:  rgb(197, 204, 207); 
+    border: none;
+    color: white;
+    padding: 8px 22px;
+    text-align: center;
+    font-size: 17px;
+    border-radius: 12px;
+    cursor: pointer;
 }
+.edit-btn:hover {
+    background-color:  rgb(162, 164, 165);
+}
+
+.delete-event-btn:hover {
+    background-color:  rgb(241, 68, 106);
+}
+
 
 .delete-event {
     display: flex;
