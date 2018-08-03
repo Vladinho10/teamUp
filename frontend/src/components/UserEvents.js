@@ -11,10 +11,6 @@ class WrappedUserEvents extends Component {
     // window.addEventListener('scroll', this.handleScrollOnScroll, false);
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScrollOnScroll, false);
-  }
-
   handleGetSuggestedEvents = (e) => {
     this.props.dispatch(getSuggestedEvents(0));
     this.refs.btnSug.setAttribute('disabled', 'disabled');

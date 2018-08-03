@@ -4,7 +4,6 @@ export default (state = {
   my: [],
   go: []
 }, action) => {
-  // console.log('action', action.ownEventsArr);
   switch (action.type) {
     case 'ADD_USER':
       return { sug: action.userData.suggested };
@@ -13,7 +12,6 @@ export default (state = {
         return { sug: action.suggestedEventsObj.events };
       }
       return { ...state, sug: [...state.sug, ...action.suggestedEventsObj.events] };
-      // console.log('action.suggestedEventsObj', action.suggestedEventsObj);
     case 'OWN_EVENTS':
       if (action.num === 0) {
         return { my: action.ownEventsObj.events };
@@ -42,7 +40,6 @@ export default (state = {
         console.log('el._iddddddd', el._id, 'aaaaaaaaaaaaaaaaction.ev_id', action.ev_id);
         return el._id !== action.id;
       });
-      // console.log('takenArraaaaaaaaa', takenArr);
       return { ...state, sug: takenArr };
     }
     case 'UNJOIN_EVENT': {
@@ -50,7 +47,6 @@ export default (state = {
         console.log('el._iddddddd', el._id, 'aaaaaaaaaaaaaaaaction.ev_id', action.ev_id);
         return el._id !== action.id;
       });
-      // console.log('takenArraaaaaaaaa', takenArr);
       return { ...state, go: takenArr };
     }
     default:
