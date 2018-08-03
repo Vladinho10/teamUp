@@ -137,6 +137,7 @@ export const addEvent = (payload, isScroll) => {
     f.then((res) => {
       return res.json();
     }).then((data) => {
+      console.log('event from serverik', data);
       return dispatch(addEventSuccess(data.event));
     }).catch(err => console.log(err));
   };
@@ -184,6 +185,7 @@ const deleteEventSuccess = _id => ({
 
 export const deleteEvent = (_id) => {
   console.log('---hasanq delete event action');
+  console.log(_id);
   return (dispatch) => {
     const data = { _id };
     const options = {

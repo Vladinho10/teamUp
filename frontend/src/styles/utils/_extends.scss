@@ -6,10 +6,10 @@
 }
 
 %event-creating-input {
-    border: 0;
     flex-basis: 70%;
     padding: .7rem;
     box-shadow: 0 0 1rem grey;
+    outline: 0;
     text-transform: capitalize;
     font-family: inherit;
 }

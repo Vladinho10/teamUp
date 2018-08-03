@@ -15,6 +15,15 @@
 		border-radius: .3rem;
 		transition: all .3s;
 	}
+
+	&--save,
+	&--cancel {
+		background-color: rgb(141, 198, 63);
+
+		&:hover {
+			background-color: rgb(115, 160, 51);
+		}
+	}
 	
 	&_green {
 		background-image: linear-gradient(to right, $color-grey-lighter, $button-color-1, $button-color-2, $button-color-3, $button-color-4, $color-grey-light);

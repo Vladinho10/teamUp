@@ -28,6 +28,7 @@
     &-avatar img {
         width: 100%;
         max-height: 100%;
+        box-shadow: 0 0 1.2rem #adbcc6;
     }
 
     &-short-desc {
@@ -96,7 +97,12 @@
 
 .event-edit-delete {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
+}
+
+.edit-btn {
+    
+
 }
 
 .delete-event {

@@ -10,12 +10,14 @@
     align-items: center;
     & img {
         border-radius: 20px;
+        cursor: pointer;
     }
 }
 
 .main-participant-name {
     color: #555;
     margin: auto 0;
+    cursor: pointer;
 }
 
 .modal-container{
