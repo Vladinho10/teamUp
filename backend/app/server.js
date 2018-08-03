@@ -530,11 +530,10 @@ app.delete('/api/change_event/:id', (req,res)=>{
     console.log(`req.bodyyyyyyyyyyyy`, req.body);
       Event.findByIdAndRemove(req.params.id, () => {
         console.log(`idddddddddddd`, req.params.id);
-        res.json({event_id: req.params.id});
+        res.res.redirect('/dashboard');
       })
    }else{
        res.sendStatus(401);
-
    }
 });
 

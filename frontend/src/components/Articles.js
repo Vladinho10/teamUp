@@ -43,7 +43,7 @@ class WrappedArticles extends Component {
         return (
           <article key={el._id || i} onClick={e => this.goToEventPage(e, el._id)} className='eventArticle'>
             <div className='event-photo'>
-              <img className='event-photo__img' src={el.photo || './images/default.jpg'} alt='Event Photo' />
+              <img className='event-photo__img' src={`data:image/png;base64,${el.photo}` || './images/default.jpg'} alt='Event Photo' />
             </div>
             <div className='event-container'>
               <header className='event-container__header'>
@@ -66,7 +66,8 @@ class WrappedArticles extends Component {
               </div>
               <div className='event-container__footer-place'>
                 <LocationIcon role='icon' />
-                <span>{el.location || 'location is not found'}</span>
+                <span className="event-location">{el.location || 'location is not found'}</span>
+                <span className="event-type">{el.type}</span>
               </div>
               <div className='event-container__eventInfo-btn'>
                 {this.getButton(el._id)}
@@ -92,7 +93,7 @@ class WrappedArticles extends Component {
       || []
     );
     if (events === this.props.events.sug) {
-      return <button onClick={() => this.handleJoin(_id) } className='event-container__joinButton'>Join</button>;
+      return <button onClick={() => this.handleJoin(_id) } className='event-container__joinButton'>Join the Event</button>;
     }
     if (events === this.props.events.go) {
       return <button onClick={() => this.handleUnJoin(_id) } className='event-container__joinButton'>UnJoin</button>;
@@ -143,10 +144,6 @@ class WrappedArticles extends Component {
     }
   }
 
-  changeBtnName() {
-    console.log(this.state);
-  }
-
   formatDate = (stringDate) => {
     const options = {
       month: 'short',
@@ -157,7 +154,7 @@ class WrappedArticles extends Component {
 
   goToEventPage = (e, id) => {
     console.log(id);
-    if (!e.target.matches('.event-container__joinButton')) {
+    if (e.target.matches('.event-photo__img') || e.target.matches('.event-container__footer-date') || e.target.matches('.event-container__header')) {
       this.props.history.push({
         pathname: `/eventpage/${id}`
       });

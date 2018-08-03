@@ -13,13 +13,15 @@
     &__link:link,
     &__link:visited {
         display: block;
+        height: 25rem;
     }
 
     &__logo {
         display: inline-block;
         vertical-align: bottom;
         width: 100%;
-        height: 25rem;
+        height: 100%;
+        object-fit: cover;
     }
 
     &__add-photo {

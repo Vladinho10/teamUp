@@ -26,15 +26,16 @@
         & a:link,
         & a:visited {
             display: block;
-            font-size: 1.8rem;
+            font-size: 1.4rem;
             font-weight: bolder;
             color: black;
-            padding: 1rem;
+            padding: .5rem;
         }
     }
 
     & p {
         border-radius: 1.5rem;
+        box-shadow: 0 4px 6px 2px rgba(0, 0, 0, .10);
         background-color: #fff;
 
         &:hover {
@@ -45,8 +46,8 @@
         & a:link,
         & a:visited {
             display: block;
-            padding: 1rem;
-            font-size: 2rem;
+            padding: .7rem;
+            font-size: 1.6rem;
             font-weight: bolder;
             color: #4180E7;
         }
