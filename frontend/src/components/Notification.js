@@ -12,7 +12,6 @@ export default class Notification extends Component{
         }).then((res) => {
             return res.json()
         }).then((notifications)=>{
-            console.log(notifications);
             let unseen = 0;
             for(let i = 0;i<notifications.notify.length;i++){
                 if(notifications.notify[i].seen == false){

@@ -1,5 +1,14 @@
 @import "utils/variables";
 
+.dropdown-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9;
+}
+
 .main-header {
     position: fixed;
     top: 0;
