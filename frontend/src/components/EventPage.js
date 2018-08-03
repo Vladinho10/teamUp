@@ -26,7 +26,6 @@ class EventPage extends Component {
   componentDidMount = () => {
     const currentEventId = this.props.match.params.id;
     this.getCurrentEvent(currentEventId);
-    this.setState({ currentUserId: this.props.currentUser._id });
   };
 
   getCurrentEvent = (ev_id) => {
@@ -199,7 +198,7 @@ class EventPage extends Component {
               <br/>
               {
                 this.state.isAdmin && <section className="event-edit-delete">
-                  <button className="edit-btn" onClick={this.handleToggleModal} >EDIT</button>
+                  {/* <button className="edit-btn" onClick={this.handleToggleModal} >EDIT</button> */}
                   <CreateEventModal
                     show={this.state.show}
                     formIsValid={this.state.formIsValid}
