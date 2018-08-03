@@ -45,7 +45,7 @@ class CreateEventModal extends Component {
                   type="text"
                   id="title"
                   name="event_title"
-                  defaultValue={this.props.event ? this.props.event.title : '' }
+                  defaultValue={this.props.event && this.props.event.title }
                   placeholder= "title"
                   onChange={this.props.handleUserInput}
                   className={this.props.titleIsValid ? 'create-event__title-input-valid' : 'create-event__title-input-invalid'}
@@ -59,7 +59,7 @@ class CreateEventModal extends Component {
                   id="address"
                   name="event_address"
                   placeholder="Address"
-                  defaultValue={this.props.event ? this.props.event.location : '' }
+                  defaultValue={this.props.event && this.props.event.location }
                   onChange={this.props.handleUserInput}
                   className={this.props.addressIsValid ? 'create-event__address-input-valid' : 'create-event__address-input-invalid'}
                 />
@@ -73,7 +73,7 @@ class CreateEventModal extends Component {
                   id="description"
                   name="event_description"
                   placeholder="Write a description here"
-                  defaultValue={this.props.event ? this.props.event.description : '' }
+                  defaultValue={this.props.event && this.props.event.description }
                   onChange={this.props.handleUserInput}
                   className={this.props.descriptionIsValid ? 'create-event__description-input-valid' : 'create-event__description-input-invalid'}
                 ></textarea>
@@ -81,11 +81,13 @@ class CreateEventModal extends Component {
 
               <div className="create-event__members">
                 <label htmlFor="count">max. members</label>
-                <input required type="number" id="count" name="event_members_count" min="2" defaultValue='2'/>
+                <input required type="number" id="count" name="event_members_count" min="2"
+                  defaultValue={this.props.event ? this.props.event.quantity : '2' }/>
               </div>
 
               <div className="create-event__types">
                 <select required name="event_type" className="create-event-select">
+                  { this.props.event && <option defaultValue={this.props.event.type} > {this.props.event.type}</option> }
                   <option defaultValue="sport">Sport</option>
                   <option value="meeting">Meeting</option>
                   <option value="seminar">Seminar</option>

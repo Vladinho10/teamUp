@@ -6,13 +6,9 @@ class JoinBtn extends React.Component {
     state = {
       isGoing: false,
       user: {},
-      // currentEvent: {}
     };
 
     componentDidMount = () => {
-      // this.setState({ currentEvent: this.props.currentEvent }, () => {
-      //   this.getCurrentUser();
-      // });
       this.getCurrentUser();
     }
 
@@ -28,9 +24,12 @@ class JoinBtn extends React.Component {
         .then((user) => {
           // console.log(this.props.event_id, 'this.props.event_id');
           // console.log(user, 'current user from joinbtn');
-          console.log(this.state.currentEvent, ' >>>>this.state.currentEvent');
+          console.log(user.own_events, user.attending_events, 'user.own_events', 'user.attending_events');
           if (user.attending_events.includes(this.props.event_id)
-          || this.props.currentEvent.admins.includes(this.state.user._id)) {
+          || user.own_events.find(
+            (own_event) => { return own_event._id === this.props.event_id; }
+          )) {
+            console.log('workssss');
             this.setState({
               isGoing: true,
               user

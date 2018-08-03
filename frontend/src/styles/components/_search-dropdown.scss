@@ -13,6 +13,8 @@
         border-radius: 1.5rem;
         box-shadow: 0 4px 6px 2px rgba(0, 0, 0, .10);
         background-color: #fff;
+        position: relative;
+        z-index: 12;
     }
 
     &__item {
@@ -37,6 +39,8 @@
         border-radius: 1.5rem;
         box-shadow: 0 4px 6px 2px rgba(0, 0, 0, .10);
         background-color: #fff;
+        position: relative;
+        z-index: 12;
 
         &:hover {
             background-color: #ced3de;

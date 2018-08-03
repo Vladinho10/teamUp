@@ -17,7 +17,7 @@ class DeleteEvent extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.openModal} className=""> DELETE EVENT </button>
+        <button onClick={this.openModal} className="delete-event-btn"> DELETE </button>
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}

@@ -5,29 +5,34 @@ import { SearchIcon } from './SvgIcons';
 import SearchDropdown from './search/SearchDropdown';
 import getSearch from '../actions/searchActions';
 import Notification from './Notification';
+
 const logo = require('../../dist/images/logo.png');
 
 class Header extends Component {
   state = {
     query: '',
     dropdown: false,
-    focused: false
+    blurDropdown: false,
   }
 
   handleInputChange = (event) => {
     event.preventDefault();
     console.log(event.target.value, 'event target');
     if (event.target.value.length !== 0) {
-      this.setState({ dropdown: true, query: event.target.value });
+      this.setState({ dropdown: true, blurDropdown: true, query: event.target.value });
     } else {
-      this.setState({ dropdown: false });
+      this.setState({ dropdown: false, blurDropdown: false });
     }
     this.props.dispatch(getSearch(event.target.value));
   }
 
-  handleToggleDropdown = () => {
-    this.setState({ dropdown: false });
-  }
+  // handleToggleDropdown = () => {
+  //   this.setState({ dropdown: false });
+  // }
+
+  // handleOnBlurDropdown = () => {
+  //   this.setState(state => ({ blurDropdown: !state.blurDropdown, dropdown: !state.dropdown }));
+  // }
 
   render() {
     return (
@@ -46,7 +51,6 @@ class Header extends Component {
               </form>
               <div className="search-dropdown">
                 {this.state.dropdown ? <SearchDropdown
-                  handleToggleDropdown={this.handleToggleDropdown}
                   query={this.state.query}
                 /> : null}
               </div>
