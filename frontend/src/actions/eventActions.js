@@ -96,7 +96,6 @@ export const getAttendingEvents = (isScroll) => {
       f.then((res) => {
         return res.json();
       }).then((DataObj) => {
-        console.log('DataObj in actions attending', DataObj);
         return dispatch(getAttendingEventsSuccess(DataObj, attNum));
       }).catch(err => console.log(err));
     } else {
@@ -105,7 +104,6 @@ export const getAttendingEvents = (isScroll) => {
       f.then((res) => {
         return res.json();
       }).then((DataObj) => {
-        console.log('DataObj in actions attending', DataObj);
         return dispatch(getAttendingEventsSuccess(DataObj, attNum));
       }).catch(err => console.log(err));
     }
@@ -205,18 +203,6 @@ export const deleteEvent = (_id) => {
     }).catch(err => console.log(err));
   };
 };
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 const JoinUserSuccess = (participants_count, id) => ({

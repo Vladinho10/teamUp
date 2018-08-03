@@ -25,6 +25,7 @@ class EventDashboardPage extends Component {
       description: ''
     },
     imagePreviewSrc: '',
+    base64Image: '',
     selectedFile: null,
     show: false,
     prevShow: this.prevShow,
@@ -98,10 +99,22 @@ class EventDashboardPage extends Component {
 
   handleFileChange = (event) => {
     const imagePreviewSrc = URL.createObjectURL(event.target.files[0]);
+    this.getBase64(event.target.files[0]);
     this.setState({
       imagePreviewSrc
     });
   }
+
+  getBase64 = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.setState({ base64Image: reader.result });
+    };
+    reader.onerror = (error) => {
+      console.log('Error: ', error);
+    };
+  };
 
   handleDeleteImage = () => {
     this.setState(() => ({ imagePreviewSrc: null }));
@@ -115,8 +128,8 @@ class EventDashboardPage extends Component {
     }
 
     const data = new FormData(event.target);
-    data.set('photo', this.state.imagePreviewSrc, 'chris.jpg');
-    console.log(data.get('photo'), 'gggggggggggggggggggggggggggggggggggggggggggggggg');
+    data.set('photo', this.state.base64Image);
+    // console.log(data.get('photo'), 'gggggggggggggggggggggggggggggggggggggggggggggggg');
     this.props.dispatch(addEvent(data));
     this.handleDeleteImage();
   }

@@ -11,10 +11,6 @@ class WrappedUserEvents extends Component {
     // window.addEventListener('scroll', this.handleScrollOnScroll, false);
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScrollOnScroll, false);
-  }
-
   handleGetSuggestedEvents = (e) => {
     this.props.dispatch(getSuggestedEvents(0));
     this.refs.btnSug.setAttribute('disabled', 'disabled');
@@ -42,8 +38,8 @@ class WrappedUserEvents extends Component {
       <section className='events-section'>
         <div className="events-section__navbar navbar">
           <ul className="navbar__listZ">
-            <li className="navbar__itemZ"><button ref='btnSug' onClick={this.handleGetSuggestedEvents} className="navbar__item__button">Suggested</button></li>
-            <li className="navbar__itemZ"><button ref='btnMy' onClick={this.handleGetOwnEvents} className="navbar__item__button">Own</button></li>
+            <li className="navbar__itemZ"><button ref='btnSug' onClick={this.handleGetSuggestedEvents} className="navbar__item__button">Events</button></li>
+            <li className="navbar__itemZ"><button ref='btnMy' onClick={this.handleGetOwnEvents} className="navbar__item__button">My events</button></li>
             <li className="navbar__itemZ"><button ref='btnGo' onClick={this.handleGetAttendingEvents} className="navbar__item__button">Attending</button></li>
           </ul>
         </div>

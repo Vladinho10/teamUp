@@ -14,25 +14,9 @@ class UserAvatar extends Component {
     addPhone: null,
     selectedFile: null,
     imageSrc: null,
-    // savedImageSrc: null,
+    base64Image: '',
     show: undefined
   }
-
-  // componentDidMount = () => {
-  //   const options = {
-  //     credentials: 'include',
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/json ' }
-  //   };
-  //   const f = fetch('/api/dashboard', options);
-  //   f.then((res) => {
-  //     return res.json();
-  //   }).then((DataObj) => {
-  //     this.setState({
-  //       phoneNumber: DataObj.user.phone
-  //     });
-  //   }).catch(err => console.log(err));
-  // }
 
   handleSaveName = (event) => {
     event.preventDefault();
@@ -62,32 +46,34 @@ class UserAvatar extends Component {
     this.setState(prevState => ({ phoneChange: !prevState.phoneChange }));
   }
 
-  // handleAddPhone = () => {
-  //   this.setState(prevState => ({ phoneChange: !prevState.phoneChange }));
-  // }
-
-  // handleSaveNewNumber = (event) => {
-  //   event.preventDefault();
-  //   console.log(event.target[0].value, 'savePhone');
-  //   savePhoneNumber(event.target[0].value);
-  // }
-
   handleToggleModal = () => {
     this.setState(prevState => ({ show: !prevState.show }));
   }
 
   handleFileChange = (event) => {
     const imageSrc = URL.createObjectURL(event.target.files[0]);
+    this.getBase64(event.target.files[0]);
     this.setState({
       selectedFile: event.target.files[0],
       imageSrc
     });
   }
 
+  getBase64 = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.setState({ base64Image: reader.result });
+    };
+    reader.onerror = (error) => {
+      console.log('Error: ', error);
+    };
+  };
+
   handleFileUpload = () => {
     this.handleToggleModal();
     const fd = new FormData();
-    fd.append('avatar', this.state.imageSrc);
+    fd.append('avatar', this.state.base64Image);
     this.props.dispatch(editUser(fd));
   }
 
@@ -115,18 +101,13 @@ class UserAvatar extends Component {
       </React.Fragment>;
     }
 
-    // if (this.state.savedImageSrc !== null) {
-    //   src = this.state.savedImageSrc;
-    // } else {
-    //   src = this.props.user.photo;
-    // }
     return (
       <React.Fragment>
         <div className="user-avatar">
           <div className="user-avatar__logo-box">
             {
               this.props.user.photo
-                ? <NavLink className="user-avatar__link" to={`/account/${this.props.user._id}`}><img className="user-avatar__logo" src={this.props.user.photo.slice(0,4) == 'https'?'data:image/png;base64,'+this.props.user.photo:this.props.user.photo} alt="User Photo" width="200" height="300" /></NavLink>
+                ? <NavLink className="user-avatar__link" to={`/account/${this.props.user._id}`}><img className="user-avatar__logo" src={this.props.user.photo} alt="User Photo" width="200" height="300" /></NavLink>
                 : <NavLink className="user-avatar__link" to="/"><img className="user-avatar__logo" src={defaultPhoto} alt="User Photo" width="200" height="300" /></NavLink>
             }
             <div className="user-avatar__add-photo" onClick={this.handleToggleModal}>
