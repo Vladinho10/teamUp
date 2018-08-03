@@ -251,6 +251,7 @@ data.user = Object.assign({},user._doc);
 */
 
  app.post('/api/edit_profile',upload.single('avatar'),(req,res)=>{
+     console.log(req.body,'shcbkshbckjsbcjkbsajcbjksbachkcbksbckbsajkcbjkasb');
     //  console.log('---------><---------');
      if(req.user && req.file){
         User.findOneAndUpdate({_id:req.user.id},{$set:{photo:base64maker(req.file)}},{new:true}).then((err,data)=>{
@@ -285,6 +286,7 @@ data.user = Object.assign({},user._doc);
  });
 
  app.post('/api/create_event',upload2.single('photo'),(req,res) => {
+     console.log(req.body);
     if(req.user){
         // console.log(req.body);
         let img_src;
