@@ -1,6 +1,7 @@
 'use strict';
 //const googleStorageDriver =  require('./tools/uploadGoogle');
 //const firebase = require('./tools/firebase');
+const config = require('../config/config');
 const base64maker = require('./tools/base64maker');
 const path = require('path');
 const express = require('express');
@@ -17,10 +18,11 @@ const utf8 = require('utf8');
 const {check,validationResult} = require('express-validator/check');
 const {User,Event,Notification} = require('./model_crud');
 const filterUser = require('./tools/filtrUser');
+
 const Storage = multer.diskStorage({
     destination:function(req,file,cb){
         // console.log(file);
-        cb(null,'../frontend/dist/images/users_images');
+        cb(null,config.paths.users_img_dest);
     },
     filename:function(req,file,cb){
         req.user_filename = req.user.id + '-'+ Date.now() + '-avatar.jpg';
@@ -31,7 +33,7 @@ const Storage = multer.diskStorage({
 const Storage_Event = multer.diskStorage({
     destination:function(req,file,cb){
         // console.log(file);
-        req.directory = '../frontend/dist/images/events_images';
+        req.directory = config.paths.events_img_dest;
         cb(null,req.directory);
     },
     filename:function(req,file,cb){
@@ -43,7 +45,7 @@ const Storage_Event = multer.diskStorage({
 const upload = multer({storage:Storage});
 const upload2 = multer({storage:Storage_Event});
 
-app.use(express.static(path.join(__dirname,'../../frontend/dist')));
+app.use(express.static(path.join(__dirname,config.paths.static_folder)));
 
 app.use(bodyParser.urlencoded({
     extended: true
@@ -65,12 +67,12 @@ app.get('/',(req,res)=>{
     // console.log('in / path');
     // console.log(req.user.id);
         if(!req.user){
-            res.sendFile(path.join(__dirname,'../../frontend/dist/index.html'));
+            res.sendFile(path.join(__dirname,config.paths.index));
             return;
         }
-        res.redirect('/dashboard');
-
-
+        else{
+            res.redirect('/dashboard');
+        }
 });
 
 
@@ -193,7 +195,7 @@ app.get('/api/notifications',(req,res)=>{
 app.get('/*', (req,res) => {
     //console.log(req.user.id);
     if(req.user){
-        res.sendFile(path.join(__dirname,'../../frontend/dist/index.html'));
+        res.sendFile(path.join(__dirname,config.paths.index));
     }else{
         res.redirect('/');
 }
@@ -249,9 +251,12 @@ data.user = Object.assign({},user._doc);
 */
 
  app.post('/api/edit_profile',upload.single('avatar'),(req,res)=>{
+   // console.log('-->',req.body);
     //  console.log('---------><---------');
-     if(req.user && req.file){
-        User.findOneAndUpdate({_id:req.user.id},{$set:{photo:base64maker(req.file)}},{new:true}).then((err,data)=>{
+     if(req.user && req.body.avatar){
+         console.log('I am hereeeeeeeeeeeeeeeeeeee');
+        User.findOneAndUpdate({_id:req.user.id},{$set:{photo:req.body.avatar}},{new:true}).then((err,data)=>{
+             console.log(1111111111111111111111111);
             res.json({photo:data.photo});
         });
     }
@@ -283,11 +288,12 @@ data.user = Object.assign({},user._doc);
  });
 
  app.post('/api/create_event',upload2.single('photo'),(req,res) => {
+     //console.log('-->',req.body);
     if(req.user){
         // console.log(req.body);
         let img_src;
-        if(req.file){
-            img_src = base64maker(req.file);
+        if(req.body.photo){
+            img_src = req.body.photo;
         }else{
             img_src = undefined;
         }

@@ -37,6 +37,7 @@ export default class Notification extends Component{
     }
     handleClickNotification=(e)=>{
         this.refs.drop_content.style.display = 'block';
+        this.refs.drop_content.id = 'notific_slide';
         let seen_notifications = this.state.notifications.map((notification)=>{
             return notification._id;
         });
@@ -70,9 +71,9 @@ export default class Notification extends Component{
                     <div className='notification_list'>
                     { this.state.notifications.map((notification)=>{
                         return(
-                            <div className='notification_row' key = {notification._id}>
+                            <div className = {`notification_row ${notification.type}`}  key = {notification._id} >
                                 <div className= 'notification_img'>
-                                    <img src={'data:image/png;base64,'+notification.from.photo} className='notification_img' height='50' width='50'/>
+                                   <img src={notification.from.photo.slice(0,5)=='https'?notification.from.photo:'data:image/png;base64,'+notification.from.photo} className='notification_img' height='50' width='50'/>
                                 </div>
                                 <div>
                                     {notification.type}ed
