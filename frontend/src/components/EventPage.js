@@ -149,8 +149,6 @@ class EventPage extends Component {
 
 
   render() {
-    console.log(this.state, '---this.staaaaaate');
-    console.log(this.props.currentUser._id, '---this.proooooops');
     return (
       <React.Fragment>
         <Header/>
