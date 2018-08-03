@@ -5,8 +5,7 @@ import { NavLink } from 'react-router-dom';
 
 export class UserProfileData extends Component {
   state = {
-    switch_events:'admin',
-    image:''
+    switch_events:'admin'
   }
   transfer_to_sibling = (param) => {
     this.props.info_transfer(param);
@@ -21,19 +20,8 @@ export class UserProfileData extends Component {
       credentials:'include',
       method:'GET'
     }).then((res)=>{return res.json()}).then((profile) => {
-      console.log(profile,'jskbjkcbjcsbjksb');
-      let image;
-      console.log(profile.photo.slice(0,5));
-      if(profile.photo.slice(0,5)=='https')
-      {
-        image = profile.photo;
-      }
-      else{
-        image = 'data:image/png;base64,' + profile.photo;
-      }
       this.setState({
-        profile:profile,
-        image:image
+        profile:profile
       });
     });
   }
@@ -64,7 +52,7 @@ export class UserProfileData extends Component {
         <div className = 'profile'>
           <div className = 'profile_pic_frame'>
             <div className = 'profile_pic'>
-              <img src={this.state.profile?this.state.image:''}   height='200' width='200'/>
+              <img src={this.state.profile?this.state.profile.photo:''}   height='200' width='200'/>
             </div>
           </div>
           <div className = 'profile_name'>

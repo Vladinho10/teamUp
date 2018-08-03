@@ -44,7 +44,7 @@ export default class AccountPageEvents extends Component{
                     <div className = 'profile_event_frame' key ={el._id} >
                         <div className = 'profile_event_img_frame'>
                             <div className = 'profile_event_img'>
-                                <img src={'data:image/png;base64,'+el.photo} alt=""/>
+                                <img src={el.photo} alt=""/>
                             </div>
                         </div>
                         <div className = 'profile_event_info_frame'>
