@@ -8,6 +8,12 @@ const config = {
         host:'mongodb://localhost:',
 	    port:27017,
 	    name:'TeamUpDb'
+    },
+    paths:{
+        index : '../../frontend/dist/index.html',
+        users_img_dest:'../frontend/dist/images/users_images',
+        events_img_dest:'../frontend/dist/images/events_images',
+        static_folder:'../../frontend/dist'
     }
 }
 

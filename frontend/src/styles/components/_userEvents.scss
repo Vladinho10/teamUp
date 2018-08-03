@@ -58,6 +58,10 @@
   }
 }
 
+.event-photo:hover, .event-container__footer-date:hover {
+  cursor: pointer;
+}
+
 .event-container {
   flex-basis: 54%;
   border: 5px solid rgba(238, 235, 235, .2);

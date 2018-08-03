@@ -17,7 +17,7 @@ class UserArticle extends Component {
         { this.props.participants.map((participant) => {
           return (
             <section onClick={e => this.redirectUserPage(e, participant._id)} className="main-participant" key={participant._id}>
-              <div className="main-participant-photo"><img src={ `data:image/png;base64${participant.photo}`} width="40"/></div>
+              <div className="main-participant-photo"><img src={participant.photo} width="40"/></div>
               <p className="main-participant-name">{ participant.name}</p>
             </section>
           );
