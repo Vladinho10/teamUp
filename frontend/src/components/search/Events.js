@@ -65,7 +65,7 @@ class Events extends Component {
 
     const typeFilteredArray = searchEventsResults.filter((event) => {
       console.log(event.type, 'type');
-      return filter.slice(5) === 'all' ? true : event.type === filter.slice(5);
+      return filter.slice(5) === 'all' ? true : event.type.toLowerCase() === filter.slice(5);
     });
 
     const dateFilteredArray = searchEventsResults.filter((event) => {
