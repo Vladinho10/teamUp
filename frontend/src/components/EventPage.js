@@ -4,15 +4,10 @@ import moment from 'moment';
 import Header from './Header';
 import { EventClockIcon, EventLocationIcon } from './SvgIcons';
 import ParticipantsModal from './ParticipantsModal';
-// import UserArticle from './UserArticle';
 import CreateEventModal from './modals/CreateEvent';
 import { editEvent, deleteEvent } from '../actions/eventActions';
 import DeleteEvent from './DeleteEvent';
 import UserArticle from './UserArticle';
-
-const defaultEventCover = require('../../dist/images/eventCover.jpg'); // this.state.currentEvent.photo
-// const defaultPhoto = require('../../dist/images/no-avatar.png');
-
 
 class EventPage extends Component {
   state = {
@@ -30,16 +25,8 @@ class EventPage extends Component {
   componentDidMount = () => {
     const currentEventId = this.props.match.params.id;
     this.getCurrentEvent(currentEventId);
-    // this.getAdmin();
-    // this.getParticipants();
-  }
-
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   console.log(nextProps, nextState);
-  //   console.log(this.props, this.state);
-
-  //   return true;
-  // }
+    console.log(this.props.currentUser, 'user is saved');
+  };
 
   getCurrentEvent = (ev_id) => {
     const options = {
@@ -61,44 +48,16 @@ class EventPage extends Component {
             this.setState({
               admin: [admin],
               currentEvent: event.event[0],
+              currentUser: this.props.currentUser,
               dateAndTime: event.date,
             });
           });
       })
       .catch(err => console.log(err));
-    //   fetch(`/api/event/user/${adminId}`, options)
-    //     .then((res) => {
-    //       return res.json();
-    //     })
-    //     .then((admin) => {
-    //       console.log(event, admin, 'event and admin');
-    //       this.setState({
-    //         admin,
-    //         currentEvent: event.event[0],
-    //         dateAndTime: event.date,
-    //       });
-    //     });
-    // })
-    // .catch(err => console.log(err));
-  }
-
-  // console.log(event.event[0], 'getting current event');
-  // this.setState({
-  //   currentEvent: event.event[0],
-  //   dateAndTime: event.date,
-  // });
-  //     })
-  //     .then((event) => {
-  //       this.setState({
-  //         currentEvent: event.event[0],
-  //         dateAndTime: event.date,
-  //       });
-  //     })
-  //     .catch(err => console.log(err));
-  // }
+  };
 
   /**
-   * Handle event edit
+   * Handle event edit and delete buttons
    */
 
   handleToggleModal = () => {
@@ -128,26 +87,21 @@ class EventPage extends Component {
     this.props.dispatch(editEvent(data, this.props.match.params.id));
   }
 
-  /**
-   * handle delete event
-   */
   handleDeleteEvent = () => {
     this.props.dispatch(deleteEvent());
   }
 
 
   render() {
-    // console.log(this.state, '---this.state');
-    // console.log(this.props, '---this.props');
-    // console.log(this.state.currentEvent._id, 'this.state.currentEvent._id');
-    // console.log(this.state.currentUser._id, 'this.state.currentUser._id');
+    console.log(this.state, '---this.staaaaaate');
+    console.log(this.props, '---this.proooooops');
     return (
       <React.Fragment>
         <Header/>
         <div className='main-eventpage'>
           <div className='event'>
             <div className='event-avatar'>
-              <img src={ this.state.currentEvent.photo || defaultEventCover } alt="event-cover"/>
+              <img src={ `data:image/png;base64${this.state.currentEvent.photo}`} alt="event-cover"/>
               <span className='event-avatar-type' >{this.state.currentEvent.type}</span>
             </div>
             <div className="event-short-desc">
@@ -180,7 +134,6 @@ class EventPage extends Component {
               <div className="long-desc-text">
                 <p className="red-subtitles">Description</p>
                 <div className="description-text">{this.state.currentEvent.description}</div>
-                {/* <br/> */}
                 <p className="red-subtitles">Admin</p>
                 {<UserArticle
                   participants={this.state.admin}
@@ -198,7 +151,6 @@ class EventPage extends Component {
                   imagePreviewSrc={this.state.imagePreviewSrc}
                   event={this.state.currentEvent}
                 />
-                {/* <button className="" onClick={this.handleToggleModal}> DELETE EVENT</button> */}
                 <DeleteEvent
                   handleDeleteEvent={this.handleDeleteEvent}
                 />
