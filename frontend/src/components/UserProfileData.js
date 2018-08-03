@@ -53,7 +53,7 @@ export class UserProfileData extends Component {
         <div className = 'profile'>
           <div className = 'profile_pic_frame'>
             <div className = 'profile_pic'>
-              <img src= {this.state.profile?this.state.profile.photo:''} alt="No photo....Sorry"/>
+              <img src={this.state.profile?'data:image/png;base64,'+this.state.profile.photo:''}  alt="No photo....Sorry" height='200' width='200'/>
             </div>
           </div>
           <div className = 'profile_name'>
