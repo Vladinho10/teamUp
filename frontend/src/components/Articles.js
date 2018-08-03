@@ -66,7 +66,8 @@ class WrappedArticles extends Component {
               </div>
               <div className='event-container__footer-place'>
                 <LocationIcon role='icon' />
-                <span>{el.location || 'location is not found'}</span>
+                <span className="event-location">{el.location || 'location is not found'}</span>
+                <span className="event-type">{el.type}</span>
               </div>
               <div className='event-container__eventInfo-btn'>
                 {this.getButton(el._id)}
@@ -92,7 +93,7 @@ class WrappedArticles extends Component {
       || []
     );
     if (events === this.props.events.sug) {
-      return <button onClick={() => this.handleJoin(_id) } className='event-container__joinButton'>Join</button>;
+      return <button onClick={() => this.handleJoin(_id) } className='event-container__joinButton'>Join the Event</button>;
     }
     if (events === this.props.events.go) {
       return <button onClick={() => this.handleUnJoin(_id) } className='event-container__joinButton'>UnJoin</button>;

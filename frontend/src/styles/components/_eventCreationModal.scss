@@ -157,3 +157,22 @@
     font-size: 1.4rem !important;
     text-align: center !important;
 }
+
+/////////// validation  
+
+.create-event__title-input-valid,
+.create-event__address-input-valid,
+.create-event__description-input-valid {
+    border: 1px solid green;
+}
+
+.create-event__title-input-invalid,
+.create-event__address-input-invalid,
+.create-event__description-input-invalid {
+    border: 1px solid red;
+}
+
+.formErrors {
+    font-size: 1.4rem;
+    color: red;
+}

@@ -61,7 +61,7 @@ class Header extends Component {
             <div className="navbar__search-box">
               <form className="navbar__form search-form">
                 <div className="icon-wrapper">
-                  <input type="text" name="eventSearch" placeholder="Search" className="search-form__input" aria-label='Enter search text' onChange={this.handleInputChange}/>
+                  <input autoComplete='off' type="text" name="eventSearch" placeholder="Search" className="search-form__input" aria-label='Enter search text' onChange={this.handleInputChange}/>
                   <SearchIcon className="search__icon" role="icon" />
                 </div>
               </form>

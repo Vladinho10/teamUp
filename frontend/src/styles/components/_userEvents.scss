@@ -42,24 +42,28 @@
   padding: 1rem;
   margin-bottom: 1.5rem;
   box-shadow: 0 0 1.2rem rgb(114, 144, 163);
+  font-family: -apple-technique, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-size: 1.4rem;
 }
 
 .event-photo {
-  flex-basis: 52%;
+  flex-basis: 40%;
+  height: 24rem;
 
   &__img {
     display: block;
     width: 100%;
     height: 100%;
+    object-fit: cover;
   }
 }
 
 .event-container {
-  flex-basis: 44%;
+  flex-basis: 54%;
   border: 5px solid rgba(238, 235, 235, .2);
 
   &__header {
-    font-size: 2.5rem;
+    font-size: 2rem;
     text-align: center;
     margin-bottom: 1.5rem;
   }
@@ -69,7 +73,6 @@
   }
 
   &__eventInfo {
-    padding: 1.5rem .3rem;
     margin-bottom: 1.5rem;
   }
 
@@ -80,7 +83,7 @@
 
     & p {
       flex-grow: 1;
-      padding: 2rem;
+      padding: 1.2rem;
       display: flex;
       align-items: center;
 
@@ -119,6 +122,18 @@
     font-weight: 500;
     text-align: center;
   }
+
+  &__joinButton {
+    border: 0;
+    padding: .7rem 0;
+    width: 100%;
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 500;
+    cursor: pointer;
+    background-color: transparent;
+    color: #E455A2;
+  }
 }
 
 .event-container__footer-place {
@@ -130,6 +145,10 @@
   & svg {
     fill: #8DC63F;
     margin-right: .7rem;
+  }
+
+  & .event-type {
+    margin-left: 5rem;
   }
 }
 

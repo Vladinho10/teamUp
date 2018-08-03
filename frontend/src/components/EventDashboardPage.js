@@ -12,9 +12,18 @@ import { addEvent } from '../actions/eventActions';
 
 class EventDashboardPage extends Component {
   state = {
-    // userName: null,
-    // imageSrc: '',
-    // phoneNumber: null,
+    event_title: '',
+    event_address: '',
+    event_description: '',
+    titleIsValid: false,
+    addressIsValid: false,
+    descriptionIsValid: false,
+    formIsValid: false,
+    formErrors: {
+      title: '',
+      address: '',
+      description: ''
+    },
     imagePreviewSrc: '',
     selectedFile: null,
     show: false,
@@ -32,16 +41,54 @@ class EventDashboardPage extends Component {
     f.then((res) => {
       return res.json();
     }).then((DataObj) => {
-      // console.log('DataObj', DataObj);
-      // console.log('UserEvents props Mount', this.props);
       this.props.dispatch(addUser(DataObj));
       this.setState(prevState => ({ loaded: !prevState.loaded }));
-      // this.setState({
-      //   userName: DataObj.user.name,
-      //   imageSrc: DataObj.user.photo,handleEventFormSubmit
-      //   phoneNumber: DataObj.user.phone
-      // });
     }).catch(err => console.log(err));
+  }
+
+  handleUserInput = (e) => {
+    console.log(e.target.name, 'name');
+    console.log(e.target.value, 'value');
+    const { name, value } = e.target;
+    this.setState({ [name]: value }, () => { this.validateField(name, value); });
+  }
+
+  validateField(fieldName, value) {
+    let { titleIsValid, addressIsValid, descriptionIsValid } = this.state;
+    const { formErrors } = this.state;
+    console.log(formErrors, 'formErrors');
+
+    switch (fieldName) {
+      case 'event_title':
+        titleIsValid = value.match(/^[a-zA-Z0-9]*/) && value.length >= 5 && value.length <= 25;
+        formErrors.event_title = titleIsValid ? '' : 'Title must contain min. 5 and max. 25 alphanumeric characters';
+        console.log(formErrors, 'formErrors in case title');
+        break;
+      case 'event_address':
+        addressIsValid = value.length >= 3 && value.match(/^[a-zA-Z0-9]*/);
+        formErrors.event_address = addressIsValid ? '' : 'Address must contain min. 5 and max. 20 alphanumeric characters';
+        break;
+      case 'event_description':
+        descriptionIsValid = value.length >= 6;
+        formErrors.event_description = descriptionIsValid ? '' : 'Description length must be min. 6 and max. 300';
+        break;
+      default:
+        break;
+    }
+    this.setState({
+      formErrors,
+      titleIsValid,
+      addressIsValid,
+      descriptionIsValid
+    }, this.validateForm);
+  }
+
+  validateForm() {
+    this.setState({
+      formIsValid: this.state.titleIsValid
+      && this.state.addressIsValid
+      && this.state.descriptionIsValid
+    });
   }
 
   handleToggleModal = () => {
@@ -60,13 +107,6 @@ class EventDashboardPage extends Component {
     this.setState(() => ({ imagePreviewSrc: null }));
   }
 
-  // handleFileUpload = () => {
-  //   this.handleToggleModal();
-  //   const fd = new FormData();
-  //   fd.append('image', this.state.selectedFile, this.state.selectedFile.name);
-  //   this.props.dispatch(addEvent(fd));
-  // }
-
   handleEventFormSubmit = (event) => {
     event.preventDefault();
 
@@ -75,13 +115,13 @@ class EventDashboardPage extends Component {
     }
 
     const data = new FormData(event.target);
-    console.log(data.get('event_type'));
+    data.set('photo', this.state.imagePreviewSrc, 'chris.jpg');
+    console.log(data.get('photo'), 'gggggggggggggggggggggggggggggggggggggggggggggggg');
     this.props.dispatch(addEvent(data));
     this.handleDeleteImage();
   }
 
   render() {
-    // console.log(this.props, 'proooooooooopssss dashboard');
     return (
       !this.state.loaded ? <div className="loader">
         <Loader
@@ -106,11 +146,17 @@ class EventDashboardPage extends Component {
               <UserEvents />
               <CreateEventModal
                 show={this.state.show}
+                formIsValid={this.state.formIsValid}
+                titleIsValid={this.state.titleIsValid}
+                addressIsValid={this.state.addressIsValid}
+                descriptionIsValid={this.state.descriptionIsValid}
                 handleFileChange={this.handleFileChange}
                 handleDeleteImage={this.handleDeleteImage}
                 handleToggleModal={this.handleToggleModal}
                 handleEventFormSubmit={this.handleEventFormSubmit}
                 imagePreviewSrc={this.state.imagePreviewSrc}
+                handleUserInput={this.handleUserInput}
+                formErrors={this.state.formErrors}
               />
             </div>
           </div>
@@ -122,7 +168,6 @@ class EventDashboardPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    // events: state.events,
     userData: state.userData
   };
 };
