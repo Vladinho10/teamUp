@@ -187,6 +187,7 @@ const deleteEventSuccess = _id => ({
 
 export const deleteEvent = (_id) => {
   console.log('---hasanq delete event action');
+  console.log(_id);
   return (dispatch) => {
     const data = { _id };
     const options = {

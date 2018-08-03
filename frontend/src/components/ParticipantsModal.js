@@ -53,6 +53,7 @@ class ParticipantsModal extends React.Component {
   }
 
   render() {
+    console.log(this.props.currentEvent, 'currentEvent');
     return (
       <div>
         <section className='btn-section'>

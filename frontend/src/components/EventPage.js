@@ -88,13 +88,16 @@ class EventPage extends Component {
   }
 
   handleDeleteEvent = () => {
-    this.props.dispatch(deleteEvent());
+    this.props.dispatch(deleteEvent(this.props.match.params.id));
+    this.props.history.push({
+      pathname: '/dashboard'
+    });
   }
 
 
   render() {
     console.log(this.state, '---this.staaaaaate');
-    console.log(this.props, '---this.proooooops');
+    console.log(this.props.currentUser._id, '---this.proooooops');
     return (
       <React.Fragment>
         <Header/>
@@ -141,7 +144,7 @@ class EventPage extends Component {
               </div>
               <br/>
               <section className="event-edit-delete">
-                <button className="" onClick={this.handleToggleModal} >EDIT</button>
+                <button className="edit-btn" onClick={this.handleToggleModal} >EDIT</button>
                 <CreateEventModal
                   show={this.state.show}
                   handleFileChange={this.handleFileChange}

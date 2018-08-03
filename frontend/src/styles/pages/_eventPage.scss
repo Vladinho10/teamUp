@@ -97,7 +97,12 @@
 
 .event-edit-delete {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
+}
+
+.edit-btn {
+    
+
 }
 
 .delete-event {
