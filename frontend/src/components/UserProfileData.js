@@ -54,22 +54,25 @@ export class UserProfileData extends Component {
             <div className = 'profile_pic'>
               <img src={this.state.profile?this.state.profile.photo:''}   height='200' width='200'/>
             </div>
+            <div className='profile_name'>
+                {this.state.profile?this.state.profile.name:''}
+            </div>
           </div>
           <div className = 'profile_name'>
             <div className = 'profile_name_txt'>
-              {this.state.profile?this.state.profile.name:''}{ '  '} 
+              <div>
+                
+              </div>
               {this.state.profile?this.state.profile.phone:''}
             </div>
+            <Invite profile = {this.state.profile} id = {this.props.id} />
             <div className='profile_events_info'>
-              <Invite profile = {this.state.profile} id = {this.props.id} />
-              <ul>
-                <li className = {this.state.switch_events == 'admin'?'profile_events_switch':''} onClick = {() => {this.transfer_to_sibling('admin')}}> 
+                <div className = {this.state.switch_events == 'admin'?'profile_events_switch':''} onClick = {() => {this.transfer_to_sibling('admin')}}> 
                   Created Events ({this.state.profile?this.state.profile.own_events.length:''})
-                </li>
-                <li className = {this.state.switch_events == 'user'?'profile_events_switch':''} onClick = {() => {this.transfer_to_sibling('user')}}>
+                </div>
+                <div className = {this.state.switch_events == 'user'?'profile_events_switch':''} onClick = {() => {this.transfer_to_sibling('user')}}>
                   Going Events ({this.state.profile?this.state.profile.attending_events.length:''})
-                </li>
-              </ul>
+                </div>
             </div>
           </div>
           

@@ -52,29 +52,41 @@
 .invitation_div{
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
+    
 }
 .invitation_div div{
-    width:45%;
+    width:40%;
     text-align: center;
 }
 .border_bottom_invite_list{
     border-bottom: double;
 }
 .invite_btn_style{
-    background-color: green;
+    background-color: #006EB0;
     color: white;
-    border:2px solid black;
     padding: 3px;
-    box-shadow: 3px 3px gray;
     border-radius:5px;
+    width:40%;
+    font-size: 20px;
+    width:150px;
+    position: relative;
+    top:-60px;
+    left:60%;
 }
 .invite_btn_style:hover{
-    background-color: red;
+    background-color: green;
 }
 .invited_btn{
     background-color: #888;
-
+    color: white;
+    width:50%;
 }
-
+.invite_btn1{
+    background-color: #006EB0;
+    border-radius:5px;
+    width:50%;
+    color:white;
+}
+.invite_btn1:hover{
+    background-color: green;
+}

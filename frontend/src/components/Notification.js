@@ -73,13 +73,13 @@ export default class Notification extends Component{
                         return(
                             <div className = {`notification_row ${notification.type}`}  key = {notification._id} >
                                 <div className= 'notification_img'>
-                                   <img src={notification.from.photo.slice(0,5)=='https'?notification.from.photo:'data:image/png;base64,'+notification.from.photo} className='notification_img' height='50' width='50'/>
+                                   <img src={notification.from.photo} className='notification_img' height='50' width='50'/>
                                 </div>
                                 <div>
                                     {notification.type}ed
                                 </div>
                                 <div>
-                                    {notification.event.title.slice(0,10)}
+                                    {notification.event.title.slice(0,8)}
                                 </div>
                             </div>
                             );

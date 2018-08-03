@@ -8,6 +8,8 @@
     width: 35%;  
 }
 .profile_pic {
+    position: relative;
+    top:-20%;
     width: 200px;
     position: relative;
     margin: 0 auto;
@@ -19,19 +21,18 @@
     
 }
 .profile_name{
-    
-    left:40%;
-    width:50%;
-    height:100%;
+    width:100%;
     text-align: center;
-    
+    position: relative;
+    top:-20%;
+    font-size: 20px;
 }
 .profile_name_txt{
     position: relative;
     top: 5%;
     height:70px;
     font-size: 25px;
-    border-bottom: double #232326;
+    text-align: left;
 }
 .profile_events_frame{
     position: relative;
@@ -73,7 +74,7 @@
     border-radius: 1%;
 }
 .profile_event_info_frame{
-    width:65%;
+    width:80%;
 }
 .profile_event_info_header{
     width:100%;
@@ -103,6 +104,7 @@
     width:100%;
     text-align: center;
     border-bottom: 1px solid whitesmoke;
+    background-color: #232326;
 }
 .profile_event_under_footer{
     height:30%;
@@ -140,18 +142,27 @@
 .profile_events_info{
     position: relative;
     top:10%;
+    left:20%;
     width:100%;
     height: 50%;
-    text-decoration: underline;
     font-size: 18px;
     cursor: pointer;
+    display: flex;
+    margin:20px auto;
+    color:black;
+    border-bottom: 1px gray;
+}
+.profile_events_info div{
+    width:30%;
+    font-size: 20px;
+
 }
 .profile_events_info ul li:hover{
     color:red;
     cursor:pointer;
 }
 .profile_events_switch{
-    color:red;
+    color:#006EB0;
 }
 .profile_event_dn{
     width:100%;

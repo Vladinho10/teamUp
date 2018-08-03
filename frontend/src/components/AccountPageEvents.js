@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import moment from 'moment';
+
 export default class AccountPageEvents extends Component{
     state = {
         switcher:this.props.switcher
@@ -41,6 +42,7 @@ export default class AccountPageEvents extends Component{
             }
             return events.map((el,i) => {
                 return(
+                    
                     <div className = 'profile_event_frame' key ={el._id} >
                         <div className = 'profile_event_img_frame'>
                             <div className = 'profile_event_img'>
@@ -79,7 +81,7 @@ export default class AccountPageEvents extends Component{
                                        <img src="./images/clock.png" height='20' width='20'/> {el.time}
                                     </div>
                                     <div>
-                                        <img src="./images/ev_loc.png" height='20' width='20'/>{el.location}
+                                        <img src="./images/ev_loc.png" height='20' width='20'/>{el.location.slice(0,10)}
                                     </div>
                                 </div>
                             </div>
