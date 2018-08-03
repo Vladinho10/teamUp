@@ -36,39 +36,6 @@ class WrappedUserEvents extends Component {
     this.refs.btnMy.removeAttribute('disabled', 'disabled');
   };
 
-  // handleScrollOnScroll = () => {
-  //   // const scrollHeight = Math.max(
-  //   //   document.body.scrollHeight, document.documentElement.scrollHeight,
-  //   //   document.body.offsetHeight, document.documentElement.offsetHeight,
-  //   //   document.body.clientHeight, document.documentElement.clientHeight
-  //   // );
-  //   const { innerHeight, scrollY } = window;
-  //   const fil = (
-  //     this.props.events.sug
-  //     || this.props.events.my
-  //     || this.props.events.go
-  //     || []
-  //   );
-  //
-  //   if (document.body.offsetHeight < innerHeight + scrollY + 150) {
-  //   // if (window.pageYOffset === scrollHeight) {
-  //     switch (fil) {
-  //       case this.props.events.sug:
-  //         this.props.dispatch(getSuggestedEvents(1));
-  //         break;
-  //       case this.props.events.my:
-  //         this.props.dispatch(getOwnEvents(true));
-  //         break;
-  //       case this.props.events.go:
-  //         this.props.dispatch(getAttendingEvents(1));
-  //         break;
-  //       default:
-  //         console.log('deeeeeeeef');
-  //     }
-  //   }
-  // }
-
-
   render() {
     // console.log(' UserEvents props', this.props);
     return (

@@ -21,7 +21,7 @@
             color:#8dc63f;
             font-size: 18px;
             border-radius: 41px;
-            background-color: #cacccd4d;
+            background-color: #f0f1f2;
         }
 
     }
@@ -37,14 +37,18 @@
     &-date {
         height: auto;
         width: auto;
-        margin: 0 ;
         background-color: white;
         color: rgb(243, 53, 132);
         font-size: 30px;
-        padding-right: 10px;
+        padding: 0 10px;
+        border-style: groove;
+        border-radius: 13px;
+        border-color: #d1d7da;
+        margin: 5px 0;
+
     }
     &-title {
-        color: rgb(77, 73, 73);
+        color: #626769;
         margin: auto;
         font-size: 30px;
         padding-left: 10px;
@@ -75,6 +79,7 @@
 
 .red-subtitles {
     color: rgb(243, 53, 132);
+    background-color: #eff3f5
 }
 
 // .edit-photo-icon {
@@ -87,6 +92,12 @@
 //     background-color: rgba(0, 0, 0, 0.548);
 //     transition: 0.5s
 // }
+
+
+.event-edit-delete {
+    display: flex;
+    justify-content: space-around;
+}
 
 .delete-event {
     display: flex;

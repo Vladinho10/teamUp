@@ -43,7 +43,7 @@ class WrappedArticles extends Component {
         return (
           <article key={el._id || i} onClick={e => this.goToEventPage(e, el._id)} className='eventArticle'>
             <div className='event-photo'>
-              <img className='event-photo__img' src={el.photo || './images/default.jpg'} alt='Event Photo' />
+              <img className='event-photo__img' src={`data:image/png;base64,${el.photo}` || './images/default.jpg'} alt='Event Photo' />
             </div>
             <div className='event-container'>
               <header className='event-container__header'>
@@ -144,10 +144,6 @@ class WrappedArticles extends Component {
     }
   }
 
-  changeBtnName() {
-    console.log(this.state);
-  }
-
   formatDate = (stringDate) => {
     const options = {
       month: 'short',
@@ -158,7 +154,7 @@ class WrappedArticles extends Component {
 
   goToEventPage = (e, id) => {
     console.log(id);
-    if (!e.target.matches('.event-container__joinButton')) {
+    if (e.target.matches('.event-photo__img') || e.target.matches('.event-container__footer-date') || e.target.matches('.event-container__header')) {
       this.props.history.push({
         pathname: `/eventpage/${id}`
       });
