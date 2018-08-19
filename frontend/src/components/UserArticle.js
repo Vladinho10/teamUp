@@ -3,7 +3,8 @@ import { withRouter } from 'react-router-dom';
 
 class UserArticle extends Component {
   redirectUserPage = (e, id) => {
-    if (e.target.matches('.main-participant-photo') || e.target.matches('.main-participant-name')) {
+    console.log(id);
+    if (e.target.matches('.user-av') || e.target.matches('.main-participant-name')) {
       this.props.history.push({
         pathname: `/account/${id}`
       });
@@ -16,7 +17,7 @@ class UserArticle extends Component {
         { this.props.participants.map((participant) => {
           return (
             <section onClick={e => this.redirectUserPage(e, participant._id)} className="main-participant" key={participant._id}>
-              <div className="main-participant-photo"><img src={participant.photo} width="40"/></div>
+              <div className="main-participant-photo"><img className="user-av" src={participant.photo} width="40"/></div>
               <p className="main-participant-name">{ participant.name}</p>
             </section>
           );
