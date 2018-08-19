@@ -1,0 +1,142 @@
+.main-eventpage {
+    display: flex;
+    justify-content: center;
+}
+
+.event {
+    height: 90vh;
+    width: 50vw;
+    margin-top: 6%;
+    
+    &-avatar {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        position: relative;
+        &-type {
+            position: absolute;
+            align-self: flex-start;
+            padding: 0px 15px;
+            margin-top: 10px;
+            color:#8dc63f;
+            font-size: 18px;
+            border-radius: 41px;
+            background-color: #f0f1f2;
+        }
+
+    }
+    &-avatar img {
+        width: 100%;
+        max-height: 100%;
+        box-shadow: 0 0 1.2rem #adbcc6;
+    }
+
+    &-short-desc {
+        background-color: white;
+        display: flex;
+    }
+    &-date {
+        height: auto;
+        width: auto;
+        background-color: white;
+        color: rgb(243, 53, 132);
+        font-size: 30px;
+        padding: 0 10px;
+        border-style: groove;
+        border-radius: 13px;
+        border-color: #d1d7da;
+        margin: 5px 0;
+
+    }
+    &-title {
+        color: #626769;
+        margin: auto;
+        font-size: 30px;
+        padding-left: 10px;
+    }
+}
+
+.long-desc {
+    height: auto;
+    height: 10vh;
+    &-date {
+        background-color: rgb(239, 243, 245);
+        display: flex;
+    }
+    &-location {
+        background-color: rgb(239, 243, 245); 
+    }
+}
+
+.icon__location, .icon__clock {
+    opacity: 0.5;
+    height: 20px;
+    align-self: center;
+}
+
+.description-text {
+    color: rgb(94, 93, 93);
+}
+
+.red-subtitles {
+    color: rgb(243, 53, 132);
+    background-color: #eff3f5
+}
+
+// .edit-photo-icon {
+//     display: flex;
+//     justify-content: flex-end;
+
+// }
+
+// .edit-photo-icon:hover {
+//     background-color: rgba(0, 0, 0, 0.548);
+//     transition: 0.5s
+// }
+
+
+.event-edit-delete {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.edit-btn , .delete-event-btn {
+    background-color: rgb(241, 234, 133); 
+    border: none;
+    color: white;
+    padding: 8px 22px;
+    text-align: center;
+    font-size: 17px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+.edit-btn:hover {
+    background-color:  rgb(162, 164, 165);
+}
+
+.delete-event-btn:hover {
+    background-color:  rgb(247, 236, 82);
+}
+
+
+.delete-event {
+    display: flex;
+    justify-content: space-around;
+    
+    &-cancel, &-confirm {
+        background-color:  rgb(165, 172, 173); 
+        border: none;
+        color: white;
+        padding: 8px 22px;
+        text-align: center;
+        display: flex;
+        margin: 0 auto;
+        font-size: 17px;
+        border-radius: 12px;
+        cursor: pointer; 
+    }
+
+    &-confirm {
+        background-color:  #fd1e86; 
+    }
+}

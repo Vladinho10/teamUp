@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Invite from './Invite';
+import  TypeMessage from './TypeMessage';
 import { NavLink } from 'react-router-dom';
 
 
@@ -15,7 +16,6 @@ export class UserProfileData extends Component {
   }
   
   componentDidMount = () => {
-    console.log(this.props.id);
     fetch('/api/profile/' + this.props.id ,{
       credentials:'include',
       method:'GET'
@@ -26,27 +26,8 @@ export class UserProfileData extends Component {
     });
   }
 
-  // componentDidMount = () => {
-  //   const options = {
-  //     credentials: 'include',
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/json ' }
-  //   };
-  //   const f = fetch('/api/dashboard', options);
-  //   f.then((res) => {
-  //     return res.json();
-  //   }).then((DataObj) => {
-  //     this.setState({
-  //       phoneNumber: DataObj.user.phone
-  //     });
-  //   }).catch(err => console.log(err));
-  // }
 
   render() {
-    if(this.state.profile){
-      console.log(this.state.profile);
-    }
-    
     return (
       <React.Fragment>
         <div className = 'profile'>
@@ -66,6 +47,7 @@ export class UserProfileData extends Component {
               {this.state.profile?this.state.profile.phone:''}
             </div>
             <Invite profile = {this.state.profile} id = {this.props.id} />
+            <TypeMessage to = {this.props.id} />
             <div className='profile_events_info'>
                 <div className = {this.state.switch_events == 'admin'?'profile_events_switch':''} onClick = {() => {this.transfer_to_sibling('admin')}}> 
                   Created Events ({this.state.profile?this.state.profile.own_events.length:''})

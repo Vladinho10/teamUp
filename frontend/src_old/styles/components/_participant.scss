@@ -1,0 +1,100 @@
+.main-participant {
+    display: flex;
+    padding: 1% 0;
+}
+
+.main-participant-photo {
+    margin-right: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & img {
+        border-radius: 20px;
+        cursor: pointer;
+    }
+}
+
+.main-participant-name {
+    color: #555;
+    margin: auto 0;
+    cursor: pointer;
+}
+
+.modal-container{
+    overflow-y: auto;
+    max-height: 50vh; 
+    min-width: 30vw;
+
+}
+.btn-section {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.participants-open-btn {
+    background-color:  rgb(68, 161, 197); 
+    border: none;
+    color: white;
+    width: 20vw;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.participants-close-btn {
+    background-color:  rgb(103, 162, 185); 
+    border: none;
+    color: white;
+    padding: 8px 22px;
+    text-align: center;
+    display: flex;
+    margin: 0 auto;
+    font-size: 17px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.join-btn, .unjoin-btn {
+    background-color:  rgb(42, 167, 109);
+    border: none;
+    color: white;
+    width: 20vw;
+    padding: 10px 25px;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.join-btn:hover {
+    background-color:  rgb(7, 192, 69);
+}
+
+.unjoin-btn {
+    background-color: #ff579d;
+}
+
+.unjoin-btn:hover {
+    background-color:  #fd1e86;
+}
+
+.participants-open-btn:hover, .participants-close-btn:hover, ::-webkit-scrollbar-thumb:hover{
+    background-color:  rgb(12, 151, 206); 
+}
+
+::-webkit-scrollbar {
+    width: 15px;
+    height: 1px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgb(173, 172, 172); 
+    border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    background: rgb(103, 162, 185); 
+    border-radius: 10px;
+}

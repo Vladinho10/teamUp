@@ -1,0 +1,121 @@
+@import 'utils/variables';
+
+.btn {
+	position: relative;
+	cursor: pointer;
+	
+	&,
+	&:link,
+	&:visited {
+		display: inline-block;
+		padding: .7rem 4rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		color: $color-white;
+		border-radius: .3rem;
+		transition: all .3s;
+	}
+
+	&--save,
+	&--cancel {
+		background-color: rgb(141, 198, 63);
+
+		&:hover {
+			background-color: rgb(115, 160, 51);
+		}
+	}
+	
+	&_green {
+		background-image: linear-gradient(to right, $color-grey-lighter, $button-color-1, $button-color-2, $button-color-3, $button-color-4, $color-grey-light);
+    }
+    
+    &_black {
+        background-image: linear-gradient(to right, $color-black, $color-grey-light);
+        color: $color-white;
+        align-self: center;
+    }
+	
+	&_active {
+		
+		&:active,
+		&:focus {
+			outline: 0;
+			transform: translateY(-3px);
+			box-shadow: $button-shadow;
+		}
+	}
+	
+	&_animated {
+		
+		&::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: -1;
+			width: 0;
+			height: 100%;
+			border-radius: .3rem;
+			background-color: $color-white;
+			transform: scaleY(0);
+			transition: transform .3s .3s, width .6s cubic-bezier(.67,.54,.49,.54);
+		}
+		
+		&:hover::before {
+			width: 100%;
+			transform: scaleY(1);
+		}
+		
+		&:hover {
+			color: $color-green;
+		}
+	}
+
+	&_create-event {
+		background-color: black;
+		border: 0;
+		border-radius: 50%;
+		padding: 2rem;
+		box-shadow: 0 0 .7rem rgb(26, 6, 6);
+
+		& .plus-icon {
+			fill: $color-white;
+			width: 3rem;
+			height: 3rem;
+		}
+	}
+}
+
+// create-event circle button wrapper
+.add-event {
+	position: fixed;
+	z-index: 100000 !important;
+	right: 3rem;
+	bottom: 3rem;
+}
+
+.button-wrapper {
+	background-color: transparent;
+    border: 0;
+}
+
+.searched-event__join-btn {
+	padding: .5rem 2rem;
+    background-color: #f6f7f9;
+    border: 1px solid #ced0d4;
+    color: #4b4f56;
+    cursor: pointer;
+
+	&:hover {
+		background-color: #e8ebee;
+	}
+
+	&:disabled {
+		opacity: 0.65; 
+  		cursor: not-allowed;
+	}
+}
+
+.radio-button_clicked {
+	fill: rgb(77, 249, 43);
+}

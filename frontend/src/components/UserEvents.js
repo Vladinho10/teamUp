@@ -33,7 +33,6 @@ class WrappedUserEvents extends Component {
   };
 
   render() {
-    // console.log(' UserEvents props', this.props);
     return (
       <section className='events-section'>
         <div className="events-section__navbar navbar">

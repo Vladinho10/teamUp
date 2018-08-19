@@ -1,0 +1,92 @@
+.modal_invite {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content_invite {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%; /* Could be more or less, depending on screen size */
+    overflow: auto;
+    height:40%;
+}
+
+/* The Close Button */
+.close_invite {
+    position: absolute;
+    top:-25px;
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close_invite:hover,
+.close_invite:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.invite_table{
+    min-width:100%;
+    text-align: center;
+}
+.invite_table td{
+    min-width:100px;
+}
+.td_image_invite img{
+    position: relative;
+    top:2%;
+}
+.invitation_div{
+    display: flex;
+    flex-direction: row;
+    
+}
+.invitation_div div{
+    width:40%;
+    text-align: center;
+}
+.border_bottom_invite_list{
+    border-bottom: double;
+}
+.invite_btn_style{
+    background-color: #006EB0;
+    color: white;
+    padding: 3px;
+    border-radius:5px;
+    width:40%;
+    font-size: 20px;
+    width:150px;
+    position: relative;
+    top:-60px;
+    left:60%;
+}
+.invite_btn_style:hover{
+    background-color: green;
+}
+.invited_btn{
+    background-color: #888;
+    color: white;
+    width:50%;
+}
+.invite_btn1{
+    background-color: #006EB0;
+    border-radius:5px;
+    width:50%;
+    color:white;
+}
+.invite_btn1:hover{
+    background-color: green;
+}

@@ -1,0 +1,178 @@
+.create-event {
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        padding: 1.5rem;
+        font-size: 1.4rem;
+
+        & > div:not(:last-child) {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+    }
+
+    &__title,
+    &__address {
+        & > label {
+            text-transform: uppercase;
+        }
+
+        & > input {
+            @extend %event-creating-input;
+        }
+    }
+
+    &__description {
+        & > label {
+            text-transform: uppercase;
+        }
+
+        & > textarea {
+            @extend %event-creating-input;
+        }
+    }
+
+    &__members {
+        & > label {
+            text-transform: uppercase;
+        }
+
+        & > input {
+            @extend %event-creating-input;
+            font-size: 1.4rem !important;
+            flex-basis: 20% !important;
+        }
+
+    }
+
+    &__types {
+        & .create-event-select {
+            width: 100%;
+            padding: .8rem .5rem;
+            font-family: inherit;
+            font-size: 1.4rem;
+        }
+    }
+
+    &__datepicker {
+        & .SingleDatePicker {
+            flex-grow: 1;
+            margin: 0;
+            border-radius: 5px;
+        }
+
+        & .rc-time-picker {
+            flex-grow: 1;
+            height: 100%;
+            display: block;
+        }
+        & .rc-time-picker-input {
+            height: 100%;
+            font-size: 1.4rem;
+            text-align: center;
+            padding: 1.4rem .7rem;
+        }
+    }
+
+    &__image-preview {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__image-box {
+        flex-direction: column;
+    }
+
+    &__upload-box {
+        position: relative;
+        overflow: hidden;
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        background: rgb(0, 110, 176);
+        color: $color-white;
+        outline: none;
+        font-size: 1.4rem;
+        line-height: 1.8rem;
+        text-align: center;
+        word-wrap: break-word;
+        flex-basis: 50%;
+
+
+    }
+
+    &__image-preview-box {
+        position: relative;
+        flex-basis: 50%;
+        button {
+            position: absolute;
+            right: 0;
+            top: 0;
+            cursor: pointer;
+        }
+    }
+
+    &__image-preview {
+        display: block;
+    }
+
+    &__input-upload-box {
+        margin: 0 0 1rem 0;
+        font-size: 2r4m;
+        font-weight: 300;
+        word-break: break-all;
+    }
+
+    &__upload-text {
+        margin-left: 2rem;
+    }
+
+    &__submit-form {
+        display: flex;
+
+        & button {
+            background-color: rgb(141, 198, 63);
+            flex-grow: 1;
+            padding: .7rem;
+            font-size: 1.6rem;
+
+            &:hover {
+                background-color: rgb(108, 152, 46);
+            }
+        }
+
+        & button:last-child {
+            margin-left: 2rem;
+        }
+    }
+}
+
+.rc-time-picker-panel-input {
+    font-size: 1.4rem !important;
+    text-align: center !important;
+}
+
+/////////// validation  
+
+.create-event__title-input-valid,
+.create-event__address-input-valid,
+.create-event__description-input-valid {
+    border: 1px solid green;
+}
+
+.create-event__title-input-invalid,
+.create-event__address-input-invalid,
+.create-event__description-input-invalid {
+    border: 1px solid red;
+}
+
+.formErrors {
+    font-size: 1.4rem;
+    color: red;
+}

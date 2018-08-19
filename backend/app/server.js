@@ -16,7 +16,7 @@ const cors = require('cors');
 const passport = require('./passport');
 const utf8 = require('utf8');
 const {check,validationResult} = require('express-validator/check');
-const {User,Event,Notification} = require('./model_crud');
+const {User,Event,Notification,Message} = require('./model_crud');
 const filterUser = require('./tools/filtrUser');
 
 const Storage = multer.diskStorage({
@@ -57,7 +57,7 @@ app.use(session({secret: '123'}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors()); // ! 
 
 app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback',
@@ -76,7 +76,21 @@ app.get('/',(req,res)=>{
 });
 
 
-
+app.get('/api/contact_messages/:id',(req,res) => {
+    if(req.user){
+        console.log(req.body.id);
+        let data;
+        Message.find({$or:[{from:req.user.id,to:req.params.id},{from:req.params.id,to:req.user.id}]}).populate('from').populate('to').sort({_id:-1}).then((data)=>{
+            data = data;
+            Message.updateMany({to:req.user.id},{$set:{seen:true}}).then((result)=>{
+                res.json({data});
+            })
+            
+        });
+    }else{
+        res.sendStatus(401);
+    }
+});
 app.get('/api/events/:type',(req,res)=>{
     if(req.user){
         let data = {};
@@ -127,6 +141,15 @@ app.get('/api/events/:type',(req,res)=>{
         res.sendStatus(401);
     }
  });
+
+app.get('/api/myid',(req,res)=>{
+    if(req.user){
+        res.json({id:req.user.id});
+    }else{
+        res.sendStatus(401);
+    }
+   
+})
 
  app.get('/api/user/:id',(req,res)=>{
     if(req.user) {
@@ -184,8 +207,19 @@ app.get('/logout',(req,res)=>{
 
 app.get('/api/notifications',(req,res)=>{
     if(req.user){
-        Notification.find({to:req.user.id,seen:false}).populate('from').populate('event').then((notifications)=>{
+        Notification.find({to:req.user.id}).populate('from').populate('event').then((notifications)=>{
             res.json({notify:notifications});
+        });
+    }else{
+        res.sendStatus(401);
+    }
+});
+
+app.get('/api/messages',(req,res)=>{
+    if(req.user){
+        console.log(req.user.id);
+        Message.find({$or:[{to:req.user.id},{from:req.user.id}]}).populate('from','_id name photo').populate('to','_id name photo').sort({_id:-1}).then((messages)=>{
+            res.json({messages:messages});
         });
     }else{
         res.sendStatus(401);
@@ -448,6 +482,23 @@ app.post('/api/notification_check_invite',(req,res)=>{
          res.sendStatus(401);
      }
  });
+
+ app.post('/api/new_message',(req,res)=>{
+     if(req.user){
+        let msg = new Message({
+            from:req.user.id,
+            to:req.body.to,
+            date: Date.now(),
+            payload:req.body.payload,
+            seen:false
+        }).save().then((data)=>{
+            res.json(data);
+        });
+     }else{
+         res.sendStatus(401);
+     }
+ });
+ 
 
  app.post('/api/search_results_load/:option',(req,res)=>{  //use encodeURIComponent
     if(req.user){

@@ -78,7 +78,6 @@ class UserAvatar extends Component {
   }
 
   render() {
-    console.log(this.props.user.photo, 'photooooooooo');
     let handlePhoneNumber;
     let handleEditPhoneNumber;
     if (this.state.addPhone) {

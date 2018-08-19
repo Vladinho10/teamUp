@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-dom';
 
 class UserArticle extends Component {
   redirectUserPage = (e, id) => {
-    console.log(id);
     if (e.target.matches('.main-participant-photo') || e.target.matches('.main-participant-name')) {
       this.props.history.push({
         pathname: `/account/${id}`

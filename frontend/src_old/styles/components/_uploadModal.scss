@@ -1,0 +1,91 @@
+.ReactModalPortal > div {
+    opacity: 0;
+}
+
+.ReactModalPortal .ReactModal__Overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 200ms ease-in-out;
+    position: relative;
+}
+
+.ReactModalPortal .ReactModal__Overlay--after-open {
+    opacity: 1;
+}
+
+.ReactModalPortal .ReactModal__Overlay--before-close {
+    opacity: 0;
+}
+
+.ReactModal__Content {
+    position: initial !important;
+    overflow: initial !important;
+}
+
+.upload-modal {
+    position: relative;
+    overflow: hidden;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 5rem;
+    margin-bottom: 2rem;
+    background: #006EB0;
+    color: $color-white;
+    outline: none;
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+    text-align: center;
+    word-wrap: break-word;
+
+    &__text {
+        margin-left: 1rem;
+    }
+
+    &__upload-box {
+        margin: 0 0 1rem 0;
+        font-size: 2rem;
+        font-weight: 300;
+        word-break: break-all;
+    }
+
+    &__button {
+        cursor: pointer;
+        text-decoration: none;
+        text-align: center;
+    }
+
+    &__input-upload {
+        bottom: 0;
+        cursor: inherit;
+        height: 100%;
+        width: 150%;
+        margin: 0;
+        opacity: 0;
+        padding: 0;
+        position: absolute;
+        right: 0;
+    }
+}
+
+.image-preview {
+    display: flex;
+    flex-direction: column;
+
+    &__image-box {
+        width: 27rem;
+        height: 13rem;
+        border: 5px solid white;
+        box-shadow: 0.5rem 0.8rem 0.5rem grey;
+        margin-bottom: 2rem;
+
+        & img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+}

@@ -1,0 +1,97 @@
+%heading-secondary {
+    font-size: 3rem;
+    line-height: 3.8rem;
+    margin-bottom: 5rem;
+    color: #000000;
+}
+
+%event-creating-input {
+    flex-basis: 70%;
+    padding: .7rem;
+    box-shadow: 0 0 1rem grey;
+    outline: 0;
+    font-family: inherit;
+}
+
+%info-input {
+    padding: .8rem .5rem;
+    margin-bottom: .5rem;
+    width: 100%;
+    border: 0;
+    border-radius: .3rem;
+    box-shadow: 0 0 1rem rgba(154, 192, 213, 0.939);
+}
+
+%event-type-search-box {
+    margin-bottom: 1.5rem;
+    border: 1px solid rgb(238, 238, 238);
+    background-color: rgb(255,255,255);
+}
+
+%event-type-search-box-header {
+    padding: .8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgb(238, 238, 238);
+
+    & a,
+    & a:link,
+    & a:visited {
+        text-transform: capitalize;
+        font-size: 1.4rem;
+        cursor: pointer;
+        line-height: 1;
+        color: #365899;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+%see-all-results {
+    &__link,
+    &__link:link,
+    &__link:visited {
+        display: block;
+        padding: 1.5rem;
+        font-size: 2.2rem;
+        color: #365899;
+        text-align: center;
+        text-transform: capitalize;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+// doesnt work but dont know why
+
+%link-in-search {
+    display: block;
+    padding: 1.5rem;
+    font-size: 2.2rem;
+    color: #365899;
+    text-align: center;
+    text-transform: capitalize;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+%user-info-submit-button {
+    background-color: rgb(6, 123, 196);
+    color: $color-white;
+    padding: .6rem 2rem;
+    margin-top: .5rem;
+    border: 0;
+    border-radius: 3px;
+    box-shadow: 0 0 1rem rgb(115, 158, 186);
+
+    &:hover {
+        background-color: rgb(8, 90, 142);
+    }
+}

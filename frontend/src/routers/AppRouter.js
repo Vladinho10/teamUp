@@ -6,6 +6,7 @@ import NotFoundPage from '../components/NotFoundPage';
 import EventPage from '../components/EventPage';
 import SearchResultsPage from '../components/search/SearchResultsPage';
 import { AccountPage } from '../components/AccountPage';
+import MessagesSenders from '../components/MessagesSenders';
 
 const AppRouter = () => (
   <BrowserRouter>
@@ -18,6 +19,7 @@ const AppRouter = () => (
         <Route path='/search/people/' component={SearchResultsPage} />
         <Route path='/search/events/' component={SearchResultsPage} />
         <Route path='/account/:id' component={AccountPage} />
+        <Route path='/messages' component={MessagesSenders} /> 
         <Route component={NotFoundPage} />
       </Switch>
     </React.Fragment>

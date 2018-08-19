@@ -1,0 +1,112 @@
+.user-avatar {
+    flex-basis: 22%;
+
+    &__logo-box {
+        position: relative;
+        background-color: #ffffff;
+        border: 3px solid #ffffff;
+        border-radius: 3px;
+        box-shadow: 0 0 1rem rgb(1, 1, 28);
+    }
+
+    &__link,
+    &__link:link,
+    &__link:visited {
+        display: block;
+        height: 20rem;
+    }
+
+    &__logo {
+        display: inline-block;
+        vertical-align: bottom;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &__add-photo {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 6rem;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background: rgba(0, 0, 0, .7);
+        opacity: 0;
+        transition: all .3s;
+        cursor: pointer;
+
+        & .upload-icon {
+            fill: white;
+        }
+
+        & span {
+            color: white;
+        }
+
+        .upload-photo {
+            height: 100%;
+            opacity: 0;
+            position: absolute;
+            width: 100%;
+        }
+    }
+
+    &__logo-box:hover &__add-photo {
+        opacity: 1;
+    }
+
+    &__logo-box:active &__add-photo {
+        opacity: 1;
+    }
+
+    &__info {
+        margin-top: 2rem;
+    }
+
+    &__name-box,
+    &__phone-box {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        color: black;
+
+        .edit-icon {
+            cursor: pointer;
+            fill: rgb(6, 123, 196);
+        }
+    }
+
+    &__name-box {
+        & h2 {
+            line-height: 1.6rem;
+            font-size: 1.6rem;
+        }
+
+        .name-form {
+            & input[type=text] {
+                @extend %info-input;
+            }
+            & input[type=submit] {
+                @extend %user-info-submit-button;
+            }
+        }
+    }
+
+    &__phone-box {
+        .phone-form {
+            & input[type=text] {
+                @extend %info-input;
+            }
+            & input[type=submit] {
+                @extend %user-info-submit-button;
+            }
+        }
+
+        & p {
+            font-size: 1.8rem;
+        }
+    } 
+}

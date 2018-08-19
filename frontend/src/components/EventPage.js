@@ -65,8 +65,6 @@ class EventPage extends Component {
    */
 
   handleUserInput = (e) => {
-    console.log(e.target.name, 'name');
-    console.log(e.target.value, 'value');
     const { name, value } = e.target;
     this.setState({ [name]: value }, () => { this.validateField(name, value); });
   }
@@ -136,7 +134,6 @@ class EventPage extends Component {
     }
 
     const data = new FormData(event.target);
-    console.log(data.get('event_title'), 'edited title');
     this.props.dispatch(editEvent(data, this.props.match.params.id));
   }
 

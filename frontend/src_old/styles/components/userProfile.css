@@ -1,0 +1,250 @@
+.profile{
+    position: relative;
+    display: flex;
+    top:100px;
+}
+.profile_pic_frame {
+    width: 35%;  
+}
+.profile_pic {
+    position: relative;
+    top:-12%;
+    width: 200px;
+    position: relative;
+    margin: 0 auto;
+    padding-top: 2%;  
+}
+.profile_pic img{
+    border:1px solid black;
+    border-radius: 5%;
+    
+}
+.profile_name{
+    width:100%;
+    text-align: center;
+    position: relative;
+    top:-20%;
+    font-size: 20px;
+}
+.profile_name_txt{
+    position: relative;
+    top: 5%;
+    height:70px;
+    font-size: 25px;
+    text-align: left;
+}
+.profile_events_frame{
+    position: relative;
+    top:100px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.profile_event_frame{
+    position: relative;
+    border: 1px solid #9fa09f;
+    height:200px;
+    width:40%;
+    margin: 0 auto;
+    margin-top: 2%;
+    box-shadow:0 0 1.2rem #7290a3;
+    display: flex;
+    background-color: #f0f1f2;
+    border-radius:10px;
+    color:gray;
+}
+.profile_event_img_frame{
+    position: relative;
+    left:0%;
+    width:43%;
+    height:100%;
+}
+.profile_event_img{
+    width:92%;
+    height:90%;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0 auto;
+}
+.profile_event_img img{
+    height: 100%;
+    width: 100%;
+    border-radius: 1%;
+}
+.profile_event_info_frame{
+    width:80%;
+}
+.profile_event_info_header{
+    width:100%;
+    height: 30%;
+    display: flex;
+}
+.profile_event_info_footer{
+    width: 100%;
+    height: 70%;
+   
+}
+.profile_event_title,{
+    text-align: center;
+    width:50%;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.profile_event_title{
+    width:100%;
+}
+.profile_event_date{
+    font-size: 15px;
+    color:red;
+    text-align: center;
+    box-shadow:0 0 1.2rem #7290a3;
+    width:60%;
+    position: relative;
+    top:-40%;
+    background-color: white;
+    left:-4%;
+    border-radius: 3px;
+}
+.profile_event_description{
+    height:70%;
+    width:100%;
+    text-align: center;
+}
+.profile_event_under_footer{
+    height:30%;
+    width:100%;
+    display: flex;
+    
+}
+.profile_event_under_footer div{
+    width:33%;
+    text-align: center;
+}
+.profile_event_under_footer img{
+    position: relative;
+    top:15%;
+}
+
+.profile_event_img:hover   .join_from_profile {
+    display: block;
+    
+}
+.profile_event_img:hover   img{
+    filter:blur(5px);
+}
+.join_from_profile button:hover{
+    background-color: green;
+}
+
+.join_btn{
+    position: relative;
+    width:50%;
+    height:50px;
+    margin: 0 auto;
+    top:-75%;
+    
+}
+.join_btn button {
+    width:100%;
+}
+
+.profile_events_info{
+    position: relative;
+    top:10%;
+    left:20%;
+    width:100%;
+    height: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    margin:20px auto;
+    color:black;
+    border-bottom: 1px gray;
+}
+.profile_events_info div{
+    width:30%;
+    font-size: 20px;
+
+}
+.profile_events_info ul li:hover{
+    color:red;
+    cursor:pointer;
+}
+.profile_events_switch{
+    color:#006EB0;
+}
+.profile_event_dn{
+    width:100%;
+    height:70%;
+}
+.profile_event_count{
+    width:100%;
+    height: 30%;
+    display: flex;
+    position: relative;
+    top:-7%;
+}
+.profile_name_count_part{
+    width:30%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    margin: auto;
+    padding-bottom: -5px;
+}
+.profile_name_count_part img{
+    position: relative;
+    top:10%;
+}
+.invite_btn_frame{
+    position:absolute;
+    width:30%;
+}
+.invitation_list{
+    display: none;
+    height:400px;
+    width:200px;
+    background-color: red;
+}
+.profile_name_count_part{
+    color:green;
+}
+.missing{
+    color:red;
+}
+.ev_type{
+    color:#006EB0;
+    text-decoration:underline;
+}
+.profile_event_title{
+    font-size: 18px;
+}
+.join_from_profile{
+    position: absolute;
+    display: none;
+    height:30px;
+    width:80px;
+    top:50%;
+    left:50%;
+    margin-left: -40px;
+    margin-top: -15px;
+}
+.profile_join{
+    height:100%;
+    width: 100%;
+    background-color: #2aa76d;
+    box-shadow:0 0 1.2rem #7290a3;
+    border-radius: 5px;
+    color:#f0f1f2;
+    font-weight: bolder;
+}
+.profile_unjoin{
+    height:100%;
+    width: 100%;
+    background-color: #E23D96;
+    box-shadow:0 0 1.2rem #7290a3;
+    border-radius: 5px;
+    color:#f0f1f2;
+    font-weight: bolder;
+}

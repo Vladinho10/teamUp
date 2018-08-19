@@ -1,0 +1,93 @@
+@import 'utils/variables';
+
+.login-header {
+    background-color: $color-white;
+    border-bottom: 1px solid rgb(242, 238, 238);
+
+    &__wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__logo-box {
+        margin-right: 5rem;
+
+        & a
+        & a:link,
+        & a:visited {
+            display: inline-block;
+            height: 100%;
+
+            & img {
+                height: 100%;
+                vertical-align: middle;
+            }
+        }
+    }
+
+    &__heading {
+        margin: 0;
+        -webkit-background-clip: text;
+        color: transparent;
+        background-image: linear-gradient(to right, $color-grey-light, $color-grey-dark);
+        transition: all .2s;
+
+        &:hover {
+            transform: skewY(2deg) skewX(15deg) scale(1.1);
+            text-shadow: 0.5rem 1rem 2rem rgba(0,0,0,0.2);
+        }
+    }
+}
+
+.register {
+    padding-top: 11.4rem;
+
+    &-wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__description {
+        align-self: center;
+        flex-basis: 50%;
+        padding: 5rem 10rem 5rem 0;
+        border-right: 1px solid rgb(235, 240, 235);
+
+        & h2 {
+            @extend %heading-secondary;
+        }
+
+        & p {
+            font-size: 1.4rem;
+            line-height: 2rem;
+        }
+    }
+
+    &__sign-in {
+        flex-basis: 50%;
+        padding: 5rem 0 5rem 10rem;
+
+        & h2 {
+            @extend %heading-secondary;
+        }
+    }
+}
+
+.main-footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    padding: 2rem 0;
+    background-color: $color-grey-lighter;
+
+    & p {
+        width: 50%;
+        margin: 0 auto;
+        text-align: center;
+
+        & small {
+            margin-left: 2rem;
+        }
+    }
+}

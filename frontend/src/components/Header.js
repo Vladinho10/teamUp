@@ -5,7 +5,7 @@ import { SearchIcon } from './SvgIcons';
 import SearchDropdown from './search/SearchDropdown';
 import getSearch from '../actions/searchActions';
 import Notification from './Notification';
-
+import Message from './Message';
 const logo = require('../../dist/images/logo.png');
 
 class Header extends Component {
@@ -17,7 +17,6 @@ class Header extends Component {
 
   handleInputChange = (event) => {
     event.preventDefault();
-    console.log(event.target.value, 'event target');
     if (event.target.value.length !== 0) {
       this.setState({ dropdown: true, blurDropdown: true, query: event.target.value });
     } else {
@@ -25,14 +24,6 @@ class Header extends Component {
     }
     this.props.dispatch(getSearch(event.target.value));
   }
-
-  // handleToggleDropdown = () => {
-  //   this.setState({ dropdown: false });
-  // }
-
-  // handleOnBlurDropdown = () => {
-  //   this.setState(state => ({ blurDropdown: !state.blurDropdown, dropdown: !state.dropdown }));
-  // }
 
   render() {
     return (
@@ -57,9 +48,11 @@ class Header extends Component {
             </div>
             <ul className="navbar__list">
               <li className="navbar__item" style={{position:'relative'}}>
-                <Notification />
+                <Notification history = {this.props.history} />
               </li>
-
+              <li className="navbar__item" style={{position:'relative'}}>
+                  <Message history = {this.props.history} />
+              </li>
               <li className="navbar__item">
                 <a role="link" href="/logout" className="navbar__link navbar__link--is-active">Logout</a>
               </li>

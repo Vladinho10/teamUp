@@ -48,8 +48,6 @@ class EventDashboardPage extends Component {
   }
 
   handleUserInput = (e) => {
-    console.log(e.target.name, 'name');
-    console.log(e.target.value, 'value');
     const { name, value } = e.target;
     this.setState({ [name]: value }, () => { this.validateField(name, value); });
   }
@@ -57,7 +55,6 @@ class EventDashboardPage extends Component {
   validateField(fieldName, value) {
     let { titleIsValid, addressIsValid, descriptionIsValid } = this.state;
     const { formErrors } = this.state;
-    console.log(formErrors, 'formErrors');
 
     switch (fieldName) {
       case 'event_title':
@@ -129,7 +126,6 @@ class EventDashboardPage extends Component {
 
     const data = new FormData(event.target);
     data.set('photo', this.state.base64Image);
-    // console.log(data.get('photo'), 'gggggggggggggggggggggggggggggggggggggggggggggggg');
     this.props.dispatch(addEvent(data));
     this.handleDeleteImage();
   }

@@ -1,61 +1,102 @@
 import React,{Component} from 'react';
 import moment from 'moment';
-
-export default class AccountPageEvents extends Component{
+import { LocationIcon, CheckedIcon, QuestionIcon } from './SvgIcons';
+import { BrowserRouter, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+class AccountPageEvents extends Component{
     state = {
         switcher:this.props.switcher
     }
     static getDerivedStateFromProps=(props,state)=>{ 
       return {switcher:props.switcher};
     }
+    redirectEventPage = (e, id) => {
+        this.props.history.push({
+          pathname: `/eventpage/${id}`
+      });
+    }
+    checkEventIsMine = (my_id,players) => {
+            return players.includes(my_id);
+    }
+    handleJoinUnjoin = (id,ev) =>{
+        ev.disabled = true;
+        ev.className=ev.className == 'profile_join'?'profile_unjoin':'profile_join'; 
+        fetch('/api/add_or_delete_participant',{
+            credentials:'include',
+            method:'post',
+            body: JSON.stringify({
+                ev_id:id,
+                action:ev.innerText=='JOIN'?'add':'delete'
+            }),
+            headers: { 
+                'Content-type': 'application/json' 
+            }
+
+        }).then((res)=>{
+            return res.json();
+        }).then((data)=>{
+            ev.innerText = ev.innerText=='JOIN'?'UNJOIN':'JOIN';
+            ev.disabled = false;
+        });
+    }
     componentDidMount = () =>{
+        let info;
         fetch('/api/profile/' + this.props.id,{
           credentials:'include',
           method:'GET'
         }).then((res)=>{return res.json()}).then((profile) => {
-            console.log(profile,'125151515')
             let events = profile.own_events;
-            console.log(events);
             fetch('/api/events/profile_events$'+ this.props.id,{
                 credentials:'include',
                 method:'GET'
             }).then((res)=>{return res.json()}).then((data) =>{
-                this.setState({
-                    own_events:data.own_events,
-                    attending_events:data.attending_events,
-                    switcher:'admin'
+                info = data;
+                fetch('/api/myid',{
+                    credentials:'include',
+                  }).then((res)=>{return res.json()}).then((data) => {
+                      
+                    this.setState({
+                        own_events:info.own_events,
+                        attending_events:info.attending_events,
+                        switcher:'admin',
+                        id:data.id
+                    });
                 });
+                
             });
           
         });
       }
     render(){
-        console.log(this.state,'545454545450');
         if(this.state.own_events || this.state.attending_events ){
-            console.log('boommmmmmmmm');
             let events = [];
             if(this.state.switcher == 'admin'){
                  events = this.state.own_events;
-                console.log(events,'boom');
             }else{
                  events = this.state.attending_events;
             }
             return events.map((el,i) => {
                 return(
-                    
                     <div className = 'profile_event_frame' key ={el._id} >
                         <div className = 'profile_event_img_frame'>
                             <div className = 'profile_event_img'>
-                                <img src={el.photo} alt=""/>
+                                <img src={el.photo?el.photo:'./images/default.jpg'} alt=""/>
+                                <div className = 'profile_event_date'>
+                                    {moment(new Date(el.date)).format('ll').split(',')[0]}
+                                </div>
+                                {!this.checkEventIsMine(this.state.id,el.admins)?
+                                <div className ='join_from_profile' >
+                                    <button className={this.checkEventIsMine(this.state.id,el.players)?'profile_unjoin':'profile_join'} onClick = {(e)=>{ let ev = e.target;this.handleJoinUnjoin(el._id,ev);}}>
+                                        {this.checkEventIsMine(this.state.id,el.players)?'UNJOIN':'JOIN'}
+                                    </button>
+                                </div>:''
+                                }
                             </div>
                         </div>
-                        <div className = 'profile_event_info_frame'>
+                        <div className = 'profile_event_info_frame' onClick = {(e)=>this.redirectEventPage(el,el._id)}>
                             <div className = 'profile_event_info_header'>
                                 <div className = 'profile_event_title'>
                                     {el.title}
-                                </div>
-                                <div className = 'profile_event_date'>
-                                    {moment(new Date(el.date)).format('LL').split(',')[0]}
                                 </div>
                             </div>
                             <div className = 'profile_event_info_footer'>
@@ -65,23 +106,22 @@ export default class AccountPageEvents extends Component{
                                     </div>
                                     <div className = 'profile_event_count'>
                                         <div className = 'profile_name_count_part'>
-                                            <img src="./images/people.png" height='18' width='20' />
-                                            {el.quantity}
+                                            Going {el.players.length}
                                         </div>
-                                        <div className = 'profile_name_count_part'>
-                                            Missing {el.quantity-el.players.length}
+                                        <div className = 'profile_name_count_part missing'>
+                                              Missing {el.quantity-el.players.length > 0? el.quantity-el.players.length:0}
                                         </div>
                                     </div>
                                 </div>
                                 <div className = 'profile_event_under_footer'>
-                                <div>
+                                    <div className='ev_type'>
                                         {el.type}
                                     </div>
                                     <div>
-                                       <img src="./images/clock.png" height='20' width='20'/> {el.time}
+                                        {el.time}
                                     </div>
                                     <div>
-                                        <img src="./images/ev_loc.png" height='20' width='20'/>{el.location.slice(0,10)}
+                                        <LocationIcon role='icon' />{el.location.slice(0,10)}
                                     </div>
                                 </div>
                             </div>
@@ -92,9 +132,10 @@ export default class AccountPageEvents extends Component{
         }
         else{
             return(
-                <div>OOPs</div>
+                <div></div>
             )
         }
         
     }
 }
+export default connect()(AccountPageEvents);

@@ -17,13 +17,6 @@ class WrappedArticles extends Component {
     window.addEventListener('scroll', this.handleScrollOnScroll, false);
   }
 
-  //
-  // componentWillReceiveProps() {
-  //   console.log("propppppppppppppppp", this.props);
-  //   this.loadInitialContent();
-  // }
-  //
-  //
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScrollOnScroll);
@@ -37,8 +30,6 @@ class WrappedArticles extends Component {
       || []
     );
     return (
-      // <div>
-      //   {
       events.map((el, i, arr) => {
         return (
           <article key={el._id || i} onClick={e => this.goToEventPage(e, el._id)} className='eventArticle'>
@@ -139,7 +130,6 @@ class WrappedArticles extends Component {
           this.props.dispatch(getAttendingEvents(1));
           break;
         default:
-          console.log('deeeeeeeef');
       }
     }
   }
@@ -153,7 +143,6 @@ class WrappedArticles extends Component {
   };
 
   goToEventPage = (e, id) => {
-    console.log(id);
     if (e.target.matches('.event-photo__img') || e.target.matches('.event-container__footer-date') || e.target.matches('.event-container__header')) {
       this.props.history.push({
         pathname: `/eventpage/${id}`

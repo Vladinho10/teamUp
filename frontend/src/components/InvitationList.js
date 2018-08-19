@@ -5,18 +5,14 @@ export default class Invite extends Component{
 
     }
     static getDerivedStateFromProps=(props,state)=>{ 
-        
         return {profile:props.profile};
       }
     componentDidMount() {
-        
-        //document.addEventListener("click", this.handleOutsideClick);
         fetch('/api/user/me',{
             credentials:'include'
         }).then((res)=>{
             return res.json();
         }).then((me)=>{
-            console.log('its me',me);
             fetch('/api/notification_check_invite',{
                 credentials:'include',
                 method:'post',
@@ -36,7 +32,6 @@ export default class Invite extends Component{
                         }
                     }
                 }
-                console.log(filtered_events,'bcdbcjkbdjk');
                 this.setState({
                     own:filtered_events
                 });        
@@ -60,8 +55,6 @@ export default class Invite extends Component{
                 'Content-Type': 'application/json'
             }
         }).then((res)=> {return res.json()}).then((data)=>{
-            console.log(data);
-            console.log(ev);
             ev.innerHTML = 'Invited';
             ev.style.backgroundColor = 'gray';
         });

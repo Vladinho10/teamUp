@@ -25,7 +25,7 @@ class EventLoginPage extends Component {
                   <h2>Say hello to TeamUp - The best place to plan and implement your events</h2>
                   <p>
                     Create your team or join existing ones, make your life more interesting.
-                    Create different kind of events , invite your frineds and have a fun.
+                    Create different kinds of events , invite your friends and have a fun.
                   </p>
                 </section>
                 <section className="register__sign-in">

@@ -17,10 +17,7 @@ class ParticipantsModal extends React.Component {
   }
 
   openModal() {
-    console.log(this.props.currentEvent.players, 'this.props.currentEvent.players');
     this.getParticipants(this.props.currentEvent.players);
-
-    // this.setState({ modalIsOpen: true });
   }
 
 
@@ -29,7 +26,6 @@ class ParticipantsModal extends React.Component {
   }
 
   getParticipants = (participants) => {
-    // console.log(participants, 'participants');
     const data = { participants };
     const options = {
       credentials: 'include',
@@ -43,7 +39,6 @@ class ParticipantsModal extends React.Component {
         return res.json();
       })
       .then((players) => {
-        console.log(players, 'getting players of this event');
         this.setState({
           participants: players.part_data,
           modalIsOpen: true
@@ -53,7 +48,6 @@ class ParticipantsModal extends React.Component {
   }
 
   render() {
-    // console.log(this.props.currentEvent, 'currentEvent');
     return (
       <div>
         <section className='btn-section'>
